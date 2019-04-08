@@ -7,25 +7,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          {/* <h2>Checked</h2> */}
-          
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <h3>testing</h3>
           <LoginPage/>
           <Welcome/>
-          </header>
       </div>
       );
   }
