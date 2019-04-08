@@ -1,0 +1,40 @@
+
+*{
+    font-family: Montserrat;
+         /* color:white; */
+}
+.gridcontanier{
+    display:grid;
+    grid-template-columns: repeat(2, 70%);
+    grid-template-rows: 50rem ;
+    border: 1px solid red;
+    background-color: #8c1aff;
+
+}
+.gridcontanier1{
+ border: 1px solid black;
+ z-index: 1;
+ border-top-right-radius: 400px;
+ border-bottom-right-radius: 400px;
+ background-color: white;
+
+}
+.gridcontanier2{
+    /* background-color: #8c1aff; */
+    /* border-radius: 200px; */
+    shape-outside: circle(50%);
+}
+.box{
+    margin-left:600px;
+    margin-top: 100px;
+    background-color: #FF619E;
+    width:580px;
+    height:631px;
+    text-align: center;
+}
+.boxText{
+    color:white;
+    font-size:24px;
+    padding:50px;
+
+}
