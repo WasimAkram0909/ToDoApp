@@ -11,8 +11,8 @@ const RouterComponent=()=>{
         <Router>
             <Switch>
                 <Route exact path='/' component={LoginPage}/>
-                <Route  path='/oauth/signin' component={Welcome}/>
-                <Route path="/dashboard" component={Dashboard}/>
+                <Route exact path='/welcome' component={Welcome}/>
+                <Route exact path="/dashboard" component={Dashboard}/>
             </Switch>
         </Router>
     );

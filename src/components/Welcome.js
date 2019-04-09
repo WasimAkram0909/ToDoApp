@@ -17,9 +17,9 @@ class Welcome extends Component {
             <img src={circleTick} className="circleTick"/>
             <p>You have Successfully Created ToDo Account </p>
           </div>
-          <button className="button">
-          <Link to="/dashboard"><img src={forwardArrow} className="arrow"/></Link>
-          </button>
+          <Link to="/dashboard"><button className="button">
+          <img src={forwardArrow} className="arrow"/>
+          </button></Link>
 
       </div>
       </main>

@@ -34,7 +34,7 @@ class GoogleAuth extends React.Component {
 
   onSignInClick = () => {
     console.log(this.auth);
-    this.auth.signIn({ux_mode:'redirect',redirect_uri:'http://localhost:3000/oauth/signin'});
+    this.auth.signIn({ux_mode:'redirect',redirect_uri:'http://localhost:3000/welcome'});
     // this.auth.signIn();
   };
 

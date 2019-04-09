@@ -19,11 +19,6 @@
  background-color: white;
 
 }
-.gridcontanier2{
-    /* background-color: #8c1aff; */
-    /* border-radius: 200px; */
-    shape-outside: circle(50%);
-}
 .box{
     position: absolute;
     z-index: 1;
