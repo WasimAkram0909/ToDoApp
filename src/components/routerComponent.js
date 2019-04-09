@@ -11,9 +11,7 @@ const RouterComponent=()=>{
                 <Route exact path='/' component={LoginPage}/>
                 <Route  path='/oauth/signin' component={Welcome}/>
             </Switch>
-            <GoogleAuth/>
         </Router>
-
     );
 }
 export default RouterComponent;

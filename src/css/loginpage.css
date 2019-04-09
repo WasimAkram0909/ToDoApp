@@ -5,17 +5,17 @@
 }
 .gridcontanier{
     display:grid;
-    grid-template-columns: repeat(2, 70%);
-    grid-template-rows: 50rem ;
+    grid-template-columns:65% 35%;
+    /* grid-template-rows: 40rem ; */
+    height: 100vh;
     /* border: 1px solid red; */
-    background-color: #8c1aff;
+    background-color:  #7563EB;
 
 }
 .gridcontanier1{
  /* border: 1px solid black; */
- z-index: 1;
- border-top-right-radius: 400px;
- border-bottom-right-radius: 400px;
+ border-top-right-radius: 270px;
+ border-bottom-right-radius: 270px;
  background-color: white;
 
 }
@@ -25,17 +25,20 @@
     shape-outside: circle(50%);
 }
 .box{
-    margin-left:600px;
-    margin-top: 100px;
+    position: absolute;
+    z-index: 1;
+    left: 47%;
+    top: 5%;
     background-color: #FF619E;
-    width:580px;
-    height:631px;
+    width:40%;
+    height:90vh;
     text-align: center;
 }
 .boxText{
     color:white;
     font-size:24px;
-    padding:50px;
+    padding:30px 40px;
+
 
 }
 .todoText{
@@ -53,4 +56,9 @@
     border:none;
     background-color:#FF619E;
     /* width-left:10px; */
+}
+.networkimage{
+   position: absolute;
+   top: 25%;
+   left: 10%;
 }

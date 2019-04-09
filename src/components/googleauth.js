@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { signIn, signOut } from '../actions';
 import { withRouter } from "react-router";
-
+import Google from "../assets/google.png";
+import "../css/loginpage.css";
 
 class GoogleAuth extends React.Component {
   componentDidMount() {
@@ -56,9 +57,8 @@ class GoogleAuth extends React.Component {
         );}
      else {
       return (
-        <button  onClick={this.onSignInClick} >
-          {/* <Mail/> */}
-          Sign In with Google
+        <button  onClick={this.onSignInClick} className="Googlesign" >
+          <img src={Google} />
         </button>
       );
     }
