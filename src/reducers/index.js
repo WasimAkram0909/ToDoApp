@@ -5,7 +5,7 @@ isSignedIn: false,
 userId: null
 };
 
-//setting signin reducer using google
+//setting signin using google reducer 
 const googlereduser= (state = INTIAL_STATE, action) => {
 switch (action.type) {
 case "SIGN_IN":
@@ -18,6 +18,7 @@ return state;
 return state;
 };
 
+//Combining Reducers
 const exportReducer=combineReducers({
 googledata:googlereduser,
 })

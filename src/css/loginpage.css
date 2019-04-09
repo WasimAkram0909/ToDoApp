@@ -7,12 +7,12 @@
     display:grid;
     grid-template-columns: repeat(2, 70%);
     grid-template-rows: 50rem ;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     background-color: #8c1aff;
 
 }
 .gridcontanier1{
- border: 1px solid black;
+ /* border: 1px solid black; */
  z-index: 1;
  border-top-right-radius: 400px;
  border-bottom-right-radius: 400px;
@@ -51,6 +51,6 @@
 }
 .Googlesign{
     border:none;
-    background-color:none;
+    background-color:#FF619E;
     /* width-left:10px; */
 }

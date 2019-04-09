@@ -1,7 +1,7 @@
 import React from "react";
-import "./loginpage.css";
-import Google from "./assets/google.png"
-import group from"./assets/group.png";
+import "../css/loginpage.css";
+import Google from "../assets/google.png"
+import group from"../assets/group.png";
 import GoogleAuth from "./googleauth";
 import { Link } from 'react-router-dom';
 
@@ -23,8 +23,8 @@ class LoginPage extends React.Component{
             <p className="LastText">By creating an account you Agree to our Terms of Conditions</p>
             </div>
             </div>
-<div className="gridcontanier2">
-    </div>
+             <div className="gridcontanier2">
+            </div>
                 </div>
         );
     }
