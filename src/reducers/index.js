@@ -27,6 +27,17 @@ return state;
 return state;
 };
 
+const intial_values =[
+    {
+        Task:
+    }
+]
+
+
+const All_Tasks = (state=intial_values,action) => {
+
+}
+
 //Combining Reducers
 const exportReducer=combineReducers({
 googleData:googleReducer,
