@@ -22,6 +22,7 @@ class App extends Component {
           >
             Learn React
           </a>
+          <h3>testing</h3>
           <LoginPage/>
         </header>
       </div>
