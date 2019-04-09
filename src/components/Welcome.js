@@ -10,10 +10,10 @@ class App extends Component {
       <div className="App">
           <img src={profilePic} className="profilePic"/>
           <p className="welcome">Welcome </p>
-          
+          <div className="message">
             <img src={circleTick} className="circleTick"/>
             <p>You have Successfully Created ToDo Account </p>
-        
+          </div>
           <button className="button"><img src={forwardArrow} className="arrow"/></button>
 
       </div>
