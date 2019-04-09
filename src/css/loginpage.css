@@ -38,3 +38,19 @@
     padding:50px;
 
 }
+.todoText{
+    color:white;
+    font-size:21px;
+    font-style: bold;
+}
+.LastText{
+    padding: 100px;
+    color:white;
+    font-size:11px;
+    /* font-style: bold; */
+}
+.Googlesign{
+    border:none;
+    background-color:none;
+    /* width-left:10px; */
+}
