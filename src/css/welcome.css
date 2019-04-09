@@ -1,0 +1,38 @@
+.App {
+    background-color: rgba(42, 166, 233, 0.96);
+  }
+  /* .confirmationMsgBox{
+    position: fixed;
+    top: 10%;
+    left: 40%;
+    background-color: rgba(42, 166, 233, 0.96);
+  } */
+  .profilePic{
+    width: 50px;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 5px;
+  }
+  .welcome{
+    color: white;
+  }
+  .message{
+    background-color: white;
+    width: 17%;
+    border-radius: 3px;
+    padding: 4px;
+    margin: 5px;
+  }
+  .circleTick{
+    width: 50px;
+    height: 50px;
+  }
+  .button{
+    background-color: brown;
+    width: 17%;
+    padding: 5px;
+    margin: 5px;
+  }
+  .arrow{
+    color: white
+  }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Welcome from './components/Welcome';
+import LoginPage from  './LoginPage';
 class App extends Component {
   render() {
     return (
@@ -23,7 +24,8 @@ class App extends Component {
           </a>
           <h3>testing</h3>
           <LoginPage/>
-        </header>
+          <Welcome/>
+          </header>
       </div>
       );
   }

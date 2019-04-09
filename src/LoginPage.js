@@ -8,7 +8,6 @@ class LoginPage extends React.Component{
     render(){
         return(
             <div className="gridcontanier">
-        
             <div className="gridcontanier1">
             <div className="box">
             <p className="boxText">Organising always seems impossible until its DONE!</p>
