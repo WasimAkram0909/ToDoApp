@@ -1,0 +1,9 @@
+.container{
+    display: flex;
+}
+.Tasklists{
+    width:84%;
+    display: inline-block;
+    /* margin-left:17%; */
+    border:1px solid red;
+}
