@@ -12,15 +12,14 @@ class Welcome extends Component {
         <main className="App">
       <div className="AppDiv">
           <img src={profilePic} className="profilePic"/>
-          <p className="welcome">Welcome </p>
-          <div className="message">
+          <p className="welcome">Welcome Roma</p>
+          <div className="messageBox">
             <img src={circleTick} className="circleTick"/>
             <p>You have Successfully Created ToDo Account </p>
           </div>
           <Link to="/dashboard"><button className="button">
           <img src={forwardArrow} className="arrow"/>
           </button></Link>
-
       </div>
       </main>
     );
