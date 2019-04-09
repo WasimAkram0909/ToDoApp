@@ -3,6 +3,8 @@ import '../css/welcome.css';
 import profilePic from '../assets/ProfilePicture.png';
 import circleTick from '../assets/Success.png';
 import forwardArrow from '../assets/RightArrow.png';
+import {Link } from 'react-router-dom';
+
 
 class Welcome extends Component {
   render() {
@@ -16,7 +18,7 @@ class Welcome extends Component {
             <p>You have Successfully Created ToDo Account </p>
           </div>
           <button className="button">
-          <img src={forwardArrow} className="arrow"/>
+          <Link to="/dashboard"><img src={forwardArrow} className="arrow"/></Link>
           </button>
 
       </div>
