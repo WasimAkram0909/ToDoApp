@@ -4,7 +4,7 @@ import profilePic from '../assets/ProfilePicture.png';
 import Logo from '../assets/SidemenuLogo .svg';
 import Alltasks from '../assets/Alltasks.svg';
 import CompletedTask from '../assets/CompletedTasks.svg';
-import RescheduledTask from '../assets/RescheduleTasks.svg';
+import RescheduledTask from '../assets/Reschedule.svg';
 import profile from '../assets/Profile.svg';
 import Logout from '../assets/Logout.svg';
 import {BrowserRouter as Router,Route,Link, NavLink} from "react-router-dom";

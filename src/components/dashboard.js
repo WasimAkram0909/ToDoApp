@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/dashboard.css';
 import SideMenu from "./sideMenu";
-import AllTasks from './AllTasks'
+import Taskitem from "./Taskitem";
 
 class Dashboard extends Component{
     render(){
@@ -10,8 +10,11 @@ class Dashboard extends Component{
                 <SideMenu className="sideMenu"/>
                 {/* <div className="Tasklists"> */}
                     {/* asdf */}
-                    <AllTasks/>
+                    {/* <AllTasks/> */}
                 {/* </div>  */}
+                <div className="Tasklists">
+                    <Taskitem></Taskitem>
+                </div> 
             </div>
         )
     }
