@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../css/dashboard.css';
 import SideMenu from "./sideMenu";
 import Taskitem from "./Taskitem";
+import HeadNav from "./HeadNav";
 
 class Dashboard extends Component{
     render(){
@@ -14,6 +15,7 @@ class Dashboard extends Component{
                 {/* </div>  */}
                 <div className="Tasklists">
                     <Taskitem></Taskitem>
+                    <HeadNav></HeadNav>
                     <div></div>
                 </div> 
             </div>
