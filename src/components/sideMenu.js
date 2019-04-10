@@ -42,7 +42,7 @@ class SideMenu extends Component{
                         </div>
                     </div>
                     <div className="SideMenuLinks logout active">
-                    <GoogleAuth />
+                    {/* <GoogleAuth /> */}
                     </div>
                 </div>
                 <Route path="/dashboard/:id" Component={Dashboard}/>

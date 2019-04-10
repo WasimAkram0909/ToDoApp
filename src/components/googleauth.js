@@ -12,9 +12,9 @@ class GoogleAuth extends React.Component {
 
   }
   componentDidMount() {
-      console.log("didcomponent");
+      // console.log("didcomponent");
     window.gapi.load('client:auth2', () => {
-      console.log('loaded GAPI');
+      // console.log('loaded GAPI');
       window.gapi.client
         .init({
         
@@ -40,7 +40,7 @@ class GoogleAuth extends React.Component {
   };
 
   onSignInClick = () => {
-    // if (this.auth.isSignedIn.get()) {
+    if (this.auth.isSignedIn.get()) {
       var profile = this.auth.currentUser.get().getBasicProfile();
       // console.log(profile);
       var id='ID: ' + profile.getId();
@@ -49,32 +49,32 @@ class GoogleAuth extends React.Component {
       var familyName='Family Name: ' + profile.getFamilyName();
       var image='Image URL: ' + profile.getImageUrl();
       var email='Email: ' + profile.getEmail();
-      console.log(profile,id);
+      // console.log(profile,id);
       var data={profile,id,fullName,name,familyName,image,email};
       console.log(data);
       // console.log(this.props);
       this.props.profileAction(data);
-    // }
+    }
     // console.log(this.auth);
    
     // console.log(this.auth2.BasicProfile);
-    // this.auth.signIn({ux_mode:'redirect',redirect_uri:'http://localhost:3000/welcome'});
+    this.auth.signIn({ux_mode:'redirect',redirect_uri:'http://localhost:3000/welcome'});
     // this.props.profileAction(data);
     this.auth.signIn();
   };
 
   onSignOutClick = () => {
-    console.log(this.props);
+    // console.log(this.props);
     this.auth.signOut();
     this.props.history.push("/");
   };
 
   renderAuthButton() {
-    console.log("onAuthChange");
+    // console.log("onAuthChange");
     if (this.props.isSignedIn === null) {
       return null;
     } else if (this.props.isSignedIn) {
-      console.log("logout");
+      // console.log("logout");
       return (
         <button  onClick={this.onSignOutClick}  >
         logout
@@ -83,7 +83,7 @@ class GoogleAuth extends React.Component {
                         </button>
         );}
      else {
-      console.log("login");
+      // console.log("login");
       return (
         <button  onClick={this.onSignInClick} className="Googlesign" >
           <img src={Google} />
@@ -93,7 +93,7 @@ class GoogleAuth extends React.Component {
   }
 
   render() {
-      console.log("render");
+      // console.log("render");
     return <div>{this.renderAuthButton()}</div>;
   }
 }

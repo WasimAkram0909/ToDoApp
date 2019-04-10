@@ -30,10 +30,10 @@ class Welcome extends Component {
     );
   }
 }
-const mapStateToProps = state => {
+const mapState = state => {
   console.log(state);
-return { profileDetails: state.profileData.profileDetails };
+return { profileDetails: state.profileData};
 }
 
 
-export default withRouter(connect(mapStateToProps)(Welcome));
+export default withRouter(connect(mapState)(Welcome));

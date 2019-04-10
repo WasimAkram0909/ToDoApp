@@ -14,6 +14,13 @@ export const signIn = (userId) => {
     };
   };
 
+  export const profileAction=(data)=>{
+    console.log(data,"actions");
+    return{
+    type:"SIGN_IN_USER_DETAILS",
+    payload:data,
+    }
+    }
   export const ToDoAll = () => {
     var url="http://localhost:8080/todo/tasks";
     return(dispatch)=>{
