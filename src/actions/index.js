@@ -12,3 +12,10 @@ export const signIn = (userId) => {
       type: "SIGN_OUT"
     };
   };
+  export const profileAction=(data)=>{
+    console.log(data,"actions");
+    return{
+      type:"SIGN_IN_USER_DETAILS",
+      payload:data,
+    }
+  }

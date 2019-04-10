@@ -4,10 +4,15 @@ import profilePic from '../assets/ProfilePicture.png';
 import circleTick from '../assets/Success.png';
 import forwardArrow from '../assets/RightArrow.png';
 import {Link } from 'react-router-dom';
-
+import {withRouter} from "react-router-dom";
+import {connect } from "react-redux";
 
 class Welcome extends Component {
+  click=()=>{
+   this.props.history.push("/dashboard");
+  }
   render() {
+    console.log(this.props);
     return (
         <main className="App">
       <div className="AppDiv">
@@ -17,15 +22,18 @@ class Welcome extends Component {
             <img src={circleTick} className="circleTick"/>
             <p>You have Successfully Created ToDo Account </p>
           </div>
-          <Link to="/dashboard"><button className="button">
+         <button className="button" onClick={this.click}>
           <img src={forwardArrow} className="arrow"/>
-          </button></Link>
+          </button>
       </div>
       </main>
     );
   }
 }
+const mapStateToProps = state => {
+  console.log(state);
+return { profileDetails: state.profileData.profileDetails };
+}
 
 
-
-export default Welcome;
+export default withRouter(connect(mapStateToProps)(Welcome));

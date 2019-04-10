@@ -7,8 +7,11 @@ import CompletedTask from '../assets/CompletedTasks.svg';
 import RescheduledTask from '../assets/RescheduleTasks.svg';
 import profile from '../assets/Profile.svg';
 import Logout from '../assets/Logout.svg';
+import {withRouter} from "react-router-dom";
 import {BrowserRouter as Router,Link, NavLink} from "react-router-dom";
-
+import GoogleAuth from './googleauth';
+import { connect } from 'react-redux';
+import { signIn, signOut } from '../actions';
 class SideMenu extends Component{
     render(){
         return(
@@ -37,8 +40,7 @@ class SideMenu extends Component{
                         </div>
                     </div>
                     <div className="SideMenuLinks logout active">
-                        <img className="linkLogo" src={Logout}/>
-                        <div className="SideMenuLink">Log Out</div>
+                    <GoogleAuth />
                     </div>
                     
                 </div>
@@ -50,6 +52,12 @@ asdf
         )
     }
 }
+const mapStateToProps = state => {
+    console.log(state);
+  return { isSignedIn: state.googledata.isSignedIn };
+};
 
-
-export default SideMenu;
+export default withRouter(connect(
+    mapStateToProps,
+    { signIn, signOut }
+  ) (SideMenu));

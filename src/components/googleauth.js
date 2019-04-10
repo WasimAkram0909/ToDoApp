@@ -1,16 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { signIn, signOut } from '../actions';
+import { signIn, signOut,profileAction } from '../actions';
 import { withRouter } from "react-router";
 import Google from "../assets/google.png";
 import "../css/loginpage.css";
+import '../css/sideMenu.css';
+import Logout from '../assets/Logout.svg';
 
 class GoogleAuth extends React.Component {
+  state={
+
+  }
   componentDidMount() {
       console.log("didcomponent");
     window.gapi.load('client:auth2', () => {
+      console.log('loaded GAPI');
       window.gapi.client
         .init({
+        
           clientId:'79352387866-fqsjv565vpfa6eiog739gm25k15f6ak0.apps.googleusercontent.com',
           scope:'email',
           client_secret:"BuTLt32kxC4fuWIzsDnjq5jc"
@@ -24,7 +31,7 @@ class GoogleAuth extends React.Component {
   }
 
   onAuthChange = isSignedIn => {
-    console.log("onAuthChange");
+    // console.log("onAuthChange");
     if (isSignedIn) {
       this.props.signIn(this.auth.currentUser.get().getId());
     } else {
@@ -33,9 +40,27 @@ class GoogleAuth extends React.Component {
   };
 
   onSignInClick = () => {
-    console.log(this.auth);
-    this.auth.signIn({ux_mode:'redirect',redirect_uri:'http://localhost:3000/welcome'});
-    // this.auth.signIn();
+    // if (this.auth.isSignedIn.get()) {
+      var profile = this.auth.currentUser.get().getBasicProfile();
+      // console.log(profile);
+      var id='ID: ' + profile.getId();
+      var fullName='Full Name: ' + profile.getName();
+      var name='Given Name: ' + profile.getGivenName();
+      var familyName='Family Name: ' + profile.getFamilyName();
+      var image='Image URL: ' + profile.getImageUrl();
+      var email='Email: ' + profile.getEmail();
+      console.log(profile,id);
+      var data={profile,id,fullName,name,familyName,image,email};
+      console.log(data);
+      // console.log(this.props);
+      this.props.profileAction(data);
+    // }
+    // console.log(this.auth);
+   
+    // console.log(this.auth2.BasicProfile);
+    // this.auth.signIn({ux_mode:'redirect',redirect_uri:'http://localhost:3000/welcome'});
+    // this.props.profileAction(data);
+    this.auth.signIn();
   };
 
   onSignOutClick = () => {
@@ -49,13 +74,16 @@ class GoogleAuth extends React.Component {
     if (this.props.isSignedIn === null) {
       return null;
     } else if (this.props.isSignedIn) {
+      console.log("logout");
       return (
         <button  onClick={this.onSignOutClick}  >
-        {/* <Mail/> */}
-          Log Out
-        </button>
+        logout
+                        {/* <img className="linkLogo" src={Logout}/>
+                        <div className="SideMenuLink">Log Out</div> */}
+                        </button>
         );}
      else {
+      console.log("login");
       return (
         <button  onClick={this.onSignInClick} className="Googlesign" >
           <img src={Google} />
@@ -72,10 +100,11 @@ class GoogleAuth extends React.Component {
 
 const mapStateToProps = state => {
     console.log(state);
-  return { isSignedIn: state.googledata.isSignedIn };
+  return { isSignedIn: state.googleData.isSignedIn,
+              isPorofileDetails:state.profileData};
 };
 
 export default withRouter(connect(
   mapStateToProps,
-  { signIn, signOut }
+  { signIn, signOut,profileAction}
 )(GoogleAuth));

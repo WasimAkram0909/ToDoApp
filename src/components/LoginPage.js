@@ -3,7 +3,6 @@ import "../css/loginpage.css";
 import Google from "../assets/google.png"
 import group from "../assets/group.png";
 import GoogleAuth from "./googleauth";
-import { Link } from 'react-router-dom';
 import Network from "../assets/artwork login page.png";
 
 class LoginPage extends React.Component {
