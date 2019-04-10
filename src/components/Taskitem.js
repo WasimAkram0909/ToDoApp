@@ -5,7 +5,7 @@ import RescheduleIcon from "../assets/Success.png";
 
 
 class Taskitem extends Component{
-    render(){
+    render(){ 
         return(
             <React.Fragment>
                 <div className="ItemContainer">
