@@ -78,8 +78,7 @@ class GoogleAuth extends React.Component {
       return (
         <button  onClick={this.onSignOutClick}  >
         logout
-                        {/* <img className="linkLogo" src={Logout}/>
-                        <div className="SideMenuLink">Log Out</div> */}
+                       
                         </button>
         );}
      else {

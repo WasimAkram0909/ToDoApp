@@ -13,6 +13,7 @@ const RouterComponent=()=>{
                 <Route exact path='/' component={LoginPage}/>
                 <Route exact path='/welcome' component={Welcome}/>
                 <Route exact path="/dashboard" component={Dashboard} />
+
             </Switch>
         </Router>
     );
