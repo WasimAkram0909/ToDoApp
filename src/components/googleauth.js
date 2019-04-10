@@ -65,16 +65,10 @@ class GoogleAuth extends React.Component {
     } else if (this.props.isSignedIn) {
       // console.log("logout");
       return (
-<<<<<<< Updated upstream
-        <button  onClick={this.onSignOutClick}  >
-        logout
-                       
-=======
         <button className="SideMenuLinks logout active" onClick={this.onSignOutClick}  >
         
          <img className="linkLogo" src={Logout}/>
 <div className="SideMenuLink">Log Out</div> 
->>>>>>> Stashed changes
                         </button>
         );}
      else {
@@ -88,12 +82,8 @@ class GoogleAuth extends React.Component {
   }
 
   render() {
-<<<<<<< Updated upstream
-      // console.log("render");
-=======
       console.log("render");
       // if(this.props.isSignedIn)
->>>>>>> Stashed changes
     return <div>{this.renderAuthButton()}</div>;
   }
 }
