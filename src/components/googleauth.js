@@ -8,9 +8,7 @@ import '../css/sideMenu.css';
 import Logout from '../assets/Logout.svg';
 
 class GoogleAuth extends React.Component {
-  state={
-
-  }
+  
   componentDidMount() {
       // console.log("didcomponent");
     window.gapi.load('client:auth2', () => {
@@ -34,39 +32,30 @@ class GoogleAuth extends React.Component {
     // console.log("onAuthChange");
     if (isSignedIn) {
       this.props.signIn(this.auth.currentUser.get().getId());
+      this.props.profileAction(this.auth.currentUser.get().getBasicProfile());
+        //we need to add getprofile api//
+      this.props.history.push("/welcome");
     } else {
       this.props.signOut();
+      this.props.history.push("/");
     }
   };
 
   onSignInClick = () => {
-    if (this.auth.isSignedIn.get()) {
-      var profile = this.auth.currentUser.get().getBasicProfile();
-      // console.log(profile);
-      var id='ID: ' + profile.getId();
-      var fullName='Full Name: ' + profile.getName();
-      var name='Given Name: ' + profile.getGivenName();
-      var familyName='Family Name: ' + profile.getFamilyName();
-      var image='Image URL: ' + profile.getImageUrl();
-      var email='Email: ' + profile.getEmail();
-      // console.log(profile,id);
-      var data={profile,id,fullName,name,familyName,image,email};
-      console.log(data);
-      // console.log(this.props);
-      this.props.profileAction(data);
-    }
-    // console.log(this.auth);
-   
-    // console.log(this.auth2.BasicProfile);
-    this.auth.signIn({ux_mode:'redirect',redirect_uri:'http://localhost:3000/welcome'});
+  
+    // this.auth.signIn({ux_mode:'redirect',redirect_uri:'http://localhost:3000/welcome'});
+    
     // this.props.profileAction(data);
+    console.log(this.auth.signIn());
     this.auth.signIn();
+    // this.props.signIn();
   };
 
   onSignOutClick = () => {
     // console.log(this.props);
     this.auth.signOut();
-    this.props.history.push("/");
+    // this.props.signOut();
+    
   };
 
   renderAuthButton() {
@@ -76,9 +65,16 @@ class GoogleAuth extends React.Component {
     } else if (this.props.isSignedIn) {
       // console.log("logout");
       return (
+<<<<<<< Updated upstream
         <button  onClick={this.onSignOutClick}  >
         logout
                        
+=======
+        <button className="SideMenuLinks logout active" onClick={this.onSignOutClick}  >
+        
+         <img className="linkLogo" src={Logout}/>
+<div className="SideMenuLink">Log Out</div> 
+>>>>>>> Stashed changes
                         </button>
         );}
      else {
@@ -92,7 +88,12 @@ class GoogleAuth extends React.Component {
   }
 
   render() {
+<<<<<<< Updated upstream
       // console.log("render");
+=======
+      console.log("render");
+      // if(this.props.isSignedIn)
+>>>>>>> Stashed changes
     return <div>{this.renderAuthButton()}</div>;
   }
 }

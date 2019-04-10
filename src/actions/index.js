@@ -16,6 +16,13 @@ export const signIn = (userId) => {
 
   export const profileAction=(data)=>{
     console.log(data,"actions");
+      var id= data.getId();
+      var fullName=data.getName();
+      var name= data.getGivenName();
+      var familyName= data.getFamilyName();
+      var image= data.getImageUrl();
+      var email= data.getEmail();
+      var logInData={id,fullName,name,familyName,image,email};
     return{
     type:"SIGN_IN_USER_DETAILS",
     payload:data,

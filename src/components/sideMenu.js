@@ -41,9 +41,11 @@ class SideMenu extends Component{
                             <Link to="/dashboard/Profile" className="SideMenuLink">Profile</Link>
                         </div>
                     </div>
-                    <div className="SideMenuLinks logout active">
-                    {/* <GoogleAuth /> */}
-                    </div>
+                    {/* <div className="SideMenuLinks logout active"> */}
+
+                    <GoogleAuth />
+                    {/* </div> */}
+                    
                 </div>
                 <Route path="/dashboard/:id" Component={Dashboard}/>
                 </Router>
@@ -53,8 +55,10 @@ class SideMenu extends Component{
 }
 const myStateToProps = (state) => {
     console.log(state);
-    return {
-      cards: state
-    }
-  }
-export default connect(myStateToProps,{ToDoAll})(SideMenu);
+  return { isSignedIn: state.googleData.isSignedIn };
+};
+
+export default withRouter(connect(
+    mapStateToProps,
+    { signIn, signOut }
+  ) (SideMenu));
