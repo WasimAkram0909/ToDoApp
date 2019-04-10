@@ -25,7 +25,7 @@ export const signIn = (userId) => {
       var logInData={id,fullName,name,familyName,image,email};
     return{
     type:"SIGN_IN_USER_DETAILS",
-    payload:data,
+    payload:logInData,
     }
     }
   export const ToDoAll = () => {
