@@ -76,3 +76,17 @@ const ToDoAllAction=(RES)=>{
       type: "Display_Actions"
     };
   };
+  export const RescheduleTask =()=>{
+
+    return {
+      type:"RESCHEDULE_TASK",
+
+    }
+  }
+  export const completedTaskAction =()=>{
+    return {
+      type:"COMPLETED_TASK",
+
+    }
+
+  }

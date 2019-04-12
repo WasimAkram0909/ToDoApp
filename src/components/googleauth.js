@@ -50,7 +50,7 @@ class GoogleAuth extends React.Component {
     // this.auth.signIn({ux_mode:'redirect',redirect_uri:'http://localhost:3000/welcome'});
     
     // this.props.profileAction(data);
-    console.log(this.auth.signIn());
+    // console.log(this.auth.signIn());
     this.auth.signIn();
     // this.props.signIn();
   };
@@ -86,14 +86,14 @@ class GoogleAuth extends React.Component {
   }
 
   render() {
-      console.log("render");
+      // console.log("render");
       // if(this.props.isSignedIn)
     return <div>{this.renderAuthButton()}</div>;
   }
 }
 
 const mapStateToProps = state => {
-    console.log(state);
+    // console.log(state);
   return { isSignedIn: state.googleData.isSignedIn,
               isPorofileDetails:state.profileData};
 };

@@ -56,7 +56,7 @@ class SideMenu extends Component{
     }
 }
 const myStateToProps = (state) => {
-    console.log(state);
+    // console.log(state);
   return { isSignedIn: state.googleData.isSignedIn };
 };
 

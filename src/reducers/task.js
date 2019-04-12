@@ -1,7 +1,8 @@
 const initialValues ={
     Task:[
         {
-        Task:"Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch"
+        Task:"Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch",
+      
          },
          {
         Task:"Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch Joh to call Alex on OS configuration and let him know that meeting JA Marsh for lunch"
@@ -12,6 +13,20 @@ const initialValues ={
     ],
     date:'',
     Status:false,
+    
+    rescheduleData:{
+        massage:"You have successfully rescheduled the task",
+        image:require("/home/wtt174/ToDoApp/src/assets/Reschedule.svg"),
+    },
+    completedTaskData:{
+        massage:"You have successfully completed task",
+        image:require("/home/wtt174/ToDoApp/src/assets/Completed.svg"),
+    },
+    deleteTask:{
+        image:require("/home/wtt174/ToDoApp/src/assets/Delete.svg"),
+        massage:"You have successfully deleted task",
+    }
+
 }
 export default (state=initialValues,action) => {
     var dte=new Date();
@@ -23,7 +38,11 @@ export default (state=initialValues,action) => {
         case "To_Do_All":
         return{...state,}
         case "Display_Actions":
-        return{...state,Status:true}
+        return{...state,Status:true};
+        // case "RESCHEDULE_TASK":return{ ...state }
+        // case "COMPLETED_TASK":return{...state}
+        // case "DELETE_TASK":return{...state}
+        // default:null
     }
     return state;
 }

@@ -17,6 +17,7 @@
       width: 25px;
       margin: 5px;
       margin-top: 10px;
+      color: #FFFFFF;
     }
     .flex-container .text-display {
       width: 80%;
@@ -29,6 +30,7 @@
       font-size: 14px;
       margin: 15px;
     }
-    .undo a{
+    .undo {
         color: #FF619E;
+        text-decoration: underline;
     }
