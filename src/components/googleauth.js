@@ -10,7 +10,10 @@ import Logout from '../assets/Logout.svg';
 class GoogleAuth extends React.Component {
   
   componentDidMount() {
-      // console.log("didcomponent");
+   
+
+    ////PREVIOUS CODE CORRECT/////////
+      console.log("didcomponent");
     window.gapi.load('client:auth2', () => {
       // console.log('loaded GAPI');
       window.gapi.client
@@ -27,6 +30,7 @@ class GoogleAuth extends React.Component {
         });
     });
   }
+   
 
   onAuthChange = isSignedIn => {
     // console.log("onAuthChange");
@@ -68,7 +72,7 @@ class GoogleAuth extends React.Component {
         <button className="SideMenuLinks logout active" onClick={this.onSignOutClick}  >
         
          <img className="linkLogo" src={Logout}/>
-<div className="SideMenuLink">Log Out</div> 
+<span className="SideMenuLink">LogOut</span> 
                         </button>
         );}
      else {

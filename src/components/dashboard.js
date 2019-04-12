@@ -4,7 +4,7 @@ import SideMenu from "./sideMenu";
 import Taskitem from "./Taskitem";
 // import HeadNav from "./HeadNav";
 import  AllTasks from './AllTasks';
-import AddTask from './addTask';
+// import AddTask from './addTask';
 
 class Dashboard extends Component{
     render(){
@@ -20,7 +20,7 @@ class Dashboard extends Component{
                     {/* <Taskitem></Taskitem> */}
                     {/* <HeadNav></HeadNav> */}
                     <div></div>
-                <AddTask/>
+                {/* <AddTask/> */}
                     <Taskitem/>
                     {/* <div> */}
                     {/* <AllTasks/> */}
