@@ -4,12 +4,13 @@ import {connect} from 'react-redux';
 
 class AllTasks extends React.Component{
     render(){
-        console.log(this.props.cards.Task);
+        console.log(this.props.cards);
         return(
             <div>
-            {this.props.cards.map((tasks)=>{
+            {this.props.cards.map((tasks,i)=>{
+                // key={i}
                 return(
-                <p>{tasks}</p>)
+                <p>{tasks.Task}</p>)
             })
             }
             </div>
@@ -17,10 +18,9 @@ class AllTasks extends React.Component{
     }
 }
 const myStateToProps = (state) => {
-    console.log(state.allTasks);
+    console.log(state.allTasks.Task);
     return {
       cards: state.allTasks.Task
     }
   }
-
 export default connect(myStateToProps)(AllTasks);

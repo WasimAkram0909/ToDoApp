@@ -34,7 +34,7 @@ class GoogleAuth extends React.Component {
       this.props.signIn(this.auth.currentUser.get().getId());
       this.props.profileAction(this.auth.currentUser.get().getBasicProfile());
         //we need to add getprofile api//
-      this.props.history.push("/welcome");
+      this.props.history.push("/dashboard");
     } else {
       this.props.signOut();
       this.props.history.push("/");

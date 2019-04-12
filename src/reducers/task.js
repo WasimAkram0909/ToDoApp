@@ -1,14 +1,17 @@
 const initialValues ={
     Task:[
         {
-        Task1:"Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch"
+        Task:"Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch"
          },
          {
-        Task2:"Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch"
-      }
+        Task:"Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch Joh to call Alex on OS configuration and let him know that meeting JA Marsh for lunch"
+      },
+      {
+      Task:"Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch"
+      },
     ],
     date:'',
-    Status:'null'
+    Status:false,
 }
 export default (state=initialValues,action) => {
     var dte=new Date();
@@ -17,8 +20,10 @@ export default (state=initialValues,action) => {
     switch(action.type){
         case "ADD_TASK":
         return{...state,Task:action.payload,date:dte}
-        // if( ){
-        // }
+        case "To_Do_All":
+        return{...state,}
+        case "Display_Actions":
+        return{...state,Status:true}
     }
     return state;
 }

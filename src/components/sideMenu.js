@@ -28,7 +28,7 @@ class SideMenu extends Component{
                     <div className="linksContainer ">
                         <div className="SideMenuLinks ">
                            <img className="linkLogo" src={Alltasks}/>
-                           <Link to="/dashboard/Todo"  onClick={this.props.ToDoAll} className="SideMenuLink">Todo</Link>
+                           <Link to="/dashboard"  onClick={this.props.ToDoAll} className="SideMenuLink">Todo</Link>
                         </div>
                         <div className="SideMenuLinks">
                             <img className="linkLogo" src={CompletedTask}/>

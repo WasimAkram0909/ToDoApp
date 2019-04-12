@@ -70,3 +70,9 @@ const ToDoAllAction=(RES)=>{
       type: "SORT_BY"
     };
   };
+  export const DisplayActions = () => {
+    console.log('hi')
+    return {
+      type: "Display_Actions"
+    };
+  };

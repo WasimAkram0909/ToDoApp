@@ -3,7 +3,12 @@
 }
 .Tasklists{
     width:84%;
-    display: inline-block;
+    margin: 0 auto;
+    background-image: linear-gradient(to right,#9C94F9,#7563EB);
+    padding:0 8%;
+    /* padding-right: 60px;  */
+    /* align-items: center; */
+    /* justify-content: center; */
     /* margin-left:17%; */
     /* border:1px solid red; */
 }
