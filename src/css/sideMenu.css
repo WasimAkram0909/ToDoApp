@@ -21,13 +21,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-left:8%;
+    padding-left:5%;
     background-color:rgba(117, 99, 235, 1); 
 }
 .SideMenuLink{
-    padding-left: 9%;
+    padding-left: 7%;
     text-decoration: none;
-    /* font-size: 14px;     */
     color:rgba(255, 255, 255, 0.6);
 }
 

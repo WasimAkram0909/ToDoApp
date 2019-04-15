@@ -13,13 +13,14 @@ import { withRouter } from 'react-router-dom';
 import { ToDoAll } from '../actions';
 import Dashboard from './dashboard';
 import GoogleAuth from "./googleauth";
+import {SideMenuData} from "../reducers/SideMenu";
 
 class SideMenu extends Component {
 
     render() {
-        console.log('this is waSIM');
-        console.log(this.props.SideMenuData, "PROPS");
-        this.props.SideMenuData.map((item) => { console.log(item.image, item.name) });
+        // console.log('this is waSIM');
+        // console.log(this.props.SideMenuData, "PROPS");
+        // this.props.SideMenuData.map((item) => { console.log(item.image, item.name) });
         return (
             <React.Fragment>
                 {/* <Router> */}
@@ -30,7 +31,7 @@ class SideMenu extends Component {
                         </div>
                         <div className="linksContainer ">
 
-                            {this.props.SideMenuData.map((item) => {
+                            {SideMenuData.map((item) => {
                                 return (
                                     <div className="SideMenuLinks ">
                                         <img className="linkLogo" src={item.image} />
@@ -54,7 +55,7 @@ const myStateToProps = (state) => {
     // console.log(state);
     return {
         isSignedIn: state.googleData.isSignedIn,
-        SideMenuData: state.SideMenuReducer,
+        // SideMenuData: state.SideMenuReducer,
     };
 };
 

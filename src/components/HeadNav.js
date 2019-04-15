@@ -15,10 +15,10 @@ class HeadNav extends Component{
         }
     }
     addtask = () => {
-        console.log('addtask');
-        this.setState({
-          showComponent: true,
-        });
+        // console.log('addtask');
+        // this.setState({
+        //   showComponent: true,
+        // });
       }
     
     render(){
@@ -29,10 +29,10 @@ class HeadNav extends Component{
                     <p className="HeadNavTitle">Todo</p>
                     <div className="HeadNavButtonsContainer">
                         <div className="HeadNavbtnCntr">
-                        <button className="HeadNavbtnCntr">
+                        {/* <button className="HeadNavbtnCntr"> */}
                         <i class="fa fa-plus"></i>
                             <p className="btntext" onClick={this.addTask}>Add Task</p>
-                        </button>
+                        {/* </button> */}
                         </div>
                         <div className="HeadNavbtnCntr">
                             <img className="icon" src={CalenderIcon}/>

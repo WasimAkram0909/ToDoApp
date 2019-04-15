@@ -3,8 +3,8 @@ import React from 'react';
 import { Calendar } from 'react-calendar';
 import '../css/Taskitem.css';
 import StatusNoneIcon from "../assets/StatusNone.svg";
-import SaveICon from '/home/wtt181/ToDoApp/src/assets/baseline_check_black_18dp.png';
-import CancelIcon from '/home/wtt181/ToDoApp/src/assets/baseline_clear_black_18dp.png';
+import SaveICon from '../assets/baseline_check_black_18dp.png';
+import CancelIcon from '../assets/baseline_clear_black_18dp.png';
 // import CancelIcon from '../assets/cancel.png'
 import CalendarIcon from '../assets/Calender Create Task.svg';
 // import { create } from 'domain';

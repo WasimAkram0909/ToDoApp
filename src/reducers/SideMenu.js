@@ -1,4 +1,4 @@
-const SideMenuData = [
+export const SideMenuData = [
     {
         name:"Todo",
         image:require("../assets/Alltasks.svg"),
@@ -16,8 +16,8 @@ const SideMenuData = [
         image:require("../assets/Profile.svg"),
     }
 ]
-    const SideMenuReducer =(state=SideMenuData,action) =>{
-        return state;
-    }
+    // const SideMenuReducer =(state=SideMenuData,action) =>{
+    //     return state;
+    // }
 
-export default SideMenuReducer;
+// export default SideMenuReducer;
