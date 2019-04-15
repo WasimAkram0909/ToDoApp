@@ -55,14 +55,30 @@ const ToDoAllAction=(RES)=>{
       type: "DELETE_TASK"
     };
   };
-  export const AddTask = () => {
+  // export const AddTask = () => {
+  //   return {
+  //     type: "ADD_TASK"
+  //   };
+  // };
+  export const SaveTask = (data) => {
+    // console.log(data);
+    var url="http://192.168.1.167:9124/todo/tasks";
+    return(dispatch)=>{
+      return axios.post(url,{data})
+  .then(res=>{
+      console.log(res);
+      // console.log(res.data.main);
+      dispatch(SaveTaskAction(res.data.main));
+  }
+)
+}
+}
+   const SaveTaskAction = (data) => {
+    console.log(data);
     return {
-      type: "ADD_TASK"
-    };
-  };
-  export const SaveTask = () => {
-    return {
-      type: "SAVE_TASK"
+      type: "SAVE_TASK",
+      payload: data,
+
     };
   };
   export const SortBy = () => {

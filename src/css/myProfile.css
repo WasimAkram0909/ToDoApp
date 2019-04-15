@@ -1,0 +1,48 @@
+.HeadItemContainer{
+    width: 100%;
+    height:12%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 1px solid;
+    border-color: rgba(255, 255, 255, 0.5);
+    color:rgba(255, 255, 255, 1);
+}
+.HeadNavTitle{
+    font-size: 24px;
+    margin:1% 0;
+}
+.btntxt{
+    font-size: 18px;
+}
+.HeadNavButtonsContainer{
+    display: flex;
+    justify-content: space-between; 
+     /* width: 45%; */
+}
+.editProfile{
+    border:1px solid red;
+    background-color: white;
+    /* margin-top:130px; */
+    width:100px;
+    height:100px;
+    display: inline-block;
+}
+.subdiv{
+  border-left: 1px solid green;
+  height: 400px;
+  margin-left: 150px;
+  display: inline-block;
+  
+}
+.Profile{
+    display: inline-block;
+}
+.image{
+    width:100px;
+    height:100px;
+    background-color: white;
+    border:1px solid red;
+    margin-top:130px;
+}
+ 

@@ -3,11 +3,23 @@ import '../css/HeadNav.css';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CalenderIcon from '../assets/Calender.svg';
-
+// import AddTask from './addTask';
 
 
 
 class HeadNav extends Component{
+    constructor(props) {
+        super(props)
+        this.state = {
+          showComponent: false,
+        }
+    }
+    addtask = () => {
+        console.log('addtask');
+        this.setState({
+          showComponent: true,
+        });
+      }
     
     render(){
     console.log("this sis the state ", this.props);        
@@ -17,8 +29,10 @@ class HeadNav extends Component{
                     <p className="HeadNavTitle">Todo</p>
                     <div className="HeadNavButtonsContainer">
                         <div className="HeadNavbtnCntr">
+                        <button className="HeadNavbtnCntr">
                         <i class="fa fa-plus"></i>
-                            <p className="btntext">Add Task</p>
+                            <p className="btntext" onClick={this.addTask}>Add Task</p>
+                        </button>
                         </div>
                         <div className="HeadNavbtnCntr">
                             <img className="icon" src={CalenderIcon}/>

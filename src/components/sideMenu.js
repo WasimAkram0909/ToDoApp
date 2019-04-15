@@ -22,7 +22,7 @@ class SideMenu extends Component {
         this.props.SideMenuData.map((item) => { console.log(item.image, item.name) });
         return (
             <React.Fragment>
-                <Router>
+                {/* <Router> */}
                     <div className="sideMenuContainer">
 
                         <div className="logoContainer">
@@ -34,7 +34,7 @@ class SideMenu extends Component {
                                 return (
                                     <div className="SideMenuLinks ">
                                         <img className="linkLogo" src={item.image} />
-                                        <Link to="/dashboard" onClick={this.props.ToDoAll} className="SideMenuLink">{item.name}</Link>
+                                        <Link to={`/dashboard/${item.name}`} onClick={this.props.ToDoAll} className="SideMenuLink">{item.name}</Link>
                                     </div>)
 
                             })}
@@ -44,8 +44,8 @@ class SideMenu extends Component {
                         <GoogleAuth />
 
                     </div>
-                    <Route path="/dashboard/:id" Component={Dashboard} />
-                </Router>
+                    {/* <Route path="/dashboard/:id" Component={Dashboard} /> */}
+                {/* </Router> */}
             </React.Fragment>
         )
     }

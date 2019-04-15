@@ -10,29 +10,67 @@
     color:#7563EB;
     background-color: #FFFFFF;
     margin-top: 10px;
+    /* margin: 20px; */
+    
 }
 .StatusNoneIcon{
     /* width: 10%; */
     margin: 20px;
     /* padding: 10px; */
+    color:hsla(336, 100%, 69%, 1);
 }
 .taskData{
     width: 60.7%;
     font-size: 13px;
     padding-top: 5px;
+    border:none;
     /* margin: 0 0 0 3.5%; */
     /* max-height: 52%; */
     /* text-overflow: ellipsis; */
     /* overflow: hidden; */
 }
+.taskData1{
+    /* width: 60.7%; */
+    width:64.7%;
+    height: 40px;
+    margin-top: 16px;
+    margin-left: 25px;
+    margin-bottom: 23px;
+    color:#7563EB;
+    border: none;
+    border-bottom: 1px solid lightgray;
+    /* border:1px solid red; */
+}
+.taskData1:focus{
+    /* border:none; */
+    outline: none;
+}
+
 .editTaskButtons{
     width: 29%;
     display: flex;
+    /* display: inline; */
     /* border: 1px solid red; */
     /* align-items: center; */
     justify-content: space-around;
 
 }
+.SaveIcon,.CancelIcon{
+    padding-top:24px;
+    width:30px;
+    height: 30px;
+    font-size: 10px;
+    color: #FF619E;
+}
 .AddTask{
     float: right;
+}
+.react-calender{
+    float: right;
+    background:#9C94F9;
+    color:white;
+    padding-top: 10px;
+}
+.display{
+    color:white;
 }
