@@ -30,7 +30,7 @@
       font-size: 14px;
       margin: 15px;
     }
-    .undo {
+    .undo a{
         color: #FF619E;
-        text-decoration: underline;
+        
     }

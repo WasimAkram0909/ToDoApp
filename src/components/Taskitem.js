@@ -26,7 +26,8 @@ class Taskitem extends Component {
   };
   onChange = date => {
     this.setState({ date });
-    this.setState({ showToast: true });
+    this.setState({ showToast: true ,
+      showComponent: false,});
   };
   completeFun = () => {
     this.props.completedTaskAction();

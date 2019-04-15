@@ -42,6 +42,7 @@ export default (state=initialValues,action) => {
         // case "RESCHEDULE_TASK":return{ ...state }
         // case "COMPLETED_TASK":return{...state}
         // case "DELETE_TASK":return{...state}
+        // case 'UNDO':return{...state}
         // default:null
     }
     return state;
