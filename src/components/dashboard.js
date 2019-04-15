@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../css/dashboard.css';
 import SideMenu from "./sideMenu";
 import Taskitem from "./Taskitem";
-// import HeadNav from "./HeadNav";
+import HeadNav from "./HeadNav";
 import  AllTasks from './AllTasks';
 // import AddTask from './addTask';
 
@@ -15,10 +15,14 @@ class Dashboard extends Component{
                     {/* asdf */}
                    
                 {/* </div>  */}
+
+
+
+
                
                 <div className="Tasklists">
                     {/* <Taskitem></Taskitem> */}
-                    {/* <HeadNav></HeadNav> */}
+                    <HeadNav></HeadNav>
                     <div></div>
                 {/* <AddTask/> */}
                     <Taskitem/>
