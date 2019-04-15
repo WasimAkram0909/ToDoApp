@@ -16,14 +16,14 @@ const initialValues ={
     
     rescheduleData:{
         massage:"You have successfully rescheduled the task",
-        image:require("/home/wtt174/ToDoApp/src/assets/Reschedule.svg"),
+        image:require("../assets/Reschedule.svg"),
     },
     completedTaskData:{
         massage:"You have successfully completed task",
-        image:require("/home/wtt174/ToDoApp/src/assets/Completed.svg"),
+        image:require("../assets/Completed.svg"),
     },
     deleteTask:{
-        image:require("/home/wtt174/ToDoApp/src/assets/Delete.svg"),
+        image:require("../assets/Delete.svg"),
         massage:"You have successfully deleted task",
     }
 
