@@ -7,49 +7,44 @@ import CompletedTask from '../assets/CompletedTasks.svg';
 import RescheduledTask from '../assets/Reschedule.svg';
 import profile from '../assets/Profile.svg';
 import Logout from '../assets/Logout.svg';
-import {BrowserRouter as Router,Route,Link, NavLink} from "react-router-dom";
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
-import {ToDoAll} from '../actions';
+import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { ToDoAll } from '../actions';
 import Dashboard from './dashboard';
 import GoogleAuth from "./googleauth";
 
-class SideMenu extends Component{
-   
-    render(){
-        // console.log(this.props.AllTasks);
-        return(
+class SideMenu extends Component {
+
+    render() {
+        console.log('this is waSIM');
+        console.log(this.props.SideMenuData, "PROPS");
+        this.props.SideMenuData.map((item) => { console.log(item.image, item.name) });
+        return (
             <React.Fragment>
                 <Router>
-                <div className="sideMenuContainer">
-                    <div className="logoContainer">
-                        <img src={Logo}/>
-                    </div>
-                    <div className="linksContainer ">
-                        <div className="SideMenuLinks ">
-                           <img className="linkLogo" src={Alltasks}/>
-                           <Link to="/dashboard"  onClick={this.props.ToDoAll} className="SideMenuLink">Todo</Link>
-                        </div>
-                        <div className="SideMenuLinks">
-                            <img className="linkLogo" src={CompletedTask}/>
-                            <Link to="/dashboard/CompletedTasks" className="SideMenuLink">Completed Tasks</Link>
-                        </div>
-                        <div className="SideMenuLinks">
-                            <img className="linkLogo" src={RescheduledTask}/>
-                            <Link  to="/dashboard/RescheduledTasks" className="SideMenuLink">Rescheduled Tasks</Link>
-                        </div>
-                        <div className="SideMenuLinks">
-                            <img className="linkLogo" src={profile}/>
-                            <Link to="/dashboard/Profile" className="SideMenuLink">Profile</Link>
-                        </div>
-                    </div>
-                    {/* <div className="SideMenuLinks logout active"> */}
+                    <div className="sideMenuContainer">
 
-                    <GoogleAuth />
-                    {/* </div> */}
-                    
-                </div>
-                <Route path="/dashboard/:id" Component={Dashboard}/>
+                        <div className="logoContainer">
+                            <img src={Logo} />
+                        </div>
+                        <div className="linksContainer ">
+
+                            {this.props.SideMenuData.map((item) => {
+                                return (
+                                    <div className="SideMenuLinks ">
+                                        <img className="linkLogo" src={item.image} />
+                                        <Link to="/dashboard" onClick={this.props.ToDoAll} className="SideMenuLink">{item.name}</Link>
+                                    </div>)
+
+                            })}
+
+                        </div>
+
+                        <GoogleAuth />
+
+                    </div>
+                    <Route path="/dashboard/:id" Component={Dashboard} />
                 </Router>
             </React.Fragment>
         )
@@ -57,7 +52,10 @@ class SideMenu extends Component{
 }
 const myStateToProps = (state) => {
     // console.log(state);
-  return { isSignedIn: state.googleData.isSignedIn };
+    return {
+        isSignedIn: state.googleData.isSignedIn,
+        SideMenuData: state.SideMenuReducer,
+    };
 };
 
 export default withRouter(connect(myStateToProps)(SideMenu));

@@ -9,7 +9,7 @@ completedTaskData:{
     image:require("../assets/Completed.svg"),
 },
 deleteTask:{
-    image:require("../src/assets/Delete.svg"),
+    image:require("../assets/Delete.svg"),
     massage:" deleted the task",
 }
 }
