@@ -11,9 +11,9 @@ class TaskComponent extends Component {
           return (
             <React.Fragment>
               {/* <HeadNav/> */}
-              {this.props.date.map((date) =>
+              {/* {this.props.date.map((date) =>
                 <p>{date.date1}</p>
-              )}
+              )} */}
               <div className="ItemContainer">
 
                 <div className="StatusNoneIcon">

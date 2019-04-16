@@ -14,6 +14,7 @@ const initialValues = {
         },
     ],
     date: '',
+    
     Status: false,
 
     rescheduleData: {

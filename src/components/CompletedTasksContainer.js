@@ -16,7 +16,8 @@ class CompletedTasksContainer extends Component{
 
         return(
             <div className="DontEditThisClass">
-                <HeadNav title={this.props.match.url}/>
+                <HeadNav title={this.props.match.url} />
+                
                 <TaskComponent path1={this.props.match.url}/> 
             </div>
         )
