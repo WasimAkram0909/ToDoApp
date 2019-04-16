@@ -33,7 +33,7 @@ class SideMenu extends Component {
                                    
                                     <div className="SideMenuLinks ">
                                         <img className="linkLogo" src={item.image} />
-                                        <Link to={`/dashboard/${item.name}`} onClick={this.props.ToDoAll} className="SideMenuLink">{item.name}</Link>
+                                        <Link to={`/dashboard/${item.path}`} onClick={this.props.ToDoAll} className="SideMenuLink">{item.name}</Link>
                                     </div>)
 
                             })}
