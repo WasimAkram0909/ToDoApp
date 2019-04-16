@@ -13,8 +13,8 @@ class Welcome extends Component {
   render() {
     return (
       this.props.profileDetails.map((profileData) => {
-        console.log(profileData.name);
-        console.log(profileData.image);
+        // console.log(profileData.name);
+        // console.log(profileData.image);
         return (
           <main className="App">
             <div className="AppDiv">

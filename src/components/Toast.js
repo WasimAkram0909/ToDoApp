@@ -10,21 +10,16 @@ class Toast extends React.Component {
 
         }
     render() {
-
-        console.log(this.props)
+        // console.log(this.props)
         return (
-
             <div className="flex-container">
                 <div> <img src={this.props.data.image} /></div>
                 <div className="text-display">You have successfully {this.props.data.massage}</div>
                 <div className="undo" onClick = {this.undo()}>undo</div>
             </div >
         )
-
     }
-
 }
-
 const mapStateToProps=(state)=>{
     console.log(state);
     return {data:state.EditTask}

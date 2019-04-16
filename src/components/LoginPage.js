@@ -21,7 +21,7 @@ class LoginPage extends React.Component {
                     <img src={group} alt="appimage" />
                     <p className="todoText">TODO</p>
                     <p className="todoText">Login using</p>
-                        <GoogleAuth />
+                        <GoogleAuth/>
                     <p className="LastText">By creating an account you Agree to our Terms of Conditions</p>
                 </div>
             </div>

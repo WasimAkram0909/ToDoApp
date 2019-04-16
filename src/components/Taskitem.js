@@ -69,7 +69,7 @@ class Taskitem extends Component {
   };
 
   render() {
-    console.log(this.props.cards);
+    // console.log(this.props.cards);
 
     return (
       <React.Fragment>

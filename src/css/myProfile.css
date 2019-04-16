@@ -1,38 +1,3 @@
-.HeadItemContainer{
-    width: 100%;
-    height:12%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    border-bottom: 1px solid;
-    border-color: rgba(255, 255, 255, 0.5);
-    color:rgba(255, 255, 255, 1);
-}
-.HeadNavTitle{
-    font-size: 24px;
-    margin:1% 0;
-}
-.btntxt{
-    font-size: 18px;
-}
-.HeadNavButtonsContainer{
-    display: flex;
-    justify-content: space-between; 
-     /* width: 45%; */
-}
-.editProfile{
-    border:1px solid red;
-    background-color: white;
-    /* margin-top:130px; */
-    width:100px;
-    height:100px;
-    display: inline-block;
-}
-
-/* .Profile{
-    display: inline-block;
-} */
-
 .MyProfile{
     margin-top:15%;
     width:88%;
@@ -40,14 +5,16 @@
     /* border: 1px solid red; */
     display: flex;
 }
+.profile{
+    width:13%;
+    /* border:1px solid red; */
+    height:150px;
+}
 .ProfilePhoto{
     width:100%;
     height:100px;
-    /* background-color: white; */
     border:2px solid white;
     margin-top:5%;
-  /* display: inline-block; */
-    /* border: solid; */
 }
 .ProfilePhoto2{
     width:100%;
@@ -66,49 +33,57 @@
     align-items: center;
     justify-content: space-between;
     color:white;
-    /* margin-top:5%;  */
+    /* border:1px solid red;  */
+    margin-top:2%; 
     /* width:100%; */
 }
 .ProfileDetails{
     width:70%;
-    /* border:1px solid red; */
-    margin-top:5%; 
-    /* height: 150px; */
     
 }
-/* .Icons{
-    width: 10%;
-    height: 10%;
-} */
+
 .ProfileEmail,.ProfilePhone{
     display: flex;
     align-items: center;
     padding:5% 0 5% 0;
     /* justify-content: space-around; */
-    
-    
+
 }
 .contactDetails{
     padding-left: 10%;
     font-size:17px;
     color: white;
 }
-.profile{
-    width:13%;
-    /* border:1px solid red; */
-    height:150px;
-}
+
 .Edit{
     font-size: 13px;
     color:white;
     text-decoration: underline;
+    padding-left: 20px;
+    padding-top: 10px;
+    
+    font-weight:normal;
+    margin:0;
 }
-.DontEditThisClass{
-    padding:1.5% 8%;
-    width:84%; 
+.EditProfileName{
+    /* color:#9C94F9; */
+    color:white;
+    font-weight: bold;
+    display:grid;
+    grid-template-columns: auto auto;
+    /* justify-content: space-between; */
+    grid-column-gap: 2%;
 }
-/* .Tasklists{
-    width:84%;
-    margin: 0 auto;
-    padding:1.5% 8%;
-} */
+.EditButtons{
+    display: flex;
+    justify-content: flex-end;
+    grid-column: 1 / 2;
+    /* padding:10px; */
+}
+.inputfield{
+    width:100%;
+    height:4vh;
+    margin-top:10px;
+    color:#9C94F9;
+    /* padding:10px; */
+}

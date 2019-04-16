@@ -28,8 +28,9 @@ class SideMenu extends Component {
                         </div>
                         <div className="linksContainer ">
 
-                            {SideMenuData.map((item) => {
+                            {SideMenuData.map((item,i) => {
                                 return (
+                                   
                                     <div className="SideMenuLinks ">
                                         <img className="linkLogo" src={item.image} />
                                         <Link to={`/dashboard/${item.name}`} onClick={this.props.ToDoAll} className="SideMenuLink">{item.name}</Link>

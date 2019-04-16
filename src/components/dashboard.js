@@ -14,7 +14,7 @@ import RescheduledTask from './rescheduledTask';
 import TasksContainer from "./TasksContainer";
 class Dashboard extends Component{
     render(){
-        console.log(this.props.match);
+        // console.log(this.props.match);
         return(
             <div className="container ">
                 <SideMenu className="sideMenu"/>
