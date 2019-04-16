@@ -50,9 +50,19 @@ const ToDoAllAction=(RES)=>{
       type: "UPDATE_TASK"
     };
   };
-  export const DeleteTask = () => {
+  export const DeleteTask = (data) => {
+    // var url = ("http://localhost:8080/todo/deleteTasks/{id}");
+    // return (dispath)=>{
+    //     return axios.delete(url)
+    //     .then (res =>{
+    //       dispatch();
+    //     })
+    // }
+     console.log(data);
     return {
-      type: "DELETE_TASK"
+      type: "DELETE_TASK",
+      types:"DELETE_TOAST",
+      payload:data,
     };
   };
   // export const AddTask = () => {
@@ -96,13 +106,27 @@ const ToDoAllAction=(RES)=>{
 console.log(data);
     return {
       type:"RESCHEDULE_TASK",
+      types:"RESCHEDULE_TOAST",
       payload:data,
     }
   }
-  export const completedTaskAction =(data)=>{
+  export const CompletedTaskAction =(data)=>{
     return {
       type:"COMPLETED_TASK",
+      types:"COMPLETED_TOAST",
       payload:data,
     }
 
+  }
+  export const HideActionButtons =()=>{
+    return {
+      type:"HIDE_BUTTONS",
+
+    }
+
+  }
+  export const UndoAction = ()=>{
+    return {
+      type:"UNDO"
+    }
   }

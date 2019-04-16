@@ -40,9 +40,13 @@ export default (state = initialValues, action) => {
             return { ...state, }
         case "Display_Actions":
             return { ...state, Status: true };
-        // case "RESCHEDULE_TASK":return{ ...state }
-        // case "COMPLETED_TASK":return{...state}
-        // case "DELETE_TASK":return{...state}
+            case 'HIDE_BUTTONS': return {...state,Status:false}
+        case "RESCHEDULE_TASK":return{ ...state ,}
+        case "COMPLETED_TASK":return{...state}
+        case "DELETE_TASK":
+        console.log(action.payload.index);
+        var deletedElement = state.Task.splice(action.payload,1)
+        return {...state}
         // case 'UNDO':return{...state}
         // default:null
     }

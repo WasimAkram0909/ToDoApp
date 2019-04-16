@@ -1,27 +1,26 @@
 
 const toastValues={
-rescheduleData:{
-    massage:"rescheduled the task",
-    image:require("../assets/Reschedule.svg"),
-},
-completedTaskData:{
-    massage:" completed the task",
-    image:require("../assets/Completed.svg"),
-},
-deleteTask:{
-    image:require("../assets/Delete.svg"),
-    massage:" deleted the task",
-}
-}
-
-export default (state=toastValues,actions)=>{
-    switch(actions.type){
-        
-    case "RESCHEDULE_TASK":return{ ...state.rescheduleData };break;
-    case "COMPLETED_TASK":return{...state.completedTaskData};break;
-    case "DELETE_TASK":return{...state.deleteTask};break;
-
-    // default:null;
+    rescheduleData:{
+        message:"rescheduled the task",
+        image:require("../assets/Toast Reschedule.png"),
+    },
+    completedTaskData:{
+        message:" completed the task",
+        image:require("../assets/Toast completed.png"),
+    },
+    deleteTask:{
+        image:require("../assets/Toast Delete.png"),
+        message:" deleted the task",
     }
-        return state;
-}
+    }
+    
+    export default (state = toastValues,action)=>{
+        switch(action.types){
+            
+            case "RESCHEDULE_TOAST":return{...state.rescheduleData };break;
+            case "COMPLETED_TOAST":return{...state.completedTaskData };break;
+            case "DELETE_TOAST":return{...state.deleteTask };break;
+        // default:null;
+        }
+            return state;
+    }
