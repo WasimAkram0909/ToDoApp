@@ -18,36 +18,9 @@ class Dashboard extends Component{
         return(
             <div className="container">
                 <SideMenu className="sideMenu"/>
-                {/* <div className="Tasklists"> */}
-                    {/* <Taskitem></Taskitem> */}
-                    {/* <HeadNav></HeadNav> */}
-
-                <Route exact path={this.props.match.url + '/'} component={HeadNav}/>
-                <Route exact path='/dashboard/AddTask' component={AddTask}/>
-                <Route exact path={this.props.match.url + '/Completed Tasks'} component={CompletedTask} />
-                <Route exact path={this.props.match.url + '/Rescheduled Tasks'} component={RescheduledTask} />
-                <Route exact path={this.props.match.url + '/Profile'} component={MyProfile} />
-                
-               {/* <MyProfile/> */}
-                    {/* <Taskitem/> */}
-                    {/* <div> */}
-                    {/* <AddTask/> */}
-                    {/* </div> */}
-                {/* </div>  */}
-                {/* <div className="Tasklists"> */}
-                    {/* asdf */}
-                   
-                {/* </div>  */}
-
-
-
                 <TasksContainer/>
                
-                {/* <div className="Tasklists">
-                    <HeadNav></HeadNav>
-                    <div></div>
-                    <Taskitem/>
-                </div>  */}
+              
             </div>
         )
     }

@@ -3,8 +3,8 @@ import React from 'react';
 import { Calendar } from 'react-calendar';
 import '../css/Taskitem.css';
 import StatusNoneIcon from "../assets/StatusNone.svg";
-import SaveICon from '../assets/baseline_check_black_18dp.png';
-import CancelIcon from '../assets/baseline_clear_black_18dp.png';
+// import SaveICon from '../assets/baseline_check_black_18dp.png';
+// import CancelIcon from '../assets/baseline_clear_black_18dp.png';
 // import CancelIcon from '../assets/cancel.png'
 import CalendarIcon from '../assets/Calender Create Task.svg';
 // import { create } from 'domain';
@@ -12,6 +12,8 @@ import { SaveTask } from '../actions';
 import { connect } from 'react-redux';
 import HeadNav from './HeadNav';
 // import Date from './date';
+import SaveICon from '@material-ui/icons/Done';
+import CancelIcon from '@material-ui/icons/Clear';
 
 class AddTask extends React.Component {
   constructor(props) {
@@ -89,8 +91,10 @@ class AddTask extends React.Component {
                   {/* <textarea className="taskData1" ref={this.myRef} /> */}
                     <input className="taskData1" type="text"  ref={this.myRef}/>  
                       <div className="editTaskButtons">
-                        <img className="SaveIcon" src={SaveICon} onClick={this.handleSaveTask} />
-                        <img className="CancelIcon" src={CancelIcon} onClick={this.handleClose} />
+                      <SaveICon  className="SaveIcon" onClick={this.handleSaveTask}/>
+                      <CancelIcon className="CancelIcon" onClick={this.handleClose} />
+                        {/* <img className="SaveIcon" src={SaveICon} onClick={this.handleSaveTask} /> */}
+                        {/* <img className="CancelIcon" src={CancelIcon} onClick={this.handleClose} /> */}
                         <img src={CalendarIcon} onClick={this.handleCalendar} />
                         {this.handleCalendar}  
                       </div>

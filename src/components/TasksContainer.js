@@ -15,9 +15,11 @@ class TasksContainer extends Component {
     render() {
         return (
             <div className="Tasklists">
-                <HeadNav></HeadNav>
-                <Taskitem />
+                {/* <HeadNav></HeadNav> */}
+                {/* <Taskitem /> */}
+                <Route exact path={this.props.match.url + '/'} component={HeadNav}/>
                 {/* <Route exact path={this.props.match.url + '/'} component={HeadNav}/> */}
+                <Route exact path='/dashboard/AddTask' component={AddTask}/>
                 <Route exact path={this.props.match.url + '/Completed Tasks'} component={CompletedTask} />
                 <Route exact path={this.props.match.url + '/Rescheduled Tasks'} component={RescheduledTask} />
                 <Route exact path={this.props.match.url + '/Profile'} component={MyProfile} />

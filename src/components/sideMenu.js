@@ -18,8 +18,8 @@ import {SideMenuData} from "../reducers/SideMenu";
 class SideMenu extends Component {
 
     render() {
-        console.log(this.props.SideMenuData, "PROPS");
-        this.props.SideMenuData.map((item) => { console.log(item.image, item.name) });
+        // console.log(this.props.SideMenuData, "PROPS");
+        // this.props.SideMenuData.map((item) => { console.log(item.image, item.name) });
         return (
             <React.Fragment>
                 {/* <Router> */}
