@@ -43,7 +43,7 @@ class MyProfile extends React.Component {
     
     return (
      <div className="DontEditThisClass">         
-        <HeadNav/>
+        <HeadNav title="Profile"/>
      {this.props.profileDetails.map((profileData) => {
          return(
         <div className="MyProfile"> 

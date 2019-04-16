@@ -47,6 +47,13 @@ class AddTask extends React.Component {
   handleSaveTask = () => {
     console.log('savetask');
     var taskcontent = this.myRef.current.value;
+    var dateContent = this.MyFunction();
+    console.log(dateContent);
+    console.log(taskcontent);
+    var TaskObject = {
+      taskcontent,
+      dateContent
+    }
     console.log(taskcontent);
     this.props.SaveTask(taskcontent);
     this.setState({
@@ -55,6 +62,7 @@ class AddTask extends React.Component {
   }
   handleCalendar = () => {
     console.log('claendar');
+    // var datevar = claendar.toLocaleString('en-us', { month: 'long' }) + ' ' + claendar.getDate();
     this.setState({
       showCalendar: true,
     });
@@ -64,10 +72,11 @@ class AddTask extends React.Component {
     // const month = date.toLocaleString('en-us', { month: 'long' });
     // console.log(month);
     var tempDate = new Date();
+    console.log(tempDate);
     var month = tempDate.toLocaleString('en-us', { month: 'long' }) + ' ' + tempDate.getDate();
     // const currDate = "Current Date= " + date;
     return (
-      <p>{month}</p>
+      month
       );
   }
   handleClose=()=>{
@@ -87,7 +96,8 @@ class AddTask extends React.Component {
          {/* {this.state.showComponent ? */}
          <HeadNav/>
             <div className="display">
-              {this.MyFunction()}
+            <p>{this.MyFunction()}</p>
+              
                 <div id="ItemContainer" className="ItemContainer">
                   {/* <textarea className="taskData1" ref={this.myRef} /> */}
                     <input className="taskData1" type="text"  ref={this.myRef}/>  

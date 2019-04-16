@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import '../css/Taskitem.css';
+import HeadNav from "./HeadNav";
+
+
+
+
 var completeImage = require("../assets/Completed Tasks.png");
 var rescheduleImage = require("../assets/Reschedule.svg");
+
 
 class TaskComponent extends Component {
   constructor(props) {
@@ -23,6 +29,7 @@ class TaskComponent extends Component {
           }
           return (
             <React.Fragment>
+              {/* <HeadNav></HeadNav> */}
               {this.props.date.map((date) =>
                 <p>{date.date1}</p>
               )}
@@ -49,7 +56,7 @@ const myStateToProps = state => {
   return {
     sta: state.allTasks.Task,
     date: state.complete.rescheduleData,
-    date:state.complete.completeData,
+    date: state.complete.completeData,
   }
 }
 export default withRouter(connect(myStateToProps)(TaskComponent));

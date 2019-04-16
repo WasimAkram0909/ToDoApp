@@ -22,20 +22,22 @@ class HeadNav extends Component{
     //     });
     //   }
     render(){
+        console.log(this.props);
     // console.log("this sis the state ", this.props);        
         return(
+            
             <React.Fragment>
                 <div className="HeadItemContainer">
-                    <p className="HeadNavTitle">Todo</p>
+                    <p className="HeadNavTitle">{this.props.title}</p>
                     <div className="HeadNavButtonsContainer">
                     
-                        
-                        <div className="HeadNavbtnCntr">
+                        {this.props.showAdd ? <div className="HeadNavbtnCntr">
                             <Link to="/dashboard/AddTask" className="HeadNavbtnCntr linkTag">
                                 <i class="fa fa-plus white"></i>
                                 <p className="btntext btntxt2" >Add Task</p>
                             </Link>
-                        </div>
+                        </div>:<div></div>}
+                        
                         <div className="HeadNavbtnCntr">
                             <img className="icon" src={CalenderIcon}/>
                             <p className="btntext">Sort By</p>
@@ -58,6 +60,7 @@ const myStateToProps = (state) => {
     // console.log(state,'tsityn');
     return {
         SideMenuData: state.SideMenuReducer,
+
     };
 };
 

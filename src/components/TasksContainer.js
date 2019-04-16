@@ -7,7 +7,7 @@ import MyProfile from './myProfile';
 import {withRouter} from 'react-router-dom';
 import {Route} from 'react-router-dom';
 import ToDoContainer from "./ToDoContainer";
-import TaskComponent  from "./TaskComponent";
+import CompletedTasksContainer from "./CompletedTasksContainer";
 
 class TasksContainer extends Component {
     render() {
@@ -21,8 +21,8 @@ class TasksContainer extends Component {
 
                 {/* <Route exact path={this.props.match.url + '/'} component={HeadNav}/> */}
                 <Route exact path='/dashboard/AddTask' component={AddTask}/>
-                <Route exact path={this.props.match.url + '/CompletedTasks'} component={TaskComponent} />
-                <Route exact path={this.props.match.url + '/RescheduledTasks'} component={TaskComponent} />
+                <Route exact path={this.props.match.url + '/CompletedTasks'} component={CompletedTasksContainer} />
+                <Route exact path={this.props.match.url + '/RescheduledTasks'} component={CompletedTasksContainer} />
                 <Route exact path={this.props.match.url + '/Profile'} component={MyProfile} />
             </div>
         )

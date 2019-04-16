@@ -7,19 +7,20 @@ import AddTask from './addTask';
 import MyProfile from './myProfile';
 import {withRouter} from 'react-router-dom';
 import {Route} from 'react-router-dom';
+import TaskComponent from "./TaskComponent";
 
 
-class ToDoContainer extends Component{
+
+class CompletedTasksContainer extends Component{
     render(){
         return(
             <div className="DontEditThisClass">
-                <HeadNav title="Todo" showAdd={true}/>
-                <Taskitem/> 
+                <HeadNav title="Completed" showAdd={false}/>
+                <TaskComponent/> 
             </div>
         )
     }
 }
 
-export default withRouter(ToDoContainer);
-
+export default withRouter(CompletedTasksContainer);
 
