@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 class MyProfile extends React.Component {
   render() {
     return (
-     <div>         
+     <div className="DontEditThisClass">         
         <HeadNav/>
      {this.props.profileDetails.map((profileData) => {
          return(

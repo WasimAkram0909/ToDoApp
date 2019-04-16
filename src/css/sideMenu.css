@@ -27,6 +27,7 @@
 .SideMenuLink{
     padding-left: 7%;
     text-decoration: none;
+    width:100%;
     color:rgba(255, 255, 255, 0.6);
 }
 

@@ -16,6 +16,14 @@
     font-size: 18px;
     width:100%;
 }
+
+.linkTag{
+    text-decoration: none;
+    margin-left:-10px;
+    padding:none;
+    color:red;
+    width:100% !important;
+}
 .HeadNavButtonsContainer{
     display: flex;
     justify-content: space-between;
@@ -34,29 +42,18 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding:12px;
+    padding:12px 0 12px 10px;
     width:46%;
     text-decoration: none;
+}
+.HeadNavbtnCntr3{
+    width:80%;
 }
 .white{
     color:white;
 }
 .btntext{
-    padding-left: 10px;
+    padding-left: 7px;
     font-size: 15px;
     color:#fff;
 }
-/* .HeadNavbtn{
-    
-    background-color: rgba(255, 97, 158, 1);
-    height:42px;
-    box-sizing: border-box;
-    width:40%;
-    font-size: 18px;
-    margin-left: 5%;
-    padding:12px 26px;
-    display: inline-block;
-    align-items: center;
-    width:50%;
-    margin-bottom: 10px;
-} */

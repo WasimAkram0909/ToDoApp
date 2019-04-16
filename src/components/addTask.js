@@ -2,6 +2,7 @@ import React from 'react';
 // import '/home/wtt181/ToDoApp/src/css/addtask.css';
 import { Calendar } from 'react-calendar';
 import '../css/Taskitem.css';
+import '../css/AddTask.css';
 import StatusNoneIcon from "../assets/StatusNone.svg";
 // import SaveICon from '../assets/baseline_check_black_18dp.png';
 // import CancelIcon from '../assets/baseline_clear_black_18dp.png';
@@ -81,7 +82,7 @@ class AddTask extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="DontEditThisClass">
         {/* <button className="addtaskbutton" onClick={this.addtask}>AddTask</button> */}
          {/* {this.state.showComponent ? */}
          <HeadNav/>

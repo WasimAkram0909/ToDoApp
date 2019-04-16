@@ -28,13 +28,19 @@ class HeadNav extends Component{
                 <div className="HeadItemContainer">
                     <p className="HeadNavTitle">Todo</p>
                     <div className="HeadNavButtonsContainer">
-                        <Link to="/dashboard/AddTask" className="HeadNavbtnCntr"><div className="HeadNavbtnCntr" onClick={this.addtask}>
-                      
-                        {/* <Route/> */}
-                        <i class="fa fa-plus white"></i>
-                            <p className="btntext" >Add Task</p>
-                        </div></Link>
+                        {/* <Link to="/dashboard/AddTask" className="HeadNavbtnCntr">
+                            <div className="HeadNavbtnCntr" onClick={this.addtask}>
+                                <i class="fa fa-plus white"></i>
+                                <p className="btntext" >Add Task</p>
+                            </div>
+                        </Link> */}
                         
+                        <div className="HeadNavbtnCntr">
+                            <Link to="/dashboard/AddTask" className="HeadNavbtnCntr linkTag">
+                                <i class="fa fa-plus white"></i>
+                                <p className="btntext btntxt2" >Add Task</p>
+                            </Link>
+                        </div>
                         <div className="HeadNavbtnCntr">
                             <img className="icon" src={CalenderIcon}/>
                             <p className="btntext">Sort By</p>
