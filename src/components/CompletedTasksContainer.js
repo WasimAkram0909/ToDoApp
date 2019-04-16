@@ -13,10 +13,11 @@ import TaskComponent from "./TaskComponent";
 
 class CompletedTasksContainer extends Component{
     render(){
+
         return(
             <div className="DontEditThisClass">
-                <HeadNav title="Completed" showAdd={false}/>
-                <TaskComponent/> 
+                <HeadNav title={this.props.match.url}/>
+                <TaskComponent path1={this.props.match.url}/> 
             </div>
         )
     }

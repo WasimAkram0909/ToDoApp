@@ -1,44 +1,24 @@
 import React, { Component } from 'react';
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import '../css/Taskitem.css';
 import HeadNav from "./HeadNav";
-
-
-
-
-var completeImage = require("../assets/Completed Tasks.png");
-var rescheduleImage = require("../assets/Reschedule.svg");
-
-
 class TaskComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    console.log(this.props.sta);
     return (
       this.props.sta.map((tasks, i) => {
-        if (this.props.match.url === tasks.status) {
-          if (this.props.match.url === "/dashboard/Completed Tasks") {
-            var image = completeImage;
-            console.log("complete", image);
-          } else if (this.props.match.url === "/dashboard/Rescheduled Tasks") {
-            var image = rescheduleImage;
-            console.log("rescudule");
-          }
+        var name = `/dashboard/${tasks.status}`;
+        if (this.props.path1 === name) {
           return (
             <React.Fragment>
-              {/* <HeadNav></HeadNav> */}
+              {/* <HeadNav/> */}
               {this.props.date.map((date) =>
                 <p>{date.date1}</p>
               )}
               <div className="ItemContainer">
 
                 <div className="StatusNoneIcon">
-                  <img src={image} alt='images' />
+                  <img src={require(`../assets/${tasks.status}.png`)} alt='images' />
                 </div>
-
                 <p className="taskData">
                   {tasks.Task}
                 </p>
@@ -59,4 +39,4 @@ const myStateToProps = state => {
     date: state.complete.completeData,
   }
 }
-export default withRouter(connect(myStateToProps)(TaskComponent));
+export default connect(myStateToProps)(TaskComponent);

@@ -2,15 +2,15 @@ const initialValues = {
     Task: [
         {
             Task: "Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch",
-            status: "/dashboard/Completed Tasks",
+            status: "CompletedTasks",
         },
         {
             Task: "Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch Joh to call Alex on OS configuration and let him know that meeting JA Marsh for lunch",
-            status: "/dashboard/Rescheduled Tasks",
+            status: "RescheduledTasks",
         },
         {
             Task: "Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch",
-            status: "/dashboard/Completed Tasks",
+            status: "CompletedTasks",
         },
     ],
     date: '',

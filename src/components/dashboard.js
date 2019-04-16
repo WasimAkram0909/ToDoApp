@@ -3,7 +3,7 @@ import '../css/dashboard.css';
 import SideMenu from "./sideMenu";
 import Taskitem from "./Taskitem";
 import HeadNav from "./HeadNav";
-import  AllTasks from './AllTasks';
+// import  AllTasks from './AllTasks';
 import AddTask from './addTask';
 import MyProfile from './myProfile';
 import {withRouter} from 'react-router-dom';
