@@ -16,8 +16,4 @@ export const SideMenuData = [
         image:require("../assets/Profile.svg"),
     }
 ]
-    // const SideMenuReducer =(state=SideMenuData,action) =>{
-    //     return state;
-    // }
-
-// export default SideMenuReducer;
+    

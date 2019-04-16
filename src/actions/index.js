@@ -92,17 +92,17 @@ const ToDoAllAction=(RES)=>{
       type: "Display_Actions"
     };
   };
-  export const RescheduleTask =()=>{
-
+  export const RescheduleTask =(data)=>{
+console.log(data);
     return {
       type:"RESCHEDULE_TASK",
-
+      payload:data,
     }
   }
-  export const completedTaskAction =()=>{
+  export const completedTaskAction =(data)=>{
     return {
       type:"COMPLETED_TASK",
-
+      payload:data,
     }
 
   }
