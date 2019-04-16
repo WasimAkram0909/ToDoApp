@@ -14,6 +14,7 @@
 }
 .btntxt{
     font-size: 18px;
+    width:100%;
 }
 .HeadNavButtonsContainer{
     display: flex;
@@ -35,6 +36,10 @@
     align-items: center;
     padding:12px;
     width:46%;
+    text-decoration: none;
+}
+.white{
+    color:white;
 }
 .btntext{
     padding-left: 10px;

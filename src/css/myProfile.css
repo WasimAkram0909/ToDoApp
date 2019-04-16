@@ -28,21 +28,78 @@
     height:100px;
     display: inline-block;
 }
-.subdiv{
-  border-left: 1px solid green;
-  height: 400px;
-  margin-left: 150px;
-  display: inline-block;
-  
-}
-.Profile{
+
+/* .Profile{
     display: inline-block;
+} */
+
+.MyProfile{
+    margin-top:15%;
+    width:88%;
+    height:330px;
+    /* border: 1px solid red; */
+    display: flex;
 }
-.image{
-    width:100px;
+.ProfilePhoto{
+    width:100%;
     height:100px;
-    background-color: white;
-    border:1px solid red;
-    margin-top:130px;
+    /* background-color: white; */
+    border:2px solid white;
+    margin-top:5%;
+  /* display: inline-block; */
+    /* border: solid; */
 }
- 
+.ProfilePhoto2{
+    width:100%;
+    height:100px;
+}
+.subdiv{
+    border-left: 1px solid rgba(225, 225, 225, 0.5);
+    padding-left: 7%;
+    height: 330px;
+    margin-left: 50px;
+    width:71%;
+    
+  }
+  .ProfileName{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color:white;
+    /* margin-top:5%;  */
+    /* width:100%; */
+}
+.ProfileDetails{
+    width:70%;
+    /* border:1px solid red; */
+    margin-top:5%; 
+    /* height: 150px; */
+    
+}
+/* .Icons{
+    width: 10%;
+    height: 10%;
+} */
+.ProfileEmail,.ProfilePhone{
+    display: flex;
+    align-items: center;
+    padding:5% 0 5% 0;
+    /* justify-content: space-around; */
+    
+    
+}
+.contactDetails{
+    padding-left: 10%;
+    font-size:17px;
+    color: white;
+}
+.profile{
+    width:13%;
+    /* border:1px solid red; */
+    height:150px;
+}
+.Edit{
+    font-size: 13px;
+    color:white;
+    text-decoration: underline;
+}

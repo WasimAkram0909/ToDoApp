@@ -22,15 +22,16 @@ class Dashboard extends Component{
                     {/* <Taskitem></Taskitem> */}
                     {/* <HeadNav></HeadNav> */}
 
-                {/* <Route exact path={this.props.match.url + '/'} component={HeadNav}/>
+                <Route exact path={this.props.match.url + '/'} component={HeadNav}/>
+                <Route exact path='/dashboard/AddTask' component={AddTask}/>
                 <Route exact path={this.props.match.url + '/Completed Tasks'} component={CompletedTask} />
                 <Route exact path={this.props.match.url + '/Rescheduled Tasks'} component={RescheduledTask} />
-                <Route exact path={this.props.match.url + '/Profile'} component={MyProfile} /> */}
+                <Route exact path={this.props.match.url + '/Profile'} component={MyProfile} />
                 
                {/* <MyProfile/> */}
                     {/* <Taskitem/> */}
                     {/* <div> */}
-                    {/* <AllTasks/> */}
+                    {/* <AddTask/> */}
                     {/* </div> */}
                 {/* </div>  */}
                 {/* <div className="Tasklists"> */}

@@ -10,6 +10,7 @@ import CalendarIcon from '../assets/Calender Create Task.svg';
 // import { create } from 'domain';
 import { SaveTask } from '../actions';
 import { connect } from 'react-redux';
+import HeadNav from './HeadNav';
 // import Date from './date';
 
 class AddTask extends React.Component {
@@ -31,15 +32,15 @@ class AddTask extends React.Component {
     })
   }
 
-//   addtask = () => {
-//     console.log('addtask');
-//     this.setState({
-//       showComponent: true,
-//     });
-//   // return(<div>
-//   //     <input type="text"/>
-//   // </div>)
-//   }
+  addtask = () => {
+    console.log('addtask');
+    this.setState({
+      showComponent: true,
+    });
+  // return(<div>
+  //     <input type="text"/>
+  // </div>)
+  }
   handleSaveTask = () => {
     console.log('savetask');
     var taskcontent = this.myRef.current.value;
@@ -48,10 +49,7 @@ class AddTask extends React.Component {
     this.setState({
       showCalendar: false,
     });
-
-
   }
-
   handleCalendar = () => {
     console.log('claendar');
     this.setState({
@@ -62,7 +60,6 @@ class AddTask extends React.Component {
     // const date = new Date();  // 2009-11-10
     // const month = date.toLocaleString('en-us', { month: 'long' });
     // console.log(month);
-
     var tempDate = new Date();
     var month = tempDate.toLocaleString('en-us', { month: 'long' }) + ' ' + tempDate.getDate();
     // const currDate = "Current Date= " + date;
@@ -71,9 +68,9 @@ class AddTask extends React.Component {
       );
   }
   handleClose=()=>{
-    this.setState({
-      showComponent: false,
-    });
+    // this.setState({
+    //   showComponent: false,
+    // });
     this.setState({
       showCalendar: false,
     });
@@ -83,8 +80,9 @@ class AddTask extends React.Component {
   render() {
     return (
       <div>
-        <button className="addtaskbutton" onClick={this.addtask}>AddTask</button>
-         {this.state.showComponent ?
+        {/* <button className="addtaskbutton" onClick={this.addtask}>AddTask</button> */}
+         {/* {this.state.showComponent ? */}
+         <HeadNav/>
             <div className="display">
               {this.MyFunction()}
                 <div id="ItemContainer" className="ItemContainer">
@@ -97,7 +95,8 @@ class AddTask extends React.Component {
                         {this.handleCalendar}  
                       </div>
                 </div>
-              </div> : null}
+              </div>
+               {/* : null} */}
           {this.state.showCalendar ? (<Calendar className="react-calender"
       // className="react-calendar__month-view"
           onChange={this.onChange} value={this.state.date} />) : null}
