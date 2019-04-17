@@ -23,6 +23,7 @@ class AddTask extends React.Component {
       showComponent: true,
       showCalendar: false,
       date: new Date(),
+      newDate: ""
     }
     this.myRef = React.createRef();
   }
@@ -30,33 +31,30 @@ class AddTask extends React.Component {
 
   onChange = date => {
     console.log(date);
-    // this.setState({
-    //   date
-    // })
+    this.setState({
+      newDate: date
+    })
+
+   
   }
 
-  // addtask = () => {
-  //   console.log('addtask');
-  //   this.setState({
-  //     showComponent: true,
-  //   });
-  // return(<div>
-  //     <input type="text"/>
-  // </div>)
-  // }
+
   handleSaveTask = () => {
     console.log('savetask');
     var taskcontent = this.myRef.current.value;
-    var dateContent = this.MyFunction();
-    console.log(dateContent);
-    console.log(taskcontent);
+    var dateContent = this.state.newDate;
+    // console.log(dateContent);
+    // console.log(taskcontent);
     var TaskObject = {
-      taskcontent,
-      dateContent
+      taskcontent,dateContent
+      
+      
     }
-    console.log(taskcontent);
-    this.props.SaveTask(taskcontent);
-     this.setState({
+    console.log(TaskObject);
+
+
+    this.props.SaveTask(TaskObject);
+    this.setState({
       showComponent: false,
     });
     this.setState({
@@ -79,48 +77,55 @@ class AddTask extends React.Component {
     var month = tempDate.toLocaleString('en-us', { month: 'long' }) + ' ' + tempDate.getDate();
     return (
       month
-      );
+    );
   }
-  handleClose=()=>{
+  handleClose = () => {
     this.setState({
       showComponent: false,
     });
     this.setState({
       showCalendar: false,
     });
+  
     // document.getElementById('ItemContainer').style='display:none';
 
+  }
+  ChangeState = () =>{
+    this.setState({
+      showComponent: false
+    })
   }
   render() {
     return (
       <div className="DontEditThisClass">
-           <HeadNav/>
+        <HeadNav title="Todo" showFunction={this.ChangeState} showAdd={true} />
         {/* <button className="addtaskbutton" onClick={this.addtask}>AddTask</button> */}
-         {this.state.showComponent ?
-    
-            <div className="display">
+        {this.state.showComponent ?
+
+
+          <div className="display">
             <p>{this.MyFunction()}</p>
-              
-                <div id="ItemContainer" className="ItemContainer">
-                  {/* <textarea className="taskData1" ref={this.myRef} /> */}
-                    <input className="taskData1" type="text"  ref={this.myRef}/>  
-                      <div className="editTaskButtons">
-                      <SaveICon  className="SaveIcon" onClick={this.handleSaveTask}/>
-                      <CancelIcon className="CancelIcon" onClick={this.handleClose} />
-                        {/* <img className="SaveIcon" src={SaveICon} onClick={this.handleSaveTask} /> */}
-                        {/* <img className="CancelIcon" src={CancelIcon} onClick={this.handleClose} /> */}
-                        <img src={CalendarIcon} onClick={this.handleCalendar} />
-                        {this.handleCalendar}  
-                      </div>
-                </div>
+
+            <div id="ItemContainer" className="ItemContainer">
+              {/* <textarea className="taskData1" ref={this.myRef} /> */}
+              <input className="taskData1" type="text" ref={this.myRef} />
+              <div className="editTaskButtons">
+                <SaveICon className="SaveIcon" onClick={this.handleSaveTask} />
+                <CancelIcon className="CancelIcon" onClick={this.handleClose} />
+                {/* <img className="SaveIcon" src={SaveICon} onClick={this.handleSaveTask} /> */}
+                {/* <img className="CancelIcon" src={CancelIcon} onClick={this.handleClose} /> */}
+                <img src={CalendarIcon} onClick={this.handleCalendar} />
+                {this.handleCalendar}
               </div>
-                : null} 
-          {this.state.showCalendar ? (<Calendar className="react-calender"
-      // className="react-calendar__month-view"
-          onChange={this.onChange}  />) : null}
+            </div>
+          </div>
+          : null}
+        {this.state.showCalendar ? (<Calendar className="react-calender"
+          // className="react-calendar__month-view"
+          onChange={this.onChange} />) : null}
       </div>
 
-      );
+    );
   }
 }
 const myStateToProps = (state) => {

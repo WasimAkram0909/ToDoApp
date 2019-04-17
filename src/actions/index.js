@@ -71,7 +71,8 @@ const ToDoAllAction=(RES)=>{
   //   };
   // };
   export const SaveTask = (data) => {
-    // console.log(data);
+    console.log(data);
+
     var url="http://192.168.1.167:9124/todo/tasks";
     return(dispatch)=>{
       return axios.post(url,{data})
