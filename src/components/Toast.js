@@ -4,7 +4,7 @@ import '../css/Toast.css';
 import icon from '../assets/Toast completed.png';
 import { connect } from 'react-redux';
 import { UndoAction } from '../actions';
-import CloseToast from './CloseToast';
+// import CloseToast from './CloseToast';
 import onClickOutside from 'react-onclickoutside';
 
 class Toast extends React.Component {

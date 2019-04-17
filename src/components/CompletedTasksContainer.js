@@ -8,6 +8,7 @@ import MyProfile from './myProfile';
 import {withRouter} from 'react-router-dom';
 import {Route} from 'react-router-dom';
 import TaskComponent from "./TaskComponent";
+import {SideMenuData} from "../reducers/SideMenu";
 
 
 
@@ -16,8 +17,14 @@ class CompletedTasksContainer extends Component{
 
         return(
             <div className="DontEditThisClass">
-                <HeadNav title={this.props.match.url} />
-                
+                {
+                    this.props.match.url=="/dashboard/CompletedTasks" ? 
+                    <HeadNav  title={SideMenuData[1].name} />
+                    :<HeadNav  title={SideMenuData[2].name}/>
+                }
+                {/* <HeadNav  title={SideMenuData[1].name} /> */}
+                {/* {console.log(SideMenuData[1].name)} */}
+                {console.log(this.props.match.url)}
                 <TaskComponent path1={this.props.match.url}/> 
             </div>
         )
