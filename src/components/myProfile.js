@@ -13,7 +13,8 @@ class MyProfile extends React.Component {
     this.state={
       showComponent:true,
       firstName:'',
-      LastName:''
+      LastName:'',
+       selectedFile: null 
     }
   //   if(this.props.profileDetails[0]){
   // this.state={
@@ -31,6 +32,7 @@ componentDidMount(){
   this.setState({
     firstName:this.props['profileDetails'][0]['fullName'],
     LastName:this.props['profileDetails'][0]['familyName'],
+    selectedFile:this.props['profileDetails'][0]['image'],
   })
 }}
   handleEdit=()=>{
@@ -53,17 +55,16 @@ componentDidMount(){
     var abc=e.target.value;
    console.log(abc);
   }
+  handleImage=(e)=>{
+    // onImageChange = (event) => {
+      if (e.target.files && e.target.files[0]) {
+        this.setState({
+          selectedFile: URL.createObjectURL(e.target.files[0])
+        });
+      }
+     }
 
   render() {
-    if(this.props.profileDetails[0]){
-    // console.log(this.props['profileDetails'][0]['fullName']);
-    console.log(this.props.profileDetails[0].fullName);
-  }
-  else{
-    // alert('hi');
-  }
-    // console.log(this.state.firstName);
-    
     return (
      <div className="DontEditThisClass">         
         <HeadNav title="Profile"/>
@@ -71,8 +72,10 @@ componentDidMount(){
          return(
         <div className="MyProfile"> 
         <div className="profilePictureDiv">       
-            <img className="ProfilePhoto" src={profileData.image} alt="profile"/>
-            <p className="EditProfile">Edit Profile</p>
+            <img className="ProfilePhoto" src={this.state.selectedFile} alt="profile"/><br/>
+            {/* <input type="file" onChange={this.handleImage}/> */}
+            <label for="files" className="EditProfile">Edit Profile</label>
+  <input id="files" className="buttonHide" onChange={this.handleImage} type="file"/>
         </div>
         <div className="ProfileDetails">
           {this.state.showComponent ? 

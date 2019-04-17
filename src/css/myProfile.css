@@ -5,11 +5,18 @@
     /* border: 1px solid red; */
     display: flex;
 }
+.profilePictureDiv{
+    /* border: 1px solid red; */
+    width:93px;
+
+    
+}
 .ProfilePhoto{
     margin-top:32%;
     width:93px;
     height:100px;
     border:2px solid white;
+    /* border: 1px solid red; */
 }
 .EditProfile{
     font-size: 13px;
@@ -86,4 +93,8 @@
     margin-top:10px;
     color:#9C94F9;
     /* padding:10px; */
+}
+.buttonHide{
+   visibility: hidden;
+   width:13%;
 }

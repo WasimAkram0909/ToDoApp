@@ -15,7 +15,7 @@ const initialValues = {
             Task: "Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch",
             status: "CompletedTasks",
             date: ' Apr 10 ',
-            Status: false,
+            // Status: false,
             
         },
     ],
