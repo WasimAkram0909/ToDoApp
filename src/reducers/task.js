@@ -17,6 +17,7 @@ const initialValues = {
     // rescheduleData: [],
     date: '',
     Status: false,
+    // showToast: false,
 
     rescheduleData1: {
         massage: "You have successfully rescheduled the task",
@@ -24,7 +25,7 @@ const initialValues = {
     },
     completedTaskData: {
         massage: "You have successfully completed task",
-        image: require("../assets/Completed.svg"),
+        // image: require("../assets/Completed."),
     },
     deleteTask: {
         image: require("../assets/Delete.svg"),
@@ -33,19 +34,20 @@ const initialValues = {
 
 }
 export default (state = initialValues, action) => {
-    var dte = new Date();
+    // var dte = new Date();
     switch (action.type) {
         case "ADD_TASK":
-            return { ...state, Task: action.payload, date: dte }
+            return { ...state, Task: action.payload,}
         case "To_Do_All":
             return { ...state, }
         case "Display_Actions":
             return { ...state, Status: true };
             case 'HIDE_BUTTONS': return {...state,Status:false}
-        case "RESCHEDULE_TASK": console.log(action.payload.tasks.status);
+        case "RESCHEDULE_TASK": 
+        // console.log(action.payload.tasks.status);
             
-                    action.payload.tasks.status="RescheduledTasks";
-        return{ ...state, editData: state.editData.concat(action.payload),Task:state.Task.status="RescheduledTasks"}
+                    // action.payload.tasks.status="RescheduledTasks";
+        return{ ...state, editData: state.editData.concat(action.payload)}
         case "COMPLETED_TASK":return{ ...state, editData: state.editData.concat(action.payload)}
         case "DELETE_TASK":
         console.log(action.payload.index);
