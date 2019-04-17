@@ -20,7 +20,7 @@ class AddTask extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showComponent: false,
+      showComponent: true,
       showCalendar: false,
       date: new Date(),
     }
@@ -30,20 +30,20 @@ class AddTask extends React.Component {
 
   onChange = date => {
     console.log(date);
-    this.setState({
-      date
-    })
+    // this.setState({
+    //   date
+    // })
   }
 
-  addtask = () => {
-    console.log('addtask');
-    this.setState({
-      showComponent: true,
-    });
+  // addtask = () => {
+  //   console.log('addtask');
+  //   this.setState({
+  //     showComponent: true,
+  //   });
   // return(<div>
   //     <input type="text"/>
   // </div>)
-  }
+  // }
   handleSaveTask = () => {
     console.log('savetask');
     var taskcontent = this.myRef.current.value;
@@ -56,6 +56,9 @@ class AddTask extends React.Component {
     }
     console.log(taskcontent);
     this.props.SaveTask(taskcontent);
+     this.setState({
+      showComponent: false,
+    });
     this.setState({
       showCalendar: false,
     });
@@ -74,15 +77,14 @@ class AddTask extends React.Component {
     var tempDate = new Date();
     console.log(tempDate);
     var month = tempDate.toLocaleString('en-us', { month: 'long' }) + ' ' + tempDate.getDate();
-    // const currDate = "Current Date= " + date;
     return (
       month
       );
   }
   handleClose=()=>{
-    // this.setState({
-    //   showComponent: false,
-    // });
+    this.setState({
+      showComponent: false,
+    });
     this.setState({
       showCalendar: false,
     });
@@ -92,9 +94,10 @@ class AddTask extends React.Component {
   render() {
     return (
       <div className="DontEditThisClass">
+           <HeadNav/>
         {/* <button className="addtaskbutton" onClick={this.addtask}>AddTask</button> */}
-         {/* {this.state.showComponent ? */}
-         <HeadNav/>
+         {this.state.showComponent ?
+    
             <div className="display">
             <p>{this.MyFunction()}</p>
               
@@ -111,10 +114,10 @@ class AddTask extends React.Component {
                       </div>
                 </div>
               </div>
-               {/* : null} */}
+                : null} 
           {this.state.showCalendar ? (<Calendar className="react-calender"
       // className="react-calendar__month-view"
-          onChange={this.onChange} value={this.state.date} />) : null}
+          onChange={this.onChange}  />) : null}
       </div>
 
       );

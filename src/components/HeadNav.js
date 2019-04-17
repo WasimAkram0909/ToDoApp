@@ -33,7 +33,7 @@ class HeadNav extends Component{
                     
                         {this.props.showAdd ? <div className="HeadNavbtnCntr">
                             <Link to="/dashboard/AddTask" className="HeadNavbtnCntr linkTag">
-                                <i class="fa fa-plus white"></i>
+                                <i className="fa fa-plus white"></i>
                                 <p className="btntext btntxt2" >Add Task</p>
                             </Link>
                         </div>:<div></div>}

@@ -10,12 +10,29 @@ import { connect } from 'react-redux';
 class MyProfile extends React.Component {
   constructor(props){
     super(props)
-  this.state={
-    showComponent:true,
-    firstName:this.props.profileDetails,
-  }
+    this.state={
+      showComponent:true,
+      firstName:'',
+      LastName:''
+    }
+  //   if(this.props.profileDetails[0]){
+  // this.state={
+    
+  //   // showComponent:true,
+    
+  //   firstName:this.props['profileDetails'][0]['fullName'],
+  //   LastName:this.props['profileDetails'][0]['familyName'],
+  //   }
+  // }
   this.myRef=React.createRef()
 }
+componentDidMount(){
+  if(this.props.profileDetails[0]){
+  this.setState({
+    firstName:this.props['profileDetails'][0]['fullName'],
+    LastName:this.props['profileDetails'][0]['familyName'],
+  })
+}}
   handleEdit=()=>{
     console.log("edit");
     this.setState({
@@ -35,11 +52,17 @@ class MyProfile extends React.Component {
   handleInput=(e)=>{
     var abc=e.target.value;
    console.log(abc);
-    
-
   }
+
   render() {
-    console.log(this.props.profileDetails[0]);
+    if(this.props.profileDetails[0]){
+    // console.log(this.props['profileDetails'][0]['fullName']);
+    console.log(this.props.profileDetails[0].fullName);
+  }
+  else{
+    alert('hi');
+  }
+    // console.log(this.state.firstName);
     
     return (
      <div className="DontEditThisClass">         
@@ -50,8 +73,9 @@ class MyProfile extends React.Component {
         <div className="profile">       
             <div className="ProfilePhoto">
             <img className="ProfilePhoto2" src={profileData.image} alt="profile"/>
+            <p className="Edit">Edit Profile</p>
             </div>
-          <p className="Edit">Edit Profile</p>
+          
         </div>
         <div className="subdiv">
          
@@ -63,18 +87,19 @@ class MyProfile extends React.Component {
           <div className="EditProfileName">
           <div>
           <label>First Name</label><br/>
-            <input  className="inputfield" type="text" value={profileData.fullName}
+            <input  className="inputfield" type="text" value={this.state.firstName}
             //  ref={this.myRef}
             // contentEditable={true}
-             onChange={this.handleInput}
+            //  onChange={this.handleInput}
              />
             </div>
             <div>
           <label>Last Name</label><br/>
-            <input className="inputfield" type="text" placeholder={profileData.familyName}/>
+            <input className="inputfield" type="text" value={this.state.LastName}
+            onChange={this.handleInput}/>
             <div className="EditButtons">
-              <p className="Edit" onClick={this.handleCancel}>Cancel</p>
-              <p className="Edit"  onClick={this.handleSave}>Save</p>
+              <p className="CancelButtons" onClick={this.handleCancel}>Cancel</p>
+              <p className="SaveButtons"  onClick={this.handleSave}>Save</p>
             </div>
             </div>
             
