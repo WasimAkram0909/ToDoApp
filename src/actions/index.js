@@ -104,7 +104,11 @@ const ToDoAllAction=(RES)=>{
     };
   };
   export const RescheduleTask =(data)=>{
-console.log(data);
+    // console.log(data.tasks,"reschudule");
+    // var Task=data.tasks;
+    // var date=data.date1;
+    console.log(data);
+    // var data1={Task,date}
     return {
       type:"RESCHEDULE_TASK",
       types:"RESCHEDULE_TOAST",
@@ -112,6 +116,7 @@ console.log(data);
     }
   }
   export const CompletedTaskAction =(data)=>{
+    console.log(data,"complete");
     return {
       type:"COMPLETED_TASK",
       types:"COMPLETED_TOAST",

@@ -2,22 +2,23 @@ const initialValues = {
     Task: [
         {
             Task: "Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch",
-            status: "CompletedTasks",
+            status: "",
         },
         {
             Task: "Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch Joh to call Alex on OS configuration and let him know that meeting JA Marsh for lunch",
-            status: "RescheduledTasks",
+            status: "",
         },
         {
             Task: "Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch",
-            status: "CompletedTasks",
-        },
+            status: "",
+        }, 
     ],
+    editData: [],
+    // rescheduleData: [],
     date: '',
-    
     Status: false,
 
-    rescheduleData: {
+    rescheduleData1: {
         massage: "You have successfully rescheduled the task",
         image: require("../assets/Reschedule.svg"),
     },
@@ -41,8 +42,11 @@ export default (state = initialValues, action) => {
         case "Display_Actions":
             return { ...state, Status: true };
             case 'HIDE_BUTTONS': return {...state,Status:false}
-        case "RESCHEDULE_TASK":return{ ...state ,}
-        case "COMPLETED_TASK":return{...state}
+        case "RESCHEDULE_TASK": console.log(action.payload.tasks.status);
+            
+                    action.payload.tasks.status="RescheduledTasks";
+        return{ ...state, editData: state.editData.concat(action.payload),Task:state.Task.status="RescheduledTasks"}
+        case "COMPLETED_TASK":return{ ...state, editData: state.editData.concat(action.payload)}
         case "DELETE_TASK":
         console.log(action.payload.index);
         var deletedElement = state.Task.splice(action.payload,1)

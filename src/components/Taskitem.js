@@ -55,6 +55,9 @@ rescheduleDate = ()=>{
   };
   completeTask = (tasks) => {
     var date1=this.MyFunction();
+    // var Task=tasks.Task;
+    // console.log(Task);
+    
     this.props.CompletedTaskAction({tasks,date1});
     this.props.HideActionButtons();
     this.setState({ 
@@ -70,8 +73,11 @@ rescheduleDate = ()=>{
       
      });
   };
-  _onButtonClick = () => {
-    this.props.RescheduleTask();
+  _onButtonClick = (tasks) => {
+    var date1=this.MyFunction();
+    // var Task=tasks.Task;
+    // console.log(Task);
+    this.props.RescheduleTask({tasks,date1});
     this.setState({
       showComponent: true
     });
@@ -79,12 +85,13 @@ rescheduleDate = ()=>{
 
   render() {
     console.log(this.props.cards);
+    // console.log(this.props.cards);
    const {date}=this.state.date;
 
     return (
       <React.Fragment>
         {this.props.cards.map((tasks, index) => {
-          // console.log(i);
+          // console.log(tasks.Task);
           return (
            
             <div className="ItemContainer">
@@ -100,7 +107,7 @@ rescheduleDate = ()=>{
                     onClick={()=>this.completeTask(tasks)}
                   />
                   <img
-                    src={this.props.data.rescheduleData.image}
+                    src={this.props.data.rescheduleData1.image}
                     onClick={()=>this._onButtonClick(tasks)}
                   />
                   <img

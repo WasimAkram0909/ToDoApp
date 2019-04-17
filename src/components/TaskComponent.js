@@ -4,23 +4,26 @@ import '../css/Taskitem.css';
 import HeadNav from "./HeadNav";
 class TaskComponent extends Component {
   render() {
+     console.log(this.props);
     return (
-      this.props.sta.map((tasks, i) => {
-        var name = `/dashboard/${tasks.status}`;
+      this.props.editData.map((data, i) => {
+        console.log(data.date1);
+        console.log(data.tasks.Task);
+        var name = `/dashboard/${data.tasks.status}`;
         if (this.props.path1 === name) {
           return (
             <React.Fragment>
               {/* <HeadNav/> */}
-              {/* {this.props.date.map((date) =>
-                <p>{date.date1}</p>
-              )} */}
+              {/* {this.props.date.map((date) => */}
+                <p>{data.date1}</p>
+              {/* )} */}
               <div className="ItemContainer">
 
                 <div className="StatusNoneIcon">
-                  <img src={require(`../assets/${tasks.status}.png`)} alt='images' />
+                  <img src={require(`../assets/${data.tasks.status}.png`)} alt='images' />
                 </div>
                 <p className="taskData">
-                  {tasks.Task}
+                  {data.tasks.Task}
                 </p>
               </div>
             </React.Fragment>
@@ -32,11 +35,11 @@ class TaskComponent extends Component {
   }
 }
 const myStateToProps = state => {
-  console.log(state.complete.rescheduleData);
+  console.log(state.allTasks.Task);
   return {
     sta: state.allTasks.Task,
-    date: state.complete.rescheduleData,
-    date: state.complete.completeData,
+    editData: state.allTasks.editData,
+    // date: state.allTasks.editData,
   }
 }
 export default connect(myStateToProps)(TaskComponent);
