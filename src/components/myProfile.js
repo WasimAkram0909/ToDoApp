@@ -15,6 +15,8 @@ class MyProfile extends React.Component {
       firstName:'',
       LastName:'',
        selectedFile: null 
+
+      
     }
   //   if(this.props.profileDetails[0]){
   // this.state={
