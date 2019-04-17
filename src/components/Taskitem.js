@@ -97,9 +97,10 @@ class Taskitem extends Component {
           tasks.status="CompletedTasks";
           console.log(tasks,tasks.status,"testing status");
           return (
-           
+           <main>
+                <p>{tasks.date}</p>
             <div className="ItemContainer">
-             {/* <div>{this.state.date}</div> */}
+          
               <div className="StatusNoneIcon">
                 <img src={StatusNoneIcon} onClick={this.props.DisplayActions} />
               </div>
@@ -123,8 +124,10 @@ class Taskitem extends Component {
               ) : null}
               {this.state.showToast ? <Toast /> : null}
             </div>
+            </main>
           );
         })}
+        
          {this.state.showComponent ? (
                     <Calendar
                       className="calendar"
@@ -132,6 +135,7 @@ class Taskitem extends Component {
                       value={date}
                     />
                   ) : null}
+                 
       </React.Fragment>
     );
   }

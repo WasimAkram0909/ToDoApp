@@ -84,7 +84,7 @@ const ToDoAllAction=(RES)=>{
 )
 }
 }
-   const SaveTaskAction = (data) => {
+  export const SaveTaskAction = (data) => {
     console.log(data);
     return {
       type: "SAVE_TASK",
@@ -97,10 +97,11 @@ const ToDoAllAction=(RES)=>{
       type: "SORT_BY"
     };
   };
-  export const DisplayActions = () => {
-    console.log('hi')
+  export const DisplayActions = (i) => {
+    console.log(i);
     return {
-      type: "Display_Actions"
+      type: "Display_Actions",
+      payload:i,
     };
   };
   export const RescheduleTask =(data)=>{
