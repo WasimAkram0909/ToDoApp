@@ -60,7 +60,7 @@ componentDidMount(){
     console.log(this.props.profileDetails[0].fullName);
   }
   else{
-    alert('hi');
+    // alert('hi');
   }
     // console.log(this.state.firstName);
     
@@ -70,15 +70,11 @@ componentDidMount(){
      {this.props.profileDetails.map((profileData) => {
          return(
         <div className="MyProfile"> 
-        <div className="profile">       
-            <div className="ProfilePhoto">
-            <img className="ProfilePhoto2" src={profileData.image} alt="profile"/>
-            <p className="Edit">Edit Profile</p>
-            </div>
-          
+        <div className="profilePictureDiv">       
+            <img className="ProfilePhoto" src={profileData.image} alt="profile"/>
+            <p className="EditProfile">Edit Profile</p>
         </div>
-        <div className="subdiv">
-         
+        <div className="ProfileDetails">
           {this.state.showComponent ? 
              <div className="ProfileName"> 
           <h2>{profileData.fullName}</h2>
@@ -105,7 +101,7 @@ componentDidMount(){
             
           </div>
         }
-           <div className="ProfileDetails">
+           <div className="Profilecontent">
            <div  className="ProfileEmail">
             <img className="Icons" src={ProfileEmail} alt="logo"/>
             <p className="contactDetails">{profileData.email}</p>

@@ -28,7 +28,7 @@ export const signIn = (userId) => {
     payload:logInData,
     }
     }
-  export const ToDoAll = () => {
+  export const ToDoAll = (data) => {
     var url="http://localhost:8080/todo/tasks";
     return(dispatch)=>{
       return axios.get(url)

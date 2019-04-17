@@ -1,26 +1,24 @@
 .MyProfile{
     margin-top:15%;
-    width:88%;
+    width:100%;
     height:330px;
     /* border: 1px solid red; */
     display: flex;
 }
-.profile{
-    width:13%;
-    /* border:1px solid red; */
-    height:150px;
-}
 .ProfilePhoto{
-    width:100%;
+    margin-top:32%;
+    width:93px;
     height:100px;
     border:2px solid white;
-    margin-top:5%;
 }
-.ProfilePhoto2{
-    width:100%;
-    height:100px;
+.EditProfile{
+    font-size: 13px;
+    color:white;
+    text-decoration: underline;
+    padding-left: 20%;
+
 }
-.subdiv{
+.ProfileDetails{
     border-left: 1px solid rgba(225, 225, 225, 0.5);
     padding-left: 7%;
     height: 330px;
@@ -37,9 +35,13 @@
     margin-top:2%; 
     /* width:100%; */
 }
-.ProfileDetails{
+.Edit{
+    font-size: 13px;
+    color:white;
+    text-decoration: underline;
+}
+.Profilecontent{
     width:70%;
-    
 }
 
 .ProfileEmail,.ProfilePhone{
@@ -55,16 +57,6 @@
     color: white;
 }
 
-.Edit{
-    font-size: 13px;
-    color:white;
-    text-decoration: underline;
-    padding-left: 20px;
-    padding-top: 10px;
-    
-    font-weight:normal;
-    margin:0;
-}
 .EditProfileName{
     /* color:#9C94F9; */
     color:white;
@@ -77,8 +69,16 @@
 .EditButtons{
     display: flex;
     justify-content: flex-end;
-    grid-column: 1 / 2;
-    /* padding:10px; */
+}
+.CancelButtons,.SaveButtons{
+    font-size: 13px;
+    color:white;
+    font-weight:normal;
+    text-decoration: underline;
+    padding-left:6px;
+    
+    
+
 }
 .inputfield{
     width:100%;
