@@ -99,12 +99,21 @@ class Taskitem extends Component {
       <React.Fragment>      
         {this.props.cards.map((tasks, index) => {
           if(tasks.createDate!= undefined){
-            taskDate = tasks.createDate;
-            taskDate = taskDate.slice(0,6);
-
+            var d = tasks.createDate;
+            var mthNum = d.slice(5,7);
+            var dateNum = d.slice(8,10);
+            var mthNum1 = mthNum.slice(0,1);
+            var mthNum2 = mthNum.slice(1,2);
+            let monthArr=["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];     if(mthNum1==0){
+              mthNum= monthArr[mthNum2];
+            }else{
+              mthNum = monthArr["1"+ mthNum2];
             }
+            taskDate = mthNum +" "+dateNum;
+          }
+          
+          
           // tasks.status="CompletedTasks";
-          console.log(tasks);
           return (
            <main>
                 <p>{taskDate}</p>

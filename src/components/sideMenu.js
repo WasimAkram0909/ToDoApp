@@ -57,4 +57,4 @@ const myStateToProps = (state) => {
     };
 };
 
-export default withRouter(connect(myStateToProps)(SideMenu));
+export default withRouter(connect(myStateToProps,{ToDoAll})(SideMenu));

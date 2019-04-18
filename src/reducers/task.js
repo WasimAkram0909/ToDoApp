@@ -2,20 +2,19 @@ const initialValues = {
     Task: [
         {
             taskName: "Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch",
-            status: "Completed",
-            createDate: ' 01 Apr ',
+            status: "",
+            createDate:'2019-02-20'
         },
         {
             taskName: "Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch Joh to call Alex on OS configuration and let him know that meeting JA Marsh for lunch",
-            status: "Rescheduled",
-            createDate: ' 01 Apr ',
+            status: "",
+            createDate:'2018-01-15'
             
         },
         {
             taskName: "Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch",
-            status: "Completed",
-            createDate: ' Apr 10 ',
-            // Status: false,
+            status: "",
+            createDate:'2018-12-15'
             
         },
     ],
@@ -44,10 +43,9 @@ export default (state = initialValues, action) => {
     switch (action.type) {
         case "SAVE_TASK":
             return { ...state, Task:state.Task.concat(action.payload) }
-
-        case "To_Do_All":
-            return { ...state, }
-
+        case "TO_DO_ALL":
+        console.log(action.payload);
+            return { ...state,Task:state.Task.concat(action.payload) }
         case "Display_Actions":
             return { ...state, Status: true };
             case 'HIDE_BUTTONS': return {...state,Status:false}

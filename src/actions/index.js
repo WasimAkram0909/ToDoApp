@@ -30,22 +30,26 @@ export const signIn = (userId) => {
     payload:logInData,
     }
     }
-  export const ToDoAll = (data) => {
-    var url=`http://115.248.119.138:8089/todo/getTasks/
-    `;
+  export const ToDoAll = () => {
+    // console.log(data);
+    var url="http://115.248.119.138:8089/todo/getTasks";
     return(dispatch)=>{
       return axios.get(url)
   .then(res=>{
       console.log(res);
-      console.log(res.data.main);
-      dispatch(ToDoAllAction(res.data.main));
+      // console.log(res.data.main);
+      dispatch(ToDoAllAction(res.data));
   }
-)
+).catch(()=>{
+  console.log("error");
+})
 }
 }
 const ToDoAllAction=(RES)=>{
+  console.log(RES);
     return {
-      type: "TO_DO_ALL"
+      type: "TO_DO_ALL",
+      payload:RES,
     };
   };
   export const UpdateTask = () => {
