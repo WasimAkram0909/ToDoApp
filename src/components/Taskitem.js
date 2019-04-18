@@ -94,11 +94,16 @@ class Taskitem extends Component {
     return (
       <React.Fragment>
         {this.props.cards.map((tasks, index) => {
+          if(tasks.date!= undefined){
+            var d = tasks.date;
+            d = d.slice(0,6);
+          }
+          
+          
           tasks.status="CompletedTasks";
-          console.log(tasks,tasks.status,"testing status");
           return (
            <main>
-                <p>{tasks.date}</p>
+                <p>{d}</p>
             <div className="ItemContainer">
           
               <div className="StatusNoneIcon">

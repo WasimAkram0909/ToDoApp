@@ -85,11 +85,9 @@ const ToDoAllAction=(RES)=>{
 }
 }
   export const SaveTaskAction = (data) => {
-    console.log(data);
     return {
       type: "SAVE_TASK",
       payload: data,
-
     };
   };
   export const SortBy = () => {

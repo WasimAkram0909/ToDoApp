@@ -30,12 +30,12 @@ class AddTask extends React.Component {
 
 
   onChange = date => {
-    console.log(date);
     let day = date.getDate();
     let monthArr = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     let mon = date.getMonth();
     let month = monthArr[mon];
-    let currnetDate = month +" " +day;
+    let Year = date.getFullYear();
+    let currnetDate = month +" " +day +" "+Year;
     this.setState({
       newDate: currnetDate
     })
@@ -45,7 +45,6 @@ class AddTask extends React.Component {
 
 
   handleSaveTask = () => {
-    console.log('savetask');
     var taskcontent = this.myRef.current.value;
     var dateContent = this.state.newDate;
     // console.log(dateContent);
@@ -55,7 +54,6 @@ class AddTask extends React.Component {
       
       
     }
-    console.log(TaskObject);
 // this TaskObject holds all data of add task component 
 // need to send this to reducer
 
@@ -68,7 +66,6 @@ class AddTask extends React.Component {
     });
   }
   handleCalendar = () => {
-    console.log('claendar');
     // var datevar = claendar.toLocaleString('en-us', { month: 'long' }) + ' ' + claendar.getDate();
     this.setState({
       showCalendar: true,
@@ -79,7 +76,6 @@ class AddTask extends React.Component {
     // const month = date.toLocaleString('en-us', { month: 'long' });
     // console.log(month);
     var tempDate = new Date();
-    console.log(tempDate);
     var month = tempDate.toLocaleString('en-us', { month: 'long' }) + ' ' + tempDate.getDate();
     return (
       month
@@ -135,7 +131,6 @@ class AddTask extends React.Component {
   }
 }
 const myStateToProps = (state) => {
-  console.log(state.allTasks.Task);
   return {
     cards: state.allTasks.Task
   }
