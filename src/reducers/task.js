@@ -42,6 +42,14 @@ export default (state = initialValues, action) => {
             return { ...state }
         // case 'UNDO':return{...state}
         // default:null
+          case "EDIT_PROFILE":
+        console.log(action.payload);
+        return {
+            profile:{
+                firstName:action.payload.fn,
+                lastName:action.payload.ln
+            }
+        };
     }
     return state;
 }

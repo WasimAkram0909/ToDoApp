@@ -9,7 +9,7 @@ import StatusNoneIcon from "../assets/StatusNone.svg";
 // import CancelIcon from '../assets/cancel.png'
 import CalendarIcon from '../assets/Calender Create Task.svg';
 // import { create } from 'domain';
-import { SaveTask,SaveTaskAction } from '../actions';
+import { SaveTask} from '../actions';
 import { connect } from 'react-redux';
 import HeadNav from './HeadNav';
 // import Date from './date';
@@ -47,8 +47,8 @@ class AddTask extends React.Component {
   handleSaveTask = () => {
     var taskcontent = this.myRef.current.value;
     var dateContent = this.state.newDate;
-    // console.log(dateContent);
-    // console.log(taskcontent);
+    console.log(dateContent);
+    console.log(taskcontent);
     var TaskObject = {
       Task:taskcontent,status:'',date:dateContent
       
@@ -57,7 +57,7 @@ class AddTask extends React.Component {
 // this TaskObject holds all data of add task component 
 // need to send this to reducer
 
-    this.props.SaveTaskAction(TaskObject);
+    this.props.SaveTask(TaskObject);
     this.setState({
       showComponent: false,
     });
@@ -136,5 +136,5 @@ const myStateToProps = (state) => {
   }
 }
 export default connect(myStateToProps, {
-  SaveTask,SaveTaskAction
+  SaveTask
 })(AddTask);

@@ -1,13 +1,15 @@
 import { combineReducers } from "redux";
 import allTasksReducer from './task';
-import profileReducer from './profileReducer';
+import googleProfile from './profileReducer';
 import authReducer from './authReducer';
 import EditTask from './EditTask';
 import TaskReducer from "./taskReducer";
 export default combineReducers({
     googleData:authReducer,
-    profileData:profileReducer,
+    profileData:googleProfile,
     allTasks:allTasksReducer,
     EditTask:EditTask,
     complete:TaskReducer,
+    // userData:dynamicData
+
 })

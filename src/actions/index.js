@@ -15,7 +15,7 @@ export const signIn = (userId) => {
   };
 
   export const profileAction=(data)=>{
-    console.log(data,"actions");
+    // console.log(data,"actions");
       var id= data.getId();
       var fullName=data.getName();
       var name= data.getGivenName();
@@ -29,12 +29,13 @@ export const signIn = (userId) => {
     }
     }
   export const ToDoAll = (data) => {
-    var url="http://localhost:8080/todo/tasks";
+    var url=`http://115.248.119.138:8089/todo/getTasks/
+    `;
     return(dispatch)=>{
       return axios.get(url)
   .then(res=>{
-      // console.log(res);
-      // console.log(res.data.main);
+      console.log(res);
+      console.log(res.data.main);
       dispatch(ToDoAllAction(res.data.main));
   }
 )
@@ -51,13 +52,15 @@ const ToDoAllAction=(RES)=>{
     };
   };
   export const DeleteTask = (data) => {
-    // var url = ("http://localhost:8080/todo/deleteTasks/{id}");
-    // return (dispath)=>{
-    //     return axios.delete(url)
-    //     .then (res =>{
-    //       dispatch();
-    //     })
-    // }
+    console.log(data);
+    var url = (`http://192.168.1.207:8089/todo/deleteTasks/?taskId=${0}`);
+    return (dispath)=>{
+        return axios.delete(url)
+        .then (res =>{
+          console.log(res)
+          // dispatch();
+        })
+    }
      console.log(data);
     return {
       type: "DELETE_TASK",
@@ -71,23 +74,24 @@ const ToDoAllAction=(RES)=>{
   //   };
   // };
   export const SaveTask = (data) => {
-    console.log(data);
-
-    var url="http://192.168.1.167:9124/todo/tasks";
+    console.log(data.Task);
+    var url=`http://115.248.119.138:8089/todo/tasks?name=${data.Task}&date=${data.date}&userId=${1}`;
     return(dispatch)=>{
-      return axios.post(url,{data})
+      return axios.post(url)
   .then(res=>{
       console.log(res);
-      // console.log(res.data.main);
-      dispatch(SaveTaskAction(res.data.main));
+      console.log(res.data.task);
+      dispatch(SaveTaskAction(res.data.task));
   }
 )
 }
 }
-  export const SaveTaskAction = (data) => {
+   const SaveTaskAction = (dataid) => {
+    console.log(dataid);
     return {
       type: "SAVE_TASK",
-      payload: data,
+      payload: dataid,
+
     };
   };
   export const SortBy = () => {
@@ -130,5 +134,12 @@ console.log(data);
   export const UndoAction = ()=>{
     return {
       type:"UNDO"
+    }
+  }
+  export const EditProfile = (data) =>{
+    console.log(data);
+    return{
+      type:"EDIT_PROFILE",
+      payload:data
     }
   }
