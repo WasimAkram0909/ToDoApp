@@ -1,5 +1,7 @@
 import axios from "axios";
 //Action Creators
+// export const ADD_TODO = 'ADD_TODO'
+
 
 export const signIn = (userId) => {
     return {
@@ -94,18 +96,37 @@ const ToDoAllAction=(RES)=>{
 
     };
   };
+  export const TasksApi=(data)=>{
+    console.log(data.tasks.status);
+    var status=data.tasks.status;
+    console.log(data.status);
+    var url=`http://115.248.119.138:8089/todo/getTasksByStatus?status=completed`;
+    return(dispatch)=>{
+      return axios.get(url)
+  .then(res=>{
+      console.log(res);
+      // console.log(res.data.main);
+  // export const CompletedTaskAction =(data)=>{
+    dispatch(CompletedTaskAction(res.data));
+  }
+)
+}
+
+
+  }
   export const SortBy = () => {
     return {
       type: "SORT_BY"
     };
   };
   export const DisplayActions = (i) => {
-    console.log(i);
+    // console.log(i);
     return {
       type: "Display_Actions",
       payload:i,
     };
   };
+
   export const RescheduleTask =(data)=>{
 console.log(data);
     return {

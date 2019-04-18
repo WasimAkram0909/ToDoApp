@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import StatusNoneIcon from '../assets/StatusNone.svg';
 import {
   DisplayActions,
+  TasksApi,
   CompletedTaskAction,
   RescheduleTask,
   DeleteTask,
@@ -18,7 +19,7 @@ import Completed from "../assets/Completed.svg";
 import Reschedule from "../assets/Reschedule.svg";
 import Delete from "../assets/Delete.svg";
 
-
+let taskDate="";
 
 class Taskitem extends Component {
   constructor(props) {
@@ -62,8 +63,10 @@ class Taskitem extends Component {
     var date=this.MyFunction();
     // var Task=tasks.Task;
     // console.log(Task);
-    
-    this.props.CompletedTaskAction({tasks,date});
+   const status=1;
+   console.log(tasks)
+    this.props.TasksApi({tasks,status});
+    // this.props.CompletedTaskAction({tasks,date});
     this.props.HideActionButtons();
     this.setState({ 
       showToast: true,
@@ -90,26 +93,27 @@ class Taskitem extends Component {
     // console.log(this.props.cards);
     // console.log(this.props.cards);
    const {date}=this.state.date;
+   
 
     return (
-      <React.Fragment>
+      <React.Fragment>      
         {this.props.cards.map((tasks, index) => {
-          if(tasks.date!= undefined){
-            var d = tasks.date;
-            d = d.slice(0,6);
-          }
-          
-          
-          tasks.status="CompletedTasks";
+          if(tasks.createDate!= undefined){
+            taskDate = tasks.createDate;
+            taskDate = taskDate.slice(0,6);
+
+            }
+          // tasks.status="CompletedTasks";
+          console.log(tasks);
           return (
            <main>
-                <p>{d}</p>
+                <p>{taskDate}</p>
             <div className="ItemContainer">
           
               <div className="StatusNoneIcon">
                 <img src={StatusNoneIcon} onClick={this.props.DisplayActions} />
               </div>
-              <p className="taskData">{tasks.Task}</p>
+              <p className="taskData">{tasks.taskName}</p>
               {this.props.Status ? (
                 <div className="editTaskButtons">
                 
@@ -157,6 +161,9 @@ const myStateToProps = state => {
 
 export default connect(
   myStateToProps,
-  { DisplayActions, CompletedTaskAction, RescheduleTask, DeleteTask,HideActionButtons }
+  { DisplayActions, 
+    TasksApi,
+    CompletedTaskAction,
+     RescheduleTask, DeleteTask,HideActionButtons }
 )(Taskitem);
  

@@ -50,7 +50,7 @@ class AddTask extends React.Component {
     console.log(dateContent);
     console.log(taskcontent);
     var TaskObject = {
-      Task:taskcontent,status:'',date:dateContent
+      taskName:taskcontent,status:'',createDate:dateContent
       
       
     }

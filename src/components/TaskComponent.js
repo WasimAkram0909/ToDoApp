@@ -4,22 +4,25 @@ import '../css/Taskitem.css';
 import HeadNav from './HeadNav';
 class TaskComponent extends Component {
   render() {
-    console.log(this.props);
+    console.log(this.props.editData);
     return this.props.editData.map((data, i) => {
-      console.log(data.date);
-      console.log(data.tasks);
-      var name = `/dashboard/${data.tasks.status}`;
+      console.log(data);
+      console.log(data.tasks.status);
+      var name = `/dashboard/${data.tasks.status}Tasks`;
+      // var name = `/dashboard/CompletedTasks`;
+      console.log(name);
+
       if (this.props.path1 === name) {
         return (
           <React.Fragment>
             {/* <HeadNav/> */}
             {/* {this.props.date.map((date) => */}
-            <p>{data.date}</p>
+            <p>{data.createDate}</p>
             {/* )} */}
             <div className="ItemContainer">
               <div className="StatusNoneIcon">
                 <img
-                  src={require(`../assets/${data.tasks.status}.png`)}
+                  src={require(`../assets/${data.tasks.status}Tasks.png`)}
                   alt="images"
                 />
               </div>
