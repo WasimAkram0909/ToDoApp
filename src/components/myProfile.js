@@ -69,7 +69,7 @@ componentDidMount(){
   render() {
     return (
      <div className="DontEditThisClass">         
-        <HeadNav title="Profile"/>
+        <HeadNav title=" My profile" showBtn={false}/>
      {this.props.profileDetails.map((profileData) => {
          return(
         <div className="MyProfile"> 

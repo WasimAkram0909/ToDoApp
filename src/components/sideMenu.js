@@ -12,7 +12,7 @@ import Logout from '../assets/Logout.svg';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { ToDoAll, } from '../actions';
+import { ToDoAll } from '../actions';
 import Dashboard from './dashboard';
 import GoogleAuth from "./googleauth";
 import {SideMenuData} from "../reducers/SideMenu";
@@ -72,4 +72,4 @@ const myStateToProps = (state) => {
     };
 };
 
-export default withRouter(connect(myStateToProps)(SideMenu));
+export default withRouter(connect(myStateToProps,{ToDoAll})(SideMenu));

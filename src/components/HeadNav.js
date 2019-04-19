@@ -56,11 +56,14 @@ class HeadNav extends Component{
                                 <p className="btntext btntxt2" onClick={()=>{this.callMoment()}} >Add Task</p>
                             </Link>
                         </div>:<div></div>}
+                        {this.props.showSort?
+                            <div className="HeadNavbtnCntr">
+                                <img className="icon" src={CalenderIcon}/>
+                                <p className="btntext">Sort By</p>
+                            </div>:
+                            null
+                        }
                         
-                        <div className="HeadNavbtnCntr">
-                            <img className="icon" src={CalenderIcon}/>
-                            <p className="btntext">Sort By</p>
-                        </div>
                     </div>
                 </div>
                 {/* <Route exact path='/dashboard/AddTask' component={AddTask}/> */}

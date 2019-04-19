@@ -13,7 +13,7 @@ class ToDoContainer extends Component{
     render(){
         return(
             <div className="DontEditThisClass">
-                <HeadNav title="Todo" showAdd={true}/>
+                <HeadNav title="Todo" showAdd={true} showSort={true}/>
                 <Taskitem/> 
             </div>
         )

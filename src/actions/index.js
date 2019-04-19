@@ -42,7 +42,7 @@ export const profileAction = (data) => {
   }
 }
 export const ToDoAll = () => {
-  // console.log(data);
+  console.log("data");
   var url = "http://115.248.119.138:8089/todo/tasks";
   return (dispatch) => {
     return axios.get(url,
