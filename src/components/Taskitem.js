@@ -15,9 +15,12 @@ import Toast from './Toast';
 import Completed from "../assets/Completed.svg";
 import Reschedule from "../assets/Reschedule.svg";
 import Delete from "../assets/Delete.svg";
+import moment from "moment";
+
+
+
 
 let taskDate="";
-
 class Taskitem extends Component {
   constructor(props) {
     super(props);
@@ -44,37 +47,17 @@ class Taskitem extends Component {
   };
 
   rescheduleTask = selectdate => {
-    let day = selectdate.getDate();
-    let monthNum = selectdate.getMonth();
-    let monthArr = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
-    ];
-    let month = monthArr[monthNum];
-    let date = day + ' ' + month;
-    this.props.RescheduleTask({
-      tasks: this.state.rescheduleTask,
-      status: 'RescheduledTasks',
-      date
-    });
+    let date = moment(selectdate).format("DD MM YYYY");
+    date = date.slice(0,2)+"-"+ date.slice(3,5)+"-"+ date.slice(6,12);
+    console.log(date);
+    this.props.RescheduleTask({tasks:this.state.tasks1,status:"RescheduledTasks",date});
     this.setState({
       showComponent: false,
       showBtns: false,
       showToast: true,
       toastMsg: ' You have successfully rescheduled the task',
       toastImage: require('../assets/Toast Reschedule.png')
-    });
-  };
+  });}
   
   completeTask = tasks => {
     var date = this.MyFunction();
@@ -121,16 +104,8 @@ class Taskitem extends Component {
         {this.props.cards.map((tasks, index) => {
           if(tasks.createDate!= undefined){
             var d = tasks.createDate;
-            var mthNum = d.slice(5,7);
-            var dateNum = d.slice(8,10);
-            var mthNum1 = mthNum.slice(0,1);
-            var mthNum2 = mthNum.slice(1,2);
-            let monthArr=["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];     if(mthNum1==0){
-              mthNum= monthArr[mthNum2];
-            }else{
-              mthNum = monthArr["1"+ mthNum2];
-            }
-            taskDate = mthNum +" "+dateNum;
+            d = moment(d).format("MMM D");
+            taskDate = d;
           }
           
           

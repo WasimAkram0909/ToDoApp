@@ -6,6 +6,8 @@ import CalenderIcon from '../assets/Calender.svg';
 import AddTask from './addTask';
 import Taskitem from "./Taskitem";
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
+import moment from 'moment';
+
 
 
 class HeadNav extends Component{
@@ -15,6 +17,21 @@ class HeadNav extends Component{
           showComponent: false,
         }
     }
+
+
+
+
+    callMoment(){
+        var thisIsMomentJs = moment().format("MM DD YYYY");
+        console.log("its working", thisIsMomentJs);
+    }
+
+
+
+
+
+
+
     // addtask = () => {
     //     console.log('addtask');
     //     this.setState({
@@ -36,7 +53,7 @@ class HeadNav extends Component{
                             // onClick={()=> this.props.ChangeState()} 
                             className="HeadNavbtnCntr linkTag">
                                 <i className="fa fa-plus white"></i>
-                                <p className="btntext btntxt2" >Add Task</p>
+                                <p className="btntext btntxt2" onClick={()=>{this.callMoment()}} >Add Task</p>
                             </Link>
                         </div>:<div></div>}
                         

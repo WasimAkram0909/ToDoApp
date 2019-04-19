@@ -15,6 +15,7 @@ import HeadNav from './HeadNav';
 // import Date from './date';
 import SaveICon from '@material-ui/icons/Done';
 import CancelIcon from '@material-ui/icons/Clear';
+import moment from "moment";
 
 class AddTask extends React.Component {
   constructor(props) {
@@ -30,17 +31,12 @@ class AddTask extends React.Component {
 
 
   onChange = date => {
-    let day = date.getDate();
-    let monthArr = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    let mon = date.getMonth();
-    let month = monthArr[mon];
-    let Year = date.getFullYear();
-    let currnetDate = month +" " +day +" "+Year;
+    let currnetDate = moment(date).format("DD MM YYYY");
+    currnetDate = currnetDate.slice(0,2)+"-"+ currnetDate.slice(3,5)+"-"+ currnetDate.slice(6,12);
+    console.log(currnetDate);
     this.setState({
       newDate: currnetDate
     })
-
-   
   }
 
 
