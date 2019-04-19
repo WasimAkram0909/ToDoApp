@@ -4,13 +4,15 @@ import profilePic from '../assets/ProfilePicture.png';
 import Logo from '../assets/SidemenuLogo .svg';
 import Alltasks from '../assets/Alltasks.svg';
 import CompletedTask from '../assets/CompletedTasks.svg';
-import RescheduledTask from '../assets/Reschedule.svg';
+import RescheduledTask from '../assets/Rescheduld_Tasks.svg';
+// /home/wtt090/Wasim-test/ToDoApp/src/assets/Reschedule.svg
+// /home/wtt090/Wasim-test/ToDoApp/src/assets/Rescheduld_Tasks.svg
 import profile from '../assets/Profile.svg';
 import Logout from '../assets/Logout.svg';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { ToDoAll } from '../actions';
+import { ToDoAll, } from '../actions';
 import Dashboard from './dashboard';
 import GoogleAuth from "./googleauth";
 import {SideMenuData} from "../reducers/SideMenu";
@@ -28,7 +30,7 @@ class SideMenu extends Component {
                         </div>
                         <div className="linksContainer ">
 
-                            {SideMenuData.map((item,i) => {
+                            {/* {SideMenuData.map((item,i) => {
                                 return (
                                    
                                     <div className="SideMenuLinks ">
@@ -36,7 +38,20 @@ class SideMenu extends Component {
                                         <Link to={`/dashboard/${item.path}`} onClick={this.props.ToDoAll} className="SideMenuLink">{item.name}</Link>
                                     </div>)
 
-                            })}
+                            })} */}
+                            <div className="SideMenuLinks ">
+                                <img className="linkLogo" src={Alltasks} />
+                                <Link to={`/dashboard/Todo`} onClick={this.props.ToDoAll} className="SideMenuLink">Todo</Link>
+                            </div><div className="SideMenuLinks ">
+                                <img className="linkLogo" src={CompletedTask} />
+                                <Link to={`/dashboard/CompletedTasks`} className="SideMenuLink">Completed Tasks</Link>
+                            </div><div className="SideMenuLinks ">
+                                <img className="linkLogo" src={RescheduledTask} />
+                                <Link to={`/dashboard/RescheduledTasks`} className="SideMenuLink">Rescheduled Tasks</Link>
+                            </div><div className="SideMenuLinks ">
+                                <img className="linkLogo" src={profile} />
+                                <Link to={`/dashboard/Profile`}className="SideMenuLink">Profile</Link>
+                            </div>
 
                         </div>
 
@@ -57,4 +72,4 @@ const myStateToProps = (state) => {
     };
 };
 
-export default withRouter(connect(myStateToProps,{ToDoAll})(SideMenu));
+export default withRouter(connect(myStateToProps)(SideMenu));
