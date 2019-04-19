@@ -1,6 +1,19 @@
 import axios from "axios";
 //Action Creators
-const url = "http://115.248.119.138:8089/todo"
+// export const ADD_TODO = 'ADD_TODO'
+
+var instance=axios.create({
+  baseURL:"http://115.248.119.138:8089/todo",
+  headers:{
+    "Authorization":"ya29.GlzwBucnMSApyvMJM2mxwLfeQY5N2Iy7l1l7-CnEUWxbDMy5zbXyMH49gIY77T2gRoPs0wwPdOIQag-Y2o6Ji1lxmS2U1Hrv6-S1rWOK0QNq3NkNbGQfT1i0BFOc8w"
+  }
+})
+// const url = "http://115.248.119.138:8089/todo";
+// const auth=headers{
+//   "Authorization":"ya29.GlzwBvtnqixqt0LZ5spZ8bcepYvOvmptREz5LbrWL5O3uJbiDcBo2biWA4SURh3NkIPxqVkc8_Yn-Njg_mh7emG_R3tDKXjAsnvxhgQZstOt9ss78YQ6s-zHE9PgRw"
+// }
+
+
 export const signIn = (userId) => {
     return {
       type: "SIGN_IN",
@@ -109,7 +122,11 @@ const ToDoAllAction=(RES)=>{
     console.log(data.status);
     var url=`http://115.248.119.138:8089/todo/getTasksByStatus?status=completed`;
     return(dispatch)=>{
-      return axios.get(url)
+      return axios.get(url,{
+        headers:{
+          "Authorization":"ya29.GlzwBucnMSApyvMJM2mxwLfeQY5N2Iy7l1l7-CnEUWxbDMy5zbXyMH49gIY77T2gRoPs0wwPdOIQag-Y2o6Ji1lxmS2U1Hrv6-S1rWOK0QNq3NkNbGQfT1i0BFOc8w"
+        }
+      })
   .then(res=>{
       console.log(res);
       // console.log(res.data.main);

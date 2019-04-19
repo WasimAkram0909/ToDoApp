@@ -35,6 +35,7 @@ class TaskComponent extends Component {
   }
 }
 
+
 const myStateToProps = state => {
   // console.log(state.allTasks.Task);
   return {

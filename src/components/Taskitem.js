@@ -11,6 +11,7 @@ import {
 } from '../actions';
 import Calendar from 'react-calendar';
 import Toast from './Toast';
+// import {Link} from "react-router-dom";
 import Completed from "../assets/Completed.svg";
 import Reschedule from "../assets/Reschedule.svg";
 import Delete from "../assets/Delete.svg";
@@ -79,7 +80,7 @@ class Taskitem extends Component {
     var date = this.MyFunction();
    const status=1;    
    this.props.TasksApi({tasks,status});
-    this.props.CompletedTaskAction({ tasks, date });
+    // this.props.CompletedTaskAction({ tasks, date });
     this.setState({
       showBtns: false,
       showToast: true,
@@ -163,6 +164,7 @@ class Taskitem extends Component {
                     onClick={() => this.deleteTask(tasks, index)}
                   />
                 </div>
+                // </Link>
               ) : null}
             </div>
             </main>

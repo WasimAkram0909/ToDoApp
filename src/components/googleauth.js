@@ -18,24 +18,44 @@ class GoogleAuth extends React.Component {
       // console.log('loaded GAPI');
       window.gapi.client
         .init({
-        
+        //  Author
           clientId:'79352387866-fqsjv565vpfa6eiog739gm25k15f6ak0.apps.googleusercontent.com',
           scope:'email',
           client_secret:"BuTLt32kxC4fuWIzsDnjq5jc"
         })
         .then(() => {
           this.auth = window.gapi.auth2.getAuthInstance();
+          this.authResp=this.auth.currentUser.get().getAuthResponse(true);
+          console.log(this.authResp.expires_at);
+          // expires_at
+          console.log(this.authResp.expires_in);
+          console.log(this.authResp.access_token);
+          this.setRefreshTimeout(this.authResp.expires_at);
           this.onAuthChange(this.auth.isSignedIn.get());
           this.auth.isSignedIn.listen(this.onAuthChange);
         });
     });
   }
-   
+  setRefreshTimeout = (expiresAt) => {
+    // Either 5 minutes before the deadline, or 5 minutes from now. This
+    // should prevent thrashing while keeping the credentials fresh.
+    const oneMin = 600 * 1000;
+    var refreshDeadline =  Math.max(
+      5*oneMin,
+      expiresAt - Date.now() - (5*oneMin));
+    console.log("Refreshing credentials in "
+                + Math.floor(refreshDeadline/oneMin).toString()
+                + " minutes");
+    setTimeout(this.reloadAuthToken, refreshDeadline);
+  }
 
   onAuthChange = isSignedIn => {
     // console.log("onAuthChange");
     if (isSignedIn) {
       this.props.signIn(this.auth.currentUser.get().getId());
+      // this.props.signIn(this.auth.currentUser.get().getId());
+      
+      console.log(this.props.signIn(this.auth.currentUser.get().getId()));
       this.props.profileAction(this.auth.currentUser.get().getBasicProfile());
         //we need to add getprofile api//
       this.props.history.push("/dashboard");
