@@ -14,7 +14,7 @@ class TaskComponent extends Component {
 
       if (this.props.path1 === name) {
         return (
-          <React.Fragment>
+          <React.Fragment> 
             {/* <HeadNav/> */}
             {/* {this.props.date.map((date) => */}
             <p>{data.createDate}</p>
@@ -36,11 +36,9 @@ class TaskComponent extends Component {
 }
 
 const myStateToProps = state => {
-  console.log(state.allTasks.Task);
+  // console.log(state.allTasks.Task);
   return {
-    sta: state.allTasks.Task,
     editData: state.allTasks.editData
-    // date: state.allTasks.editData,
   };
 };
 export default connect(myStateToProps)(TaskComponent);

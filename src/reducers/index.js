@@ -8,8 +8,4 @@ export default combineReducers({
     googleData:authReducer,
     profileData:googleProfile,
     allTasks:allTasksReducer,
-    EditTask:EditTask,
-    complete:TaskReducer,
-    // userData:dynamicData
-
 })

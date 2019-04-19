@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import '../css/Taskitem.css';
 import { connect } from 'react-redux';
@@ -10,9 +8,7 @@ import {
   CompletedTaskAction,
   RescheduleTask,
   DeleteTask,
-  HideActionButtons
 } from '../actions';
-// import Calendar from 'react-calendar';
 import Calendar from 'react-calendar';
 import Toast from './Toast';
 import Completed from "../assets/Completed.svg";
@@ -28,72 +24,96 @@ class Taskitem extends Component {
   state = {
     showComponent: false,
     showToast: false,
-    date: "",
-    tasks1:"",
+    showBtns: false,
+    date: '',
+    rescheduleTask: '',
+    selectedId: null,
+    toastMsg: null,
+    toastImage: null
   };
   MyFunction = () => {
     var tempDate = new Date();
-    var month = tempDate.toLocaleString('en-us', { month: 'long' }) + ' ' + tempDate.getDate();
-    return (
-    month
-    );
-    }
-
+    var month =
+      tempDate.toLocaleString('en-us', {
+        month: 'long'
+      }) +
+      ' ' +
+      tempDate.getDate();
+    return month;
+  };
 
   rescheduleTask = selectdate => {
-    // console.log(date);
     let day = selectdate.getDate();
-    // console.log(day);
     let monthNum = selectdate.getMonth();
-    let monthArr=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    let monthArr = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ];
     let month = monthArr[monthNum];
-    let date = day+" "+month;
-    // console.log(this.state.tasks1);
-    // console.log("this is final date",rescheduleDate, "tasks value", this.state.tasks1);
-    this.props.RescheduleTask({tasks:this.state.tasks1,status:"RescheduledTasks",date});
-    
-    this.setState({ 
-      showToast: true  ,
-      showComponent:false,
-      // date
+    let date = day + ' ' + month;
+    this.props.RescheduleTask({
+      tasks: this.state.rescheduleTask,
+      status: 'RescheduledTasks',
+      date
     });
-    
-  };
-  completeTask = (tasks) => {
-    var date=this.MyFunction();
-    // var Task=tasks.Task;
-    // console.log(Task);
-   const status=1;
-   console.log(tasks)
-    this.props.TasksApi({tasks,status});
-    // this.props.CompletedTaskAction({tasks,date});
-    this.props.HideActionButtons();
-    this.setState({ 
+    this.setState({
+      showComponent: false,
+      showBtns: false,
       showToast: true,
-     });
+      toastMsg: ' You have successfully rescheduled the task',
+      toastImage: require('../assets/Toast Reschedule.png')
+    });
   };
-  deleteTask = (tasks,index) => {
-    // console.log(i);
-    this.props.DeleteTask({tasks,index});
-    this.props.HideActionButtons();
-    this.setState({ 
+  
+  completeTask = tasks => {
+    var date = this.MyFunction();
+   const status=1;    
+   this.props.TasksApi({tasks,status});
+    this.props.CompletedTaskAction({ tasks, date });
+    this.setState({
+      showBtns: false,
       showToast: true,
-      
-     });
+      toastMsg: 'You have successfully completed the task',
+      toastImage: require('../assets/Toast completed.png')
+    });
   };
-  _onButtonClick = (tasks) => {
-  // console.log(tasks);
+  deleteTask = (tasks, index) => {
+    this.props.DeleteTask({ tasks, index });
+    this.setState({
+      showBtns: false,
+      showToast: true,
+      toastMsg: 'You have successfully deleted the task',
+      toastImage: require('../assets/Toast Delete.png')
+    });
+  };
+  _onButtonClick = tasks => {
     this.setState({
       showComponent: true,
-      tasks1: tasks
+      rescheduleTask: tasks
     });
+  };
+  DisplayActionsBtns = tasks => {
+    {
+      this.setState({
+        showBtns: true,
+        selectedId: tasks.parentId,
+        showToast: false
+      });
+    }
   };
 
   render() {
-    // console.log(this.props.cards);
-    // console.log(this.props.cards);
-   const {date}=this.state.date;
-   
+    const { date } = this.state.date;
 
     return (
       <React.Fragment>      
@@ -120,59 +140,58 @@ class Taskitem extends Component {
             <div className="ItemContainer">
           
               <div className="StatusNoneIcon">
-                <img src={StatusNoneIcon} onClick={this.props.DisplayActions} />
+                <img
+                  src={StatusNoneIcon}
+                  onClick={() => this.DisplayActionsBtns(tasks)}
+                />
               </div>
               <p className="taskData">{tasks.taskName}</p>
-              {this.props.Status ? (
+
+              {this.state.showBtns &&
+              this.state.selectedId === tasks.parentId ? (
                 <div className="editTaskButtons">
-                
                   <img
                     src={Completed}
-                    onClick={()=>this.completeTask(tasks)}
+                    onClick={() => this.completeTask(tasks)}
                   />
                   <img
                     src={Reschedule}
-                    onClick={()=>this._onButtonClick(tasks)}
+                    onClick={() => this._onButtonClick(tasks)}
                   />
                   <img
                     src={Delete}
-                    onClick={()=>this.deleteTask(tasks,index)}
+                    onClick={() => this.deleteTask(tasks, index)}
                   />
                 </div>
               ) : null}
-              {this.state.showToast ? <Toast /> : null}
             </div>
             </main>
           );
         })}
-        
-         {this.state.showComponent ? (
-                    <Calendar
-                      className="calendar"
-                      onChange={this.rescheduleTask}
-                      value={date}
-                    />
-                  ) : null}
-                 
+        {this.state.showToast ? <Toast showToast={this.state} /> : null}
+
+        {this.state.showComponent ? (
+          <Calendar
+            className="calendar"
+            onChange={this.rescheduleTask}
+            value={date}
+          />
+        ) : null}
       </React.Fragment>
     );
   }
 }
 const myStateToProps = state => {
-  // console.log(state.allTasks);
-  // console.log(state.allTasks.Task);
   return {
     data: state.allTasks,
-    cards: state.allTasks.Task,
-    Status: state.allTasks.Status
+    cards: state.allTasks.Task
   };
 };
 
 export default connect(
   myStateToProps,
-  { DisplayActions, 
+  { 
     TasksApi,
     CompletedTaskAction,
-     RescheduleTask, DeleteTask,HideActionButtons }
-)(Taskitem);
- 
+     RescheduleTask, DeleteTask,
+  })(Taskitem);

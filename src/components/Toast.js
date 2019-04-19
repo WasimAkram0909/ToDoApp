@@ -1,68 +1,44 @@
-import React, { createRef } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import '../css/Toast.css';
-import icon from '../assets/Toast completed.png';
 import { connect } from 'react-redux';
 import { UndoAction } from '../actions';
-// import CloseToast from './CloseToast';
-import onClickOutside from 'react-onclickoutside';
 
 class Toast extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.toastRef = React.createRef();
-//   }
-  state = {
-    show: true
-  };
-
-  handleClickOutside = evt => {
-    // alert("message");
-    this.setState({ show: false });
-  };
   undo = data => {
     console.log(data);
     this.props.UndoAction(data);
   };
 
   render() {
-    // console.log(this.props);
-    // console.log(this.props)
+    console.log(this.props.showToast);
     return (
       <React.Fragment>
-        {this.state.show ? (
-          <div className="flex-container" id="flex-container">
-            <div>
-              {' '}
-              <img src={this.props.data.image} />
-            </div>
-            <div className="text-display">
-              You have successfully {this.props.data.message}
-            </div>
-            <div className="undo" onClick={data => this.undo(data)}>
-              <a href="#">undo</a>
-            </div>
+        <div className="flex-container" id="flex-container">
+          <div>
+            <img src={this.props.showToast.toastImage} />
           </div>
-        ) : null}
+          <div className="text-display">{this.props.showToast.toastMsg}</div>
+          <div className="undo" onClick={data => this.undo(data)}>
+            <a href="#">undo</a>
+          </div>
+        </div>
       </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = state => {
-  // console.log(state);
   return {
-    data: state.EditTask,
     Status: state.allTasks.Status
   };
 };
 
-var EnhancedComponent = onClickOutside(Toast);
-Toast = connect(
+export default connect(
   mapStateToProps,
   { UndoAction }
-)(EnhancedComponent);
-export default Toast;
+)(Toast);
+
+// this.toastRef = React.createRef();
 
 //    document.getElementById("flex-container").style='display:none';
 
@@ -94,3 +70,23 @@ export default Toast;
 // }
 
 */
+
+//   handleClickOutside = e => {
+//     // this.setState( prevState=>({
+//     //   isShow: !prevState.isShow
+//     //   }));
+// console.log(this.props.showToast);
+//     this.setState( {
+//       isShow: false,
+
+//       });
+
+//       // console.log( this.state.isShow + "in Toast Local ");
+//   };
+
+// var EnhancedComponent = onClickOutside(Toast);
+// Toast = connect(
+//   mapStateToProps,
+//   { UndoAction }
+// )(EnhancedComponent);
+// export default Toast;

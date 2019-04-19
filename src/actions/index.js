@@ -1,8 +1,6 @@
 import axios from "axios";
 //Action Creators
-// export const ADD_TODO = 'ADD_TODO'
-
-
+const url = "http://115.248.119.138:8089/todo"
 export const signIn = (userId) => {
     return {
       type: "SIGN_IN",
@@ -57,20 +55,25 @@ const ToDoAllAction=(RES)=>{
       type: "UPDATE_TASK"
     };
   };
-  export const DeleteTask = (data) => {
-    console.log(data);
-    var url = (`http://192.168.1.207:8089/todo/deleteTasks/?taskId=${0}`);
-    return (dispath)=>{
-        return axios.delete(url)
-        .then (res =>{
-          console.log(res)
-          // dispatch();
-        })
-    }
-     console.log(data);
+  export const DeleteTask = (data ) => {
+
+  //   var url =`http://115.248.119.138:8089/todo/tasks/1`
+  //   return (dispatch)=>{
+  //       return axios.delete(url,{
+  //         header:{
+  //           "Authorization":"ya29.GlzvBsOraSZZFPKy0MHOwCvwHTw_1j_j4muuoicb4Y68z5HhTm4iGpJuiGeroL55dxAHbWYJb2Xq9hPxBZtwXGbwcT9MgjHFGWSruAm-mJhLETuCZpOZEbtGyphPnA"
+  //         }
+  //       })
+  //       .then (res =>{
+  //         console.log(res)
+  //         dispatch(DeleteAction(res));
+  //       })
+  //   }
+  // }
+  //   const DeleteAction=(data)=>{
+  //    console.log(data);
     return {
       type: "DELETE_TASK",
-      types:"DELETE_TOAST",
       payload:data,
     };
   };
@@ -123,36 +126,52 @@ const ToDoAllAction=(RES)=>{
       type: "SORT_BY"
     };
   };
-  export const DisplayActions = (i) => {
-    // console.log(i);
-    return {
-      type: "Display_Actions",
-      payload:i,
-    };
-  };
-
+ 
   export const RescheduleTask =(data)=>{
+
+
 console.log(data);
+    
+//   var reschedule = `${url}/updateTasks/${data.index}`;
+  //   console.log(deleteThis);
+  //   return (dispatch)=>{
+  //       return axios.post(reschedule)
+  //       .then (res =>{
+  //         dispatch(rescheduleAction(res));
+  //       })
+  //   }
+  // }
+  //   const rescheduleAction=(data)=>{
+  //    console.log(data);
+
+
     return {
       type:"RESCHEDULE_TASK",
-      types:"RESCHEDULE_TOAST",
       payload:data,
     }
   }
+  
   export const CompletedTaskAction =(data)=>{
 console.log(data);
+// console.log(date)
+
+
+//   var complete = `${url}/updateTasks/${data.index}`;
+  //   console.log(complete);
+  //   return (dispatch)=>{
+  //       return axios.post(reschedule)
+  //       .then (res =>{
+  //         dispatch(completedAction(res));
+  //       })
+  //   }
+  // }
+  //   const completedAction=(data)=>{
+  //    console.log(data);
+
     
     return {
       type:"COMPLETED_TASK",
-      types:"COMPLETED_TOAST",
       payload:data,
-    }
-
-  }
-  export const HideActionButtons =()=>{
-    return {
-      type:"HIDE_BUTTONS",
-
     }
 
   }
