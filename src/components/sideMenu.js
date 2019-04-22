@@ -12,14 +12,16 @@ import Logout from '../assets/Logout.svg';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { ToDoAll } from '../actions';
+import { ToDoAll,RescheduleTask,CompletedTaskAction,profileAction } from '../actions';
 import Dashboard from './dashboard';
 import GoogleAuth from "./googleauth";
 import {SideMenuData} from "../reducers/SideMenu";
 
+
 class SideMenu extends Component {
 
     render() {
+        var actionsArr = [ToDoAll,CompletedTaskAction,RescheduleTask,profileAction]
         return (
             <React.Fragment>
                 {/* <Router> */}
@@ -31,14 +33,18 @@ class SideMenu extends Component {
                         <div className="linksContainer ">
 
                             {/* {SideMenuData.map((item,i) => {
+                                   {var actionCount = actionsArr[i]}
+                                // {console.log(actionCount);}
+                                // console.log(item.action);
                                 return (
-                                   
                                     <div className="SideMenuLinks ">
                                         <img className="linkLogo" src={item.image} />
-                                        <Link to={`/dashboard/${item.path}`} onClick={this.props.ToDoAll} className="SideMenuLink">{item.name}</Link>
+                                        <Link to={`/dashboard/${item.path}`} 
+                                            
+                                        onClick={this.props.ToDoAll}className="SideMenuLink">{item.name}</Link>
                                     </div>)
 
-                            })} */}
+                            })} */} 
                             <div className="SideMenuLinks ">
                                 <img className="linkLogo" src={Alltasks} />
                                 <Link to={`/dashboard/Todo`} onClick={this.props.ToDoAll} className="SideMenuLink">Todo</Link>

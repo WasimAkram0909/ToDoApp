@@ -20,7 +20,7 @@ import moment from "moment";
 
 
 
-var overDueTasksArr = [];
+// var overDueTasksArr = [];
 let taskDate="";
 class Taskitem extends Component {
   constructor(props) {
@@ -68,8 +68,8 @@ class Taskitem extends Component {
     // date = date.slice(0,2)+"-"+ date.slice(3,5)+"-"+ date.slice(6,12);     
     date = date.slice(0,4)+"-"+ date.slice(5,7)+"-"+ date.slice(8,10);
    const status=1;    
-  //  this.props.TasksApi({tasks,status});
-    this.props.CompletedTaskAction({ tasks, date });
+   this.props.TasksApi({tasks,status});
+    // this.props.CompletedTaskAction({ tasks, date });
     this.setState({
       showBtns: false,
       showToast: true,
@@ -168,6 +168,8 @@ class Taskitem extends Component {
         ) : null}
 {/* 
         {
+
+        {/* {
           overDueTasksArr != null ? 
           overDueTasksArr.map((tasks, index) => {
             if(tasks.createDate!= undefined){

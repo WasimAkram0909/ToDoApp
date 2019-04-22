@@ -158,3 +158,4 @@ export default withRouter(connect(
   mapStateToProps,
   { signIn, signOut,profileAction}
 )(GoogleAuth));
+// export const authToken=window.gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse(true).access_token;

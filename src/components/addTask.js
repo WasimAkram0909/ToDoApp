@@ -39,8 +39,8 @@ class AddTask extends React.Component {
     })
   }
 
-
   handleSaveTask = () => {
+    this.props.history.push("/dashboard");
     var taskcontent = this.myRef.current.value;
     var dateContent = this.state.newDate;
     console.log(dateContent);
@@ -78,6 +78,8 @@ class AddTask extends React.Component {
     );
   }
   handleClose = () => {
+    this.props.history.push("/dashboard");
+    
     this.setState({
       showComponent: false,
     });
@@ -127,6 +129,7 @@ class AddTask extends React.Component {
   }
 }
 const myStateToProps = (state) => {
+  console.log(state);
   return {
     cards: state.allTasks.Task
   }

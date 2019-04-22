@@ -24,23 +24,22 @@ const sortData = [
     parentId: 3
   },
 ]
-
 const initialValues = {
   Task: sortData,
   editData: [],
   date: '',
   sortedData: [],
-  mainEditData: []
+  mainEditData: [],
+  profile:[]
+  
 };
 export default (state = initialValues, action) => {
   switch (action.type) {
-    case 'ADD_TASK':
+    case 'SAVE_TASK':
       return {
-        ...state,
-        Task: action.payload
+         ...state, Task:state.Task.concat(action.payload)
       };
     case 'TO_DO_ALL':
-      debugger;
       return {
         ...state,
         Task: sortData
@@ -50,13 +49,6 @@ export default (state = initialValues, action) => {
         ...state,
         Status: true
       };
-    case 'HIDE_BUTTONS':
-      return {
-        ...state,
-        Status: false
-      };
-
-
     case 'RESCHEDULE_TASK':
     var reschedule=state.Task.splice(action.payload.tasks.parentId,1);
       let formData = state.editData && state.editData.concat(action.payload)
@@ -82,16 +74,17 @@ export default (state = initialValues, action) => {
       return {
         ...state
       };
+      case "GET_PROFILE":
+        console.log(action.payload);
+        return{
+          ...state, profile:state.profile.concat(action.payload)}
     case 'EDIT_PROFILE':
       console.log(action.payload);
       return {
-        profile: {
-          firstName: action.payload.fn,
-          lastName: action.payload.ln
-        }
-      };
+         ...state,profile:state.profile.action.payload
+      
+  }
     case 'SORT_BY':
-
       // console.log(action.payload);
       if (action.payload.specificSort) {
         return ({
@@ -103,22 +96,21 @@ export default (state = initialValues, action) => {
             }
           })
         })
-      } else {
-        return {
-          ...state,
-          Task: sortData.filter(key => {
-            if (action.payload.selectDate === key.createDate && !action.payload.specificSort) {
-              // console.log(key);
-              return key;
-            }
-          })
-        }
+      }else{
+      return {
+        ...state,
+        Task: sortData.filter(key => {
+          if (action.payload.selectDate === key.createDate && !action.payload.specificSort) {
+            // console.log(key);
+            return key;
+          }
+        })
       }
-
+    }
     case 'UNDO':
       return {
         ...state
       };
-  }
-  return state;
-};
+    }
+    return state;
+  };

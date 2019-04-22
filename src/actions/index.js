@@ -41,25 +41,24 @@ export const signOut = () => {
 
   export const ToDoAll = () => {
     console.log("data");
-    var url = "http://115.248.119.138:8089/todo/tasks";
+    // var url = "http://115.248.119.138:8089/todo/tasks";
     return (dispatch) => {
-      return axios.get(url,
-        {
-          headers: {
-            "Authorization": " ya29.GlzzBkLT_OQBg3wM_RqlqMR1K-jaIoE33JaP8Qr6QjHpqcBgdgl6fs-Df1DigBQvhJFyvh4l7S0q80luTQQx6KVWs0C8hJOliLBWu2fAzFvDJcXyOXYsf9-C-38rUw"
-          }
+      return ToDoAxios.get('tasks')
+        // {
+        //   headers: {
+        //     "Authorization": " ya29.GlzzBkLT_OQBg3wM_RqlqMR1K-jaIoE33JaP8Qr6QjHpqcBgdgl6fs-Df1DigBQvhJFyvh4l7S0q80luTQQx6KVWs0C8hJOliLBWu2fAzFvDJcXyOXYsf9-C-38rUw"
+        //   }
+        // })
+        .then(res => {
+          console.log(res);
+          // console.log(res.data.main);
+          dispatch(ToDoAllAction(res.data));
+        }
+        ).catch(() => {
+          console.log("error");
         })
-      .then(res => {
-        console.log(res);
-        // console.log(res.data.main);
-        dispatch(ToDoAllAction(res.data));
-      }
-    ).catch(() => {
-      dispatch(ToDoAllAction([]));
-      console.log("error");
-    })
+    }
   }
-}
 export const ToDoAllAction = (RES) => {
   console.log(RES);
   return {
@@ -76,7 +75,7 @@ export const UpdateTask = () => {
     export const profileAction =() =>{
       // var url=`http://115.248.119.138:8089/todo/profile`;
       return(dispatch)=>{
-        return  ToDoAxios.get(`/profile`)
+        return  ToDoAxios.get(`profile`)
         .then(res=>{
           console.log(res.data);
           dispatch(GetProfile(res.data));
@@ -105,7 +104,6 @@ export const TasksApi = (data) => {
         dispatch(CompletedTaskAction(res.data));
       }
     )
-
   }
 }
 export const SortByAction = (data) => {
@@ -119,15 +117,12 @@ export const SortByAction = (data) => {
 
     export const EditProfile = (data) =>{
       console.log(data.picture);
-      var url=`http://115.248.119.138:8089/todo/profile?firstname=${data.firstname}&lastname=${data.lastname}&picture=${data.picture}&userId=${1}`
+      // var url=`http://115.248.119.138:8089/todo/profile?firstname=${data.firstname}&lastname=${data.lastname}&picture=${data.picture}&userId=${1}`
       return(dispatch)=>{
-        return axios.post(url,{
-          headers:{
-            "Authorization":"ya29.GlzwBqAbnEuanUZXKVIG7jxtB68anv7bRxGXgOx4CdX7aE6eu9NdPUZMmoHWeVGU3ok3tSIDTMWwq5JWFpo0a6HLPKzD6ZV-C1HU9D4Gz6BQzKwbDC9sgMchpmeRwg"
-          }
-        })
+        return  ToDoAxios.post(`profile?firstname=${data.firstname}&lastname=${data.lastname}&picture=${data.picture}&userId=${11}`)
     .then(res=>{
         console.log(res);
+        // dispatch(profileAction(res))
         dispatch(EditProfileAction(res.data));
     })}
   }
@@ -137,8 +132,6 @@ export const SortByAction = (data) => {
           payload:resData
         }
       }
-
-
 
   export const DeleteTask = (data) => {
     // console.log(data);
@@ -159,14 +152,8 @@ export const SortByAction = (data) => {
 
   export const SaveTask = (data) => {
     console.log(data.taskName);
-    var url=`http://115.248.119.138:8089/todo/tasks?date=10-07-2019&name=${data.taskName}`
-    // var url=`http://115.248.119.138:8089/todo/tasks?name=${data.taskName}&date=${data.createDate}&userId=${1}`;
     return(dispatch)=>{
-      return axios.post(url,{
-        headers:{
-          "Authorization":"ya29.GlzwBr8tPsT5rduF6erhifjPTHHX7oJmxOTM2o_PJ5LXqA1UbsG9qw5Ty7CAQM91YFNnrWgkBq90lYstkMJXXMW3sZVyNoD6Hq0aJYmtu36yWqzarUz9Xqb_XICuTA"
-        }
-      })
+      return ToDoAxios.post(`tasks?date=10-07-2019&name=${data.taskName}`)
   .then(res=>{
       console.log(res);
       console.log(res.data.task);

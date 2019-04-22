@@ -19,10 +19,13 @@ class TasksContainer extends Component {
                 <Route exact path={this.props.match.url + '/'} component={ToDoContainer}/>
                  <Route exact path={this.props.match.url + '/Todo'} component={ToDoContainer}/>
 
-                 {/* <Route exact path={this.props.match.url + '/'} component={HeadNav}/>  */}
+                 <Route exact path={this.props.match.url + '/AddTask'} component={AddTask}/> 
                 <Route exact path={this.props.match.url + '/CompletedTasks'} component={CompletedTasksContainer} />
                 <Route exact path={this.props.match.url + '/RescheduledTasks'} component={CompletedTasksContainer} />
                 <Route exact path={this.props.match.url + '/Profile'} component={MyProfile} />
+                <Route exact path={this.props.match.url + '/Profile/EditProfile'} component={MyProfile} />
+                
+
             </div>
         )
     }
