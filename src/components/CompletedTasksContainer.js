@@ -19,8 +19,8 @@ class CompletedTasksContainer extends Component{
             <div className="DontEditThisClass">
                 {
                     this.props.match.url=="/dashboard/CompletedTasks" ? 
-                    <HeadNav  title={SideMenuData[1].name} showSort={true}/>
-                    :<HeadNav  title={SideMenuData[2].name} showSort={true}/>
+                    <HeadNav  title={SideMenuData[1].name} showSort={true} specificSort ={true}/>
+                    :<HeadNav  title={SideMenuData[2].name} showSort={true}  specificSort ={true}/>
                 }
                 {/* <HeadNav  title={SideMenuData[1].name} /> */}
                 {/* {console.log(SideMenuData[1].name)} */}

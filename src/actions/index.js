@@ -22,66 +22,70 @@ export const profileAction = (data) => {
   var familyName = data.getFamilyName();
   var image = data.getImageUrl();
   var email = data.getEmail();
-  var logInData = { id, fullName, name, familyName, image, email };
+  var logInData = {
+    id,
+    fullName,
+    name,
+    familyName,
+    image,
+    email
+  };
   return {
     type: "SIGN_IN_USER_DETAILS",
     payload: logInData,
   }
-
-  export const ToDoAll = () => {
-    console.log("data");
-    var url = "http://115.248.119.138:8089/todo/tasks";
-    return (dispatch) => {
-      return axios.get(url,
-        {
-          headers: {
-            "Authorization": " ya29.GlzzBkLT_OQBg3wM_RqlqMR1K-jaIoE33JaP8Qr6QjHpqcBgdgl6fs-Df1DigBQvhJFyvh4l7S0q80luTQQx6KVWs0C8hJOliLBWu2fAzFvDJcXyOXYsf9-C-38rUw"
-          }
-        })
-        .then(res => {
-          console.log(res);
-          // console.log(res.data.main);
-          dispatch(ToDoAllAction(res.data));
+}
+export const ToDoAll = () => {
+  console.log("data");
+  var url = "http://115.248.119.138:8089/todo/tasks";
+  return (dispatch) => {
+    return axios.get(url,
+      {
+        headers: {
+          "Authorization": " ya29.GlzzBkLT_OQBg3wM_RqlqMR1K-jaIoE33JaP8Qr6QjHpqcBgdgl6fs-Df1DigBQvhJFyvh4l7S0q80luTQQx6KVWs0C8hJOliLBWu2fAzFvDJcXyOXYsf9-C-38rUw"
         }
-        ).catch(() => {
-          console.log("error");
-        })
-    }
+      })
+      .then(res => {
+        console.log(res);
+        // console.log(res.data.main);
+        dispatch(ToDoAllAction(res.data));
+      }
+    ).catch(() => {
+      dispatch(ToDoAllAction([]));
+      console.log("error");
+    })
   }
-const ToDoAllAction = (RES) => {
+}
+export const ToDoAllAction = (RES) => {
   console.log(RES);
   return {
     type: "TO_DO_ALL",
     payload: RES,
   };
 };
-export const UpdateTask = () => {
-  return {
-    type: "UPDATE_TASK"
-  };
-};
+// export const UpdateTask = () => {
+//   return {
+//     type: "UPDATE_TASK"
+//   };
 export const DeleteTask = (data) => {
+  console.log(data);
 
-  //   var url =`http://115.248.119.138:8089/todo/tasks/1`
-  //   return (dispatch)=>{
-  //       return axios.delete(url,{
-  //         header:{
-  //           "Authorization":"ya29.GlzvBsOraSZZFPKy0MHOwCvwHTw_1j_j4muuoicb4Y68z5HhTm4iGpJuiGeroL55dxAHbWYJb2Xq9hPxBZtwXGbwcT9MgjHFGWSruAm-mJhLETuCZpOZEbtGyphPnA"
-  //         }
-  //       })
-  //       .then (res =>{
-  //         console.log(res)
-  //         dispatch(DeleteAction(res));
-  //       })
-  //   }
-  // }
-  //   const DeleteAction=(data)=>{
-  //    console.log(data);
+//   return (dispatch) => {
+//     return ToDoAxios.delete(`tasks/1`)
+//       .then(res => {
+//         console.log(res)
+//         dispatch(DeleteAction(res));
+//       })
+//   }
+// }
+// const DeleteAction = (data) => {
+//   console.log(data);
   return {
     type: "DELETE_TASK",
     payload: data,
   };
 };
+
 // export const AddTask = () => {
 //   return {
 //     type: "ADD_TASK"
@@ -97,35 +101,39 @@ export const SaveTask = (data) => {
         console.log(res.data.task);
         dispatch(SaveTaskAction(res.data.task));
       }
-      )
+    )
   }
 }
-   const SaveTaskAction = (dataid) => {
-    // console.log(dataid);
-    return {
-      type: "SAVE_TASK",
-      payload: dataid,
-    };
-  };
-  export const TasksApi=(data)=>{
-    console.log(data);
-    var status=data.tasks.status;
-    console.log(data.status);
-    return (dispatch) => {
-      return ToDoAxios.get(`getTasksByStatus?status=Completed`)
-        .then(res => {
-          console.log(res);
-          // console.log(res.data.main);
-          // export const CompletedTaskAction =(data)=>{
-          dispatch(CompletedTaskAction(res.data));
-        }
-      )
-
-    }
-  }
-export const SortBy = () => {
+export const SaveTaskAction = (dataid) => {
+  // console.log(dataid);
   return {
-    type: "SORT_BY"
+    type: "SAVE_TASK",
+    payload: dataid,
+  };
+
+};
+export const TasksApi = (data) => {
+  console.log(data);
+  var status = data.tasks.status;
+  console.log(data.status);
+  return (dispatch) => {
+    return ToDoAxios.get(`getTasksByStatus?status=Completed`)
+      .then(res => {
+        console.log(res);
+        // console.log(res.data.main);
+        // export const CompletedTaskAction =(data)=>{
+        dispatch(CompletedTaskAction(res.data));
+      }
+    )
+
+  }
+}
+export const SortByAction = (data) => {
+
+
+  return {
+    type: "SORT_BY",
+    payload: data,
   };
 };
 
@@ -171,21 +179,26 @@ export const CompletedTaskAction = (data) => {
   //    console.log(data);
 
 
-    return {
-      type: "COMPLETED_TASK",
-      payload: data,
-    }
-
+  return {
+    type: "COMPLETED_TASK",
+    payload: data,
   }
-  export const UndoAction = () => {
-    return {
-      type: "UNDO"
-    }
-    export const EditProfile = (data) => {
-      // console.log(data);
-      return {
-        type: "EDIT_PROFILE",
-        payload: data
-      }
-    }
+
+}
+export const UndoAction = () => {
+  return {
+    type: "UNDO"
+  }
+}
+export const EditProfile = (data) => {
+  // console.log(data);
+  return {
+    type: "EDIT_PROFILE",
+    payload: data
+  }
+}
+
+
+
+
 

@@ -31,7 +31,7 @@ class Taskitem extends Component {
     showToast: false,
     showBtns: false,
     date: '',
-    rescheduleTask: '',
+    tasks: '',
     selectedId: null,
     toastMsg: null,
     toastImage: null
@@ -48,10 +48,12 @@ class Taskitem extends Component {
   };
 
   rescheduleTask = selectdate => {
-    let date = moment(selectdate).format("DD MM YYYY");
-    date = date.slice(0,2)+"-"+ date.slice(3,5)+"-"+ date.slice(6,12);
+    let date = moment(selectdate).format("YYYY MM DD");
+    // date = date.slice(0,2)+"-"+ date.slice(3,5)+"-"+ date.slice(6,12);     
+    date = date.slice(0,4)+"-"+ date.slice(5,7)+"-"+ date.slice(8,10);
+
     console.log(date);
-    this.props.RescheduleTask({tasks:this.state.tasks1,status:"RescheduledTasks",date});
+    this.props.RescheduleTask({tasks:this.state.tasks, date});
     this.setState({
       showComponent: false,
       showBtns: false,
@@ -61,7 +63,10 @@ class Taskitem extends Component {
   });}
   
   completeTask = tasks => {
-    var date = this.MyFunction();
+    // var date = this.MyFunction();
+    let date = moment(date).format("YYYY MM DD");
+    // date = date.slice(0,2)+"-"+ date.slice(3,5)+"-"+ date.slice(6,12);     
+    date = date.slice(0,4)+"-"+ date.slice(5,7)+"-"+ date.slice(8,10);
    const status=1;    
   //  this.props.TasksApi({tasks,status});
     this.props.CompletedTaskAction({ tasks, date });
@@ -84,7 +89,7 @@ class Taskitem extends Component {
   _onButtonClick = tasks => {
     this.setState({
       showComponent: true,
-      rescheduleTask: tasks
+      tasks: tasks
     });
   };
   DisplayActionsBtns = tasks => {
@@ -100,20 +105,20 @@ class Taskitem extends Component {
 
   render() {
     const { date } = this.state.date;
-
+    console.log (this.props);
     return (
       <React.Fragment>      
         {this.props.cards.map((tasks, index) => {
-          if(tasks.createDate!= undefined && overDueTasksArr.length === 0){
-            var d = tasks.createDate;
-            d = moment(d).format("MMM D");
-            taskDate = d;            
-            var nowDate = moment().format("MMM D");
-            if(moment(d).isBefore(nowDate)){
-              overDueTasksArr.push(tasks);
-              return console.log(overDueTasksArr);
-            }
-          }
+          // if(tasks.createDate!= undefined && overDueTasksArr.length === 0){
+          //   var d = tasks.createDate;
+          //   d = moment(d).format("MMM D");
+          //   taskDate = d;            
+          //   var nowDate = moment().format("MMM D");
+          //   if(moment(d).isBefore(nowDate)){
+          //     overDueTasksArr.push(tasks);
+          //     return console.log(overDueTasksArr);
+          //   }
+          // }
           
           
           // tasks.status="CompletedTasks";
@@ -161,7 +166,7 @@ class Taskitem extends Component {
             value={date}
           />
         ) : null}
-
+{/* 
         {
           overDueTasksArr != null ? 
           overDueTasksArr.map((tasks, index) => {
@@ -219,7 +224,7 @@ class Taskitem extends Component {
             );
           }):
           console.log("arraay is not null")
-        }
+        } */}
 
       </React.Fragment>
     );
@@ -228,7 +233,8 @@ class Taskitem extends Component {
 const myStateToProps = state => {
   return {
     data: state.allTasks,
-    cards: state.allTasks.Task
+    cards: state.allTasks.Task,
+    // sort:state.allTasks.sortedData,
   };
 };
 
