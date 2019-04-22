@@ -13,13 +13,14 @@ import Calendar from 'react-calendar';
 import Toast from './Toast';
 // import {Link} from "react-router-dom";
 import Completed from "../assets/Completed.svg";
+import overDue from "../assets/overDue.svg";
 import Reschedule from "../assets/Reschedule.svg";
 import Delete from "../assets/Delete.svg";
 import moment from "moment";
 
 
 
-
+var overDueTasksArr = [];
 let taskDate="";
 class Taskitem extends Component {
   constructor(props) {
@@ -95,6 +96,7 @@ class Taskitem extends Component {
       });
     }
   };
+  
 
   render() {
     const { date } = this.state.date;
@@ -102,10 +104,15 @@ class Taskitem extends Component {
     return (
       <React.Fragment>      
         {this.props.cards.map((tasks, index) => {
-          if(tasks.createDate!= undefined){
+          if(tasks.createDate!= undefined && overDueTasksArr.length === 0){
             var d = tasks.createDate;
             d = moment(d).format("MMM D");
-            taskDate = d;
+            taskDate = d;            
+            var nowDate = moment().format("MMM D");
+            if(moment(d).isBefore(nowDate)){
+              overDueTasksArr.push(tasks);
+              return console.log(overDueTasksArr);
+            }
           }
           
           
@@ -154,6 +161,72 @@ class Taskitem extends Component {
             value={date}
           />
         ) : null}
+
+        {
+          overDueTasksArr != null ? 
+          overDueTasksArr.map((tasks, index) => {
+            if(tasks.createDate!= undefined){
+              var d = tasks.createDate;
+              d = moment(d).format("MMM D");
+              console.log(d,"task date");
+              var nowDate = moment().format("MMM D");
+              // console.log(nowDate,"current date");
+              // console.log(moment(d).add(5,"days").isBefore(nowDate));
+              // if(moment(d).add(5,"days").isBefore(nowDate)){
+              //   overDueTasksArr.push(tasks);
+              //   return console.log(overDueTasksArr);
+              // }
+              taskDate = d;
+            }
+            
+            
+            // tasks.status="CompletedTasks";
+            return (
+             <main>
+                  <p>{taskDate}</p>
+              <div className="ItemContainer">
+            
+                <div className="StatusNoneIcon">
+                  <img
+                    src={overDue}
+                    onClick={() => this.DisplayActionsBtns(tasks)}
+                  />
+                </div>
+                <p className="taskData">{tasks.taskName}</p>
+  
+                {this.state.showBtns &&
+                this.state.selectedId === tasks.parentId ? (
+                  <div className="editTaskButtons">
+                    <img
+                      src={Completed}
+                      onClick={() => this.completeTask(tasks)}
+                    />
+                    <img
+                      src={Reschedule}
+                      onClick={() => this._onButtonClick(tasks)}
+                    />
+                    <img
+                      src={Delete}
+                      onClick={() => this.deleteTask(tasks, index)}
+                    />
+                  </div>
+                  // </Link>
+                ) : null}
+                {this.state.showToast ? <Toast showToast={this.state} /> : null}
+                {this.state.showComponent ? (
+          <Calendar
+            className="calendar"
+            onChange={this.rescheduleTask}
+            value={date}
+          />
+        ) : null}
+              </div>
+              </main>
+            );
+          }):
+          console.log("arraay is not null")
+        }
+
       </React.Fragment>
     );
   }
