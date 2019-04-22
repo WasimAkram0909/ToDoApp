@@ -6,15 +6,16 @@ import GoogleAuth from './googleauth';
 import Dashboard from "./dashboard";
 
 
+
 const RouterComponent=()=>{
     return(
         <Router>
             <Switch>
                 <Route exact path='/' component={LoginPage}/>
                 <Route exact path='/welcome' component={Welcome}/>
-                <Route   path="/dashboard" component={Dashboard} />
-
+                <Route  path="/dashboard" component={Dashboard} />
             </Switch>
+            
         </Router>
     );
 }

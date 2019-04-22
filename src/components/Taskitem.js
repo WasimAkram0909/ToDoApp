@@ -13,7 +13,7 @@ import Calendar from 'react-calendar';
 import Toast from './Toast';
 // import {Link} from "react-router-dom";
 import Completed from "../assets/Completed.svg";
-import overDue from "../assets/overDue.svg";
+import overDue from "../assets/overdue.svg";
 import Reschedule from "../assets/Reschedule.svg";
 import Delete from "../assets/Delete.svg";
 import moment from "moment";
@@ -63,8 +63,8 @@ class Taskitem extends Component {
   completeTask = tasks => {
     var date = this.MyFunction();
    const status=1;    
-   this.props.TasksApi({tasks,status});
-    // this.props.CompletedTaskAction({ tasks, date });
+  //  this.props.TasksApi({tasks,status});
+    this.props.CompletedTaskAction({ tasks, date });
     this.setState({
       showBtns: false,
       showToast: true,
@@ -170,12 +170,6 @@ class Taskitem extends Component {
               d = moment(d).format("MMM D");
               console.log(d,"task date");
               var nowDate = moment().format("MMM D");
-              // console.log(nowDate,"current date");
-              // console.log(moment(d).add(5,"days").isBefore(nowDate));
-              // if(moment(d).add(5,"days").isBefore(nowDate)){
-              //   overDueTasksArr.push(tasks);
-              //   return console.log(overDueTasksArr);
-              // }
               taskDate = d;
             }
             

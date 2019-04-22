@@ -3,15 +3,17 @@ import React, { Component } from 'react';
 import '../css/welcome.css';
 import circleTick from '../assets/Success.png';
 import forwardArrow from '../assets/RightArrow.png';
-import { withRouter,Link } from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import { connect } from "react-redux";
 
 class Welcome extends Component {
-  click = () => {
-    console.log("dashboard");
+  click= () => {
+    // console.log("dashboard");
+    // console.log(this.props.history);
     this.props.history.push("/dashboard");
   }
   render() {
+    console.log("dashboard");
     return (
       this.props.profileDetails.map((profileData) => {
         // console.log(profileData.name);
@@ -25,9 +27,9 @@ class Welcome extends Component {
                 <img src={circleTick} className="circleTick" />
                 <p>You have Successfully Created ToDo Account </p>
               </div>
-             <Link to="/dashboard"> <button className="button" onClick={this.click}>
+             <button className="button" onClick={()=>this.click()}>
                 <img src={forwardArrow} className="arrow" />
-              </button></Link>
+              </button>
             </div>
           </main>
         );

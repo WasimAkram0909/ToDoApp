@@ -1,23 +1,10 @@
 import axios from "axios";
-//Action Creators
-// export const ADD_TODO = 'ADD_TODO'
-
-var instance = axios.create({
-  baseURL: "http://115.248.119.138:8089/todo",
-  headers: {
-    "Authorization": "ya29.GlzwBucnMSApyvMJM2mxwLfeQY5N2Iy7l1l7-CnEUWxbDMy5zbXyMH49gIY77T2gRoPs0wwPdOIQag-Y2o6Ji1lxmS2U1Hrv6-S1rWOK0QNq3NkNbGQfT1i0BFOc8w"
-  }
-})
-// const url = "http://115.248.119.138:8089/todo";
-// const auth=headers{
-//   "Authorization":"ya29.GlzwBvtnqixqt0LZ5spZ8bcepYvOvmptREz5LbrWL5O3uJbiDcBo2biWA4SURh3NkIPxqVkc8_Yn-Njg_mh7emG_R3tDKXjAsnvxhgQZstOt9ss78YQ6s-zHE9PgRw"
-// }
-
+import ToDoAxios from "../api/ToDoaxios";
 
 export const signIn = (userId) => {
   return {
     type: "SIGN_IN",
-    payload: userId
+    payload: userId,
   };
 };
 
@@ -40,27 +27,27 @@ export const profileAction = (data) => {
     type: "SIGN_IN_USER_DETAILS",
     payload: logInData,
   }
-}
-export const ToDoAll = () => {
-  console.log("data");
-  var url = "http://115.248.119.138:8089/todo/tasks";
-  return (dispatch) => {
-    return axios.get(url,
-      {
-        headers: {
-          "Authorization": " ya29.GlzzBkLT_OQBg3wM_RqlqMR1K-jaIoE33JaP8Qr6QjHpqcBgdgl6fs-Df1DigBQvhJFyvh4l7S0q80luTQQx6KVWs0C8hJOliLBWu2fAzFvDJcXyOXYsf9-C-38rUw"
+
+  export const ToDoAll = () => {
+    console.log("data");
+    var url = "http://115.248.119.138:8089/todo/tasks";
+    return (dispatch) => {
+      return axios.get(url,
+        {
+          headers: {
+            "Authorization": " ya29.GlzzBkLT_OQBg3wM_RqlqMR1K-jaIoE33JaP8Qr6QjHpqcBgdgl6fs-Df1DigBQvhJFyvh4l7S0q80luTQQx6KVWs0C8hJOliLBWu2fAzFvDJcXyOXYsf9-C-38rUw"
+          }
+        })
+        .then(res => {
+          console.log(res);
+          // console.log(res.data.main);
+          dispatch(ToDoAllAction(res.data));
         }
-      })
-      .then(res => {
-        console.log(res);
-        // console.log(res.data.main);
-        dispatch(ToDoAllAction(res.data));
-      }
-      ).catch(() => {
-        console.log("error");
-      })
+        ).catch(() => {
+          console.log("error");
+        })
+    }
   }
-}
 const ToDoAllAction = (RES) => {
   console.log(RES);
   return {
@@ -113,36 +100,29 @@ export const SaveTask = (data) => {
       )
   }
 }
-const SaveTaskAction = (dataid) => {
-  console.log(dataid);
-  return {
-    type: "SAVE_TASK",
-    payload: dataid,
-
+   const SaveTaskAction = (dataid) => {
+    // console.log(dataid);
+    return {
+      type: "SAVE_TASK",
+      payload: dataid,
+    };
   };
-};
-export const TasksApi = (data) => {
-  console.log(data.tasks.status);
-  var status = data.tasks.status;
-  console.log(data.status);
-  var url = `http://115.248.119.138:8089/todo/getTasksByStatus?status=completed`;
-  return (dispatch) => {
-    return axios.get(url, {
-      headers: {
-        "Authorization": "ya29.GlzwBnM5vXdevuFPHytzazSIz-U20hW0jT9sTUUcgfsvW93uXO2tZ2mgQNf5bwqkMBVsQRUtmyuRVRY3aTHfU7w3MFWWXq_5tuv4AxcYuKBkROnXmZ2cjRMz3TB6Qg"
-      }
-    })
-      .then(res => {
-        console.log(res);
-        // console.log(res.data.main);
-        // export const CompletedTaskAction =(data)=>{
-        dispatch(CompletedTaskAction(res.data));
-      }
+  export const TasksApi=(data)=>{
+    console.log(data);
+    var status=data.tasks.status;
+    console.log(data.status);
+    return (dispatch) => {
+      return ToDoAxios.get(`getTasksByStatus?status=Completed`)
+        .then(res => {
+          console.log(res);
+          // console.log(res.data.main);
+          // export const CompletedTaskAction =(data)=>{
+          dispatch(CompletedTaskAction(res.data));
+        }
       )
+
+    }
   }
-
-
-}
 export const SortBy = () => {
   return {
     type: "SORT_BY"
@@ -191,21 +171,21 @@ export const CompletedTaskAction = (data) => {
   //    console.log(data);
 
 
-  return {
-    type: "COMPLETED_TASK",
-    payload: data,
-  }
+    return {
+      type: "COMPLETED_TASK",
+      payload: data,
+    }
 
-}
-export const UndoAction = () => {
-  return {
-    type: "UNDO"
   }
-}
-export const EditProfile = (data) => {
-  console.log(data);
-  return {
-    type: "EDIT_PROFILE",
-    payload: data
-  }
-}
+  export const UndoAction = () => {
+    return {
+      type: "UNDO"
+    }
+    export const EditProfile = (data) => {
+      // console.log(data);
+      return {
+        type: "EDIT_PROFILE",
+        payload: data
+      }
+    }
+

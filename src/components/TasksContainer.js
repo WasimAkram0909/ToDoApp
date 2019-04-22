@@ -8,19 +8,18 @@ import {withRouter} from 'react-router-dom';
 import {Route} from 'react-router-dom';
 import ToDoContainer from "./ToDoContainer";
 import CompletedTasksContainer from "./CompletedTasksContainer";
+import Dashboard from "./dashboard";
+// import TasksContainer from "./"
 
 class TasksContainer extends Component {
     render() {
         return (
             <div className=" DontEditThisClass Tasklists1">
-                {/* <HeadNav></HeadNav> */}
-                {/* <Taskitem /> */}
-                {/* <Route exact path="/dashboard/Todo" component={Todo} */}
-                <Route exact path={this.props.match.url + '/'} component={ToDoContainer}/>
-                <Route exact path={this.props.match.url + '/Todo'} component={ToDoContainer}/>
 
-                {/* <Route exact path={this.props.match.url + '/'} component={HeadNav}/> */}
-                <Route exact path='/dashboard/AddTask' component={AddTask}/>
+                <Route exact path={this.props.match.url + '/'} component={ToDoContainer}/>
+                 <Route exact path={this.props.match.url + '/Todo'} component={ToDoContainer}/>
+
+                 {/* <Route exact path={this.props.match.url + '/'} component={HeadNav}/>  */}
                 <Route exact path={this.props.match.url + '/CompletedTasks'} component={CompletedTasksContainer} />
                 <Route exact path={this.props.match.url + '/RescheduledTasks'} component={CompletedTasksContainer} />
                 <Route exact path={this.props.match.url + '/Profile'} component={MyProfile} />
