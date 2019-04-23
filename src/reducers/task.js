@@ -2,7 +2,7 @@ const sortData = [
   {
     taskName: ' let him know that meeting JA Marsh for lunch',
     status: 'Completed',
-    createDate: '2019-04-20',
+    createDate: '2019-03-03',
     taskId: 0
   },
   {
@@ -12,27 +12,28 @@ const sortData = [
     taskId: 1
   },
   {
-    taskName: 'Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch',
+    taskName: ' Marsh for lunch',
     status: 'Completed',
     createDate: '2019-04-20',
     taskId: 2
   },
   {
-    taskName: ' Alex on OS configuration and let him know that meeting JA Marsh for lunch Joh to call Alex on OS configuration and let him know that meeting JA Marsh for lunch',
+    taskName: ' Alex on OS configuration ',
     status: 'Rescheduled',
     createDate: '2019-04-25',
     taskId: 3
   },
 ]
+let undoData = [];
+
 const initialValues = {
   Task: sortData,
   editData: [],
-  date: '',
-  sortedData: [],
   mainEditData: [],
   profile:[]
-  
-};
+}
+
+
 export default (state = initialValues, action) => {
   switch (action.type) {
     case 'SAVE_TASK':
@@ -48,33 +49,33 @@ export default (state = initialValues, action) => {
       
         ...state,Task: sortData.concat(action.payload.tasks)
       };
-    case 'Display_Actions':
-      return {
-        ...state,
-        Status: true
-      };
     case 'RESCHEDULE_TASK':
-    var reschedule=state.Task.splice(action.payload.tasks.parentId,1);
-      let formData = state.editData && state.editData.concat(action.payload)
+     undoData=state.Task.splice(action.payload.index,1);
+
+      let reschedulingData = state.mainEditData && state.mainEditData.concat(action.payload)
       return {
         ...state,
-        mainEditData: formData,
-        editData: formData,
-        Task:state.Task
+        mainEditData: reschedulingData,
+        editData: reschedulingData,
+        // Task:state.Task
       };
     case 'COMPLETED_TASK':
 
-      let completed=state.Task.splice(action.payload.tasks.parentId,1);
-      let formData2 = state.mainEditData && state.mainEditData.concat(action.payload)
+      undoData=state.Task.splice(action.payload.index,1);
+      let completedData = state.mainEditData && state.mainEditData.concat(action.payload)
       return {
         ...state,
-        mainEditData: formData2,
-        editData: formData2,
-        Task:state.Task
+        mainEditData: completedData,
+        editData: completedData,
+        // Task:state.Task
       };
     case 'DELETE_TASK':
-    // console.log(action.payload);
-      var deletedElement = state.Task.splice(action.payload.tasks.parentId, 1);
+    console.log(action.payload.tasks);
+      undoData = state.Task.splice(action.payload.index, 1);
+      // console.log(deletedElement);
+      // console.log(state);
+      
+
       return {
         ...state
       };
@@ -121,8 +122,9 @@ export default (state = initialValues, action) => {
       }
     }
     case 'UNDO':
+    console.log(undoData);
       return {
-        ...state
+        ...state , Task: state.Task.concat(undoData),
       };
     }
     return state;

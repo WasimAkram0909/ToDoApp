@@ -2,27 +2,35 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../css/Taskitem.css';
 import HeadNav from './HeadNav';
+import moment from "moment";
+
+
+
+let taskDate ;
 class TaskComponent extends Component {
   render() {
     console.log(this.props.editData);
     return this.props.editData.map((data, i) => {
-      console.log(data);
+      console.log(data.date);
       // console.log(data.tasks.taskName);
       // console.log(data.tasks.status);
       // console.log(data.date);
       // console.log(this.props.path1);
-      var name = `/dashboard/${data.tasks.status}Tasks`;
+      let name = `/dashboard/${data.tasks.status}Tasks`;
       // var name = `/dashboard/CompletedTasks`;
-      console.log(name);
+      // console.log(name);
+        let d = data.date;
+        d = moment(d).format("MMM D");
+        taskDate = d; 
+        console.log(taskDate)
+      
+
 
       if (this.props.path1 === name) {
         console.log(name);
         return (
           <React.Fragment> 
-            {/* <HeadNav/> */}
-            {/* {this.props.date.map((date) => */}
-            <p>{data.date}</p>
-            {/* )} */}
+            <p>{taskDate}</p>
             <div className="ItemContainer">
               <div className="StatusNoneIcon">
                 <img

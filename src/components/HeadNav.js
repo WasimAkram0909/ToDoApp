@@ -32,13 +32,13 @@ class HeadNav extends Component{
     }
 
     onSelectingOfDate = date => {
-        // console.log("onchange function is calling;;;;");
-        // console.log(this.props.match.url);
-        let selectDate = moment(date).format("YYYY MM DD");
+        console.log("onchange function is calling;;;;");
+        console.log(date);
+        let selectDate = moment(date).format("YYYY-MM-DD");
         // console.log(selectDate);
-        selectDate = selectDate.slice(0,4)+"-"+ selectDate.slice(5,7)+"-"+ selectDate.slice(8,10);
-        // console.log(selectDate);
-       let  selectType= this.props.match.url;
+        // selectDate = selectDate.slice(0,4)+"-"+ selectDate.slice(5,7)+"-"+ selectDate.slice(8,10);
+        console.log(selectDate);
+    //    let  selectType= this.props.match.url;
         this.props.SortByAction({selectDate,specificSort:this.props.specificSort});
         this.setState({
           showCalendar:false, 

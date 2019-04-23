@@ -4,16 +4,23 @@ import { connect } from 'react-redux';
 import { UndoAction } from '../actions';
 
 class Toast extends React.Component {
+      state = {
+        isShow : true
+      }
+
   undo = data => {
     // console.log(data);
     this.props.UndoAction(data);
+    this.setState ({
+      isShow :false
+    })
   };
 
   render() {
     // console.log(this.props.showToast);
     return (
       <React.Fragment>
-        <div className="flex-container" id="flex-container">
+      {this.state.isShow ?  <div className="flex-container" id="flex-container">
           <div>
             <img src={this.props.showToast.toastImage} />
           </div>
@@ -21,7 +28,8 @@ class Toast extends React.Component {
           <div className="undo" onClick={data => this.undo(data)}>
             <a href="#">undo</a>
           </div>
-        </div>
+        </div> 
+        : null }
       </React.Fragment>
     );
   }

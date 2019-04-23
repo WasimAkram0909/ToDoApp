@@ -47,12 +47,8 @@ class Taskitem extends Component {
   };
 
   rescheduleTask = selectdate => {
-    let date = moment(selectdate).format("YYYY MM DD");
-    // date = date.slice(0,2)+"-"+ date.slice(3,5)+"-"+ date.slice(6,12);     
-    date = date.slice(0,4)+"-"+ date.slice(5,7)+"-"+ date.slice(8,10);
-
-    // console.log(date);
-    this.props.RescheduleTask({tasks:this.state.tasks, date});
+    let date = moment(selectdate).format("YYYY-MM-DD");
+    this.props.RescheduleTask({tasks:this.state.tasks,date});
     this.setState({
       showComponent: false,
       showBtns: false,
@@ -61,14 +57,9 @@ class Taskitem extends Component {
       toastImage: require('../assets/Toast Reschedule.png')
   });}
   
-  completeTask = tasks => {
-    // var date = this.MyFunction();
-    let date = moment(date).format("YYYY MM DD");
-    // date = date.slice(0,2)+"-"+ date.slice(3,5)+"-"+ date.slice(6,12);     
-    date = date.slice(0,4)+"-"+ date.slice(5,7)+"-"+ date.slice(8,10);
-   const status=1;    
-   this.props.TasksApi({tasks,status});
-    // this.props.CompletedTaskAction({ tasks, date });
+  completeTask = (tasks ,index) => {
+    let date = moment(date).format("YYYY-MM-DD");
+    this.props.CompletedTaskAction({ tasks,index, date });
     this.setState({
       showBtns: false,
       showToast: true,
@@ -76,8 +67,8 @@ class Taskitem extends Component {
       toastImage: require('../assets/Toast completed.png')
     });
   };
-  deleteTask = (tasks, index) => {
-    this.props.DeleteTask({ tasks, index });
+  deleteTask = ( index) => {
+    this.props.DeleteTask({  index });
     this.setState({
       showBtns: false,
       showToast: true,
@@ -85,7 +76,7 @@ class Taskitem extends Component {
       toastImage: require('../assets/Toast Delete.png')
     });
   };
-  _onButtonClick = tasks => {
+  _onButtonClick = ( tasks ,index)=> {
     this.setState({
       showComponent: true,
       tasks: tasks
@@ -101,22 +92,22 @@ class Taskitem extends Component {
     }
   };
 
-  componentWillMount() {
-    this.overDueTasksArr=[];
-    var currentDate = moment().format("MMM D");  
-    this.props.cards.map((tasks, index) => {
-      var d = tasks.createDate;
-      taskDate = moment(d).format("MMM D");
-      var currentDate = moment().format("MMM D");
+  // componentWillMount() {
+  //   this.overDueTasksArr=[];
+  //   var currentDate = moment().format("MMM D");  
+  //   this.props.cards.map((tasks, index) => {
+  //     var d = tasks.createDate;
+  //     taskDate = moment(d).format("MMM D");
+  //     var currentDate = moment().format("MMM D");
+
+  //       console.log("yes im working");
+  //       if(moment(taskDate).isBefore(currentDate)){
+  //         this.overDueTasksArr.push(tasks);
+  //       }
       
-        console.log("yes im working");
-        if(moment(taskDate).isBefore(currentDate)){
-          this.overDueTasksArr.push(tasks);
-        }
-      
-    })       
-    console.log(this.overDueTasksArr); 
-  }
+  //   })       
+  //   console.log(this.overDueTasksArr); 
+  // }
 
 
 
@@ -150,7 +141,7 @@ class Taskitem extends Component {
           return (
            <main>
                 <p>{taskDate}</p>
-            <div className="ItemContainer">
+            <div className="ItemContainer" key ={tasks.parentId} >
           
               <div className="StatusNoneIcon">
                 <img
@@ -165,15 +156,15 @@ class Taskitem extends Component {
                 <div className="editTaskButtons">
                   <img
                     src={Completed}
-                    onClick={() => this.completeTask(tasks)}
+                    onClick={() => this.completeTask(tasks,index)}
                   />
                   <img
                     src={Reschedule}
-                    onClick={() => this._onButtonClick(tasks)}
+                    onClick={() => this._onButtonClick(tasks,index)}
                   />
-                  <img
+                  <img 
                     src={Delete}
-                    onClick={() => this.deleteTask(tasks, index)}
+                    onClick={() => this.deleteTask(index)}
                   />
                 </div>
                 // </Link>
@@ -182,7 +173,7 @@ class Taskitem extends Component {
             </main>
           );
         })}
-        {this.state.showToast ? <Toast showToast={this.state} /> : null}
+        {this.state.showToast ? <Toast showToast={this.state} data = {this.props}/> : null}
 
         {this.state.showComponent ? (
           <Calendar
@@ -192,7 +183,7 @@ class Taskitem extends Component {
           />
         ) : null}
 
-          {
+          {/* {
             this.overDueTasksArr != null? console.log(this.overDueTasksArr,"im array"): console.log("array is null")
           }
 
@@ -235,20 +226,21 @@ class Taskitem extends Component {
                   // </Link>
                 ) : null}
                 {this.state.showToast ? <Toast showToast={this.state} /> : null}
-                {this.state.showComponent ? (
+             
+              </div>
+              </main>
+            );
+          }):
+          // overDueTasksArr = []
+          null
+        }
+   {this.state.showComponent ? (
           <Calendar
             className="calendar"
             onChange={this.rescheduleTask}
             value={date}
           />
-        ) : null}
-              </div>
-              </main>
-            );
-          }):
-          overDueTasksArr = []
-        }
-
+        ) : null} */}
       </React.Fragment>
     );
   }

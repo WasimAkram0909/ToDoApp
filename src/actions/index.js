@@ -5,7 +5,7 @@ import axios from "axios";
 let ToDoAxios= axios.create({
   baseURL:"http://115.248.119.138:8089/todo/",
   headers:{
-  "Authorization":"ya29.Glz0BvNsib31uCTey4P0HJGNk714pQtkd6WLOwnvoIPnTWdr9F8QEb5EQHtLAwylUnttmZXeQ45W8T7YrvaTSN2QWv1kIXfffiJQMe3X2I-V0Lyjn4JhJ5R8615F3Q"
+  "Authorization":"ya29.Glz0Bq_m7uB2x3zd4AFqVgiFBl5zZKts51tkSb3ypIydD_snq800OaBm8hDhUZOd6xxrDEXKGCPHnMO4ydpWWcl0eaDgzMDUnd-9lS-tLwWTpJKSlFNO23KLDaVK6w"
   }
   })
 // const url = "http://115.248.119.138:8089/todo";
@@ -60,7 +60,7 @@ export const signOut = () => {
     }
   }
 export const ToDoAllAction = (RES) => {
-  console.log(RES);
+  // console.log(RES);
   return {
     type: "TO_DO_ALL",
     payload: RES,
@@ -157,8 +157,8 @@ export const SortByAction = (data) => {
   .then(res=>{
       console.log(res);
       console.log(res.data.task);
-      dispatch(ToDoAll())
-      // dispatch(SaveTaskAction(data));
+      // dispatch(ToDoAll())
+      dispatch(SaveTaskAction(data));
   })
 }
   }
@@ -187,9 +187,11 @@ console.log(data);
   console.log(data);
   }
 
-export const UndoAction = () => {
+
+export const UndoAction = (data) => {
   return {
-    type: "UNDO"
+    type: "UNDO",
+    payload:data
   }
 }
 
