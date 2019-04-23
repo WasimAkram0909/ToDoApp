@@ -24,7 +24,7 @@ class CompletedTasksContainer extends Component{
                 }
                 {/* <HeadNav  title={SideMenuData[1].name} /> */}
                 {/* {console.log(SideMenuData[1].name)} */}
-                {console.log(this.props.match.url)}
+                {/* {console.log(this.props.match.url)} */}
                 <TaskComponent path1={this.props.match.url}/> 
             </div>
         )

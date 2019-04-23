@@ -44,11 +44,6 @@ export const signOut = () => {
     // var url = "http://115.248.119.138:8089/todo/tasks";
     return (dispatch) => {
       return ToDoAxios.get('tasks')
-        // {
-        //   headers: {
-        //     "Authorization": " ya29.GlzzBkLT_OQBg3wM_RqlqMR1K-jaIoE33JaP8Qr6QjHpqcBgdgl6fs-Df1DigBQvhJFyvh4l7S0q80luTQQx6KVWs0C8hJOliLBWu2fAzFvDJcXyOXYsf9-C-38rUw"
-        //   }
-        // })
         .then(res => {
           console.log(res);
           // console.log(res.data.main);
@@ -72,7 +67,7 @@ export const UpdateTask = () => {
   };
 };
 
-    export const profileAction =() =>{
+ export const profileAction =() =>{
       // var url=`http://115.248.119.138:8089/todo/profile`;
       return(dispatch)=>{
         return  ToDoAxios.get(`profile`)
@@ -157,15 +152,16 @@ export const SortByAction = (data) => {
   .then(res=>{
       console.log(res);
       console.log(res.data.task);
-      dispatch(SaveTaskAction(res.data.task));
+      dispatch(ToDoAll())
+      // dispatch(SaveTaskAction(data));
   })
 }
   }
  const SaveTaskAction = (dataid) => {
     console.log(dataid);
     return {
-      type: "SAVE_TASK",
-      payload: dataid,
+      type: "SAVE_TASK"
+      // payload: dataid,
 
   }}
 

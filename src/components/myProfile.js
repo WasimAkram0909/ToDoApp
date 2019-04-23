@@ -31,7 +31,7 @@ class MyProfile extends React.Component {
 }
 componentDidMount(){
   if(this.props.profileDetails[0]){
-    console.log(this.props['profileDetails'][0]['data']['firstName']);
+    // console.log(this.props['profileDetails'][0]['data']['image']);
   this.setState({
     FirstName:this.props['profileDetails'][0]['data']['firstName'],
     LastName:this.props['profileDetails'][0]['data']['lastName'],
@@ -77,13 +77,17 @@ componentDidMount(){
   }
 
   handleImage=(e)=>{
+    console.log("onchnge");
     // onImageChange = (event) => {
       if (e.target.files && e.target.files[0]) {
+        var image=URL.createObjectURL(e.target.files[0])
         this.setState({
-          selectedFile: URL.createObjectURL(e.target.files[0])
+          selectedFile:image
         });
+        console.log(image);
+        console.log(this.state.selectedFile);
       }
-      console.log(this.state.selectedFile);
+     
      }
 
      handleSave=()=>{
@@ -92,9 +96,11 @@ componentDidMount(){
       var firstname=this.state.FirstName;
       var lastname=this.state.LastName;
       var picture=this.state.selectedFile;
+      var email=this.props['profileDetails'][0]['data']['email']
+      console.log(picture, "picture");
      
       console.log({firstname,lastname});
-      this.props.EditProfile({firstname,lastname,picture})
+      this.props.EditProfile({firstname,lastname,picture,email})
       this.setState({
         showComponent:true,
       })
@@ -132,7 +138,10 @@ componentDidMount(){
         <div className="ProfileDetails">
           {this.state.showComponent ? 
              <div className="ProfileName"> 
-          <h2>{profileData.data.firstName} {profileData.data.lastName}</h2>
+          <h2>
+          {profileData.data.firstName} 
+          {/* {profileData.data.lastName} */}
+          </h2>
            {/* <Link to="/dashboard/Profile/EditProfile"> */}
            <p className="Edit" onClick={this.handleEdit}>Edit</p>
            {/* </Link> */}
@@ -162,7 +171,9 @@ componentDidMount(){
            <div className="Profilecontent">
            <div  className="ProfileEmail">
             <img className="Icons" src={ProfileEmail} alt="logo"/>
-            <p className="contactDetails">{profileData.data.email}</p>
+            <p className="contactDetails">
+            {/* {profileData.data.email} */}
+            </p>
             </div>
            
             <div  className="ProfilePhone">

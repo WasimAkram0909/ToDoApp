@@ -23,7 +23,7 @@ class GoogleAuth extends React.Component {
     }, 1000);
 
     ////PREVIOUS CODE CORRECT/////////
-      console.log("didcomponent");
+      // console.log("didcomponent");
     window.gapi.load('client:auth2', () => {
       // console.log('loaded GAPI');
       window.gapi.client
@@ -81,11 +81,11 @@ class GoogleAuth extends React.Component {
       this.props.signIn(this.auth.currentUser.get().getId());
       // this.props.signIn(this.auth.currentUser.get().getId());
       
-      console.log(this.props.signIn(this.auth.currentUser.get().getId()));
+      // console.log(this.props.signIn(this.auth.currentUser.get().getId()));
       this.props.profileAction(this.auth.currentUser.get().getBasicProfile());
         //we need to add getprofile api//
         // this.props.history.push('/welcome');
-     console.log(this.props.history);
+    //  console.log(this.props.history);
     } else {
       this.props.signOut();
       this.props.history.push("/");

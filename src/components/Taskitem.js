@@ -109,6 +109,7 @@ class Taskitem extends Component {
     return (
       <React.Fragment>      
         {this.props.cards.map((tasks, index) => {
+          console.log(tasks);
           // if(tasks.createDate!= undefined && overDueTasksArr.length === 0){
           //   var d = tasks.createDate;
           //   d = moment(d).format("MMM D");
@@ -233,6 +234,7 @@ class Taskitem extends Component {
   }
 }
 const myStateToProps = state => {
+  console.log(state);
   return {
     data: state.allTasks,
     cards: state.allTasks.Task,
