@@ -3,25 +3,25 @@ const sortData = [
     taskName: ' let him know that meeting JA Marsh for lunch',
     status: 'Completed',
     createDate: '2019-04-20',
-    parentId: 0
+    taskId: 0
   },
   {
     taskName: 'Remind John to call Alex on OS configuration ',
     status: 'Rescheduled',
     createDate: '2019-04-25',
-    parentId: 1
+    taskId: 1
   },
   {
     taskName: 'Remind John to call Alex on OS configuration and let him know that meeting JA Marsh for lunch',
     status: 'Completed',
     createDate: '2019-04-20',
-    parentId: 2
+    taskId: 2
   },
   {
     taskName: ' Alex on OS configuration and let him know that meeting JA Marsh for lunch Joh to call Alex on OS configuration and let him know that meeting JA Marsh for lunch',
     status: 'Rescheduled',
     createDate: '2019-04-25',
-    parentId: 3
+    taskId: 3
   },
 ]
 const initialValues = {
@@ -40,9 +40,13 @@ export default (state = initialValues, action) => {
          ...state, Task:state.Task.concat(action.payload)
       };
     case 'TO_DO_ALL':
+    console.log(action.payload);
+    // console.log(sortData);
+    sortData.concat(action.payload.tasks);
+    // console.log(apiData);
       return {
-        ...state,
-        Task: sortData
+      
+        ...state,Task: sortData.concat(action.payload.tasks)
       };
     case 'Display_Actions':
       return {
@@ -69,28 +73,32 @@ export default (state = initialValues, action) => {
         Task:state.Task
       };
     case 'DELETE_TASK':
-    console.log(action.payload);
+    // console.log(action.payload);
       var deletedElement = state.Task.splice(action.payload.tasks.parentId, 1);
       return {
         ...state
       };
       case "GET_PROFILE":
-        console.log(action.payload);
+        // console.log(action.payload);
         return{
           ...state, profile:state.profile.concat(action.payload)}
     case 'EDIT_PROFILE':
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
          ...state,profile:state.profile.action.payload
       
   }
     case 'SORT_BY':
-      // console.log(action.payload);
+      // console.log(state.Task);
+      // console.log(action.payload.selectDate);
       if (action.payload.specificSort) {
         return ({
           ...state,
           editData: state.mainEditData.filter(key => {
-            if (action.payload.selectDate === key.date) {
+            // console.log(key.createDate);            
+            let date=key.createDate.slice(0,4)+"-"+ key.createDate.slice(5,7)+"-"+ key.createDate.slice(8,10);
+            // console.log(date);
+            if (action.payload.selectDate === date) {
               // console.log(key);
               return key;
             }
@@ -99,9 +107,14 @@ export default (state = initialValues, action) => {
       }else{
       return {
         ...state,
-        Task: sortData.filter(key => {
-          if (action.payload.selectDate === key.createDate && !action.payload.specificSort) {
-            // console.log(key);
+        Task: state.Task.filter(key => {
+          // console.log(key.createDate);            
+          let date=key.createDate.slice(0,4)+"-"+ key.createDate.slice(5,7)+"-"+ key.createDate.slice(8,10);
+          console.log(date);
+          console.log(action.payload.selectDate);
+          
+          if (action.payload.selectDate === date && !action.payload.specificSort) {
+            console.log(key);
             return key;
           }
         })

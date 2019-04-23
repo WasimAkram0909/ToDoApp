@@ -7,10 +7,10 @@ class TaskComponent extends Component {
     console.log(this.props.editData);
     return this.props.editData.map((data, i) => {
       console.log(data);
-      console.log(data.tasks.taskName);
-      console.log(data.tasks.status);
-      console.log(data.date);
-      console.log(this.props.path1);
+      // console.log(data.tasks.taskName);
+      // console.log(data.tasks.status);
+      // console.log(data.date);
+      // console.log(this.props.path1);
       var name = `/dashboard/${data.tasks.status}Tasks`;
       // var name = `/dashboard/CompletedTasks`;
       console.log(name);

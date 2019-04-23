@@ -52,7 +52,7 @@ class Taskitem extends Component {
     // date = date.slice(0,2)+"-"+ date.slice(3,5)+"-"+ date.slice(6,12);     
     date = date.slice(0,4)+"-"+ date.slice(5,7)+"-"+ date.slice(8,10);
 
-    console.log(date);
+    // console.log(date);
     this.props.RescheduleTask({tasks:this.state.tasks, date});
     this.setState({
       showComponent: false,
@@ -96,7 +96,7 @@ class Taskitem extends Component {
     {
       this.setState({
         showBtns: true,
-        selectedId: tasks.parentId,
+        selectedId: tasks.taskId,
         showToast: false
       });
     }
@@ -105,22 +105,25 @@ class Taskitem extends Component {
 
   render() {
     const { date } = this.state.date;
-    console.log (this.props);
+    console.log (this.props.cards);
     return (
       <React.Fragment>      
         {this.props.cards.map((tasks, index) => {
-          console.log(tasks);
-          // if(tasks.createDate!= undefined && overDueTasksArr.length === 0){
-          //   var d = tasks.createDate;
-          //   d = moment(d).format("MMM D");
-          //   taskDate = d;            
+          // console.log(tasks.createDate);
+          var date=tasks.createDate.slice(0,4)+"-"+ tasks.createDate.slice(5,7)+"-"+ tasks.createDate.slice(8,10);
+          // console.log(date);
+          if(date!= undefined ){
+            var d = date;
+            d = moment(d).format("MMM D");
+            taskDate = d;  
+          }          
           //   var nowDate = moment().format("MMM D");
           //   if(moment(d).isBefore(nowDate)){
           //     overDueTasksArr.push(tasks);
           //     return console.log(overDueTasksArr);
           //   }
           // }
-          
+          // console.log(taskDate);
           
           // tasks.status="CompletedTasks";
           return (
@@ -137,7 +140,7 @@ class Taskitem extends Component {
               <p className="taskData">{tasks.taskName}</p>
 
               {this.state.showBtns &&
-              this.state.selectedId === tasks.parentId ? (
+              this.state.selectedId === tasks.taskId ? (
                 <div className="editTaskButtons">
                   <img
                     src={Completed}
@@ -234,7 +237,7 @@ class Taskitem extends Component {
   }
 }
 const myStateToProps = state => {
-  console.log(state);
+  // console.log(state);
   return {
     data: state.allTasks,
     cards: state.allTasks.Task,

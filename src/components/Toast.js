@@ -5,12 +5,12 @@ import { UndoAction } from '../actions';
 
 class Toast extends React.Component {
   undo = data => {
-    console.log(data);
+    // console.log(data);
     this.props.UndoAction(data);
   };
 
   render() {
-    console.log(this.props.showToast);
+    // console.log(this.props.showToast);
     return (
       <React.Fragment>
         <div className="flex-container" id="flex-container">

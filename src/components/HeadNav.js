@@ -28,12 +28,12 @@ class HeadNav extends Component{
 
     callMoment(){
         var thisIsMomentJs = moment().format("MM DD YYYY");
-        console.log("its working", thisIsMomentJs);
+        // console.log("its working", thisIsMomentJs);
     }
 
     onSelectingOfDate = date => {
-        console.log("onchange function is calling;;;;");
-        console.log(this.props.match.url);
+        // console.log("onchange function is calling;;;;");
+        // console.log(this.props.match.url);
         let selectDate = moment(date).format("YYYY MM DD");
         // console.log(selectDate);
         selectDate = selectDate.slice(0,4)+"-"+ selectDate.slice(5,7)+"-"+ selectDate.slice(8,10);
@@ -48,7 +48,7 @@ class HeadNav extends Component{
 
 
     sortBy = () =>{
-    console.log("soryBY method is calling..");
+    // console.log("soryBY method is calling..");
        this.setState({
            showCalendar:true,
        })

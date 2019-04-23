@@ -31,13 +31,14 @@ class MyProfile extends React.Component {
 }
 componentDidMount(){
   if(this.props.profileDetails[0]){
+    // console.log(this.state.Firstname);
     // console.log(this.props['profileDetails'][0]['data']['image']);
   this.setState({
     FirstName:this.props['profileDetails'][0]['data']['firstName'],
     LastName:this.props['profileDetails'][0]['data']['lastName'],
     selectedFile:this.props['profileDetails'][0]['data']['image'],
   })
-  console.log(this.state.Firstname)
+  
 }}
 // if(handleEdit){
 //   this.props.history.push('/dashboard/Profile/EditProfile');
@@ -49,6 +50,8 @@ componentDidMount(){
     // console.log("edit");
   
     this.props.history.push('/dashboard/Profile/EditProfile');
+// console.log(this.props['profileDetails'][0]['data']['image']);
+    
     this.setState({
       showComponent:false,
     })
@@ -77,15 +80,15 @@ componentDidMount(){
   }
 
   handleImage=(e)=>{
-    console.log("onchnge");
+    // console.log("onchnge");
     // onImageChange = (event) => {
       if (e.target.files && e.target.files[0]) {
         var image=URL.createObjectURL(e.target.files[0])
         this.setState({
           selectedFile:image
         });
-        console.log(image);
-        console.log(this.state.selectedFile);
+        // console.log(image);
+        // console.log(this.state.selectedFile);
       }
      
      }
@@ -97,9 +100,9 @@ componentDidMount(){
       var lastname=this.state.LastName;
       var picture=this.state.selectedFile;
       var email=this.props['profileDetails'][0]['data']['email']
-      console.log(picture, "picture");
+      // console.log(picture, "picture");
      
-      console.log({firstname,lastname});
+      // console.log({firstname,lastname});
       this.props.EditProfile({firstname,lastname,picture,email})
       this.setState({
         showComponent:true,
@@ -110,7 +113,7 @@ componentDidMount(){
       this.setState({
       FirstName: fname
       })
-      console.log(this.state.FirstName);
+      // console.log(this.state.FirstName);
     }
   
     handleLastName=(e)=>{
@@ -118,7 +121,7 @@ componentDidMount(){
       this.setState({
         LastName:lname
       })
-      console.log(this.state.LastName);
+      // console.log(this.state.LastName);
     }
   render() {
     return (
@@ -140,7 +143,7 @@ componentDidMount(){
              <div className="ProfileName"> 
           <h2>
           {profileData.data.firstName} 
-          {/* {profileData.data.lastName} */}
+          {profileData.data.lastName}
           </h2>
            {/* <Link to="/dashboard/Profile/EditProfile"> */}
            <p className="Edit" onClick={this.handleEdit}>Edit</p>
@@ -172,7 +175,7 @@ componentDidMount(){
            <div  className="ProfileEmail">
             <img className="Icons" src={ProfileEmail} alt="logo"/>
             <p className="contactDetails">
-            {/* {profileData.data.email} */}
+            {profileData.data.email}
             </p>
             </div>
            
@@ -190,7 +193,7 @@ componentDidMount(){
   }
 }
 const myStateToProps = (state) => {
-    console.log(state.allTasks.profile);
+    // console.log(state.allTasks.profile);
     // console.log(state.profileData,'tsityn');
     return {
         profileDetails: state.allTasks.profile,
