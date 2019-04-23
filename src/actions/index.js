@@ -2,13 +2,18 @@ import axios from "axios";
 // import ToDoAxios from "../api/ToDoaxios";
 // import {authToken} from '../components/googleauth'
 
-
 let ToDoAxios= axios.create({
   baseURL:"http://115.248.119.138:8089/todo/",
   headers:{
-  "Authorization":"ya29.Glz0BiLoVrwXNCge94nW2r6GHjVri7p8rt8YeaHLVVn6_kShd_0kJMed_Hm2jOlUqlkLP56zFqghrxuK4YiE6IPDWTZ3v3ZHqcYb8bmeKNa-15ZQExEzB7-xl4tfjg"
+  "Authorization":"ya29.Glz0BvNsib31uCTey4P0HJGNk714pQtkd6WLOwnvoIPnTWdr9F8QEb5EQHtLAwylUnttmZXeQ45W8T7YrvaTSN2QWv1kIXfffiJQMe3X2I-V0Lyjn4JhJ5R8615F3Q"
   }
   })
+// const url = "http://115.248.119.138:8089/todo";
+// const auth=headers{
+//   "Authorization":"ya29.GlzwBvtnqixqt0LZ5spZ8bcepYvOvmptREz5LbrWL5O3uJbiDcBo2biWA4SURh3NkIPxqVkc8_Yn-Njg_mh7emG_R3tDKXjAsnvxhgQZstOt9ss78YQ6s-zHE9PgRw"
+// }
+
+// y
 
 //Action Creators
 export const signIn = (userId) => {
@@ -148,7 +153,7 @@ export const SortByAction = (data) => {
   export const SaveTask = (data) => {
     console.log(data.taskName);
     return(dispatch)=>{
-      return ToDoAxios.post(`tasks?date=10-07-2019&name=${data.taskName}`)
+      return ToDoAxios.post(`tasks?date=${data.createDate}&name=${data.taskName}`)
   .then(res=>{
       console.log(res);
       console.log(res.data.task);

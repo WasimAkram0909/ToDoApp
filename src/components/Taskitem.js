@@ -20,7 +20,6 @@ import moment from "moment";
 
 
 
-// var overDueTasksArr = [];
 let taskDate="";
 class Taskitem extends Component {
   constructor(props) {
@@ -101,13 +100,35 @@ class Taskitem extends Component {
       });
     }
   };
-  
+
+  componentWillMount() {
+    this.overDueTasksArr=[];
+    var currentDate = moment().format("MMM D");  
+    this.props.cards.map((tasks, index) => {
+      var d = tasks.createDate;
+      taskDate = moment(d).format("MMM D");
+      var currentDate = moment().format("MMM D");
+      
+        console.log("yes im working");
+        if(moment(taskDate).isBefore(currentDate)){
+          this.overDueTasksArr.push(tasks);
+        }
+      
+    })       
+    console.log(this.overDueTasksArr); 
+  }
+
+
+
 
   render() {
     const { date } = this.state.date;
-    console.log (this.props.cards);
+    var overDueTasksArr = [];
+    
     return (
       <React.Fragment>      
+        
+        
         {this.props.cards.map((tasks, index) => {
           // console.log(tasks.createDate);
           var date=tasks.createDate.slice(0,4)+"-"+ tasks.createDate.slice(5,7)+"-"+ tasks.createDate.slice(8,10);
@@ -170,25 +191,21 @@ class Taskitem extends Component {
             value={date}
           />
         ) : null}
-{/* 
-        {
 
-        {/* {
-          overDueTasksArr != null ? 
-          overDueTasksArr.map((tasks, index) => {
-            if(tasks.createDate!= undefined){
-              var d = tasks.createDate;
-              d = moment(d).format("MMM D");
-              console.log(d,"task date");
-              var nowDate = moment().format("MMM D");
-              taskDate = d;
-            }
+          {
+            this.overDueTasksArr != null? console.log(this.overDueTasksArr,"im array"): console.log("array is null")
+          }
+
+        {
+          this.overDueTasksArr != null ? 
+          this.overDueTasksArr.map((tasks, index) => {
+           
             
             
             // tasks.status="CompletedTasks";
             return (
              <main>
-                  <p>{taskDate}</p>
+                  <p>{  moment(tasks.createDate).format("MMM D")}</p>
               <div className="ItemContainer">
             
                 <div className="StatusNoneIcon">
@@ -229,15 +246,14 @@ class Taskitem extends Component {
               </main>
             );
           }):
-          console.log("arraay is not null")
-        } */}
+          overDueTasksArr = []
+        }
 
       </React.Fragment>
     );
   }
 }
 const myStateToProps = state => {
-  // console.log(state);
   return {
     data: state.allTasks,
     cards: state.allTasks.Task,
