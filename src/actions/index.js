@@ -5,7 +5,7 @@ import axios from "axios";
 let ToDoAxios= axios.create({
   baseURL:"http://115.248.119.138:8089/todo/",
   headers:{
-  "Authorization":"ya29.Glz1BprMI4vDYCLKG5ACJaK1WlbWA0aJZYri6xeI9MUTpdPEzugz0t3Vixizny8-nbOMZW2P3QJwGhK6m05P54r4z1xDwkz0p21A1tbHK-zkYiR6XBW3hbnt3v3FgA"
+  "Authorization":"ya29.Glz1BlIojRGcwIFTv84Eut1KiSKmMfVgy6cwMGWUw-RqI2XAR2IBedl9tTDL0VTo-ibipK52Tem1Np6PF_SbskW7x1qdsQTGMEzyd-ZVl7FTCLFYopop87DhIwmbWA"
   }
   })
 //Action Creators
@@ -53,7 +53,7 @@ export const signOut = () => {
     }
   }
 export const ToDoAllAction = (RES) => {
-  // console.log(RES);
+  console.log(RES);
   return {
     type: "TO_DO_ALL",
     payload: RES,
@@ -91,7 +91,7 @@ export const UpdateTask = () => {
       return(dispatch)=>{
         return  ToDoAxios.get(`profile`)
         .then(res=>{
-          console.log(res);
+          // console.log(res.data);
           dispatch(GetProfile(res.data));
         })
       }
@@ -138,47 +138,31 @@ export const TasksApi = (data) => {
   }
 }
 export const SortByAction = (data) => {
+console.log(data)
+
   return {
     type: "SORT_BY",
     payload: data,
   };
 }
-
-  
-
 export const DeleteTask = (data) => {
-  // console.log(data);
-  // return (dispatch) => {
-  // return ToDoAxios.delete(`tasks/${data.tasks}`)
-  // .then(res => {
-  // console.log(res);
-  // dispatch(DeleteAction(res));
-  // })
-  // }
-  // }
-  // const DeleteAction = (data) => {
+  console.log(data);
+  return (dispatch) => {
+  return ToDoAxios.delete(`tasks/${data.taskId}`)
+  .then(res => {
+  console.log(res);
+  dispatch(DeleteAction(res));
+  })
+  }
+  }
+  const DeleteAction = (data) => {
   console.log(data);
   return {
   type: "DELETE_TASK",
   payload: data,
   };
   };
-  // export const DeleteTask = (data) => {
-  //   // console.log(data);
-  //   // var url = (`http://115.248.119.138:8089/todo/deleteTasks/?taskId=${0}`);
-  //   // return (dispath)=>{
-  //   //     return axios.delete(url)
-  //   //     .then (res =>{
-  //   //       console.log(res)
-  //   //       // dispatch();
-  //   //     })
-  //   // }
-  //   //  console.log(data);
-  //   return {
-  //     type: "DELETE_TASK",
-  //     payload:data,
-  //   };
-  // };
+  
 
 
   export const RescheduleTask =(data)=>{
@@ -193,8 +177,6 @@ console.log(data);
   export const CompletedTaskAction =(data)=>{
 console.log("triggering...");
 console.log(data);
-
-    console.log("this action is triggerd form sidemenu");
     return {
       type:"COMPLETED_TASK",
       payload:data,

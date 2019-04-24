@@ -2,19 +2,23 @@ import React, { Component } from 'react';
 import '../css/Taskitem.css';
 import { connect } from 'react-redux';
 import StatusNoneIcon from '../assets/StatusNone.svg';
-import { DisplayActions, TasksApi, CompletedTaskAction, RescheduleTask, DeleteTask, } from '../actions';
+import {
+  DisplayActions,
+  TasksApi,
+  CompletedTaskAction,
+  RescheduleTask,
+  DeleteTask
+} from '../actions';
 import Calendar from 'react-calendar';
 import Toast from './Toast';
 // import {Link} from "react-router-dom";
-import Completed from "../assets/Completed.svg";
-import overDue from "../assets/overdue.svg";
-import Reschedule from "../assets/Reschedule.svg";
-import Delete from "../assets/Delete.svg";
-import moment from "moment";
+import Completed from '../assets/Completed.svg';
+import overDue from '../assets/overdue.svg';
+import Reschedule from '../assets/Reschedule.svg';
+import Delete from '../assets/Delete.svg';
+import moment from 'moment';
 
-
-
-let taskDate = "";
+let taskDate = '';
 class Taskitem extends Component {
   constructor(props) {
     super(props);
@@ -28,33 +32,24 @@ class Taskitem extends Component {
     selectedId: null,
     toastMsg: null,
     toastImage: null,
-    overDueTasksArr :[],
-    
-  };
-  MyFunction = () => {
-    var tempDate = new Date();
-    var month = tempDate.toLocaleString('en-us', {
-      month: 'long'
-    }) +
-    ' ' +
-    tempDate.getDate();
-    return month;
+    overDueTasksArr: []
   };
 
   rescheduleTask = selectdate => {
-    let date = moment(selectdate).format("YYYY-MM-DD");
-    this.props.RescheduleTask({tasks:this.state.tasks,date});
+    let date = moment(selectdate).format('YYYY-MM-DD');
+    this.props.RescheduleTask({ tasks: this.state.tasks, date });
     this.setState({
       showComponent: false,
       showBtns: false,
       showToast: true,
       toastMsg: ' You have successfully rescheduled the task',
       toastImage: require('../assets/Toast Reschedule.png')
-  });}
-  
-  completeTask = (tasks ,index) => {
-    let date = moment(date).format("YYYY-MM-DD");
-    this.props.CompletedTaskAction({ tasks,index, date });
+    });
+  };
+
+  completeTask = (tasks, index) => {
+    let date = moment(date).format('YYYY-MM-DD');
+    this.props.CompletedTaskAction({ tasks, index, date });
     this.setState({
       showBtns: false,
       showToast: true,
@@ -62,11 +57,10 @@ class Taskitem extends Component {
       toastImage: require('../assets/Toast completed.png')
     });
   };
-  deleteTask = (tasks, index) => {
-    this.props.DeleteTask({
-      tasks,
-      index
-    });
+  deleteTask = (taskId, index) => {
+    // console.log(taskId);
+
+    this.props.DeleteTask({ taskId, index });
     this.setState({
       showBtns: false,
       showToast: true,
@@ -74,7 +68,7 @@ class Taskitem extends Component {
       toastImage: require('../assets/Toast Delete.png')
     });
   };
-  _onButtonClick = ( tasks ,index)=> {
+  _onButtonClick = (tasks, index) => {
     this.setState({
       showComponent: true,
       tasks: tasks
@@ -91,19 +85,19 @@ class Taskitem extends Component {
     }
   };
 
-  // componentDidMount() 
-  static getDerivedStateFromProps(props, state)
-  {
-    let tempArr = []
+  // componentDidMount()
+  static getDerivedStateFromProps(props, state) {
+    let tempArr = [];
     // this.overDueTasksArr = [];
-      props.cards.map((tasks, index) => {
+    props.cards.map((tasks, index) => {
+      console.log(tasks);
       var d = tasks.createDate;
-      taskDate = moment(d).format("MMM D");
-      var currentDate = moment().format("MMM D");
-      console.log("yes im working");
+      taskDate = moment(d).format('MMM D');
+      var currentDate = moment().format('MMM D');
+
+      // console.log('yes im working');
       if (moment(taskDate).isBefore(currentDate)) {
         tempArr.push(tasks);
-
       }
     })
     let copyState = {...state, overDueTasksArr: tempArr}
@@ -111,7 +105,7 @@ class Taskitem extends Component {
     //   ...this.state,
     //   overDueTasksArr: tempArr
     // })
-    console.log(copyState);
+    // console.log(copyState);
     return copyState;
   }
   render() {
@@ -245,11 +239,11 @@ this.state.overDueTasksArr.map((tasks, index) => {
   }
 }
 const myStateToProps = state => {
-  console.log(state.allTasks.Task,"testing...............");
+  console.log(state.allTasks.Task, 'testing...............');
   return {
     data: state.allTasks,
-    cards: state.allTasks.Task,
-  // sort:state.allTasks.sortedData,
+    cards: state.allTasks.Task
+    // sort:state.allTasks.sortedData,
   };
 };
 export default connect(
@@ -258,5 +252,6 @@ export default connect(
     TasksApi,
     CompletedTaskAction,
     RescheduleTask,
-    DeleteTask,
-  })(Taskitem);
+    DeleteTask
+  }
+)(Taskitem);

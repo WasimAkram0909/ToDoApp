@@ -8,26 +8,17 @@ import moment from "moment";
 
 let taskDate ;
 class TaskComponent extends Component {
+
+
+
   render() {
-    console.log(this.props.editData);
+    
     return this.props.editData.map((data, i) => {
-      console.log(data.date);
-      // console.log(data.tasks.taskName);
-      // console.log(data.tasks.status);
-      // console.log(data.date);
-      // console.log(this.props.path1);
       let name = `/dashboard/${data.tasks.status}Tasks`;
-      // var name = `/dashboard/CompletedTasks`;
-      // console.log(name);
         let d = data.date;
         d = moment(d).format("MMM D");
         taskDate = d; 
-        console.log(taskDate)
-      
-
-
       if (this.props.path1 === name) {
-        console.log(name);
         return (
           <React.Fragment> 
             <p>{taskDate}</p>
@@ -49,9 +40,28 @@ class TaskComponent extends Component {
 
 
 const myStateToProps = state => {
-  // console.log(state.allTasks.Task);
+  console.log(state.allTasks.sortDate);
+  console.log(state.allTasks.editData);
+
+  let filteredData = state.allTasks.editData;
+
+  if (state.allTasks.sortDate !==null){
+    filteredData=   filteredData.filter(key => {
+        // console.log(key);            
+        let date=key.tasks.createDate.slice(0,4)+"-"+ key.tasks.createDate.slice(5,7)+"-"+ key.tasks.createDate.slice(8,10);
+        // console.log(date);            
+        if (state.allTasks.sortDate === date) {
+          console.log(key);
+          return key;
+        }
+      })
+  }
   return {
-    editData: state.allTasks.editData
+    editData: filteredData,
   };
-};
+
+}
+
+
+
 export default connect(myStateToProps)(TaskComponent);

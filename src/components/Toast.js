@@ -16,11 +16,19 @@ class Toast extends React.Component {
     })
   };
 
+
+
   render() {
     // console.log(this.props.showToast);
+
+    setTimeout(()=>{this.setState({isShow: false})}, 5000);
+    if (!this.state.isShow){
+      return null
+    }
+    else {
     return (
       <React.Fragment>
-      {this.state.isShow ?  <div className="flex-container" id="flex-container">
+      <div className="flex-container" id="flex-container">
           <div>
             <img src={this.props.showToast.toastImage} />
           </div>
@@ -29,9 +37,10 @@ class Toast extends React.Component {
             <a href="#">undo</a>
           </div>
         </div> 
-        : null }
+       
       </React.Fragment>
     );
+  }
   }
 }
 
