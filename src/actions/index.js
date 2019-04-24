@@ -5,7 +5,7 @@ import axios from "axios";
 let ToDoAxios= axios.create({
   baseURL:"http://115.248.119.138:8089/todo/",
   headers:{
-  "Authorization":"ya29.Glz0Bq_m7uB2x3zd4AFqVgiFBl5zZKts51tkSb3ypIydD_snq800OaBm8hDhUZOd6xxrDEXKGCPHnMO4ydpWWcl0eaDgzMDUnd-9lS-tLwWTpJKSlFNO23KLDaVK6w"
+  "Authorization":"ya29.Glz1BkJp9ZIkjbnkOmohlFPZS_gmcoad8oJnwDMmr0R_L3Ra3E6hM8lySxb4kHQafnSx6wcuj_LLtBnrfQaBzz1-YcAbngF_M1LByJvTVM79XbZ-Y3a62QvIJhD5tA"
   }
   })
 // const url = "http://115.248.119.138:8089/todo";
@@ -46,9 +46,10 @@ export const signOut = () => {
 
   export const ToDoAll = () => {
     console.log("data");
+    console.log("im todo action");
     // var url = "http://115.248.119.138:8089/todo/tasks";
     return (dispatch) => {
-      return ToDoAxios.get('tasks')
+      return ToDoAxios.get('getTasksByStatus?status=Pending')
         .then(res => {
           console.log(res);
           // console.log(res.data.main);
@@ -151,7 +152,7 @@ export const SortByAction = (data) => {
   };
 
   export const SaveTask = (data) => {
-    console.log(data.taskName);
+    // console.log(data.taskName);
     return(dispatch)=>{
       return ToDoAxios.post(`tasks?date=${data.createDate}&name=${data.taskName}`)
   .then(res=>{

@@ -9,9 +9,22 @@ import {Route} from 'react-router-dom';
 import ToDoContainer from "./ToDoContainer";
 import CompletedTasksContainer from "./CompletedTasksContainer";
 import Dashboard from "./dashboard";
+import { connect } from 'react-redux';
+import { ToDoAll} from '../actions';
+
 // import TasksContainer from "./"
 
 class TasksContainer extends Component {
+
+    componentWillMount() {
+        this.getDataFromApi();
+      }
+      getDataFromApi(){
+          this.props.ToDoAll();
+          console.log("did mount method call");
+      }
+
+
     render() {
         return (
             <div className=" DontEditThisClass Tasklists1">
@@ -30,5 +43,12 @@ class TasksContainer extends Component {
         )
     }
 }
+const myStateToProps = (state) => {
+        console.log(state);
+        return {
+            isSignedIn: state.googleData.isSignedIn,
+            SideMenuData: state.SideMenuReducer,
+        };
+    };
+export default withRouter(connect(myStateToProps,{ToDoAll})(TasksContainer));
 
-export default withRouter(TasksContainer);

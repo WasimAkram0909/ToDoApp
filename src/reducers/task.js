@@ -1,18 +1,18 @@
 const sortData = [
   {
-    taskName: ' let him know that meeting JA Marsh for lunch',
+    taskName: ' let',
     status: 'Completed',
-    createDate: '2019-03-03',
+    createDate: '2019-04-19',
     taskId: 0
   },
   {
     taskName: 'Remind John to call Alex on OS configuration ',
     status: 'Rescheduled',
-    createDate: '2019-04-25',
+    createDate: '2019-04-18',
     taskId: 1
   },
   {
-    taskName: ' Marsh for lunch',
+    taskName: 'lunch',
     status: 'Completed',
     createDate: '2019-04-20',
     taskId: 2
@@ -27,7 +27,7 @@ const sortData = [
 let undoData = [];
 
 const initialValues = {
-  Task: sortData,
+  Task: [],
   editData: [],
   mainEditData: [],
   profile:[]
@@ -44,10 +44,13 @@ export default (state = initialValues, action) => {
     console.log(action.payload);
     // console.log(sortData);
     sortData.concat(action.payload.tasks);
+    var newData = [...action.payload.tasks]
+    console.log(newData);
     // console.log(apiData);
       return {
       
-        ...state,Task: sortData.concat(action.payload.tasks)
+        // ...state,Task: sortData.concat(action.payload.tasks)
+        ...state, Task: newData
       };
     case 'RESCHEDULE_TASK':
      undoData=state.Task.splice(action.payload.index,1);
