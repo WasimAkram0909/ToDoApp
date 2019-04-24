@@ -81,6 +81,7 @@ class Taskitem extends Component {
     });
   };
   DisplayActionsBtns = tasks => {
+    console.log(tasks);
     {
       this.setState({
         showBtns: true,
@@ -99,17 +100,13 @@ class Taskitem extends Component {
       var d = tasks.createDate;
       taskDate = moment(d).format("MMM D");
       var currentDate = moment().format("MMM D");
-
       console.log("yes im working");
       if (moment(taskDate).isBefore(currentDate)) {
         tempArr.push(tasks);
 
       }
-
     })
     let copyState = {...state, overDueTasksArr: tempArr}
-      
-    
     // this.setState({
     //   ...this.state,
     //   overDueTasksArr: tempArr
@@ -117,143 +114,134 @@ class Taskitem extends Component {
     console.log(copyState);
     return copyState;
   }
-
-
-
-
   render() {
+    // var result=[]
     const {date} = this.state.date;
-    console.log(this.props.cards,"consoling cards ");
+    console.log(this.props.cards);
+    var result = this.props.cards.reduce(function(r, a) {
+      //  console.log(a.taskName)
+      //  console.log([a.createDate] )
+      //  console.log(r);
+      r[a.createDate] = r[a.createDate] || [];
+      r[a.createDate].push(a);
+      return r;
+    }, Object.create(null));
+    // console.log(result);
+
+    var result1 = Object.entries(result);
     return (
-      <React.Fragment>      
-        
-        
-        {this.props.cards.map((tasks, index) => {
-        var d = tasks.createDate;
-
-
-        var currentDate = moment().format("MMM D");
-        taskDate = moment(d).format("MMM D");
-        // console.log(taskDate);
-        // console.log((moment(taskDate).isBefore(currentDate)));
-      // if (moment(taskDate).isBefore(currentDate)) {
-        
-
-        if (!(moment(taskDate).isBefore(currentDate))) {
-          var date = tasks.createDate.slice(0, 4) + "-" + tasks.createDate.slice(5, 7) + "-" + tasks.createDate.slice(8, 10);
-          if (date != undefined) {
-            var d = date;
-            d = moment(d).format("MMM D");
-            taskDate = d;
-          }
-          ;
-          return (
-            <main>
-                <p>{taskDate}</p>
-            <div className="ItemContainer" key ={tasks.parentId} >
-          
-              <div className="StatusNoneIcon">
-                <img
-            src={StatusNoneIcon}
-            onClick={() => this.DisplayActionsBtns(tasks)}
-            />
-              </div>
-              <p className="taskData">{tasks.taskName}</p>
-
-              {this.state.showBtns &&
-            this.state.selectedId === tasks.taskId ? (
-              <div className="editTaskButtons">
-                  <img
-                    src={Completed}
-                    onClick={() => this.completeTask(tasks,index)}
-                  />
-                  <img
-                    src={Reschedule}
-                    onClick={() => this._onButtonClick(tasks,index)}
-                  />
-                  <img 
-                    src={Delete}
-                    onClick={() => this.deleteTask(index)}
-                  />
-                </div>
-              ) : null}
-            </div>
-            </main>
-            );
-        }
-
-
-      })}
-        {this.state.showToast ? <Toast showToast={this.state} /> : null}
-
-        {this.state.showComponent ? (
-        <Calendar
-        className="calendar"
-        onChange={this.rescheduleTask}
-        value={date}
-        />
-        ) : null}
-{/* 
-          {
-            this.overDueTasksArr != null? console.log(this.overDueTasksArr,"im array"): console.log("array is null")
-          } */}
-
-        {
-      this.state.overDueTasksArr != null ?
-        this.state.overDueTasksArr.map((tasks, index) => {
-
-
-
-          // tasks.status="CompletedTasks";
-          return (
-            <main>
-                  <p>{  moment(tasks.createDate).format("MMM D")}</p>
-              <div className="ItemContainer">
-            
-                <div className="StatusNoneIcon">
-                  <img
-            src={overDue}
-            onClick={() => this.DisplayActionsBtns(tasks)}
-            />
-                </div>
-                <p className="taskData">{tasks.taskName}</p>
-  
-                {this.state.showBtns &&
-            this.state.selectedId === tasks.parentId ? (
-              <div className="editTaskButtons">
-                    <img
-              src={Completed}
-              onClick={() => this.completeTask(tasks)}
+      <React.Fragment>
+        {result1.map((TaskDetails, i) => {
+      var d = TaskDetails[0];
+      taskDate = moment(d).format("MMM D");
+      var currentDate = moment().format("MMM D")
+      if (!moment(taskDate).isBefore(currentDate)) {
+        return (
+          <main>
+              <p>{moment(TaskDetails[0]).format("MMM D")}</p>
+              {/* <div className="ItemContainer"> */}
+                {TaskDetails[1].map((Tasksdata, index) => {
+            //  console.log(Taskdetails)
+            return (              <div className="ItemContainer">
+                      <div className="StatusNoneIcon">
+                        <img
+              src={StatusNoneIcon}
+              onClick={() => this.DisplayActionsBtns(Tasksdata)}
               />
-                    <img
-              src={Reschedule}
-              onClick={() => this._onButtonClick(tasks)}
-              />
-                    <img
-              src={Delete}
-              onClick={() => this.deleteTask(tasks, index)}
-              />
-                  </div>
-              // </Link>
-              ) : null}
-                {this.state.showToast ? <Toast showToast={this.state} /> : null}
+                      </div>
+                      <p className="taskData">{Tasksdata.taskName}</p>
+                      {this.state.showBtns &&
+              this.state.selectedId === Tasksdata.taskId ? (
+                <div className="editTaskButtons">
+                            <img
+                src={Completed}
+                onClick={() => this.completeTask(Tasksdata)}
+                />
+                            <img
+                src={Reschedule}
+                onClick={() => this._onButtonClick(Tasksdata)}
+                />
+                            <img
+                src={Delete}
+                onClick={() => this.deleteTask(Tasksdata.taskId, index)}
+                />
+                          </div>
+                // </Link>
+                ) : null}
+           </div>)})}
              
-              </div>
-              </main>
-            );
-          }):
-          // overDueTasksArr = []
-          null
-        }
-   {this.state.showComponent ? (
-          <Calendar
-            className="calendar"
-            onChange={this.rescheduleTask}
-            value={date}
-          />
-        ) : null}
+             
+            </main>)}
+      })}
+      {this.state.showToast ? <Toast showToast={this.state} /> : null}
+
+{this.state.showComponent ? (
+<Calendar
+className="calendar"
+onChange={this.rescheduleTask}
+value={date}
+/>
+) : null}
+{/* 
+  {
+    this.overDueTasksArr != null? console.log(this.overDueTasksArr,"im array"): console.log("array is null")
+  } */}
+
+{
+this.state.overDueTasksArr != null ?
+this.state.overDueTasksArr.map((tasks, index) => {
+
+
+
+  // tasks.status="CompletedTasks";
+  return (
+    <main>
+          <p>{  moment(tasks.createDate).format("MMM D")}</p>
+      <div className="ItemContainer">
+    
+        <div className="StatusNoneIcon">
+          <img
+    src={overDue}
+    onClick={() => this.DisplayActionsBtns(tasks)}
+    />
+        </div>
+        <p className="taskData">{tasks.taskName}</p>
+
+        {this.state.showBtns &&
+    this.state.selectedId === tasks.parentId ? (
+      <div className="editTaskButtons">
+            <img
+      src={Completed}
+      onClick={() => this.completeTask(tasks)}
+      />
+            <img
+      src={Reschedule}
+      onClick={() => this._onButtonClick(tasks)}
+      />
+            <img
+      src={Delete}
+      onClick={() => this.deleteTask(tasks, index)}
+      />
+          </div>
+      // </Link>
+      ) : null}
+        {this.state.showToast ? <Toast showToast={this.state} /> : null}
+     
+      </div>
+      </main>
+    );
+  }):
+  null
+}
+{this.state.showComponent ? (
+  <Calendar
+    className="calendar"
+    onChange={this.rescheduleTask}
+    value={date}
+  />
+) : null}
       </React.Fragment>
-      );
+    )
   }
 }
 const myStateToProps = state => {
@@ -264,7 +252,6 @@ const myStateToProps = state => {
   // sort:state.allTasks.sortedData,
   };
 };
-
 export default connect(
   myStateToProps,
   {

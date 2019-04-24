@@ -2,13 +2,13 @@ const sortData = [
   {
     taskName: ' let',
     status: 'Completed',
-    createDate: '2019-04-19',
+    createDate: '2019-04-20',
     taskId: 0
   },
   {
     taskName: 'Remind John to call Alex on OS configuration ',
     status: 'Rescheduled',
-    createDate: '2019-04-18',
+    createDate: '2019-04-25',
     taskId: 1
   },
   {
@@ -23,11 +23,17 @@ const sortData = [
     createDate: '2019-04-25',
     taskId: 3
   },
+  // {
+  //   taskName: ' Alex on OS configuration and let him know that meeting JA Marsh for lunch Joh to call Alex on OS configuration and let him know that meeting JA Marsh for lunch',
+  //   status: 'Rescheduled',
+  //   createDate: '2019-04-25',
+  //   taskId: 4
+  // },
 ]
 let undoData = [];
 
 const initialValues = {
-  Task: [],
+  Task: sortData,
   editData: [],
   mainEditData: [],
   profile:[]
@@ -48,9 +54,14 @@ export default (state = initialValues, action) => {
     console.log(newData);
     // console.log(apiData);
       return {
-      
-        // ...state,Task: sortData.concat(action.payload.tasks)
-        ...state, Task: newData
+        ...state,
+        Task: sortData.concat(action.payload)
+        // Task:state.Task.concat(action.payload)
+      };
+    case 'Display_Actions':
+      return {
+        ...state,
+        Status: true
       };
     case 'RESCHEDULE_TASK':
      undoData=state.Task.splice(action.payload.index,1);
@@ -83,13 +94,30 @@ export default (state = initialValues, action) => {
         ...state
       };
       case "GET_PROFILE":
-        // console.log(action.payload);
+        console.log(action.payload.data);
+        var newdata=[{...action.payload.data}];
+        console.log({...state});
+        console.log(newdata)
+      //   for (var key in  newdata) {
+      //     if (newdata.hasOwnProperty(key)) {
+      //         if (newdata[key] == null) {
+      //           return  newdata[key] = newdata[key]
+      //         }
+      //     }
+      //  }
+        // if(){
+        // }
         return{
-          ...state, profile:state.profile.concat(action.payload)}
+          ...state,
+          //  profile:state.profile.concat(action.payload.data),
+           profile:newdata
+          }
+          // console.log(state.profile);
     case 'EDIT_PROFILE':
       // console.log(action.payload);
       return {
-         ...state,profile:state.profile.action.payload
+         ...state
+        //  profile:state.profile.action.payload
       
   }
     case 'SORT_BY':

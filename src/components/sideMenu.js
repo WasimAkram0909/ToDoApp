@@ -56,7 +56,7 @@ class SideMenu extends Component {
                                 <Link to={`/dashboard/RescheduledTasks`} className="SideMenuLink">Rescheduled Tasks</Link>
                             </div><div className="SideMenuLinks ">
                                 <img className="linkLogo" src={profile} />
-                                <Link to={`/dashboard/Profile`}className="SideMenuLink">Profile</Link>
+                                <Link to={`/dashboard/Profile`} onClick={this.props.profileAction}className="SideMenuLink">Profile</Link>
                             </div>
 
                         </div>

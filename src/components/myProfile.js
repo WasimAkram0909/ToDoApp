@@ -6,7 +6,7 @@ import ProfileEmail from '../assets/Profile Email.svg';
 import ProfilePhone from '../assets/Profile Phone.svg';
 import { connect } from 'react-redux';
 import {withRouter,Link} from "react-router-dom";
-import {EditProfile} from '../actions';
+import {EditProfile,profileAction} from '../actions';
 
 
 class MyProfile extends React.Component {
@@ -16,30 +16,56 @@ class MyProfile extends React.Component {
       showComponent:true,
       FirstName:'',
       LastName:'',
-       selectedFile: null 
+       selectedFile: null ,
+       editFlag:false
     }
-  //   if(this.props.profileDetails[0]){
-  // this.state={
-    
-  //   // showComponent:true,
-    
-  //   firstName:this.props['profileDetails'][0]['fullName'],
-  //   LastName:this.props['profileDetails'][0]['familyName'],
-  //   } 
-  // }
   this.myRef=React.createRef()
 }
-componentDidMount(){
-  if(this.props.profileDetails[0]){
-    // console.log(this.state.Firstname);
-    // console.log(this.props['profileDetails'][0]['data']['image']);
-  this.setState({
-    FirstName:this.props['profileDetails'][0]['data']['firstName'],
-    LastName:this.props['profileDetails'][0]['data']['lastName'],
-    selectedFile:this.props['profileDetails'][0]['data']['image'],
-  })
+static getDerivedStateFromProps(props,state) {
+  console.log("hi");
+  if(props.profileDetails[0] && state.editFlag === false){
+  console.log(props['profileDetails'][0]['firstName']);
+  // this.setState({
+    var profiledata={...state,
+    FirstName:props['profileDetails'][0]['firstName'],
+  LastName:props['profileDetails'][0]['lastName'],
+  selectedFile:props['profileDetails'][0]['image']};
+  return profiledata;
+  // console.log(this.state.Firstname)
+  }
+  else if(state.editFlag === false){
+      console.log("alert");
+      // props.profileAction();
+      return state;
+    }
+    else{
+      return state;
+      
+    }
+  // console.log(state.Firstname);
   
-}}
+  return null;
+  }
+
+
+// componentDidMount(){
+//   console.log("hi");
+//   console.log(this.props.profileDetails)
+//   // console.log(this.props['profileDetails'][0]['firstName']);
+  
+//   if(this.props.profileDetails[0]){
+//     console.log(this.props['profileDetails'][0]['firstName']);
+//   this.setState({
+//     FirstName:this.props['profileDetails'][0]['firstName'],
+//     LastName:this.props['profileDetails'][0]['lastName'],
+//     selectedFile:this.props['profileDetails'][0]['image'],
+//   })
+//   console.log(this.state.Firstname)
+// }
+// else{
+//   console.log("alert");
+//   this.props.profileAction();
+// }}
 // if(handleEdit){
 //   this.props.history.push('/dashboard/Profile/EditProfile');
 // }
@@ -49,33 +75,20 @@ componentDidMount(){
   handleEdit=()=>{
     // console.log("edit");
   
-    this.props.history.push('/dashboard/Profile/EditProfile');
-// console.log(this.props['profileDetails'][0]['data']['image']);
-    
+    // this.props.history.push('/dashboard/Profile/EditProfile');
     this.setState({
       showComponent:false,
+      editFlag:true
     })
     
-    // if( this.state.showComponent){
-    //   this.props.history.push('/dashboard/Profile/EditProfile');
-    //   this.setState({
-    //     showComponent:false,
-    //   })
-    // }
-    // else if(this.state.showComponent==false){
-    //   this.setState({
-    //     showComponent:true,
-    //   })
-    //   this.props.history.push('/dashboard/Profile');
-      
-    //   // alert('hi');
-      
-    // }
+
   }
   handleCancel=()=>{
-      this.props.history.push('/dashboard/Profile');
+      // this.props.history.push('/dashboard/Profile');
     this.setState({
       showComponent:true,
+        FirstName: this.props.profileDetails[0].firstName,
+        LastName:this.props.profileDetails[0].lastName
     })
   }
 
@@ -94,13 +107,13 @@ componentDidMount(){
      }
 
      handleSave=()=>{
-      this.props.history.push('/dashboard/Profile');
+      // this.props.history.push('/dashboard/Profile');
        
       var firstname=this.state.FirstName;
       var lastname=this.state.LastName;
       var picture=this.state.selectedFile;
-      var email=this.props['profileDetails'][0]['data']['email']
-      // console.log(picture, "picture");
+      var email=this.props['profileDetails'][0]['email']
+      console.log(picture, "picture");
      
       // console.log({firstname,lastname});
       this.props.EditProfile({firstname,lastname,picture,email})
@@ -142,8 +155,8 @@ componentDidMount(){
           {this.state.showComponent ? 
              <div className="ProfileName"> 
           <h2>
-          {profileData.data.firstName} 
-          {profileData.data.lastName}
+         {/* {profileData.firstName} {profileData.lastName} */}
+          {this.state.FirstName} {this.state.LastName}
           </h2>
            {/* <Link to="/dashboard/Profile/EditProfile"> */}
            <p className="Edit" onClick={this.handleEdit}>Edit</p>
@@ -175,7 +188,7 @@ componentDidMount(){
            <div  className="ProfileEmail">
             <img className="Icons" src={ProfileEmail} alt="logo"/>
             <p className="contactDetails">
-            {profileData.data.email}
+            {profileData.email}
             </p>
             </div>
            
@@ -193,10 +206,11 @@ componentDidMount(){
   }
 }
 const myStateToProps = (state) => {
-    // console.log(state.allTasks.profile);
+  console.log(state);
+    console.log(state.allTasks.profile);
     // console.log(state.profileData,'tsityn');
     return {
         profileDetails: state.allTasks.profile,
     };
 };
-export default withRouter(connect(myStateToProps,{EditProfile})(MyProfile));
+export default withRouter(connect(myStateToProps,{EditProfile,profileAction})(MyProfile));
