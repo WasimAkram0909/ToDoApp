@@ -10,7 +10,7 @@ class Welcome extends Component {
   click= () => {
     // console.log("dashboard");
     // console.log(this.props.history);
-    this.props.history.push("/dashboard");
+    // this.props.history.push("/dashboard");
   }
   render() {
     console.log("dashboard");

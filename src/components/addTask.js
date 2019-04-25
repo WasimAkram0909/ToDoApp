@@ -31,9 +31,10 @@ class AddTask extends React.Component {
 
 
   onChange = date => {
+    // console.log(date);
     let currnetDate = moment(date).format("DD MM YYYY");
     currnetDate = currnetDate.slice(0,2)+"-"+ currnetDate.slice(3,5)+"-"+ currnetDate.slice(6,12);
-    console.log(currnetDate);
+    // console.log(currnetDate);
     this.setState({
       newDate: currnetDate
     })
@@ -43,8 +44,8 @@ class AddTask extends React.Component {
     this.props.history.push("/dashboard");
     var taskcontent = this.myRef.current.value;
     var dateContent = this.state.newDate;
-    console.log(dateContent);
-    console.log(taskcontent);
+    // console.log(dateContent);
+    // console.log(taskcontent);
     var TaskObject = {
       taskName:taskcontent,status:'',createDate:dateContent
       

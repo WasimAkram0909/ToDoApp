@@ -20,6 +20,7 @@ class HeadNav extends Component{
           showComponent: false,
           showCalendar:false,
           date: new Date(),
+        //   sortDate:null
         }
     }
 
@@ -32,17 +33,20 @@ class HeadNav extends Component{
     }
 
     onSelectingOfDate = date => {
-        console.log("onchange function is calling;;;;");
-        console.log(date);
+        // console.log("onchange function is calling;;;;");
+        // console.log(date);
         let selectDate = moment(date).format("YYYY-MM-DD");
         // console.log(selectDate);
         // selectDate = selectDate.slice(0,4)+"-"+ selectDate.slice(5,7)+"-"+ selectDate.slice(8,10);
-        console.log(selectDate);
+        // console.log(selectDate);
     //    let  selectType= this.props.match.url;
         this.props.SortByAction({selectDate,specificSort:this.props.specificSort});
+    //    console.log( this.props.sortDate)
         this.setState({
           showCalendar:false, 
-          showSort:true,
+
+        //   showSort:true,
+          
         });     
       }
 
@@ -106,9 +110,10 @@ class HeadNav extends Component{
 
 
 const myStateToProps = (state) => {
-    // console.log(state,'tsityn');
+    // console.log(state.allTasks.sortDate);
     return {
         SideMenuData: state.SideMenuReducer,
+        sortDate : state.allTasks.sortDate,
     };
 };
 

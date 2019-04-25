@@ -12,7 +12,7 @@ import Logout from '../assets/Logout.svg';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { ToDoAll,RescheduleTask,CompletedTaskAction,profileAction } from '../actions';
+import { ToDoAll,RescheduleTaskAction,CompletedTaskAction,profileAction } from '../actions';
 import Dashboard from './dashboard';
 import GoogleAuth from "./googleauth";
 import {SideMenuData} from "../reducers/SideMenu";
@@ -21,7 +21,7 @@ import {SideMenuData} from "../reducers/SideMenu";
 class SideMenu extends Component {
 
     render() {
-        var actionsArr = [ToDoAll,CompletedTaskAction,RescheduleTask,profileAction]
+        var actionsArr = [ToDoAll,CompletedTaskAction,RescheduleTaskAction,profileAction]
         return (
             <React.Fragment>
                 {/* <Router> */}

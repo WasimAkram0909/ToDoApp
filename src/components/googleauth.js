@@ -88,15 +88,15 @@ class GoogleAuth extends React.Component {
     //  console.log(this.props.history);
     } else {
       this.props.signOut();
-      this.props.history.push("/");
+      
     }
   };
   
   onSignInClick = () => {
     this.auth.signIn()
     .then(res=>{
-      // console.log("this is welcome page ");
-      this.props.history.push('/welcome')
+      console.log(res);
+      this.props.history.push('/dashboard')
     });
      
     // );
@@ -110,7 +110,9 @@ class GoogleAuth extends React.Component {
 
   onSignOutClick = () => {
     // console.log(this.props);
-    this.auth.signOut();
+    this.auth.signOut().then(res=>{
+      this.props.history.push("/");
+    });
     // this.props.signOut();
     
   };

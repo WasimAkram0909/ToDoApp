@@ -5,7 +5,7 @@ import axios from "axios";
 let ToDoAxios= axios.create({
   baseURL:"http://115.248.119.138:8089/todo/",
   headers:{
-  "Authorization":"ya29.Glz2Bsgug-b1wNj1ysrr5UqHHc3tqukR2iH0SZON70Ou3DuIyjO_3P5bo6KA2V-QYvAliPxO6hKUN5p3O-fZrgkj2M8yHRlsOwLtzIAw5x-F7Wvxp_uS7xEfU0lgWw"
+  "Authorization":"ya29.Glz2BvjCWlrX_XfseeFDHTXPTfvXFFa6XFQ4eOSme-zGHE4HGBOAXGhO_nlJawKEwqROqNmRhKpQpnmjbAb31nRwkZNJ8tWdjYMtZkGEuS3Eofe0-dkJNEdsPmLj-w"
   }
   })
 //Action Creators
@@ -38,22 +38,26 @@ export const signOut = () => {
 // }
 
   export const ToDoAll = () => {
-    console.log("im todo action");
+    // console.log("data");
     // var url = "http://115.248.119.138:8089/todo/tasks";
     return (dispatch) => {
-      return ToDoAxios.get('getTasksByStatus?status=Pending')
+      return ToDoAxios.get(`tasks`)
         .then(res => {
-          console.log(res);
-          // console.log(res.data.main);
-          dispatch(ToDoAllAction(res.data.tasks));
+          // console.log(res.data.tasks);
+          res.data.tasks.map((data)=>{
+            // console.log(data);
+          if(data.status==="PENDING")
+          { console.log(data);
+            // console.log("jf");
+            dispatch(ToDoAllAction(res.data.tasks));
+          } 
         }
-        ).catch(() => {
-          console.log("error");
-        })
-    }
+        )
+    })
   }
+}
 export const ToDoAllAction = (RES) => {
-  console.log(RES);
+  // console.log(RES);
   return {
     type: "TO_DO_ALL",
     payload: RES,
@@ -61,38 +65,41 @@ export const ToDoAllAction = (RES) => {
 };
 
 export const SaveTask = (data) => {
-  console.log(data);
+  // console.log(data);
   return(dispatch)=>{
     return ToDoAxios.post(`tasks?date=${data.createDate}&name=${data.taskName}`)
 .then(res=>{
-    console.log(res);
-    console.log(res.data);
-    // dispatch(ToDoAll())
-    dispatch(SaveTaskAction(res));
+    dispatch(ToDoAll());
 })
 }
 }
 const SaveTaskAction = (dataid) => {
-  console.log(dataid);
+  // console.log(dataid);
   return {
     type: "SAVE_TASK",
     payload: dataid,
 
 }}
+export const UpdateTask = (data) => {
+  // console.log(data);
+  return(dispatch)=>{
+    return  ToDoAxios.post(`tasks/${data.tasks.taskId}?date=${data.tasks.createDate}&name=${data.tasks.taskName}
+    &status=${data.tasks.status}`)
+    .then(res=>{
+      // console.log(res);
+    
 
-export const UpdateTask = () => {
-  return {
-    type: "UPDATE_TASK"
-  };
+    })
+  }
 };
 
  export const profileAction =() =>{
-      // var url=`http://115.248.119.138:8089/todo/profile`;
       return(dispatch)=>{
         return  ToDoAxios.get(`profile`)
         .then(res=>{
           // console.log(res.data);
           dispatch(GetProfile(res.data));
+         
         })
       }
       
@@ -123,66 +130,58 @@ export const UpdateTask = () => {
     }
  
 export const TasksApi = (data) => {
-  // console.log(data);
-  var status = data.tasks.status;
-  // console.log(data.status);
   return (dispatch) => {
-    return ToDoAxios.get(`getTasksByStatus?status=Completed`)
+    return ToDoAxios.get(`getTasksByStatus?status=${data.tasks.status}`)
       .then(res => {
-        // console.log(res);
-        // console.log(res.data.main);
-        // export const CompletedTaskAction =(data)=>{
-        dispatch(CompletedTaskAction(res.data));
+          dispatch(ToDoAll());
       }
     )
   }
 }
+
+export const RescheduleTaskAction =(data)=>{
+  console.log("this action is triggerd form sidemenu");
+  console.log(data);
+      return {
+        type:"RESCHEDULE_TASK",
+        payload:data,
+      }
+    }
+    export const CompletedTaskAction =(data)=>{
+  console.log(data);
+      console.log("this action is triggerd form sidemenu");
+      return {
+        type:"COMPLETED_TASK",
+        payload:data,
+      }
+    }
 export const SortByAction = (data) => {
-console.log(data)
+// console.log(data)
 
   return {
     type: "SORT_BY",
     payload: data,
   };
-}
+} 
 export const DeleteTask = (data) => {
-  console.log(data);
+  console.log(data.taskId);
+  
   return (dispatch) => {
   return ToDoAxios.delete(`tasks/${data.taskId}`)
   .then(res => {
   console.log(res);
-  dispatch(DeleteAction(res));
+  // dispatch(DeleteAction(data));
   })
   }
   }
-  const DeleteAction = (data) => {
-  console.log(data);
-  return {
-  type: "DELETE_TASK",
-  payload: data,
-  };
-  };
-  
+  // const DeleteAction = (data) => {
+  // console.log(data);
+  // return {
+  // type: "DELETE_TASK",
+  // payload: data,
+  // };
+  // };
 
-
-  export const RescheduleTask =(data)=>{
-console.log("triggering...revvkmlk");
-    
-console.log(data);
-    return {
-      type:"RESCHEDULE_TASK",
-      payload:data,
-    }
-  }
-  export const CompletedTaskAction =(data)=>{
-console.log("triggering...");
-console.log(data);
-    return {
-      type:"COMPLETED_TASK",
-      payload:data,
-    }
-  console.log(data);
-  }
 
 
 export const UndoAction = (data) => {

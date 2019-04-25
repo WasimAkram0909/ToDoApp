@@ -21,7 +21,7 @@ class TasksContainer extends Component {
       }
       getDataFromApi(){
           this.props.ToDoAll();
-          console.log("did mount method call");
+        //   console.log("did mount method call");
       }
 
 
@@ -31,7 +31,6 @@ class TasksContainer extends Component {
 
                 <Route exact path={this.props.match.url + '/'} component={ToDoContainer}/>
                  <Route exact path={this.props.match.url + '/Todo'} component={ToDoContainer}/>
-
                  <Route exact path={this.props.match.url + '/AddTask'} component={AddTask}/> 
                 <Route exact path={this.props.match.url + '/CompletedTasks'} component={CompletedTasksContainer} />
                 <Route exact path={this.props.match.url + '/RescheduledTasks'} component={CompletedTasksContainer} />
@@ -44,7 +43,7 @@ class TasksContainer extends Component {
     }
 }
 const myStateToProps = (state) => {
-        console.log(state);
+        // console.log(state);
         return {
             isSignedIn: state.googleData.isSignedIn,
             SideMenuData: state.SideMenuReducer,
