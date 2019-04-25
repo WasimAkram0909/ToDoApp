@@ -92,23 +92,16 @@ class Taskitem extends Component {
   static getDerivedStateFromProps(props, state) {
     let tempArr = [];
     // this.overDueTasksArr = [];
-
-
     props.cards.map((tasks, index) => {
       if(tasks != undefined){
-
         // console.log(tasks);
         var d = tasks.createDate;
-        taskDate = moment(d).format('MMM D');
-        var currentDate = moment().format('MMM D');
-  
-        // console.log('yes im working');
+        taskDate = moment(d).format('MMM D YYYY');
+        var currentDate = moment().format('MMM D YYYY');
         if (moment(taskDate).isBefore(currentDate)) {
           tempArr.push(tasks);
         }
-
       }
-      
     })
     let copyState = {...state, overDueTasksArr: tempArr}
     return copyState;
@@ -117,34 +110,65 @@ class Taskitem extends Component {
     const {date} = this.state.date;
     var result = this.props.cards.reduce(function(r, a) {
       r[a.createDate] = r[a.createDate] || [];
+      // console.log(a.createDate)
       r[a.createDate].push(a);
       return r;
       
     }, Object.create(null));
 
-    var result1 = Object.entries(result);
-
+    var groupedTaskItems = Object.entries(result);
+    var abc= groupedTaskItems.sort(function(a,b){
+      // console.log(a);
+       var c = new Date(a[0]);
+      //  console.log(c);
+       var d = new Date(b);
+       console.log(d)
+       return c-d;
+       });
+       console.log(abc);
     var resultOverDue = this.state.overDueTasksArr.reduce(function(r, a) {
       r[a.createDate] = r[a.createDate] || [];
       r[a.createDate].push(a);
       return r;
     }, Object.create(null)
     )
-    var result2 = Object.entries(resultOverDue);
-
+    var groupedOverDueItems = Object.entries(resultOverDue);
+  
+    // console.log(_.sortBy(result1, 'date'));
+//     result1.sort ( function (date1, date2){
+//       return date1 - date2
+//  });
+//     var sortedDate=result1.sort(numberAs)
+//     console.log(sortedDate);
+// var date_sort_asc = function (date1, date2) {
+//   if (date1 > date2) return 1;
+//   if (date1 < date2) return -1;
+//   return 0;
+// };dates.sort(date_sort_asc);
 
 
     return (
       <React.Fragment>
-        {result1.map((TaskDetails, i) => {
-        var d = TaskDetails[0];
-        taskDate = moment(d).format("MMM D");
-        var currentDate = moment().format("MMM D")
-        if (!moment(taskDate).isBefore(currentDate)) {
-          return (
-            <main>
+        {abc.map((TaskDetails, i) => {
+          // console.log(TaskDetails);
+          
+      var d = TaskDetails[0];
+      var taskDate = moment(d).format("MMM D");
+      var currentDate = moment().format("MMM D")
+      // function numberAs(a,b) {
+      //   return a-b;
+      // }
+      // taskDate.sort(numberAs);
+      // var SortedData=function(taskDate,currentDate){
+      //   return (taskDate-currentDate)
+      // }
+      // console.log("ascceding order"+ taskDate);
+      if (!moment(taskDate).isBefore(currentDate)) {
+        return (
+          <main>
               <p>{moment(TaskDetails[0]).format("MMM D")}</p>
                 {TaskDetails[1].map((Tasksdata, index) => {
+            //  console.log(Taskdetails)
             return (              
             <div className="ItemContainer">
                       <div className="StatusNoneIcon">
@@ -186,7 +210,8 @@ class Taskitem extends Component {
         value={date}
         />
         ) : null}
-{result2.map((TaskDetails, i) => {
+
+{ groupedOverDueItems.map((TaskDetails, i) => {
   var d = TaskDetails[0];
   taskDate = moment(d).format("MMM D");
   var currentDate = moment().format("MMM D")

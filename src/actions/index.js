@@ -5,7 +5,7 @@ import axios from "axios";
 let ToDoAxios= axios.create({
   baseURL:"http://115.248.119.138:8089/todo/",
   headers:{
-  "Authorization":"ya29.Glz2BlS3JCOuUl7xJv933E3SfVFAP2qNcF6aG0GZ0U90D-OmUPXcptbwY66qUzIOTZUtKpA5sMEDA0JGgpph973mlnuo5UG1UM5V8r5RKgm_wnAh1urFzPuZG0n_HA",
+  "Authorization":"ya29.Glz2Bq9MEFxPfc_c0qFpbrTopIZQk9vClTpfsV7LMPbtzuc6pBlLPA9U0Pf1aggf65zMwpkzUcCVrNBkl1VlAmxmJcRjSARwSfd6dfrcUKEvmzXmIVWomWHSzlqHtg"
   }
   })
 //Action Creators
@@ -38,7 +38,7 @@ export const signOut = () => {
 // }
 
   export const ToDoAll = () => {
-    // console.log("data");
+    // console.log("im todo action");
     // var url = "http://115.248.119.138:8089/todo/tasks";
     return (dispatch) => {
       return ToDoAxios.get(`tasks`)
@@ -97,7 +97,7 @@ export const UpdateTask = (data) => {
       return(dispatch)=>{
         return  ToDoAxios.get(`profile`)
         .then(res=>{
-          // console.log(res.data);
+          // console.log(res);
           dispatch(GetProfile(res.data));
          
         })
