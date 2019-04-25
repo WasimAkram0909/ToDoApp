@@ -139,7 +139,7 @@ static getDerivedStateFromProps(props,state) {
   render() {
     return (
      <div className="DontEditThisClass">         
-        <HeadNav title="Profile"/>
+        <HeadNav title="Profile" showSort={false}/>
      {this.props.profileDetails.map((profileData) => {
 
          return(

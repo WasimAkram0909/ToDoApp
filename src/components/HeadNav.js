@@ -80,11 +80,13 @@ class HeadNav extends Component{
                             </Link>
                         </div>:<div></div>}
                     
-                        
-                        <div className="HeadNavbtnCntr" onClick={()=>this.sortBy()}>
+                        {
+                            this.props.showSort ? <div className="HeadNavbtnCntr" onClick={()=>this.sortBy()}>
                             <img className="icon" src={CalenderIcon} />
                             <p className="btntext" >Sort By</p>
-                        </div>
+                        </div>: null
+                        }
+                        
                     </div>
                 </div>
                 {/* <Route exact path='/dashboard/AddTask' compoSortBynent={AddTask}/> */}

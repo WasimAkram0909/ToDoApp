@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import '../css/Taskitem.css';
 import { connect } from 'react-redux';
 import StatusNoneIcon from '../assets/StatusNone.svg';
-import {
-  DisplayActions,
-  TasksApi,
-  CompletedTaskAction,
-  RescheduleTask,
-  DeleteTask
-} from '../actions';
+import { DisplayActions, TasksApi, CompletedTaskAction, RescheduleTask, DeleteTask } from '../actions';
 import Calendar from 'react-calendar';
 import Toast from './Toast';
 // import {Link} from "react-router-dom";
@@ -17,6 +11,7 @@ import overDue from '../assets/overdue.svg';
 import Reschedule from '../assets/Reschedule.svg';
 import Delete from '../assets/Delete.svg';
 import moment from 'moment';
+import { object } from 'prop-types';
 
 let taskDate = '';
 class Taskitem extends Component {
@@ -37,7 +32,10 @@ class Taskitem extends Component {
 
   rescheduleTask = selectdate => {
     let date = moment(selectdate).format('YYYY-MM-DD');
-    this.props.RescheduleTask({ tasks: this.state.tasks, date });
+    this.props.RescheduleTask({
+      tasks: this.state.tasks,
+      date
+    });
     this.setState({
       showComponent: false,
       showBtns: false,
@@ -49,7 +47,11 @@ class Taskitem extends Component {
 
   completeTask = (tasks, index) => {
     let date = moment(date).format('YYYY-MM-DD');
-    this.props.CompletedTaskAction({ tasks, index, date });
+    this.props.CompletedTaskAction({
+      tasks,
+      index,
+      date
+    });
     this.setState({
       showBtns: false,
       showToast: true,
@@ -60,7 +62,10 @@ class Taskitem extends Component {
   deleteTask = (taskId, index) => {
     // console.log(taskId);
 
-    this.props.DeleteTask({ taskId, index });
+    this.props.DeleteTask({
+      taskId,
+      index
+    });
     this.setState({
       showBtns: false,
       showToast: true,
@@ -89,18 +94,31 @@ class Taskitem extends Component {
   static getDerivedStateFromProps(props, state) {
     let tempArr = [];
     // this.overDueTasksArr = [];
-    props.cards.map((tasks, index) => {
-      console.log(tasks);
-      var d = tasks.createDate;
-      taskDate = moment(d).format('MMM D');
-      var currentDate = moment().format('MMM D');
 
-      // console.log('yes im working');
-      if (moment(taskDate).isBefore(currentDate)) {
-        tempArr.push(tasks);
+
+    props.cards.map((tasks, index) => {
+      if(tasks != undefined){
+
+        // console.log(tasks);
+        var d = tasks.createDate;
+        taskDate = moment(d).format('MMM D');
+        var currentDate = moment().format('MMM D');
+  
+        // console.log('yes im working');
+        if (moment(taskDate).isBefore(currentDate)) {
+          tempArr.push(tasks);
+        }
+
       }
+      
     })
-    let copyState = {...state, overDueTasksArr: tempArr}
+
+
+
+    let copyState = {
+      ...state,
+      overDueTasksArr: tempArr
+    }
     // this.setState({
     //   ...this.state,
     //   overDueTasksArr: tempArr
@@ -116,134 +134,198 @@ class Taskitem extends Component {
       //  console.log(a.taskName)
       //  console.log([a.createDate] )
       //  console.log(r);
+    
+      
       r[a.createDate] = r[a.createDate] || [];
       r[a.createDate].push(a);
       return r;
+      
     }, Object.create(null));
     // console.log(result);
 
     var result1 = Object.entries(result);
+
+    var resultOverDue = this.state.overDueTasksArr.reduce(function(r, a) {
+      r[a.createDate] = r[a.createDate] || [];
+      r[a.createDate].push(a);
+      return r;
+    }, Object.create(null)
+    )
+    var result2 = Object.entries(resultOverDue);
+
+
+
     return (
       <React.Fragment>
         {result1.map((TaskDetails, i) => {
-      var d = TaskDetails[0];
-      taskDate = moment(d).format("MMM D");
-      var currentDate = moment().format("MMM D")
-      if (!moment(taskDate).isBefore(currentDate)) {
-        return (
-          <main>
+        var d = TaskDetails[0];
+        taskDate = moment(d).format("MMM D");
+        var currentDate = moment().format("MMM D")
+        if (!moment(taskDate).isBefore(currentDate)) {
+          return (
+            <main>
               <p>{moment(TaskDetails[0]).format("MMM D")}</p>
-              {/* <div className="ItemContainer"> */}
+              { /* <div className="ItemContainer"> */ }
                 {TaskDetails[1].map((Tasksdata, index) => {
-            //  console.log(Taskdetails)
-            return (              <div className="ItemContainer">
+              //  console.log(Taskdetails)
+              return (              <div className="ItemContainer">
                       <div className="StatusNoneIcon">
                         <img
-              src={StatusNoneIcon}
-              onClick={() => this.DisplayActionsBtns(Tasksdata)}
-              />
+                src={StatusNoneIcon}
+                onClick={() => this.DisplayActionsBtns(Tasksdata)}
+                />
                       </div>
                       <p className="taskData">{Tasksdata.taskName}</p>
                       {this.state.showBtns &&
-              this.state.selectedId === Tasksdata.taskId ? (
-                <div className="editTaskButtons">
+                this.state.selectedId === Tasksdata.taskId ? (
+                  <div className="editTaskButtons">
                             <img
-                src={Completed}
-                onClick={() => this.completeTask(Tasksdata)}
-                />
+                  src={Completed}
+                  onClick={() => this.completeTask(Tasksdata)}
+                  />
                             <img
-                src={Reschedule}
-                onClick={() => this._onButtonClick(Tasksdata)}
-                />
+                  src={Reschedule}
+                  onClick={() => this._onButtonClick(Tasksdata)}
+                  />
                             <img
-                src={Delete}
-                onClick={() => this.deleteTask(Tasksdata.taskId, index)}
-                />
+                  src={Delete}
+                  onClick={() => this.deleteTask(Tasksdata.taskId, index)}
+                  />
                           </div>
-                // </Link>
-                ) : null}
-           </div>)})}
+                  // </Link>
+                  ) : null}
+           </div>)
+            })}
              
              
-            </main>)}
+            </main>)
+        }
       })}
       {this.state.showToast ? <Toast showToast={this.state} /> : null}
 
 {this.state.showComponent ? (
-<Calendar
-className="calendar"
-onChange={this.rescheduleTask}
-value={date}
-/>
-) : null}
-{/* 
+        <Calendar
+        className="calendar"
+        onChange={this.rescheduleTask}
+        value={date}
+        />
+        ) : null}
+{ /* 
   {
     this.overDueTasksArr != null? console.log(this.overDueTasksArr,"im array"): console.log("array is null")
-  } */}
-
-{
-this.state.overDueTasksArr != null ?
-this.state.overDueTasksArr.map((tasks, index) => {
-
+  } */ }
+{/* 
+{   this.state.overDueTasksArr != null ?
+        this.state.overDueTasksArr.map((tasks, index) => {
 
 
-  // tasks.status="CompletedTasks";
-  return (
-    <main>
+
+          // tasks.status="CompletedTasks";
+          return (
+            <main>
           <p>{  moment(tasks.createDate).format("MMM D")}</p>
       <div className="ItemContainer">
     
         <div className="StatusNoneIcon">
           <img
-    src={overDue}
-    onClick={() => this.DisplayActionsBtns(tasks)}
-    />
+            src={overDue}
+            onClick={() => this.DisplayActionsBtns(tasks)}
+            />
         </div>
         <p className="taskData">{tasks.taskName}</p>
 
         {this.state.showBtns &&
-    this.state.selectedId === tasks.parentId ? (
-      <div className="editTaskButtons">
+            this.state.selectedId === tasks.parentId ? (
+              <div className="editTaskButtons">
             <img
-      src={Completed}
-      onClick={() => this.completeTask(tasks)}
-      />
+              src={Completed}
+              onClick={() => this.completeTask(tasks)}
+              />
             <img
-      src={Reschedule}
-      onClick={() => this._onButtonClick(tasks)}
-      />
+              src={Reschedule}
+              onClick={() => this._onButtonClick(tasks)}
+              />
             <img
-      src={Delete}
-      onClick={() => this.deleteTask(tasks, index)}
-      />
+              src={Delete}
+              onClick={() => this.deleteTask(tasks, index)}
+              />
           </div>
-      // </Link>
-      ) : null}
+              // </Link>
+              ) : null}
         {this.state.showToast ? <Toast showToast={this.state} /> : null}
      
       </div>
       </main>
-    );
-  }):
-  null
-}
+            );
+        }) :
+        null
+      } */}
+
+
+{result2.map((TaskDetails, i) => {
+  var d = TaskDetails[0];
+  taskDate = moment(d).format("MMM D");
+  var currentDate = moment().format("MMM D")
+    return (
+      <main>
+        <p>{moment(TaskDetails[0]).format("MMM D")}</p>
+        { /* <div className="ItemContainer"> */ }
+          {TaskDetails[1].map((Tasksdata, index) => {
+        //  console.log(Taskdetails)
+        return (              <div className="ItemContainer">
+                <div className="StatusNoneIcon">
+                  <img
+          src={overDue}
+          onClick={() => this.DisplayActionsBtns(Tasksdata)}
+          />
+                </div>
+                <p className="taskData">{Tasksdata.taskName}</p>
+                {this.state.showBtns &&
+          this.state.selectedId === Tasksdata.taskId ? (
+            <div className="editTaskButtons">
+                      <img
+            src={Completed}
+            onClick={() => this.completeTask(Tasksdata)}
+            />
+                      <img
+            src={Reschedule}
+            onClick={() => this._onButtonClick(Tasksdata)}
+            />
+                      <img
+            src={Delete}
+            onClick={() => this.deleteTask(Tasksdata.taskId, index)}
+            />
+                    </div>
+            // </Link>
+            ) : null}
+     </div>)
+      })}
+       
+       
+      </main>)
+  
+})}
+
+
+
+
 {this.state.showComponent ? (
-  <Calendar
-    className="calendar"
-    onChange={this.rescheduleTask}
-    value={date}
-  />
-) : null}
+        <Calendar
+        className="calendar"
+        onChange={this.rescheduleTask}
+        value={date}
+        />
+        ) : null}
       </React.Fragment>
     )
   }
 }
 const myStateToProps = state => {
-  console.log(state.allTasks.Task, 'testing...............');
+  // console.log(state.allTasks.Task,"testing...............");
   return {
     data: state.allTasks,
     cards: state.allTasks.Task
-    // sort:state.allTasks.sortedData,
+  // sort:state.allTasks.sortedData,
   };
 };
 export default connect(

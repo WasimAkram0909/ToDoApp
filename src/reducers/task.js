@@ -1,28 +1,28 @@
 const sortData = [
-  {
-    taskName: ' let',
-    status: 'Completed',
-    createDate: '2019-04-24',
-    taskId: 0
-  },
-  {
-    taskName: 'Remind John to call Alex on OS configuration ',
-    status: 'Rescheduled',
-    createDate: '2019-04-24',
-    taskId: 1
-  },
-  {
-    taskName: 'lunch',
-    status: 'Rescheduled',
-    createDate: '2019-04-24',
-    taskId: 2
-  },
-  {
-    taskName: ' Alex on OS configuration ',
-    status: 'Rescheduled',
-    createDate: '2019-04-25',
-    taskId: 3
-  },
+  // {
+  //   taskName: ' let',
+  //   status: 'Completed',
+  //   createDate: '2019-04-24',
+  //   taskId: 0
+  // },
+  // {
+  //   taskName: 'Remind John to call Alex on OS configuration ',
+  //   status: 'Rescheduled',
+  //   createDate: '2019-04-24',
+  //   taskId: 1
+  // },
+  // {
+  //   taskName: 'lunch',
+  //   status: 'Rescheduled',
+  //   createDate: '2019-04-24',
+  //   taskId: 2
+  // },
+  // {
+  //   taskName: ' Alex on OS configuration ',
+  //   status: 'Rescheduled',
+  //   createDate: '2019-04-25',
+  //   taskId: 3
+  // },
   // {
   //   taskName: ' Alex on OS configuration and let him know that meeting JA Marsh for lunch Joh to call Alex on OS configuration and let him know that meeting JA Marsh for lunch',
   //   status: 'Rescheduled',
@@ -50,9 +50,12 @@ export default (state = initialValues, action) => {
     console.log(action.payload);
     // console.log(sortData);
     // sortData.concat(action.payload.tasks);
+    // console.log(action.payload);
       return {
+        
       
         ...state,Task: sortData.concat(action.payload)
+    
         // ...state, Task: newData
       };
     case 'RESCHEDULE_TASK':

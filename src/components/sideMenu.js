@@ -31,20 +31,6 @@ class SideMenu extends Component {
                             <img src={Logo} />
                         </div>
                         <div className="linksContainer ">
-
-                            {/* {SideMenuData.map((item,i) => {
-                                   {var actionCount = actionsArr[i]}
-                                // {console.log(actionCount);}
-                                // console.log(item.action);
-                                return (
-                                    <div className="SideMenuLinks ">
-                                        <img className="linkLogo" src={item.image} />
-                                        <Link to={`/dashboard/${item.path}`} 
-                                            
-                                        onClick={this.props.ToDoAll}className="SideMenuLink">{item.name}</Link>
-                                    </div>)
-
-                            })} */} 
                             <div className="SideMenuLinks ">
                                 <img className="linkLogo" src={Alltasks} />
                                 <Link to={`/dashboard/Todo`} onClick={this.props.ToDoAll} className="SideMenuLink">Todo</Link>
@@ -64,8 +50,6 @@ class SideMenu extends Component {
                         <GoogleAuth />
 
                     </div>
-                    {/* <Route path="/dashboard/:id" Component={Dashboard} /> */}
-                {/* </Router> */}
             </React.Fragment>
         )
     }

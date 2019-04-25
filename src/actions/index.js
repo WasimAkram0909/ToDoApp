@@ -5,7 +5,7 @@ import axios from "axios";
 let ToDoAxios= axios.create({
   baseURL:"http://115.248.119.138:8089/todo/",
   headers:{
-  "Authorization":"ya29.Glz1BlIojRGcwIFTv84Eut1KiSKmMfVgy6cwMGWUw-RqI2XAR2IBedl9tTDL0VTo-ibipK52Tem1Np6PF_SbskW7x1qdsQTGMEzyd-ZVl7FTCLFYopop87DhIwmbWA"
+  "Authorization":"ya29.Glz2Bsgug-b1wNj1ysrr5UqHHc3tqukR2iH0SZON70Ou3DuIyjO_3P5bo6KA2V-QYvAliPxO6hKUN5p3O-fZrgkj2M8yHRlsOwLtzIAw5x-F7Wvxp_uS7xEfU0lgWw"
   }
   })
 //Action Creators
@@ -66,7 +66,7 @@ export const SaveTask = (data) => {
     return ToDoAxios.post(`tasks?date=${data.createDate}&name=${data.taskName}`)
 .then(res=>{
     console.log(res);
-    console.log(res.data.task);
+    console.log(res.data);
     // dispatch(ToDoAll())
     dispatch(SaveTaskAction(res));
 })
@@ -75,8 +75,8 @@ export const SaveTask = (data) => {
 const SaveTaskAction = (dataid) => {
   console.log(dataid);
   return {
-    type: "SAVE_TASK"
-    // payload: dataid,
+    type: "SAVE_TASK",
+    payload: dataid,
 
 }}
 
