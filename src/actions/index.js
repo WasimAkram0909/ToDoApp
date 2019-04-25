@@ -5,7 +5,7 @@ import axios from "axios";
 let ToDoAxios= axios.create({
   baseURL:"http://115.248.119.138:8089/todo/",
   headers:{
-  "Authorization":"ya29.Glz2BvjCWlrX_XfseeFDHTXPTfvXFFa6XFQ4eOSme-zGHE4HGBOAXGhO_nlJawKEwqROqNmRhKpQpnmjbAb31nRwkZNJ8tWdjYMtZkGEuS3Eofe0-dkJNEdsPmLj-w"
+  "Authorization":"ya29.Glz2BlS3JCOuUl7xJv933E3SfVFAP2qNcF6aG0GZ0U90D-OmUPXcptbwY66qUzIOTZUtKpA5sMEDA0JGgpph973mlnuo5UG1UM5V8r5RKgm_wnAh1urFzPuZG0n_HA",
   }
   })
 //Action Creators
@@ -27,7 +27,7 @@ export const signOut = () => {
 //   var id = data.getId();
 //   var fullName = data.getName();
 //   var name = data.getGivenName();
-//   var familyName = data.getFamilyName();
+//   var familyNaya29.Glz2BsFP1ssbml3vEsIi_cUXm0959jrvRUGErtH8IuruK60jCqeH2em9J_QhSMMdfWuEoCRh50tSBYTQAEVXvbdSK1jHyzaDa3g9Z1SaRD3o__KWMv2DsY60c0wAtgme = data.getFamilyName();
 //   var image = data.getImageUrl();
 //   var email = data.getEmail();
 //   var logInData = { id, fullName, name, familyName, image, email };
@@ -167,7 +167,7 @@ export const DeleteTask = (data) => {
   console.log(data.taskId);
   
   return (dispatch) => {
-  return ToDoAxios.delete(`tasks/${data.taskId}`)
+  return ToDoAxios.delete(`tasks/${data.tasks.taskId}`)
   .then(res => {
   console.log(res);
   // dispatch(DeleteAction(data));

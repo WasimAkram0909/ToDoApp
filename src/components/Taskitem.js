@@ -63,8 +63,10 @@ class Taskitem extends Component {
       toastImage: require('../assets/Toast completed.png')
     });
   };
-  deleteTask = (taskId, index) => {
-    this.props.DeleteTask({ taskId, index });
+  deleteTask = (tasks, index) => {
+    // console.log(taskId);
+
+    this.props.DeleteTask({ tasks, index });
     this.setState({
       showBtns: false,
       showToast: true,
@@ -164,9 +166,9 @@ class Taskitem extends Component {
                   onClick={() => this._onButtonClick(Tasksdata)}
                   />
                             <img
-                  src={Delete}
-                  onClick={() => this.deleteTask(Tasksdata.taskId, index)}
-                  />
+                src={Delete}
+                onClick={() => this.deleteTask(Tasksdata, index)}
+                />
                           </div>
                 ) : null}
            </div>)})}
