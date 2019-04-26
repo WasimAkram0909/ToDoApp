@@ -106,3 +106,9 @@
    visibility: hidden;
    width:13%;
 }
+.errorText{
+    font-size: 13px;
+    color:red;
+    font-weight: normal;
+    visibility: hidden
+}

@@ -28,42 +28,58 @@ class AddTask extends React.Component {
     }
     this.myRef = React.createRef();
   }
-
-
   onChange = date => {
-    // console.log(date);
+    console.log(date);
     let currnetDate = moment(date).format("DD MM YYYY");
     currnetDate = currnetDate.slice(0,2)+"-"+ currnetDate.slice(3,5)+"-"+ currnetDate.slice(6,12);
     // console.log(currnetDate);
     this.setState({
-      newDate: currnetDate
+      newDate: currnetDate,
+      showCalendar: false,
     })
-  }
 
+  }
   handleSaveTask = () => {
-    this.props.history.push("/dashboard");
+    // this.props.history.push("/dashboard");
     var taskcontent = this.myRef.current.value;
     var dateContent = this.state.newDate;
+    if(taskcontent==""){
+      alert("Please enter the task");
+      document.getElementById("taskData").focus()
+    }else if(dateContent==""){
+      alert("Please select date")
+    }
+    else{
+      var TaskObject = {
+        taskName:taskcontent,status:'',createDate:dateContent
+      }
+      this.props.SaveTask(TaskObject);
+      this.setState({
+        showComponent: false,
+      });
+      this.setState({
+        showCalendar: false,
+      });
+      this.props.history.push("/dashboard")
+    }
+  
     // console.log(dateContent);
     // console.log(taskcontent);
     var TaskObject = {
       taskName:taskcontent,status:'',createDate:dateContent
-      
-      
     }
 // this TaskObject holds all data of add task component 
 // need to send this to reducer
-
-    this.props.SaveTask(TaskObject);
-    this.setState({
-      showComponent: false,
-    });
-    this.setState({
-      showCalendar: false,
-    });
+    // this.props.SaveTask(TaskObject);
+    // this.setState({
+    //   showComponent: false,
+    // });
+    // this.setState({
+    //   showCalendar: false,
+    // });
   }
   handleCalendar = () => {
-    // var datevar = claendar.toLocaleString('en-us', { month: 'long' }) + ' ' + claendar.getDate();
+
     this.setState({
       showCalendar: true,
     });
@@ -87,9 +103,7 @@ class AddTask extends React.Component {
     this.setState({
       showCalendar: false,
     });
-  
     // document.getElementById('ItemContainer').style='display:none';
-
   }
   ChangeState = () =>{
     this.setState({
@@ -102,14 +116,11 @@ class AddTask extends React.Component {
         <HeadNav title="Todo" showFunction={this.ChangeState} showSort={true} />
         {/* <button className="addtaskbutton" onClick={this.addtask}>AddTask</button> */}
         {this.state.showComponent ?
-
-
           <div className="display">
             <p>{this.MyFunction()}</p>
-
             <div id="ItemContainer" className="ItemContainer">
               {/* <textarea className="taskData1" ref={this.myRef} /> */}
-              <input className="taskData1" type="text" ref={this.myRef} />
+              <input className="taskData1" id="taskData" type="text" ref={this.myRef} required/>
               <div className="editTaskButtons">
                 <SaveICon className="SaveIcon" onClick={this.handleSaveTask} />
                 <CancelIcon className="CancelIcon" onClick={this.handleClose} />
@@ -125,7 +136,6 @@ class AddTask extends React.Component {
           // className="react-calendar__month-view"
           onChange={this.onChange} />) : null}
       </div>
-
     );
   }
 }

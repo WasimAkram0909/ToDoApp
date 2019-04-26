@@ -2,35 +2,34 @@ const sortData = [
   {
     taskName: ' let',
     status: 'pending',
-    createDate: '2019-04-22',
+    createDate: '1996-04-22',
     taskId: 0
   },
   {
     taskName: 'Remind John to call Alex on OS configuration ',
     status: 'Rescheduled',
-    createDate: '2019-04-24',
+    createDate: '2019-04-28',
     taskId: 1
   },
   {
     taskName: 'lunch',
-    status: 'Completed',
-    createDate: '2019-04-24',
+    status: 'Rescheduled',
+    createDate: '2019-07-26',
     taskId: 2
   },
   {
     taskName: ' Alex on OS configuration ',
-    status: 'Completed',
-    createDate: '2019-04-25',
+    status: 'pending',
+    createDate: '2018-04-25',
     taskId: 3
-  },
-  {
-    taskName:
-      ' Alex on OS configuration and let him know that meeting JA Marsh for lunch Joh to call Alex on OS configuration and let him know that meeting JA Marsh for lunch',
-    status: 'Rescheduled',
-    createDate: '2019-04-26',
-    taskId: 4
   }
-];
+  // {
+  //   taskName: ' Alex on OS configuration and let him know that meeting JA Marsh for lunch Joh to call Alex on OS configuration and let him know that meeting JA Marsh for lunch',
+  //   status: 'Rescheduled',
+  //   createDate: '2019-04-25',
+  //   taskId: 4
+  // },
+]
 let undoData = [];
 const initialValues = {
   Task: sortData,

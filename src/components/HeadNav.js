@@ -11,8 +11,6 @@ import moment from 'moment';
 import {SortByAction} from "../actions";
 // import SortBy from "./SortBy";
 
-
-
 class HeadNav extends Component{
     constructor(props) {
         super(props)
@@ -23,15 +21,10 @@ class HeadNav extends Component{
         //   sortDate:null
         }
     }
-
-
-
-
     callMoment(){
         var thisIsMomentJs = moment().format("MM DD YYYY");
         // console.log("its working", thisIsMomentJs);
     }
-
     onSelectingOfDate = date => {
         // console.log("onchange function is calling;;;;");
         // console.log(date);
@@ -44,21 +37,15 @@ class HeadNav extends Component{
     //    console.log( this.props.sortDate)
         this.setState({
           showCalendar:false, 
-
         //   showSort:true,
-          
         });     
       }
-
-
     sortBy = () =>{
     // console.log("soryBY method is calling..");
        this.setState({
            showCalendar:true,
        })
 }
-
-
     // addtask = () => {
     //     console.log('addtask');
     //     this.setState({
@@ -69,7 +56,6 @@ class HeadNav extends Component{
         // console.log(this.props);
     // console.log("this sis the state ", this.props);        
         return(
-            
             <React.Fragment>
                 <div className="HeadItemContainer">
                     <p className="HeadNavTitle">{this.props.title}</p>
@@ -90,7 +76,6 @@ class HeadNav extends Component{
                             <p className="btntext" >Sort By</p>
                         </div>: null
                         }
-                        
                     </div>
                 </div>
                 {/* <Route exact path='/dashboard/AddTask' compoSortBynent={AddTask}/> */}
@@ -106,9 +91,6 @@ class HeadNav extends Component{
         )
     }
 }
-
-
-
 const myStateToProps = (state) => {
     // console.log(state.allTasks.sortDate);
     return {

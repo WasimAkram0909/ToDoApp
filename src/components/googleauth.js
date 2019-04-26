@@ -24,7 +24,7 @@ class GoogleAuth extends React.Component {
 
     ////PREVIOUS CODE CORRECT/////////
       // console.log("didcomponent");
- window.gapi &&   window.gapi.load('client:auth2', () => {
+    window.gapi && window.gapi.load('client:auth2', () => {
       // console.log('loaded GAPI');
       window.gapi.client
         .init({

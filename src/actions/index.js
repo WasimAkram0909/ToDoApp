@@ -5,7 +5,7 @@ import axios from "axios";
 let ToDoAxios= axios.create({
   baseURL:"http://115.248.119.138:8089/todo/",
   headers:{
-  "Authorization":"ya29.Glz3Bk5i5Ec_8ag3nFBuhgRdGzsIrBO4mED2GqZeTRnWD1ld8X5-saFhoV_lR8u2eotUnso8OVmEVb1Dj4r9IPNpZ4wH2pQonMQhzsQTjKgUG2hq7Tz36ED5F2BUfQ"
+  "Authorization":"ya29.Glz3BpzDaSKrj5PXbR7JXXzARJ7JB4aNOJZwLfvcXFCrrbgLuJfM-asDSIcN-ybVLZ68fyr0ix1DnIs0Uq5mJSCfc55urUZbglM8imWH1K1sD5SoPd34yFfnv378mA"
   }
   })
 //Action Creators
@@ -38,17 +38,12 @@ export const signOut = () => {
 // }
 
   export const ToDoAll = () => {
-    // console.log("im todo action");
-    // var url = "http://115.248.119.138:8089/todo/tasks";
     return (dispatch) => {
       return ToDoAxios.get(`tasks`)
         .then(res => {
-          // console.log(res.data.tasks);
           res.data.tasks.map((data)=>{
-            // console.log(data);
           if(data.status==="PENDING")
           { console.log(data);
-            // console.log("jf");
             dispatch(ToDoAllAction(res.data.tasks));
           } 
         }
@@ -57,13 +52,11 @@ export const signOut = () => {
   }
 }
 export const ToDoAllAction = (RES) => {
-  // console.log(RES);
   return {
     type: "TO_DO_ALL",
     payload: RES,
   };
 };
-
 export const SaveTask = (data) => {
   // console.log(data);
   return(dispatch)=>{
@@ -147,14 +140,14 @@ export const RescheduleTaskAction =(data)=>{
         payload:data,
       }
     }
-    export const CompletedTaskAction =(data)=>{
+export const CompletedTaskAction =(data)=>{
   console.log(data);
       console.log("this action is triggerd form sidemenu");
       return {
         type:"COMPLETED_TASK",
         payload:data,
       }
-    }
+}
 export const SortByAction = (data) => {
 // console.log(data)
 
@@ -166,14 +159,14 @@ export const SortByAction = (data) => {
 export const DeleteTask = (data) => {
   console.log(data.taskId);
   
-  return (dispatch) => {
+  return (dispatch) => { 
   return ToDoAxios.delete(`tasks/${data.tasks.taskId}`)
   .then(res => {
   console.log(res);
   // dispatch(DeleteAction(data));
-  })
+    })
   }
-  }
+}
   // const DeleteAction = (data) => {
   // console.log(data);
   // return {
@@ -181,9 +174,6 @@ export const DeleteTask = (data) => {
   // payload: data,
   // };
   // };
-
-
-
 export const UndoAction = (data) => {
   return {
     type: "UNDO",
