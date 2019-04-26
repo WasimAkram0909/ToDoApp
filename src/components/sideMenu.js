@@ -21,7 +21,15 @@ import {SideMenuData} from "../reducers/SideMenu";
 class SideMenu extends Component {
 
     render() {
-        var actionsArr = [ToDoAll,CompletedTaskAction,RescheduleTaskAction,profileAction]
+        // var item = document.querySelector(".SideMenuLinks");
+        {
+
+        $(".SideMenuLinks").click(function () {
+            $(".SideMenuLinks").removeClass("active");
+            // $(".tab").addClass("active"); // instead of this do the below 
+            $(this).addClass("active");   
+        });}
+        // var actionsArr = [ToDoAll,CompletedTaskAction,RescheduleTask,profileAction]
         return (
             <React.Fragment>
                 {/* <Router> */}

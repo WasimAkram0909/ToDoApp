@@ -166,7 +166,7 @@ class Taskitem extends Component {
       if (!moment(taskDate).isBefore(currentDate)) {
         return (
           <main>
-              <p>{moment(TaskDetails[0]).format("MMM D")}</p>
+              <p className="dataClass">{moment(TaskDetails[0]).format("MMM D")}</p>
                 {TaskDetails[1].map((Tasksdata, index) => {
             //  console.log(Taskdetails)
             return (              
@@ -217,7 +217,7 @@ class Taskitem extends Component {
   var currentDate = moment().format("MMM D")
     return (
       <main>
-        <p>{moment(TaskDetails[0]).format("MMM D")}</p>
+        <p className="dataClass">Over due</p>
         { /* <div className="ItemContainer"> */ }
           {TaskDetails[1].map((Tasksdata, index) => {
         //  console.log(Taskdetails)

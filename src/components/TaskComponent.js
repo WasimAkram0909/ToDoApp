@@ -22,7 +22,7 @@ class TaskComponent extends Component {
       if (this.props.path1 === name) {
         return (
           <React.Fragment> 
-            <p>{taskDate}</p>
+            <p className="dataClass">{taskDate}</p>
             <div className="ItemContainer">
               <div className="StatusNoneIcon">
                 <img
