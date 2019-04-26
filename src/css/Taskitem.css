@@ -71,10 +71,16 @@
 .display{
     color:white;
 }
-.calender{
-    float:right;
-}
+
 .dataClass{
     font-size: 18px;
     color:rgba(255, 255, 255, 1);
+
+}
+.calenderClass{
+    position: absolute;
+    top:190px;
+    right:0;
+    background-color: #9C94F9;
+
 }

@@ -85,7 +85,8 @@ class Taskitem extends Component {
       this.setState({
         showBtns: true,
         selectedId: tasks.taskId,
-        showToast: false
+        showToast: false,
+        showComponent:false
       });
     }
   };
@@ -170,7 +171,7 @@ class Taskitem extends Component {
                 {TaskDetails[1].map((Tasksdata, index) => {
             //  console.log(Taskdetails)
             return (              
-            <div className="ItemContainer">
+            <div className="ItemContainer" key ={Tasksdata.taskId}>
                       <div className="StatusNoneIcon">
                         <img
                 src={StatusNoneIcon}
@@ -193,23 +194,33 @@ class Taskitem extends Component {
                 src={Delete}
                 onClick={() => this.deleteTask(Tasksdata, index)}
                 />
+
                           </div>
                 ) : null}
+
+<div className="calenderClass">
+{this.state.showComponent ? (
+  <Calendar
+  className="calendar"
+  onChange={this.rescheduleTask}
+  value={date}
+  />
+  ) : null}
+  </div>
            </div>)})}
              
              
-            </main>)
+            </main>
+ 
+           
+
+          
+          )
         }
       })}
       {this.state.showToast ? <Toast showToast={this.state} /> : null}
 
-{this.state.showComponent ? (
-        <Calendar
-        className="calendar"
-        onChange={this.rescheduleTask}
-        value={date}
-        />
-        ) : null}
+
 
 { groupedOverDueItems.map((TaskDetails, i) => {
   var d = TaskDetails[0];
@@ -221,7 +232,7 @@ class Taskitem extends Component {
         { /* <div className="ItemContainer"> */ }
           {TaskDetails[1].map((Tasksdata, index) => {
         //  console.log(Taskdetails)
-        return (              <div className="ItemContainer">
+        return (              <div className="ItemContainer" key ={Tasksdata.taskId}>
                 <div className="StatusNoneIcon">
                   <img
           src={overDue}
@@ -262,9 +273,25 @@ class Taskitem extends Component {
   }
 }
 const myStateToProps = state => {
+
+  let filteredData = state.allTasks.Task;
+  console.log(state.allTasks.sortDate);
+  if (state.allTasks.sortDate !== undefined && state.allTasks.sortDate !==null){
+    filteredData=   filteredData.filter(key => {
+        // console.log(key);            
+        let date=key.createDate.slice(0,4)+"-"+ key.createDate.slice(5,7)+"-"+ key.createDate.slice(8,10);
+        // console.log(date); 
+        // console.log(state.allTasks.sortDate);          
+        if (state.allTasks.sortDate === date) {
+          return key;
+        }
+      })
+  }
+
+
   return {
     data: state.allTasks,
-    cards: state.allTasks.Task
+    cards: filteredData
   };
 };
 export default connect(

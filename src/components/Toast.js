@@ -16,44 +16,40 @@ class Toast extends React.Component {
     })
   };
 
-
+componentDidMount(){
+  setTimeout(()=>{this.setState({isShow: false})}, 5000);
+  if (!this.state.isShow){
+    return null
+  }
+}
 
   render() {
-    // console.log(this.props.showToast);
 
-    setTimeout(()=>{this.setState({isShow: false})}, 5000);
-    if (!this.state.isShow){
-      return null
-    }
-    else {
+   
+   
     return (
       <React.Fragment>
-      <div className="flex-container" id="flex-container">
+     {this.state.isShow? <div className="flex-container" id="flex-container">
           <div>
             <img src={this.props.showToast.toastImage} />
           </div>
           <div className="text-display">{this.props.showToast.toastMsg}</div>
           <div className="undo" onClick={data => this.undo(data)}>
-            <a href="#">undo</a>
+            <span>undo</span>
           </div>
-        </div> 
+        </div> :null}
        
       </React.Fragment>
     );
   }
   }
+const mapStateToProps =(state)=>{
+  return {
+    state :state
+  }
 }
 
-const mapStateToProps = state => {
-  return {
-    Status: state.allTasks.Status
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  { UndoAction }
-)(Toast);
+export default connect( mapStateToProps ,{UndoAction})(Toast);
 
 // this.toastRef = React.createRef();
 

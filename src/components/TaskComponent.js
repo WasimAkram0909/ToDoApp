@@ -5,6 +5,17 @@ import HeadNav from './HeadNav';
 import moment from "moment";
 let taskDate ;
 class TaskComponent extends Component {
+
+
+// state = {
+//   searchedDate : this.props.sortDate
+// }
+// static getDeriverStateFromProps (props , state){
+// if (props.sortDate === state.sortDate)
+// return null;
+// else
+// return props.sortDate;
+// }
   render() {
     // console.log(this.props.editData);
     
@@ -12,12 +23,12 @@ class TaskComponent extends Component {
       // console.log(data);
       let name = `/dashboard/${data.status}Tasks`;
         let d = data.createDate;
-        console.log(d);
+        // console.log(d);
         // d = moment(d).format("YYYY-DD-MM");
        d=moment(d).format("MMM D");
         // console.log(d1);
         taskDate = d; 
-        console.log(taskDate);
+        // console.log(taskDate);
         
       if (this.props.path1 === name) {
         return (
@@ -43,7 +54,8 @@ class TaskComponent extends Component {
 const myStateToProps = state => {
   // console.log(state.allTasks.sortDate);
   let filteredData = state.allTasks.Task;
-  if (state.allTasks.sortDate !==null){
+  console.log(state.allTasks.sortDate);
+  if (state.allTasks.sortDate !== undefined && state.allTasks.sortDate !==null){
     filteredData=   filteredData.filter(key => {
         // console.log(key);            
         let date=key.createDate.slice(0,4)+"-"+ key.createDate.slice(5,7)+"-"+ key.createDate.slice(8,10);
@@ -54,10 +66,8 @@ const myStateToProps = state => {
         }
       })
   }
-  else {
-
-  }
-  // console.log(filteredData);
+  
+  console.log(filteredData);
   return {
     editData: filteredData,
   };

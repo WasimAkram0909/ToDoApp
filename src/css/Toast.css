@@ -30,7 +30,9 @@
       font-size: 14px;
       margin: 15px;
     }
-    .undo a{
+    .undo span{
         color: #FF619E;
+        cursor: pointer;
+        text-decoration: underline;
         
     }

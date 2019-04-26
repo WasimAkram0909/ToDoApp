@@ -12,10 +12,12 @@ import Logout from '../assets/Logout.svg';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { ToDoAll,RescheduleTaskAction,CompletedTaskAction,profileAction } from '../actions';
+import { ToDoAll,RescheduleTaskAction,CompletedTaskAction,profileAction, SortByAction } from '../actions';
 import Dashboard from './dashboard';
 import GoogleAuth from "./googleauth";
 import {SideMenuData} from "../reducers/SideMenu";
+import $ from 'jquery'; 
+
 
 
 class SideMenu extends Component {
@@ -44,10 +46,10 @@ class SideMenu extends Component {
                                 <Link to={`/dashboard/Todo`} onClick={this.props.ToDoAll} className="SideMenuLink">Todo</Link>
                             </div><div className="SideMenuLinks ">
                                 <img className="linkLogo" src={CompletedTask} />
-                                <Link to={`/dashboard/CompletedTasks`} className="SideMenuLink">Completed Tasks</Link>
+                                <Link to={`/dashboard/CompletedTasks`} onClick={this.props.SortByAction}  className="SideMenuLink">Completed Tasks</Link>
                             </div><div className="SideMenuLinks ">
                                 <img className="linkLogo" src={RescheduledTask} />
-                                <Link to={`/dashboard/RescheduledTasks`} className="SideMenuLink">Rescheduled Tasks</Link>
+                                <Link to={`/dashboard/RescheduledTasks`}  onClick={this.props.SortByAction}  className="SideMenuLink">Rescheduled Tasks</Link>
                             </div><div className="SideMenuLinks ">
                                 <img className="linkLogo" src={profile} />
                                 <Link to={`/dashboard/Profile`} onClick={this.props.profileAction}className="SideMenuLink">Profile</Link>
@@ -70,4 +72,4 @@ const myStateToProps = (state) => {
     };
 };
 
-export default withRouter(connect(myStateToProps,{ToDoAll})(SideMenu));
+export default withRouter(connect(myStateToProps,{ToDoAll, SortByAction})(SideMenu));
