@@ -27,10 +27,12 @@ class SideMenu extends Component {
   // }
   CompleteFunction=()=>{
     console.log("Tasks");
+    this.props.SortByAction();
     this.props.TasksApi("Completed");
 }
 RescheduleFunction=()=>{
     console.log("Tasks");
+    this.props.SortByAction();
     this.props.TasksApi("Rescheduled");
 }
   render() {
