@@ -34,14 +34,13 @@ class Taskitem extends Component {
   };
 
   rescheduleTask = selectdate => {
-    let date = moment(selectdate).format('YYYY-MM-DD');
+    let date = moment(selectdate).format('DD-MM-YYYY');
     console.log(this.state.tasks);
     this.state.tasks.status="Rescheduled";
-    // console.log(this.state.tasks.createDate);
-    
+    var token=this.props.token;
     this.state.tasks.createDate=date;
     console.log(this.state.tasks.createDate);
-    this.props.UpdateTask({ tasks: this.state.tasks });
+    this.props.UpdateTask({ tasks: this.state.tasks,token });
     this.setState({
       showComponent: false,
       showBtns: false,
@@ -50,12 +49,11 @@ class Taskitem extends Component {
       toastImage: require('../assets/Toast Reschedule.png')
   });}
   completeTask = (tasks) => {
-    // let date = moment(date).format("DD-MM-YYYY");
-    let date=moment(date).format("YYYY-DD-MM");
+    let date = moment(date).format("DD-MM-YYYY");
    tasks.status="Completed";
-  //  console.log(date);
    tasks.createDate=date;
-  this.props.UpdateTask({tasks});
+   var token=this.props.token
+  this.props.UpdateTask({tasks,token});
     this.setState({
       showBtns: false,
       showToast: true,
@@ -63,10 +61,9 @@ class Taskitem extends Component {
       toastImage: require('../assets/Toast completed.png')
     });
   };
-  deleteTask = (tasks, index) => {
-    // console.log(taskId);
-
-    this.props.DeleteTask({ tasks, index });
+  deleteTask = (taskId, index) => {
+    var token=this.props.token
+    this.props.DeleteTask({ taskId, index,token });
     this.setState({
       showBtns: false,
       showToast: true,
@@ -245,20 +242,27 @@ class Taskitem extends Component {
 const myStateToProps = state => {
 
   let filteredData = state.allTasks.Task;
+
   console.log(state.allTasks.sortDate);
+  console.log(filteredData);
+  
   if (state.allTasks.sortDate !== undefined && state.allTasks.sortDate !==null){
     filteredData=   filteredData.filter(key => {
         let date=key.createDate.slice(0,4)+"-"+ key.createDate.slice(5,7)+"-"+ key.createDate.slice(8,10);
+        console.log(date);
         if (state.allTasks.sortDate === date) {
+          console.log(key);
           return key;
         }
       })
   }
 
 
+ 
   return {
     data: state.allTasks,
-    cards: filteredData
+    cards: filteredData,
+    token: state.allTasks.accessToken,
   };
 };
 export default connect(

@@ -1,21 +1,26 @@
 import axios from "axios";
-// import ToDoAxios from "../api/ToDoaxios";
-// import {authToken} from '../components/googleauth'
-
-let ToDoAxios= axios.create({
-  baseURL:"http://115.248.119.138:8089/todo/",
-  headers:{
-  "Authorization":"ya29.Glz3BpzDaSKrj5PXbR7JXXzARJ7JB4aNOJZwLfvcXFCrrbgLuJfM-asDSIcN-ybVLZ68fyr0ix1DnIs0Uq5mJSCfc55urUZbglM8imWH1K1sD5SoPd34yFfnv378mA"
+import store from '../reducers/task.js';
+// var tokenValue = '';
+// export const tokenAction = (data) => {
+//   return {
+//     type: "ACCESS_TOKEN",
+//     payload: data
+//   }
+// }
+export const ToDoAxios = axios.create({
+  baseURL: "http://115.248.119.138:8089/todo/",
+  headers: {
+    "Authorization": "ya29.Glz6Bi4-S-TFyWFxmwoBOnwNbVBQ5cknDltJMqmqC9uxDb52Z2mry8WLdhCWB_Pbm4aETkoM9crjrkSyINMUXulezRIwf3rNXP6yMzgZw4_ZV5IDuAYOeiKABYHvyA",
   }
-  })
-//Action Creators
+}
+)
+
 export const signIn = (userId) => {
   return {
     type: "SIGN_IN",
     payload: userId,
   };
 };
-
 export const signOut = () => {
   return {
     type: "SIGN_OUT"
@@ -37,18 +42,23 @@ export const signOut = () => {
 //   }
 // }
 
-  export const ToDoAll = () => {
-    return (dispatch) => {
-      return ToDoAxios.get(`tasks`)
-        .then(res => {
-          res.data.tasks.map((data)=>{
-          if(data.status==="PENDING")
-          { console.log(data);
-            dispatch(ToDoAllAction(res.data.tasks));
-          } 
-        }
-        )
-    })
+export const ToDoAll = (data) => {
+  return (dispatch) => {
+    return ToDoAxios.get(`tasks`)
+      .then(res => {
+        // console.log(res.data.tasks);
+        var filtered = res.data.tasks.filter((data1) => {
+          // console.log(data1.status);
+          if (data1.status === "PENDING") {
+            // console.log(data1);
+            return data1
+          }
+        });
+        
+dispatch(ToDoAllAction(filtered));
+
+      }
+      )
   }
 }
 export const ToDoAllAction = (RES) => {
@@ -58,126 +68,129 @@ export const ToDoAllAction = (RES) => {
   };
 };
 export const SaveTask = (data) => {
-  // console.log(data);
-  return(dispatch)=>{
-    return ToDoAxios.post(`tasks?date=${data.createDate}&name=${data.taskName}`)
-.then(res=>{
-    dispatch(ToDoAll());
-})
-}
+  console.log(data);
+  return (dispatch) => {
+    return ToDoAxios.post(`tasks?date=${data.createDate}&name=${data.taskName}`,
+      {
+        headers: {
+          "Authorization": data.token,
+        }
+      })
+      .then(res => {
+        dispatch(ToDoAll());
+      })
+  }
 }
 const SaveTaskAction = (dataid) => {
-  // console.log(dataid);
   return {
     type: "SAVE_TASK",
     payload: dataid,
 
-}}
+  }
+}
 export const UpdateTask = (data) => {
-  // console.log(data);
-  return(dispatch)=>{
-    return  ToDoAxios.post(`tasks/${data.tasks.taskId}?date=${data.tasks.createDate}&name=${data.tasks.taskName}
+  console.log(data);
+  return (dispatch) => {
+    return ToDoAxios.post(`tasks/${data.tasks.taskId}?date=${data.tasks.createDate}&name=${data.tasks.taskName}
     &status=${data.tasks.status}`)
-    .then(res=>{
-      // console.log(res);
-    
+      .then(res => {
+        // console.log(res);
+        dispatch(ToDoAll());
 
-    })
+      })
   }
 };
 
- export const profileAction =() =>{
-      return(dispatch)=>{
-        return  ToDoAxios.get(`profile`)
-        .then(res=>{
-          // console.log(res);
-          dispatch(GetProfile(res.data));
-         
-        })
-      }
-      
-  }
-  const GetProfile = (Profiledata)=>{
-    // console.log(Profiledata)
-    return{
-      type:"GET_PROFILE",
-      payload:Profiledata
-    }
-  }
-  export const EditProfile = (data) =>{
-    // console.log(data.picture);
-    // var url=`http://115.248.119.138:8089/todo/profile?firstname=${data.firstname}&lastname=${data.lastname}&picture=${data.picture}&userId=${1}`
-    return(dispatch)=>{
-      return  ToDoAxios.post(`profile?firstname=${data.firstname}&lastname=${data.lastname}&picture=${data.picture}&userId=${11}`)
-  .then(res=>{
-      // console.log(res);
-      dispatch(profileAction(data))
-      // dispatch(EditProfileAction(res.data));
-  })}
-}
-    const EditProfileAction = (resData)=>{
-      return{
-        type:"EDIT_PROFILE",
-        payload:resData
-      }
-    }
- 
-export const TasksApi = (data) => {
+export const profileAction = (data) => {
+  console.log(data);
   return (dispatch) => {
-    return ToDoAxios.get(`getTasksByStatus?status=${data.tasks.status}`)
+    return ToDoAxios.get(`profile`)
       .then(res => {
-          dispatch(ToDoAll());
+        dispatch(GetProfile(res.data));
+      })
+  }
+}
+const GetProfile = (Profiledata) => {
+  return {
+    type: "GET_PROFILE",
+    payload: Profiledata
+  }
+}
+export const EditProfile = (data) => {
+  // console.log(data);
+  return (dispatch) => {
+    return ToDoAxios.post(`profile?firstname=${data.firstname}&lastname=${data.lastname}&picture=${data.picture}&userId=${11}`, {
+      headers: {
+        "Authorization": data.token,
       }
-    )
+    })
+      .then(res => {
+        dispatch(profileAction(data))
+      })
+  }
+}
+const EditProfileAction = (resData) => {
+  return {
+    type: "EDIT_PROFILE",
+    payload: resData
   }
 }
 
-export const RescheduleTaskAction =(data)=>{
-  console.log("this action is triggerd form sidemenu");
+export const TasksApi = (data) => {
   console.log(data);
-      return {
-        type:"RESCHEDULE_TASK",
-        payload:data,
+  return (dispatch) => {
+    return ToDoAxios.get(`getTasksByStatus?status=${data}`)
+      .then(res => {
+        console.log(res.data.tasks);
+
+        dispatch(TaskAction(res.data.tasks));
       }
-    }
-export const CompletedTaskAction =(data)=>{
+      )
+  }
+}
+
+export const TaskAction = (data) => {
   console.log(data);
-      console.log("this action is triggerd form sidemenu");
-      return {
-        type:"COMPLETED_TASK",
-        payload:data,
-      }
+  // console.log("this action is triggerd form sidemenu");
+  return {
+    type: "COMPLETED_TASK",
+    payload: data,
+  }
 }
 export const SortByAction = (data) => {
-// console.log(data)
+  // console.log(data)
 
   return {
     type: "SORT_BY",
     payload: data,
   };
-} 
+}
 export const DeleteTask = (data) => {
-  console.log(data.taskId);
-  
-  return (dispatch) => { 
-  return ToDoAxios.delete(`tasks/${data.tasks.taskId}`)
-  .then(res => {
-  console.log(res);
-  // dispatch(DeleteAction(data));
+  console.log(data);
+
+  return (dispatch) => {
+    return ToDoAxios.delete(`tasks/${data.taskId}`, {
+      headers: {
+        "Authorization": data.token,
+      }
     })
+      .then(res => {
+        console.log(res);
+        // dispatch(DeleteAction(data));
+      })
   }
 }
-  // const DeleteAction = (data) => {
-  // console.log(data);
-  // return {
-  // type: "DELETE_TASK",
-  // payload: data,
-  // };
-  // };
+// const DeleteAction = (data) => {
+// console.log(data);
+// return {
+// type: "DELETE_TASK",
+// payload: data,
+// };
+// };
 export const UndoAction = (data) => {
   return {
     type: "UNDO",
-    payload:data
+    payload: data
   }
 }
 

@@ -22,7 +22,7 @@ class MyProfile extends React.Component {
   this.myRef=React.createRef()
 }
 static getDerivedStateFromProps(props,state) {
-  console.log("hi");
+  // console.log("hi");
   if(props.profileDetails[0] && state.editFlag === false){
   // console.log(props['profileDetails'][0]['image']);
     var profiledata={...state,
@@ -34,7 +34,7 @@ static getDerivedStateFromProps(props,state) {
   // console.log(this.state.Firstname)
   }
   else if(state.editFlag === false){
-      console.log("alert");
+      // console.log("alert");
       // props.profileAction();
       return state;
     }
@@ -99,27 +99,34 @@ static getDerivedStateFromProps(props,state) {
       var lastname=this.state.LastName;
       var picture=this.state.selectedFile;
       var email=this.props['profileDetails'][0]['email'];
+      var token=this.props.token;
       console.log(lastname);
 
       var letters = /^[A-Za-z ]+$/;
       if(!(firstname.match(letters)))
       {
-        // alert("Enter valid first name");
         document.getElementById('firstnameerror').style.visibility="visible"; 
       }
       if(!(lastname.match(letters)))
       {
-        // alert("Enter valid last name");
         document.getElementById('lastnameerror').style.visibility="visible";
       }
 
       if((firstname.match(letters)) && (lastname.match(letters)))
       {
-        this.props.EditProfile({firstname,lastname,picture,email})
+        this.props.EditProfile({firstname,lastname,picture,email,token})
         this.setState({
           showComponent:true,
         })
       }
+
+      // console.log(picture, "picture");
+     
+      // console.log({firstname,lastname});
+      // this.props.EditProfile({firstname,lastname,picture,email,token})
+      // this.setState({
+      //   showComponent:true,
+      // })
     }
     handleFirstName=(e)=>{
       var fname=e.target.value;
@@ -211,11 +218,13 @@ MyProfile.propTypes={
   LastName:PropTypes.string
 }
 const myStateToProps = (state) => {
-  console.log(state);
-    console.log(state.allTasks.profile);
+  // console.log(state);
+    // console.log(state.allTasks.profile);
     // console.log(state.profileData,'tsityn');
     return {
         profileDetails: state.allTasks.profile,
+        token: state.allTasks.accessToken,
+        
     };
 };
 export default withRouter(connect(myStateToProps,{EditProfile,profileAction})(MyProfile));

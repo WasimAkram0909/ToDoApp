@@ -37,12 +37,12 @@ class AddTask extends React.Component {
       newDate: currnetDate,
       showCalendar: false,
     })
-
   }
   handleSaveTask = () => {
     // this.props.history.push("/dashboard");
     var taskcontent = this.myRef.current.value;
     var dateContent = this.state.newDate;
+    var token=this.props.token;
     if(taskcontent==""){
       alert("Please enter the task");
       document.getElementById("taskData").focus()
@@ -51,7 +51,7 @@ class AddTask extends React.Component {
     }
     else{
       var TaskObject = {
-        taskName:taskcontent,status:'',createDate:dateContent
+        taskName:taskcontent,status:'',createDate:dateContent,token
       }
       this.props.SaveTask(TaskObject);
       this.setState({
@@ -65,9 +65,12 @@ class AddTask extends React.Component {
   
     // console.log(dateContent);
     // console.log(taskcontent);
-    var TaskObject = {
-      taskName:taskcontent,status:'',createDate:dateContent
-    }
+    // var TaskObject = {
+    //   taskName:taskcontent,status:'',createDate:dateContent,token
+   
+    // var TaskObject = {
+    //   taskName:taskcontent,status:'',createDate:dateContent,token
+    // }
 // this TaskObject holds all data of add task component 
 // need to send this to reducer
     // this.props.SaveTask(TaskObject);
@@ -142,7 +145,8 @@ class AddTask extends React.Component {
 const myStateToProps = (state) => {
   console.log(state);
   return {
-    cards: state.allTasks.Task
+    cards: state.allTasks.Task,
+    token: state.allTasks.accessToken,
   }
 }
 export default connect(myStateToProps, {

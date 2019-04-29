@@ -47,6 +47,7 @@ const myStateToProps = (state) => {
         return {
             isSignedIn: state.googleData.isSignedIn,
             SideMenuData: state.SideMenuReducer,
+            token:state.allTasks.accessToken,
         };
     };
 export default withRouter(connect(myStateToProps,{ToDoAll})(TasksContainer));

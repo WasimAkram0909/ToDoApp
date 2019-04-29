@@ -9,12 +9,13 @@ import {withRouter} from 'react-router-dom';
 import {Route} from 'react-router-dom';
 import TaskComponent from "./TaskComponent";
 import {SideMenuData} from "../reducers/SideMenu";
+// import {  TasksApi } from '../actions';
 
 
 
 class CompletedTasksContainer extends Component{
     render(){
-
+// console.log(this.props);
         return(
             <div className="DontEditThisClass">
                 {
@@ -22,10 +23,7 @@ class CompletedTasksContainer extends Component{
                     <HeadNav  title={SideMenuData[1].name} showSort={true} />
                     :<HeadNav  title={SideMenuData[2].name} showSort={true} />
                 }
-                {/* <HeadNav  title={SideMenuData[1].name} /> */}
-                {/* {console.log(SideMenuData[1].name)} */}
-                {/* {console.log(this.props.match.url)} */}
-                <TaskComponent path1={this.props.match.url}/> 
+                <TaskComponent path1={this.props.match.url}   /> 
             </div>
         )
     }

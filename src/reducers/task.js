@@ -19,68 +19,82 @@ const sortData = [
   },
   {
     taskName: ' Alex on OS configuration ',
-    status: 'pending',
+    status: 'Completed',
     createDate: '2018-04-25',
     taskId: 3
   }
-  // {
-  //   taskName: ' Alex on OS configuration and let him know that meeting JA Marsh for lunch Joh to call Alex on OS configuration and let him know that meeting JA Marsh for lunch',
-  //   status: 'Rescheduled',
-  //   createDate: '2019-04-25',
-  //   taskId: 4
-  // },
 ]
 let undoData = [];
+let Tasks=[];
 const initialValues = {
   Task: sortData,
-  profile: [],
-  sortDate: null
-};
+  profile:[],
+  sortDate: null,
+  CompletedTasks:Tasks,
+  accessToken:""
+}
+
 
 export default (state = initialValues, action) => {
   switch (action.type) {
+    case 'ACCESS_TOKEN':
+      console.log(action.payload);
+      return {...state,accessToken:action.payload}
+    
     case 'TO_DO_ALL':
-      // console.log(action.payload);
-      // // console.log(sortData);
-      // // sortData.concat(action.payload.tasks);
-      // // console.log(action.payload);
-      //   return {
-
-      //     ...state,Task: sortData.concat(action.payload)
-
-      //     // ...state, Task: newData
-      //   };
-      // case 'RESCHEDULE_TASK':
-      //  undoData=state.Task.splice(action.payload.index,1);
-      //   let reschedulingData = state.editData && state.editData.concat(action.payload)
-      //   return {
-      //     ...state,
-      //     // mainEditData: reschedulingData,
-      //     editData: reschedulingData,
-      //     Task:state.Task
-      //   };
-      // case 'COMPLETED_TASK':
-      //   console.log(action.payload.index);
-      //   undoData=state.Task.splice(action.payload.index,1);
-      //   let completedData = state.editData && state.editData.concat(action.payload);
-      //   return {
-      //     ...state,
-      //     // mainEditData: completedData,
-      //     editData: completedData,
-      //     Task:state.Task
-      //   };
-      // case 'DELETE_TASK':
-      // console.log(action.payload.tasks);
-      //   undoData = state.Task.splice(action.payload.index, 1);
-      //   // console.log(deletedElement);
-      //   // console.log(state);
-
-      //   return {
-      //     ...state
+    console.log(action.payload);
+    // // console.log(sortData);
+    // // sortData.concat(action.payload.tasks);
+    // // console.log(action.payload);
+    //   return {
+        
+      
+    //     ...state,Task: sortData.concat(action.payload)
+    
+    //     // ...state, Task: newData
+    //   };
+    // case 'RESCHEDULE_TASK':
+    //  undoData=state.Task.splice(action.payload.index,1);
+    //   let reschedulingData = state.editData && state.editData.concat(action.payload)
+    //   return {
+    //     ...state,
+    //     // mainEditData: reschedulingData,
+    //     editData: reschedulingData,
+    //     Task:state.Task
+    //   };
+    // case 'COMPLETED_TASK':
+    //   console.log(action.payload.index);
+    //   undoData=state.Task.splice(action.payload.index,1);
+    //   let completedData = state.editData && state.editData.concat(action.payload);
+    //   return {
+    //     ...state,
+    //     // mainEditData: completedData,
+    //     editData: completedData,
+    //     Task:state.Task
+    //   };
+    // case 'DELETE_TASK':
+    // console.log(action.payload.tasks);
+    //   undoData = state.Task.splice(action.payload.index, 1);
+    //   // console.log(deletedElement);
+    //   // console.log(state);
+    //   return {
+    //     ...state
       return {
         ...state,
         Task: sortData.concat(action.payload),
         sortDate: null
+      };
+      case 'COMPLETED_TASK':
+      console.log(action.payload);
+      // undoData=state.Task.splice(action.payload.index,1);
+      // let completedData = state.editData && state.editData.concat(action.payload);
+
+      return {
+        ...state,
+        CompletedTasks:Tasks.concat(action.payload),
+        // mainEditData: completedData,
+        // editData: completedData,
+        Task:state.Task
       };
     // case 'DELETE_TASK':
     // console.log(action.payload.tasks);
@@ -88,15 +102,12 @@ export default (state = initialValues, action) => {
     //   return {
     //     ...state
     //   };
-    case 'GET_PROFILE':
-      // console.log(action.payload.data);
-      var newdata = [{ ...action.payload.data }];
-      // console.log({...state});
-      // console.log(newdata)
-      return {
-        ...state,
-        profile: newdata
-      };
+      case "GET_PROFILE":
+        var newdata=[{...action.payload.data}];
+        return{
+          ...state,
+           profile:newdata
+          }
     case 'EDIT_PROFILE':
       return {
         ...state
