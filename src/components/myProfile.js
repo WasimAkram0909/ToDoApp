@@ -22,20 +22,15 @@ class MyProfile extends React.Component {
   this.myRef=React.createRef()
 }
 static getDerivedStateFromProps(props,state) {
-  // console.log("hi");
   if(props.profileDetails[0] && state.editFlag === false){
-  // console.log(props['profileDetails'][0]['image']);
     var profiledata={...state,
     FirstName:props['profileDetails'][0]['firstName'],
   LastName:props['profileDetails'][0]['lastName'],
   selectedFile:"data:image/png;base64,".concat(props['profileDetails'][0]['image'])
 };
   return profiledata;
-  // console.log(this.state.Firstname)
   }
   else if(state.editFlag === false){
-      // console.log("alert");
-      // props.profileAction();
       return state;
     }
     else{

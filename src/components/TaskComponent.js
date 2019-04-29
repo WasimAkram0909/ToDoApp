@@ -1,31 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../css/Taskitem.css';
-import HeadNav from './HeadNav';
-import moment from "moment";
-let taskDate;
+import moment from 'moment';
 class TaskComponent extends Component {
   render() {
-    console.log(this.props.editData);
-
-    return this.props.editData.map((data, i) => {
-      console.log(data.status);
-      var name2 = data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase();
-      console.log(name2);
-      let name = `/dashboard/${name2}Tasks`;
-      let d = data.createDate;
-      console.log(d);
-      d = moment(d).format("MMM D");
-      taskDate = d;
+    return this.props.editData.map(data => {
+      var status =
+        data.status.charAt(0).toUpperCase() +
+        data.status.slice(1).toLowerCase();
+      let name = `/dashboard/${status}Tasks`;
+      let updatedDate = data.createDate;
+      updatedDate = moment(updatedDate).format('MMM D');
 
       if (this.props.path1 === name) {
         return (
           <React.Fragment>
-            <p className="dataClass">{taskDate}</p>
+            <p className="dataClass">{updatedDate}</p>
             <div className="ItemContainer">
               <div className="StatusNoneIcon">
                 <img
-                  src={require(`../assets/${name2}Tasks.png`)}
+                  src={require(`../assets/${status}Tasks.png`)}
                   alt="images"
                 />
               </div>
@@ -38,27 +32,22 @@ class TaskComponent extends Component {
   }
 }
 
-
 const myStateToProps = state => {
-  // console.log(state.allTasks.sortDate);
-  let filteredData = state.allTasks.CompletedTasks;
-  console.log(state.allTasks.sortDate);
-  if (state.allTasks.sortDate !== undefined && state.allTasks.sortDate !== null) {
+  let filteredData = state.allTasks.updatedTasks;
+  if (
+    state.allTasks.sortDate !== undefined &&
+    state.allTasks.sortDate !== null
+  ) {
     filteredData = filteredData.filter(key => {
-      // console.log(key);            
-      let date = key.createDate.slice(0, 4) + "-" + key.createDate.slice(5, 7) + "-" + key.createDate.slice(8, 10);
-      // console.log(date); 
-      // console.log(state.allTasks.sortDate);          
-      if (state.allTasks.sortDate === date) {
+      let createDate = moment(key.createDate).format('YYYY-MM-DD');
+      if (state.allTasks.sortDate === createDate) {
         return key;
       }
-    })
+    });
   }
 
-  console.log(filteredData);
   return {
-    editData: filteredData,
+    editData: filteredData
   };
-
-}
+};
 export default connect(myStateToProps)(TaskComponent);

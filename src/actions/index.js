@@ -1,11 +1,8 @@
 import axios from "axios";
-// import ToDoAxios from "../api/ToDoaxios";
-// import {authToken} from '../components/googleauth'
-
 let ToDoAxios= axios.create({
   baseURL:"http://115.248.119.138:8089/todo/",
   headers:{
-  "Authorization":"ya29.Glz6Bjm3UZqDNxuomAw5UGzH8f2es4xQLQqSL4xf_GMaG3PrRPt2dkMOZwF3m9XtXTj5304NqEEsrVeA-TmTbzB8o5_DV4Xl233w-6KJ9kp7q99BOxLZa30EtOUXAg"
+  "Authorization":"ya29.Glz6BssfGCh8c4wFccsOSnnuG8DxLx0iMe7yLZYasEBerT1G-XdAU82MXTc52i2kahMXP-oPnuMq2qTEhDKS50m8Hzs3xeLH_V9IsgUEZayekpd3ABsjwd8NsIo10A"
   }
 }
 )
@@ -41,57 +38,46 @@ export const ToDoAll = (data) => {
   return (dispatch) => {
     return ToDoAxios.get(`tasks`)
       .then(res => {
-        // console.log(res.data.tasks);
-        var filtered = res.data.tasks.filter((data1) => {
-          // console.log(data1.status);
-          if (data1.status === "PENDING") {
-            // console.log(data1);
-            return data1
+        var pendingData = res.data.tasks.filter((taskData) => {
+          if (taskData.status === "PENDING") {
+            return taskData
           }
         });
         
-dispatch(ToDoAllAction(filtered));
+dispatch(ToDoAllAction(pendingData));
 
       }
       )
   }
 }
-export const ToDoAllAction = (RES) => {
+export const ToDoAllAction = (pendingData) => {
   return {
     type: "TO_DO_ALL",
-    payload: RES,
+    payload: pendingData,
   };
 };
 export const SaveTask = (data) => {
   console.log(data);
   return (dispatch) => {
-    return ToDoAxios.post(`tasks?date=${data.createDate}&name=${data.taskName}`,
-      {
-        headers: {
-          "Authorization": data.token,
-        }
-      })
+    return ToDoAxios.post(`tasks?date=${data.createDate}&name=${data.taskName}`)
       .then(res => {
         dispatch(ToDoAll());
       })
   }
 }
-const SaveTaskAction = (dataid) => {
+const SaveTaskAction = (taskId) => {
   return {
     type: "SAVE_TASK",
-    payload: dataid,
+    payload: taskId,
 
   }
 }
 export const UpdateTask = (data) => {
-  console.log(data);
   return (dispatch) => {
     return ToDoAxios.post(`tasks/${data.tasks.taskId}?date=${data.tasks.createDate}&name=${data.tasks.taskName}
     &status=${data.tasks.status}`)
       .then(res => {
-        // console.log(res);
         dispatch(ToDoAll());
-
       })
   }
 };
@@ -112,7 +98,6 @@ const GetProfile = (Profiledata) => {
   }
 }
 export const EditProfile = (data) => {
-  // console.log(data);
   return (dispatch) => {
     return ToDoAxios.post(`profile?firstname=${data.firstname}&lastname=${data.lastname}&picture=${data.picture}&userId=${11}`)
       .then(res => {
@@ -127,13 +112,10 @@ const EditProfileAction = (resData) => {
   }
 }
 
-export const TasksApi = (data) => {
-  console.log(data);
+export const TasksApi = (status) => {
   return (dispatch) => {
-    return ToDoAxios.get(`getTasksByStatus?status=${data}`)
+    return ToDoAxios.get(`getTasksByStatus?status=${status}`)
       .then(res => {
-        console.log(res.data.tasks);
-
         dispatch(TaskAction(res.data.tasks));
       }
       )
@@ -141,40 +123,25 @@ export const TasksApi = (data) => {
 }
 
 export const TaskAction = (data) => {
-  console.log(data);
-  // console.log("this action is triggerd form sidemenu");
   return {
     type: "COMPLETED_TASK",
     payload: data,
   }
 }
 export const SortByAction = (data) => {
-  // console.log(data)
-
   return {
     type: "SORT_BY",
     payload: data,
   };
 }
 export const DeleteTask = (data) => {
-  console.log(data);
-
   return (dispatch) => {
-    return ToDoAxios.delete(`tasks/${data.taskId}`)
+    return ToDoAxios.delete(`tasks/${data.tasks.taskId}`)
       .then(res => {
-        console.log(res);
         dispatch(ToDoAll());
-        // dispatch(DeleteAction(data));
       })
   }
 }
-// const DeleteAction = (data) => {
-// console.log(data);
-// return {
-// type: "DELETE_TASK",
-// payload: data,
-// };
-// };
 export const UndoAction = (data) => {
   return {
     type: "UNDO",

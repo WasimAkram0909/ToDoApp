@@ -1,18 +1,12 @@
 import React from 'react';
-// import '/home/wtt181/ToDoApp/src/css/addtask.css';
 import { Calendar } from 'react-calendar';
 import '../css/Taskitem.css';
 import '../css/AddTask.css';
 import StatusNoneIcon from "../assets/StatusNone.svg";
-// import SaveICon from '../assets/baseline_check_black_18dp.png';
-// import CancelIcon from '../assets/baseline_clear_black_18dp.png';
-// import CancelIcon from '../assets/cancel.png'
 import CalendarIcon from '../assets/Calender Create Task.svg';
-// import { create } from 'domain';
 import { SaveTask} from '../actions';
 import { connect } from 'react-redux';
 import HeadNav from './HeadNav';
-// import Date from './date';
 import SaveICon from '@material-ui/icons/Done';
 import CancelIcon from '@material-ui/icons/Clear';
 import moment from "moment";
@@ -32,14 +26,12 @@ class AddTask extends React.Component {
     console.log(date);
     let currnetDate = moment(date).format("DD MM YYYY");
     currnetDate = currnetDate.slice(0,2)+"-"+ currnetDate.slice(3,5)+"-"+ currnetDate.slice(6,12);
-    // console.log(currnetDate);
     this.setState({
       newDate: currnetDate,
       showCalendar: false,
     })
   }
   handleSaveTask = () => {
-    // this.props.history.push("/dashboard");
     var taskcontent = this.myRef.current.value;
     var dateContent = this.state.newDate;
     var token=this.props.token;
