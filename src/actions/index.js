@@ -1,16 +1,11 @@
 import axios from "axios";
-import store from '../reducers/task.js';
-// var tokenValue = '';
-// export const tokenAction = (data) => {
-//   return {
-//     type: "ACCESS_TOKEN",
-//     payload: data
-//   }
-// }
-export const ToDoAxios = axios.create({
-  baseURL: "http://115.248.119.138:8089/todo/",
-  headers: {
-    "Authorization": "ya29.Glz6Bi4-S-TFyWFxmwoBOnwNbVBQ5cknDltJMqmqC9uxDb52Z2mry8WLdhCWB_Pbm4aETkoM9crjrkSyINMUXulezRIwf3rNXP6yMzgZw4_ZV5IDuAYOeiKABYHvyA",
+// import ToDoAxios from "../api/ToDoaxios";
+// import {authToken} from '../components/googleauth'
+
+let ToDoAxios= axios.create({
+  baseURL:"http://115.248.119.138:8089/todo/",
+  headers:{
+  "Authorization":"ya29.Glz6Bjm3UZqDNxuomAw5UGzH8f2es4xQLQqSL4xf_GMaG3PrRPt2dkMOZwF3m9XtXTj5304NqEEsrVeA-TmTbzB8o5_DV4Xl233w-6KJ9kp7q99BOxLZa30EtOUXAg"
   }
 }
 )
@@ -119,11 +114,7 @@ const GetProfile = (Profiledata) => {
 export const EditProfile = (data) => {
   // console.log(data);
   return (dispatch) => {
-    return ToDoAxios.post(`profile?firstname=${data.firstname}&lastname=${data.lastname}&picture=${data.picture}&userId=${11}`, {
-      headers: {
-        "Authorization": data.token,
-      }
-    })
+    return ToDoAxios.post(`profile?firstname=${data.firstname}&lastname=${data.lastname}&picture=${data.picture}&userId=${11}`)
       .then(res => {
         dispatch(profileAction(data))
       })
@@ -169,13 +160,10 @@ export const DeleteTask = (data) => {
   console.log(data);
 
   return (dispatch) => {
-    return ToDoAxios.delete(`tasks/${data.taskId}`, {
-      headers: {
-        "Authorization": data.token,
-      }
-    })
+    return ToDoAxios.delete(`tasks/${data.taskId}`)
       .then(res => {
         console.log(res);
+        dispatch(ToDoAll());
         // dispatch(DeleteAction(data));
       })
   }

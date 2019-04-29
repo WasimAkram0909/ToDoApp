@@ -196,7 +196,8 @@ class Taskitem extends Component {
   var currentDate = moment().format("MMM D")
     return (
       <main>
-        <p className="dataClass">Over due</p>
+        <p className="dataClass">{moment(d).format("MMM D")}</p>
+        { /* <div className="ItemContainer"> */ }
           {TaskDetails[1].map((Tasksdata, index) => {
         return (            
             <div className="ItemContainer" key ={Tasksdata.taskId}>
