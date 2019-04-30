@@ -2,36 +2,22 @@ export const SideMenuData = [
     {
         name:"Todo",
         image:require("../assets/Alltasks.svg"),
-        path:"Todo",
-        action:0,
+        path:"Todo"
     },
     {
         name:"CompletedTasks",
         image:require("../assets/CompletedTasks.svg"),
-        path:"CompletedTasks",
-        action:1,
-        
+        path:"CompletedTasks"
     },
     {
         name:"RescheduledTasks",
         image:require("../assets/Rescheduld_Tasks.svg"),
-        path:"RescheduledTasks",
-        action:2,
-        
+        path:"RescheduledTasks"
     },
     {
         name:"Profile",
         image:require("../assets/Profile.svg"),
-        path:"Profile",
-        action:3,
-        
+        path:"Profile"
     }
 ]
-// {
-//     ToDoAll,
-//      CompletedTaskAction,
-//     RescheduleTask,
-//      profileAction
-
-// }
     
