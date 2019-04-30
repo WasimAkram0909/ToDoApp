@@ -13,7 +13,7 @@ import { withRouter } from 'react-router-dom';
 import { ToDoAll, TasksApi, SortByAction, profileAction } from '../actions';
 import Dashboard from './dashboard';
 import GoogleAuth from './googleauth';
-import { SideMenuData } from '../reducers/SideMenu';
+// import { SideMenuData } from '../reducers/SideMenu';
 import $ from 'jquery';
 
 class SideMenu extends Component {

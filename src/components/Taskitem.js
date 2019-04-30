@@ -26,7 +26,8 @@ class Taskitem extends Component {
     selectedId: null,
     toastMsg: null,
     toastImage: null,
-    overDueTasksArr: []
+    overDueTasksArr: [],
+    noTasks: '',
   };
 
   rescheduleTask = selectdate => {
@@ -97,6 +98,7 @@ class Taskitem extends Component {
   }
   render() {
     const { date } = this.state.date;
+    
     var result = this.props.cards.reduce(function(r, a) {
       r[a.createDate] = r[a.createDate] || [];
       r[a.createDate].push(a);
@@ -120,6 +122,13 @@ class Taskitem extends Component {
       var d = new Date();
       return c - d;
     });
+    console.log((this.props.cards==''));
+    console.log(this.props.cards);    
+    console.log((this.state.overDueTasksArr== ''));
+    if(!(this.props.cards=='') || !(this.state.overDueTasksArr == '')){
+      console.log("everything is null");
+
+    
     return (
       <React.Fragment>
         {newGroupedTaskItems.map((TaskDetails, i) => {
@@ -227,7 +236,10 @@ class Taskitem extends Component {
           />
         ) : null}
       </React.Fragment>
-    );
+    );}
+    else{
+      return(<div className="noDataFound">Please add the task by pressing add task button in right side top of the page</div>)
+    }
   }
 }
 const myStateToProps = state => {
