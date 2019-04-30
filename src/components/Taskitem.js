@@ -47,8 +47,7 @@ class Taskitem extends Component {
     let date = moment(tasks.createDate).format('DD-MM-YYYY');
     tasks.status = 'Completed';
     tasks.createDate = date;
-    var token = this.props.token;
-    this.props.UpdateTask({ tasks, token });
+    this.props.UpdateTask({ tasks });
     this.setState({
       showBtns: false,
       showToast: true,
@@ -169,15 +168,15 @@ class Taskitem extends Component {
                         </div>
                       ) : null}
 
-                      <div className="calenderClass">
+                      
                         {this.state.showComponent ? (
+                          <div className="calenderClass">
                           <Calendar
-                            className="calendar"
                             onChange={this.rescheduleTask}
                             value={date}
                           />
-                        ) : null}
-                      </div>
+                         </div> ) : null}
+                     
                     </div>
                   );
                 })}
@@ -217,7 +216,7 @@ class Taskitem extends Component {
                         <img
                           src={Delete}
                           onClick={() =>
-                            this.deleteTask(Tasksdata.taskId, index)
+                            this.deleteTask(Tasksdata)
                           }
                         />
                       </div>
@@ -228,13 +227,6 @@ class Taskitem extends Component {
             </main>
           );
         })}
-        {this.state.showComponent ? (
-          <Calendar
-            className="calendar"
-            onChange={this.rescheduleTask}
-            value={date}
-          />
-        ) : null}
       </React.Fragment>
     );}
     else{

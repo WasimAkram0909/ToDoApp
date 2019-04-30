@@ -19,9 +19,6 @@ class HeadNav extends Component {
       date: new Date()
     };
   }
-  callMoment() {
-    var thisIsMomentJs = moment().format('MM DD YYYY');
-  }
   onSelectingOfDate = date => {
     let selectDate = moment(date).format('YYYY-MM-DD');
     this.props.SortByAction({
@@ -51,35 +48,36 @@ class HeadNav extends Component {
                   className="HeadNavbtnCntr linkTag"
                 >
                   <i className="fa fa-plus white" />
-                  <p
-                    className="btntext btntxt2"
-                    onClick={() => {
-                      this.callMoment();
-                    }}
-                  >
-                    Add Task
-                  </p>
+                  <p className="btntext btntxt2">Add Task</p>
                 </Link>
               </div>
             ) : (
               <div />
             )}
 
-            {this.props.showSort ? (
+         
               <div className="HeadNavbtnCntr" onClick={() => this.sortBy()}>
                 <img className="icon" src={CalenderIcon} />
                 <p className="btntext">Sort By</p>
               </div>
-            ) : null}
+          
           </div>
-        </div>
 
+                 
         {this.state.showCalendar ? (
+          <div className="calenderClass supportClass" >
           <Calendar
-            className="react-calender"
+            className="calenderClass"
             onChange={this.onSelectingOfDate}
           />
-        ) : null}
+          </div>
+        ) : null
+        
+         }
+        </div>
+
+       
+        
       </React.Fragment>
     );
   }

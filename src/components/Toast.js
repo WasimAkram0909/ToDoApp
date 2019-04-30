@@ -8,8 +8,8 @@ class Toast extends React.Component {
     isShow: true
   };
 
-  undo = data => {
-    this.props.UndoAction(data);
+  undo = () => {
+    this.props.UndoAction();
     this.setState({
       isShow: false
     });

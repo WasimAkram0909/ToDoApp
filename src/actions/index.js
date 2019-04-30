@@ -1,8 +1,12 @@
 import axios from "axios";
+
+let undoData; 
+
+
 let ToDoAxios= axios.create({
   baseURL:"http://115.248.119.138:8089/todo/",
   headers:{
-  "Authorization":"ya29.Glz7Bq2yQ9F9uZ_uYmL-lQk2vDKZtVSsrN3ZUnpeGIy-bzWa38Kyv9VcO6NDxxp68HEF9rB7xmSuPlCNbNqRwOSjWgvfrlP6WgDjbDO131Z2E7WxUpEpgJxXov6lwQ"
+  "Authorization":"ya29.Glz7BjkuR1zUc4rfLqKq0EqshDdlBawGOC-CrX-C_Culg4FzqUNtqv18cOH4SDJGKSq6AfIyZ0S5wKS9aG3qnvH74PhUI76tA6-q4YwgYre0GravaYfCdjHnsDUplw"
   }
 }
 )
@@ -18,22 +22,6 @@ export const signOut = () => {
     type: "SIGN_OUT"
   };
 };
-
-// export const profileAction = (data) => {
-//   // console.log(data,"actions");
-//   var id = data.getId();
-//   var fullName = data.getName();
-//   var name = data.getGivenName();
-//   var familyNaya29.Glz2BsFP1ssbml3vEsIi_cUXm0959jrvRUGErtH8IuruK60jCqeH2em9J_QhSMMdfWuEoCRh50tSBYTQAEVXvbdSK1jHyzaDa3g9Z1SaRD3o__KWMv2DsY60c0wAtgme = data.getFamilyName();
-//   var image = data.getImageUrl();
-//   var email = data.getEmail();
-//   var logInData = { id, fullName, name, familyName, image, email };
-//   return {
-//     type: "SIGN_IN_USER_DETAILS",
-//     payload: logInData,
-//   }
-// }
-
 export const ToDoAll = (data) => {
   return (dispatch) => {
     return ToDoAxios.get(`tasks`)
@@ -73,6 +61,8 @@ const SaveTaskAction = (taskId) => {
   }
 }
 export const UpdateTask = (data) => {
+  undoData = data
+console.log(undoData)  
   return (dispatch) => {
     return ToDoAxios.post(`tasks/${data.tasks.taskId}?date=${data.tasks.createDate}&name=${data.tasks.taskName}
     &status=${data.tasks.status}`)
@@ -124,7 +114,7 @@ export const TasksApi = (status) => {
 
 export const TaskAction = (data) => {
   return {
-    type: "COMPLETED_TASK",
+    type: "UPDATE_TASK",
     payload: data,
   }
 }
@@ -135,6 +125,8 @@ export const SortByAction = (data) => {
   };
 }
 export const DeleteTask = (data) => {
+  undoData =data 
+  console.log(undoData);
   return (dispatch) => {
     return ToDoAxios.delete(`tasks/${data.tasks.taskId}`)
       .then(res => {
@@ -142,10 +134,11 @@ export const DeleteTask = (data) => {
       })
   }
 }
-export const UndoAction = (data) => {
+export const UndoAction = (undoData) => {
+console.log(undoData);
   return {
     type: "UNDO",
-    payload: data
+    payload: undoData
   }
 }
 
