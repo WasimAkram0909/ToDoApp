@@ -65,7 +65,7 @@ class SideMenu extends Component {
               <img className="linkLogo" src={profile} />
               <Link
                 to={`/dashboard/Profile`}
-                onClick={() => this.props.profileAction(this.props.token)}
+                onClick={() => this.props.profileAction()}
                 className="SideMenuLink"
               >
                 Profile

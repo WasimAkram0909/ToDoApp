@@ -105,17 +105,17 @@ static getDerivedStateFromProps(props,state) {
     return (
      <div className="DontEditThisClass">         
         <HeadNav title="Profile" showSort={false}/>
-     {this.props.profileDetails.map((profileData) => {
+     {this.props.profileDetails.map((profileData,i) => {
 
          return(
-        <div className="MyProfile"> 
+        <div className="MyProfile" key={i}> 
         <div className="profilePictureDiv">   
         <div className="ProfilePhotoMainDiv">   
         {/* <img className="ProfilePhoto" src="data:image/png;base64,(base 64 string)" alt="profile"/> */}
             <img className="ProfilePhoto" src={this.state.selectedFile} alt="profile"/>
             <br/></div> 
-            <label for="files" className="EditProfile">Edit Profile</label>
-  <input id="files" className="buttonHide" onChange={this.handleImage} type="file" required/>
+            <label  className="EditProfile">Edit Profile</label>
+  <input  className="buttonHide" onChange={this.handleImage} type="file" required/>
         </div>
         <div className="ProfileDetails">
           {this.state.showComponent ? 

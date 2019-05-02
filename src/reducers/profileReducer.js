@@ -11,22 +11,7 @@ const profile= {
         var copyProfile = [...state];
         return copyProfile.concat(action.payload);
     }
-    if(action.type === "EDIT_PROFILE"){
-        console.log(action.payload);
-        return{
-                    profile:{
-                        firstName:action.payload.fn,
-                        lastName:action.payload.ln
-                    }
-            
-        }
-    }
     return state;
 }
-export  const dynamicData=(state=profile,action)=>{
-    if(action.types ==="EDIT_PROFILE")
-    {
-        console.log(action.payload, "redusers");
-    }
-}
+
 

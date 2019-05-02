@@ -7,8 +7,10 @@ import { connect } from 'react-redux';
 
 class Welcome extends Component {
   render() {
-    console.log('dashboard');
+    console.log('dashboard1');
+    console.log(this.props.profileDetails);
     return this.props.profileDetails.map(profileData => {
+      console.log('dashboard');
       return (
         <main className="App">
           <div className="AppDiv">
@@ -18,9 +20,8 @@ class Welcome extends Component {
               <img src={circleTick} className="circleTick" />
               <p>You have Successfully Created ToDo Account </p>
             </div>
-            <Link to="/welcome">
-              {' '}
-              <button className="button" onClick={() => this.click()}>
+            <Link to="/dashboard">
+              <button className="button">
                 <img src={forwardArrow} className="arrow" />
               </button>
             </Link>

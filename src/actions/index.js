@@ -1,5 +1,14 @@
 import axios from "axios";
+
+ 
 let token=JSON.parse(localStorage.getItem('details'));
+console.log(token.accessToken);
+if(token===null){
+  token={
+    accessToken:null
+  }
+}
+
 let ToDoAxios= axios.create(
   {
   baseURL:"http://115.248.119.138:8089/todo/",
@@ -8,6 +17,29 @@ let ToDoAxios= axios.create(
   }
 }
 )
+
+// export const profileAction=(data)=>{
+//   console.log(data,"actions");
+//     var id= data.getId();
+//     var fullName=data.getName();
+//     var name= data.getGivenName();
+//     var familyName= data.getFamilyName();
+    
+//     var email= data.getEmail();
+//     var logInData={id,fullName,name,familyName,image,email};
+  
+//   }
+export const userProfile=(data)=>{
+ 
+  var image= data.getImageUrl();
+  var name= data.getGivenName();
+  console.log(image,name);
+  return{
+    type:"SIGN_IN_USER_DETAILS",
+    payload:{image,name},
+    }
+}
+
 
 export const signIn = (userId) => {
   return {
@@ -64,7 +96,8 @@ export const UpdateTask = (data) => {
   }
 };
 
-export const profileAction = (data) => {
+export const profileAction = () => {
+  console.log(token);
   return (dispatch) => {
     return ToDoAxios.get(`profile`)
       .then(res => {

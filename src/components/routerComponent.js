@@ -14,8 +14,9 @@ class RouterComponent extends Component {
             <Router>
                 <Switch>
                     <Route exact path="/" component={LoginPage} />
+                    
+                    {this.props.isSignedIn ? <Route exact path='/welcome' component={Welcome} /> :  <LoginPage />}
                     {this.props.isSignedIn ? <Route path="/dashboard" component={Dashboard} /> : <LoginPage />}
-                    {this.props.isSignedIn ? <Route exact path='/welcome' component={Welcome} /> : null}
                 </Switch>
             </Router>
         );

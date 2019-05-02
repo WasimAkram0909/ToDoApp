@@ -31,7 +31,7 @@ class Taskitem extends Component {
   };
 
   rescheduleTask = selectdate => {
-    let date = moment(selectdate).format('DD-MM-YYYY');
+    let date = moment(selectdate).format('YYYY-MM-DD');
     this.state.tasks.status = 'Rescheduled';
     this.state.tasks.createDate = date;
     this.props.UpdateTask({ tasks: this.state.tasks });
@@ -44,7 +44,7 @@ class Taskitem extends Component {
     });
   };
   completeTask = tasks => {
-    let date = moment(tasks.createDate).format('DD-MM-YYYY');
+    let date = moment(tasks.createDate).format('YYYY-MM-DD');
     tasks.status = 'Completed';
     tasks.createDate = date;
     this.props.UpdateTask({ tasks });
@@ -121,13 +121,7 @@ class Taskitem extends Component {
       var d = new Date();
       return c - d;
     });
-    console.log((this.props.cards==''));
-    console.log(this.props.cards);    
-    console.log((this.state.overDueTasksArr== ''));
     if(!(this.props.cards=='') || !(this.state.overDueTasksArr == '')){
-      console.log("everything is null");
-
-    
     return (
       <React.Fragment>
         {newGroupedTaskItems.map((TaskDetails, i) => {
@@ -136,7 +130,7 @@ class Taskitem extends Component {
           var currentDate = moment().format('MMM D');
           if (!moment(taskDate).isBefore(currentDate)) {
             return (
-              <main>
+              <main key={i}>
                 <p className="dataClass">
                   {moment(TaskDetails[0]).format('MMM D')}
                 </p>

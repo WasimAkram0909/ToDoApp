@@ -4,7 +4,7 @@ import '../css/Taskitem.css';
 import moment from 'moment';
 class TaskComponent extends Component {
   render() {
-    return this.props.editData.map(data => {
+    return this.props.editData.map((data,i) => {
       var status =
         data.status.charAt(0).toUpperCase() +
         data.status.slice(1).toLowerCase();
@@ -14,7 +14,7 @@ class TaskComponent extends Component {
 
       if (this.props.path1 === name) {
         return (
-          <React.Fragment>
+          <React.Fragment key={i}>
             <p className="dataClass">{updatedDate}</p>
             <div className="ItemContainer">
               <div className="StatusNoneIcon">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { signIn, signOut, profileAction } from '../actions';
+import { signIn, signOut, userProfile } from '../actions';
 import { withRouter } from 'react-router';
 import Google from '../assets/google.png';
 import '../css/loginpage.css';
@@ -21,9 +21,8 @@ class GoogleAuth extends React.Component {
           })
           .then(() => {
             this.auth = window.gapi.auth2.getAuthInstance();
+            
             this.authResp = this.auth.currentUser.get().getAuthResponse(true);
-            console.log(this.authResp.expires_in);
-            // console.log(this.authResp.access_token);
             this.onAuthChange(this.auth.isSignedIn.get());
             this.auth.isSignedIn.listen(this.onAuthChange);
           });
@@ -33,29 +32,33 @@ class GoogleAuth extends React.Component {
   onAuthChange = isSignedIn => {
     if (isSignedIn) {
       this.props.signIn(this.auth.currentUser.get().getId());
-      
-      this.props.profileAction(this.auth.currentUser.get().getBasicProfile());
-      //we need to add getprofile api//
+      // (this.auth.currentUser.get().getBasicProfile());
     } else {
       this.props.signOut();
     }
   };
 
   onSignInClick = () => {
+    if(this.auth){
     this.auth.signIn().then(res => {
+      // console.log(res.Zi.access_token);
       const details={
         userId:res.El,
         accessToken:res.Zi.access_token,
       }
-      localStorage.setItem('details',JSON.stringify(details));
       let data=JSON.parse(localStorage.getItem('details'));
-      if(res.El===data.userId){
-        console.log("Alraedy Existing user");
+
+      if( data!==null &&  res.El===data.userId ){
+        console.log("Already Existing user");
         this.props.history.push('/dashboard');
       }else{
+        console.log("NewUser");
+        localStorage.setItem('details',JSON.stringify(details));
+        this.props.userProfile(this.auth.currentUser.get().getBasicProfile());
         this.props.history.push("/welcome");
       }
     });
+  }
   };
 
   onSignOutClick = () => {
@@ -104,7 +107,7 @@ export default withRouter(
     {
       signIn,
       signOut,
-      profileAction,
+      userProfile,
     }
   )(GoogleAuth)
 );
