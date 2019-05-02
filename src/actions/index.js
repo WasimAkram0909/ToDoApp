@@ -97,7 +97,6 @@ export const UpdateTask = (data) => {
 };
 
 export const profileAction = () => {
-  console.log(token);
   return (dispatch) => {
     return ToDoAxios.get(`profile`)
       .then(res => {
@@ -115,11 +114,11 @@ const GetProfile = (Profiledata) => {
 export const EditProfile = (data) => {
   console.log(data);
   return (dispatch) => {
-    return ToDoAxios.post(`profile?firstname=${data.firstname}&lastname=${data.lastname}&picture=${data.picture}&userId=${11}`)
+    return ToDoAxios.post(`profile?firstname=${data.firstname}&lastname=${data.lastname}&picture=${data.picture}`)
       .then(res => {
         console.log(res);
         // console.log()
-        dispatch(profileAction(data));
+        dispatch(profileAction());
         // dispatch(EditProfileAction(res.data));
       })
   }

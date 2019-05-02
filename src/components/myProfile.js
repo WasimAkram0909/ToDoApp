@@ -16,7 +16,7 @@ class MyProfile extends React.Component {
       showComponent:true,
       FirstName:'',
       LastName:'',
-       selectedFile: "" ,
+       selectedFile: null ,
        editFlag:false
     }
   this.myRef=React.createRef()
@@ -55,7 +55,8 @@ static getDerivedStateFromProps(props,state) {
   handleImage=(e)=>{
     console.log("onchnge");
       if (e.target.files && e.target.files[0]) {
-        var image=URL.createObjectURL(e.target.files[0]);
+        var image= e.target.files[0].name;
+        // var image=URL.createObjectURL(e.target.files[0]);
         // console.log(image);
         this.setState({
           selectedFile:image
@@ -71,7 +72,7 @@ static getDerivedStateFromProps(props,state) {
       var picture=this.state.selectedFile;
       console.log(picture);
       // var email=this.props['profileDetails'][0]['email'];
-      var token=this.props.token;
+      // var token=this.props.token;
       var letters = /^[A-Za-z ]+$/;
       if(!(firstname.match(letters)))
       {
@@ -83,7 +84,7 @@ static getDerivedStateFromProps(props,state) {
       }
       if((firstname.match(letters)) && (lastname.match(letters)))
       {
-        this.props.EditProfile({firstname,lastname,picture,token})
+        this.props.EditProfile({firstname,lastname,picture})
         this.setState({
           showComponent:true,
         })
