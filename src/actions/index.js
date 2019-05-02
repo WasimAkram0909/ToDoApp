@@ -41,7 +41,6 @@ export const ToDoAllAction = (pendingData) => {
   };
 };
 export const SaveTask = (data) => {
-  console.log(data);
   return (dispatch) => {
     return ToDoAxios.post(`tasks?date=${data.createDate}&name=${data.taskName}`)
       .then(res => {
@@ -53,7 +52,6 @@ const SaveTaskAction = (taskId) => {
   return {
     type: "SAVE_TASK",
     payload: taskId,
-
   }
 }
 export const UpdateTask = (data) => {
@@ -70,6 +68,7 @@ export const profileAction = (data) => {
   return (dispatch) => {
     return ToDoAxios.get(`profile`)
       .then(res => {
+        console.log(res);
         dispatch(GetProfile(res.data));
       })
   }
@@ -81,10 +80,14 @@ const GetProfile = (Profiledata) => {
   }
 }
 export const EditProfile = (data) => {
+  console.log(data);
   return (dispatch) => {
     return ToDoAxios.post(`profile?firstname=${data.firstname}&lastname=${data.lastname}&picture=${data.picture}&userId=${11}`)
       .then(res => {
-        dispatch(profileAction(data))
+        console.log(res);
+        // console.log()
+        dispatch(profileAction(data));
+        // dispatch(EditProfileAction(res.data));
       })
   }
 }

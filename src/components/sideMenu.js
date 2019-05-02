@@ -30,8 +30,8 @@ class SideMenu extends Component {
           <div className="logoContainer">
             <img src={Logo} />
           </div>
-          <div className="linksContainer ">
-            <div className="SideMenuLinks ">
+          <div className="linksContainer">
+            <div className="SideMenuLinks " >
               <img className="linkLogo" src={Alltasks} />
               <Link
                 to={`/dashboard/Todo`}
@@ -72,7 +72,6 @@ class SideMenu extends Component {
               </Link>
             </div>
           </div>
-
           <GoogleAuth />
         </div>
       </React.Fragment>

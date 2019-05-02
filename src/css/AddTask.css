@@ -1,11 +1,13 @@
 .Tasklists{
     width:84%;
     margin: 0 auto;
-    /* background-image: linear-gradient(to right,#9C94F9,#7563EB); */
     background-color: transparent;
     padding:1.5% 8%;
 }
-/* .DontEditThisClass{
-    padding:1.5% 8%;
-    width:84%; 
-} */
+#errorMessage{
+    font-size: 13px;
+    color:red;
+    /* font-weight: normal; */
+    /* visibility: hidden; */
+    display: none;
+}

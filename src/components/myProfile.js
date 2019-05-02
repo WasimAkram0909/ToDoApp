@@ -25,8 +25,8 @@ static getDerivedStateFromProps(props,state) {
   if(props.profileDetails[0] && state.editFlag === false){
     var profiledata={...state,
     FirstName:props['profileDetails'][0]['firstName'],
-  LastName:props['profileDetails'][0]['lastName'],
-  selectedFile:"data:image/png;base64,".concat(props['profileDetails'][0]['image'])
+    LastName:props['profileDetails'][0]['lastName'],
+    selectedFile:"data:image/png;base64,".concat(props['profileDetails'][0]['image'])
 };
   return profiledata;
   }
@@ -38,35 +38,13 @@ static getDerivedStateFromProps(props,state) {
     }
   return null;
   }
-
-// componentDidMount(){
-//   console.log("hi");
-//   console.log(this.props.profileDetails)
-//   // console.log(this.props['profileDetails'][0]['firstName']);
-  
-//   if(this.props.profileDetails[0]){
-//     console.log(this.props['profileDetails'][0]['firstName']);
-//   this.setState({
-//     FirstName:this.props['profileDetails'][0]['firstName'],
-//     LastName:this.props['profileDetails'][0]['lastName'],
-//     selectedFile:this.props['profileDetails'][0]['image'],
-//   })
-//   console.log(this.state.Firstname)
-// }
-// else{
-//   console.log("alert");
-//   this.props.profileAction();
-// }}
-// }
   handleEdit=()=>{
-    // this.props.history.push('/dashboard/Profile/EditProfile');
     this.setState({
       showComponent:false,
       editFlag:true
     })
   }
   handleCancel=()=>{
-      // this.props.history.push('/dashboard/Profile');
     this.setState({
       showComponent:true,
         FirstName: this.props.profileDetails[0].firstName,
@@ -77,66 +55,51 @@ static getDerivedStateFromProps(props,state) {
   handleImage=(e)=>{
     console.log("onchnge");
       if (e.target.files && e.target.files[0]) {
-        // console.log(e.target.files);
         var image=URL.createObjectURL(e.target.files[0]);
-        console.log(image);
+        // console.log(image);
         this.setState({
           selectedFile:image
           // selectedFile:state.selectedFile.concat(image)
         });
-        // console.log(image);
+        console.log(image);
         // console.log(this.state.selectedFile);
       }
      }
      handleSave=()=>{
-      // this.props.history.push('/dashboard/Profile');
       var firstname=this.state.FirstName;
       var lastname=this.state.LastName;
       var picture=this.state.selectedFile;
-      var email=this.props['profileDetails'][0]['email'];
+      console.log(picture);
+      // var email=this.props['profileDetails'][0]['email'];
       var token=this.props.token;
-      console.log(lastname);
-
       var letters = /^[A-Za-z ]+$/;
       if(!(firstname.match(letters)))
       {
-        document.getElementById('firstnameerror').style.visibility="visible"; 
+        document.getElementById('firstnameerror').style.display="block"; 
       }
       if(!(lastname.match(letters)))
       {
-        document.getElementById('lastnameerror').style.visibility="visible";
+        document.getElementById('lastnameerror').style.display="block";
       }
-
       if((firstname.match(letters)) && (lastname.match(letters)))
       {
-        this.props.EditProfile({firstname,lastname,picture,email,token})
+        this.props.EditProfile({firstname,lastname,picture,token})
         this.setState({
           showComponent:true,
         })
       }
-
-      // console.log(picture, "picture");
-     
-      // console.log({firstname,lastname});
-      // this.props.EditProfile({firstname,lastname,picture,email,token})
-      // this.setState({
-      //   showComponent:true,
-      // })
     }
     handleFirstName=(e)=>{
       var fname=e.target.value;
       this.setState({
       FirstName: fname
       })
-      // console.log(this.state.FirstName);
     }
-  
     handleLastName=(e)=>{
       var lname=e.target.value;
       this.setState({
         LastName:lname
       })
-      // console.log(this.state.LastName);
     }
   render() {
     return (
@@ -158,7 +121,6 @@ static getDerivedStateFromProps(props,state) {
           {this.state.showComponent ? 
              <div className="ProfileName"> 
           <h2>
-         {/* {profileData.firstName} {profileData.lastName} */}
           {this.state.FirstName}{this.state.LastName}
           </h2>
            <p className="Edit" onClick={this.handleEdit}>Edit</p>
@@ -168,8 +130,6 @@ static getDerivedStateFromProps(props,state) {
           <div>
           <label>First Name</label><br/>
             <input  className="inputfield" type="text" value={this.state.FirstName}
-            //  ref={this.myRef}
-            // contentEditable={true}
              onChange={this.handleFirstName}
              />
              <p className="errorText" id ="firstnameerror">Please enter only alphabets</p>
@@ -184,7 +144,6 @@ static getDerivedStateFromProps(props,state) {
               <p className="SaveButtons"  onClick={this.handleSave}>Save</p>
             </div>
             </div>
-            
           </div>
         }
            <div className="Profilecontent">
