@@ -1,12 +1,10 @@
 import axios from "axios";
-
-let undoData; 
-
-
-let ToDoAxios= axios.create({
+let token=JSON.parse(localStorage.getItem('details'));
+let ToDoAxios= axios.create(
+  {
   baseURL:"http://115.248.119.138:8089/todo/",
   headers:{
-  "Authorization":"ya29.Glz7BjkuR1zUc4rfLqKq0EqshDdlBawGOC-CrX-C_Culg4FzqUNtqv18cOH4SDJGKSq6AfIyZ0S5wKS9aG3qnvH74PhUI76tA6-q4YwgYre0GravaYfCdjHnsDUplw"
+  "Authorization":token.accessToken
   }
 }
 )
@@ -31,9 +29,7 @@ export const ToDoAll = (data) => {
             return taskData
           }
         });
-        
 dispatch(ToDoAllAction(pendingData));
-
       }
       )
   }
@@ -61,8 +57,6 @@ const SaveTaskAction = (taskId) => {
   }
 }
 export const UpdateTask = (data) => {
-  undoData = data
-console.log(undoData)  
   return (dispatch) => {
     return ToDoAxios.post(`tasks/${data.tasks.taskId}?date=${data.tasks.createDate}&name=${data.tasks.taskName}
     &status=${data.tasks.status}`)
@@ -73,7 +67,6 @@ console.log(undoData)
 };
 
 export const profileAction = (data) => {
-  console.log(data);
   return (dispatch) => {
     return ToDoAxios.get(`profile`)
       .then(res => {
@@ -125,8 +118,6 @@ export const SortByAction = (data) => {
   };
 }
 export const DeleteTask = (data) => {
-  undoData =data 
-  console.log(undoData);
   return (dispatch) => {
     return ToDoAxios.delete(`tasks/${data.tasks.taskId}`)
       .then(res => {
@@ -135,7 +126,6 @@ export const DeleteTask = (data) => {
   }
 }
 export const UndoAction = (undoData) => {
-console.log(undoData);
   return {
     type: "UNDO",
     payload: undoData

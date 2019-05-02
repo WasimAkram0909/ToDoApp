@@ -18,8 +18,6 @@ import $ from 'jquery';
 
 class SideMenu extends Component {
   render() {
-    console.log(this.props.match);
-
     {
       $('.SideMenuLinks').click(function() {
         $('.SideMenuLinks').removeClass('active');

@@ -33,6 +33,7 @@ class GoogleAuth extends React.Component {
   onAuthChange = isSignedIn => {
     if (isSignedIn) {
       this.props.signIn(this.auth.currentUser.get().getId());
+      
       this.props.profileAction(this.auth.currentUser.get().getBasicProfile());
       //we need to add getprofile api//
     } else {
@@ -42,14 +43,18 @@ class GoogleAuth extends React.Component {
 
   onSignInClick = () => {
     this.auth.signIn().then(res => {
-      this.props.history.push('/dashboard');
-      console.log(res.Zi.access_token);
-
-      // setInterval(()=>{
-
-      //   this.props.tokenAction(res.Zi.access_token);
-      //   console.log(res.Zi.access_token);
-      //  }, 50000);
+      const details={
+        userId:res.El,
+        accessToken:res.Zi.access_token,
+      }
+      localStorage.setItem('details',JSON.stringify(details));
+      let data=JSON.parse(localStorage.getItem('details'));
+      if(res.El===data.userId){
+        console.log("Alraedy Existing user");
+        this.props.history.push('/dashboard');
+      }else{
+        this.props.history.push("/welcome");
+      }
     });
   };
 
@@ -99,7 +104,7 @@ export default withRouter(
     {
       signIn,
       signOut,
-      profileAction
+      profileAction,
     }
   )(GoogleAuth)
 );
