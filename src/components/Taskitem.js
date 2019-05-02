@@ -27,7 +27,7 @@ class Taskitem extends Component {
     toastMsg: null,
     toastImage: null,
     overDueTasksArr: [],
-    noTasks: '',
+    noTasks: ''
   };
 
   rescheduleTask = selectdate => {
@@ -55,6 +55,7 @@ class Taskitem extends Component {
       toastImage: require('../assets/Toast completed.png')
     });
   };
+
   deleteTask = (tasks, index) => {
     this.props.DeleteTask({ tasks, index });
     this.setState({
@@ -97,7 +98,7 @@ class Taskitem extends Component {
   }
   render() {
     const { date } = this.state.date;
-    
+
     var result = this.props.cards.reduce(function(r, a) {
       r[a.createDate] = r[a.createDate] || [];
       r[a.createDate].push(a);
@@ -121,25 +122,79 @@ class Taskitem extends Component {
       var d = new Date();
       return c - d;
     });
-    if(!(this.props.cards=='') || !(this.state.overDueTasksArr == '')){
-    return (
-      <React.Fragment>
-        {newGroupedTaskItems.map((TaskDetails, i) => {
-          var d = TaskDetails[0];
-          var taskDate = moment(d).format('MMM D');
-          var currentDate = moment().format('MMM D');
-          if (!moment(taskDate).isBefore(currentDate)) {
+    if (!(this.props.cards == '') || !(this.state.overDueTasksArr == '')) {
+      return (
+        <React.Fragment>
+          {newGroupedTaskItems.map((TaskDetails, i) => {
+            var d = TaskDetails[0];
+            var taskDate = moment(d).format('MMM D');
+            var currentDate = moment().format('MMM D');
+            if (!moment(taskDate).isBefore(currentDate)) {
+              return (
+                <main>
+                  <p className="dataClass">
+                    {moment(TaskDetails[0]).format('MMM D')}
+                  </p>
+                  {TaskDetails[1].map((Tasksdata, index) => {
+                    return (
+                      <div>
+                        <div className="ItemContainer" key={Tasksdata.taskId}>
+                          <div className="StatusNoneIcon">
+                            <img
+                              src={StatusNoneIcon}
+                              onClick={() => this.DisplayActionsBtns(Tasksdata)}
+                            />
+                          </div>
+                          <p className="taskData">{Tasksdata.taskName}</p>
+                          {this.state.showBtns &&
+                          this.state.selectedId === Tasksdata.taskId ? (
+                            <div className="editTaskButtons">
+                              <img
+                                src={Completed}
+                                onClick={() => this.completeTask(Tasksdata)}
+                              />
+                              <img
+                                src={Reschedule}
+                                onClick={() => this._onButtonClick(Tasksdata)}
+                              />
+                              <img
+                                src={Delete}
+                                onClick={() =>
+                                  this.deleteTask(Tasksdata, index)
+                                }
+                              />
+                            </div>
+                          ) : null}
+                        </div>
+                        {this.state.showComponent ? (
+                          <div className="calenderClass supportClass">
+                            <Calendar
+                              onChange={this.rescheduleTask}
+                              value={date}
+                              className="calenderClass "
+                            />
+                          </div>
+                        ) : null}
+                      </div>
+                    );
+                  })}
+                </main>
+              );
+            }
+          })}
+          {newGroupedOverDueItems.map((TaskDetails, i) => {
+            var d = TaskDetails[0];
+            taskDate = moment(d).format('MMM D');
+            var currentDate = moment().format('MMM D');
             return (
-              <main key={i}>
-                <p className="dataClass">
-                  {moment(TaskDetails[0]).format('MMM D')}
-                </p>
+              <main>
+                <p className="dataClass">{moment(d).format('MMM D')}</p>
                 {TaskDetails[1].map((Tasksdata, index) => {
                   return (
                     <div className="ItemContainer" key={Tasksdata.taskId}>
                       <div className="StatusNoneIcon">
                         <img
-                          src={StatusNoneIcon}
+                          src={overDue}
                           onClick={() => this.DisplayActionsBtns(Tasksdata)}
                         />
                       </div>
@@ -157,74 +212,36 @@ class Taskitem extends Component {
                           />
                           <img
                             src={Delete}
-                            onClick={() => this.deleteTask(Tasksdata, index)}
+                            onClick={() => this.deleteTask(Tasksdata)}
                           />
                         </div>
                       ) : null}
 
-                      
-                        {this.state.showComponent ? (
-                          <div className="calenderClass">
+                      {this.state.showComponent ? (
+                        <div className="calenderClass supportClass">
                           <Calendar
                             onChange={this.rescheduleTask}
                             value={date}
+                            className="calenderClass"
                           />
-                         </div> ) : null}
-                     
+                        </div>
+                      ) : null}
                     </div>
                   );
                 })}
               </main>
             );
-          }
-        })}
-        {this.state.showToast ? <Toast showToast={this.state} /> : null}
-        {newGroupedOverDueItems.map((TaskDetails, i) => {
-          var d = TaskDetails[0];
-          taskDate = moment(d).format('MMM D');
-          var currentDate = moment().format('MMM D');
-          return (
-            <main>
-              <p className="dataClass">{moment(d).format('MMM D')}</p>
-              {TaskDetails[1].map((Tasksdata, index) => {
-                return (
-                  <div className="ItemContainer" key={Tasksdata.taskId}>
-                    <div className="StatusNoneIcon">
-                      <img
-                        src={overDue}
-                        onClick={() => this.DisplayActionsBtns(Tasksdata)}
-                      />
-                    </div>
-                    <p className="taskData">{Tasksdata.taskName}</p>
-                    {this.state.showBtns &&
-                    this.state.selectedId === Tasksdata.taskId ? (
-                      <div className="editTaskButtons">
-                        <img
-                          src={Completed}
-                          onClick={() => this.completeTask(Tasksdata)}
-                        />
-                        <img
-                          src={Reschedule}
-                          onClick={() => this._onButtonClick(Tasksdata)}
-                        />
-                        <img
-                          src={Delete}
-                          onClick={() =>
-                            this.deleteTask(Tasksdata)
-                          }
-                        />
-                      </div>
-                    ) : null}
-                  </div>
-                );
-              })}
-            </main>
-          );
-        })}
-      </React.Fragment>
-    );}
-    else{
-      return(<div className="noDataFound">Please add the task by pressing add task button in right side top of the page</div>)
+          })}
+          {this.state.showToast ? <Toast showToast={this.state} /> : null}
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <div className="noDataFound">
+          Please add the task by pressing add task button in right side top of
+          the page
+        </div>
+      );
     }
   }
 }

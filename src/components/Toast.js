@@ -9,7 +9,6 @@ class Toast extends React.Component {
   };
 
   undo = () => {
-    this.props.UndoAction();
     this.setState({
       isShow: false
     });
@@ -18,7 +17,7 @@ class Toast extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({ isShow: false });
-    }, 5000);
+    }, 10000);
     if (!this.state.isShow) {
       return null;
     }
@@ -33,7 +32,7 @@ class Toast extends React.Component {
               <img src={this.props.showToast.toastImage} />
             </div>
             <div className="text-display">{this.props.showToast.toastMsg}</div>
-            <div className="undo" onClick={data => this.undo(data)}>
+            <div className="undo" onClick={() => this.undo()}>
               <span>undo</span>
             </div>
           </div>
