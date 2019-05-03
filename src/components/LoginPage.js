@@ -26,6 +26,7 @@ class LoginPage extends React.Component {
                 </div>
             </div>
       );
+      window.location.reload();
   }
 }
 export default LoginPage;

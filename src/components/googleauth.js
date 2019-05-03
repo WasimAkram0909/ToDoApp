@@ -6,6 +6,7 @@ import Google from '../assets/google.png';
 import '../css/loginpage.css';
 import '../css/sideMenu.css';
 import Logout from '../assets/Logout.svg';
+import { setTimeout } from 'timers';
 
 class GoogleAuth extends React.Component {
   componentDidMount() {
@@ -43,28 +44,31 @@ class GoogleAuth extends React.Component {
   };
 
   onSignInClick = () => {
-    if(this.auth){
-    this.auth.signIn().then(res => {
-      console.log(res.Zi.access_token);
-      const details={
-        userId:res.El,
-        accessToken:res.Zi.access_token,
-      }
-      let data=JSON.parse(localStorage.getItem('details'));
-      if( data!==null &&  res.El===data.userId ){
-        console.log("Already Existing user");
-        this.props.history.push('/dashboard');
-        if(res.Zi.access_token!==data.accessToken){
-          localStorage.setItem("details",JSON.stringify(details.accessToken))
+    if (this.auth) {
+      this.auth.signIn().then(res => {
+        console.log(res.Zi.access_token);
+        const details = {
+          userId: res.El,
+          accessToken: res.Zi.access_token,
         }
-      }else{
-        console.log("NewUser");
-        localStorage.setItem('details',JSON.stringify(details));
-        this.props.userProfile(this.auth.currentUser.get().getBasicProfile());
-        this.props.history.push("/welcome");
-      }
-    });
-  }
+        let data = JSON.parse(localStorage.getItem('details'));
+        if (data !== null && res.El === data.userId) {
+          console.log("Already Existing user");
+          this.props.history.push('/dashboard');
+          if (res.Zi.access_token !== data.accessToken) {
+
+            localStorage.setItem("accessToken", JSON.stringify(details.accessToken))
+
+            window.location.reload();
+          }
+        } else {
+          console.log("NewUser");
+          localStorage.setItem('details', JSON.stringify(details));
+          this.props.userProfile(this.auth.currentUser.get().getBasicProfile());
+          this.props.history.push("/welcome");
+        }
+      });
+    }
   };
 
   onSignOutClick = () => {
@@ -79,19 +83,19 @@ class GoogleAuth extends React.Component {
     } else if (this.props.isSignedIn) {
       return (
         <button
-          className="SideMenuLinks logout active"
-          onClick={this.onSignOutClick}
+        className="SideMenuLinks logout active"
+        onClick={this.onSignOutClick}
         >
           <img className="linkLogo" src={Logout} />
           <span className="SideMenuLink">LogOut</span>
         </button>
-      );
+        );
     } else {
       return (
         <button onClick={this.onSignInClick} className="Googlesign">
           <img src={Google} />
         </button>
-      );
+        );
     }
   }
 

@@ -3,20 +3,18 @@ import axios from "axios";
  
 let token=JSON.parse(localStorage.getItem('accessToken'));
 console.log(token);
-if(token===null){
-  token={
-    accessToken:null
-  }
-}
-var head={
-  // "Content-Type": "multipart/form-data",
-  "Authorization":token
-  // "ya29.Glz-Blo8Q2aALB75_B1XE4WATVYf1RUlDXTT9EIUeR_02U-a1bKkySyfbYBEP1umceMAGoclsG_0HqIAa5-_SelHXI2zPQ_xt-KgvjoVd284hgW10-4zkBoNDnZKMA",
-}  
+// if(token===null){
+//   token={
+//     accessToken:null
+//   }
+// }
+
 let ToDoAxios= axios.create(
   {
-  baseURL:"http://192.168.1.178:8089/todo/",
-  "headers":head
+  baseURL:"http://115.248.119.138:8089/todo/",
+  headers:{
+  "Authorization":token
+  }
 }
 )
 export const userProfile=(data)=>{
