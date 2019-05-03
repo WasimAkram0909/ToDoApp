@@ -26,7 +26,6 @@ export default (state = initialValues, action) => {
       break;
 
     case 'UPDATE_TASK':
-    console.log(action.payload);
       return {
         ...state,
         updatedTasks: tasks.concat(action.payload),

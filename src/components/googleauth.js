@@ -21,7 +21,6 @@ class GoogleAuth extends React.Component {
           })
           .then(() => {
             this.auth = window.gapi.auth2.getAuthInstance();
-            
             this.authResp = this.auth.currentUser.get().getAuthResponse(true);
             console.log(this.authResp.access_token);
             setTimeout(()=>{
@@ -38,7 +37,6 @@ class GoogleAuth extends React.Component {
   onAuthChange = isSignedIn => {
     if (isSignedIn) {
       this.props.signIn(this.auth.currentUser.get().getId());
-      // (this.auth.currentUser.get().getBasicProfile());
     } else {
       this.props.signOut();
     }
@@ -53,10 +51,12 @@ class GoogleAuth extends React.Component {
         accessToken:res.Zi.access_token,
       }
       let data=JSON.parse(localStorage.getItem('details'));
-
       if( data!==null &&  res.El===data.userId ){
         console.log("Already Existing user");
         this.props.history.push('/dashboard');
+        if(res.Zi.access_token!==data.accessToken){
+          localStorage.setItem("details",JSON.stringify(details.accessToken))
+        }
       }else{
         console.log("NewUser");
         localStorage.setItem('details',JSON.stringify(details));

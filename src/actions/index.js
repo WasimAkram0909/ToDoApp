@@ -19,22 +19,10 @@ let ToDoAxios= axios.create(
   "headers":head
 }
 )
-// export const profileAction=(data)=>{
-//   console.log(data,"actions");
-//     var id= data.getId();
-//     var fullName=data.getName();
-//     var name= data.getGivenName();
-//     var familyName= data.getFamilyName();
-    
-//     var email= data.getEmail();
-//     var logInData={id,fullName,name,familyName,image,email};
-  
-//   }
 export const userProfile=(data)=>{
  
   var image= data.getImageUrl();
   var name= data.getGivenName();
-  console.log(image,name);
   return{
     type:"SIGN_IN_USER_DETAILS",
     payload:{image,name},
@@ -115,25 +103,9 @@ const GetProfile = (Profiledata) => {
 export const EditProfile = (data) => {
   console.log(data.picture);
   return (dispatch) => {
-//     return axios.post(`http://192.168.1.178:8089/todo/profile?firstname=${data.firstname}&lastname=${data.lastname}&picture=${data.picture}`,
-//   {
-// headers:{
-//   "Authorization":"ya29.Glz-BqQtFOfSOPlZ6sA9PkvN8KVs3GG6t1TM5NXOLhQuVv6S4_JyJC5caLVi_nKdIXsuTYgu7a8qvXpvwejKliWw-LFz2xERKe8kz2fE4Fsvsw6zaU86EnvC2R6fcA",
-//   "Content-Type": "multipart/form-data"
-//   }}) 
-return ToDoAxios.post(`profile?firstName=${data.firstname}&lastName=${data.lastname}&picture=${data.picture}`
-    // return ToDoAxios.post(`profile`,
-    // {data:{ "firstName":data.firstname,
-    //          "lastName":data.lastname,
-    //          "image":data.picture
-    //         }},
-// {headers:
-//       // {"Content-Type": "multipart/form-data"}
-//       ,}
-    )
+return ToDoAxios.post(`profile?firstName=${data.firstname}&lastName=${data.lastname}&picture=${data.picture}`)
       .then(res => {
         console.log(res);
-        // dispatch(profileAction());
         dispatch(EditProfileAction(res.data));
       })
   }

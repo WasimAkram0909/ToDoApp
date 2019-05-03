@@ -1,4 +1,3 @@
-// import { combineReducers } from "redux";
 
 
 
@@ -18,7 +17,3 @@ return state;
 }
 return state;
 };
-// export default combineReducers({
-//     googleData:googleReducer,
-//     profileData:profileReducer
-// )}
