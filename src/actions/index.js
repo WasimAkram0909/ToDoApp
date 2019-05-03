@@ -1,23 +1,24 @@
 import axios from "axios";
 
  
-let token=JSON.parse(localStorage.getItem('details'));
-console.log(token.accessToken);
+let token=JSON.parse(localStorage.getItem('accessToken'));
+console.log(token);
 if(token===null){
   token={
     accessToken:null
   }
 }
-
+var head={
+  // "Content-Type": "multipart/form-data",
+  "Authorization":token
+  // "ya29.Glz-Blo8Q2aALB75_B1XE4WATVYf1RUlDXTT9EIUeR_02U-a1bKkySyfbYBEP1umceMAGoclsG_0HqIAa5-_SelHXI2zPQ_xt-KgvjoVd284hgW10-4zkBoNDnZKMA",
+}  
 let ToDoAxios= axios.create(
   {
-  baseURL:"http://115.248.119.138:8089/todo/",
-  headers:{
-  "Authorization":token.accessToken
-  }
+  baseURL:"http://192.168.1.178:8089/todo/",
+  "headers":head
 }
 )
-
 // export const profileAction=(data)=>{
 //   console.log(data,"actions");
 //     var id= data.getId();
@@ -100,7 +101,7 @@ export const profileAction = () => {
   return (dispatch) => {
     return ToDoAxios.get(`profile`)
       .then(res => {
-        console.log(res);
+        console.log(res.data);
         dispatch(GetProfile(res.data));
       })
   }
@@ -112,14 +113,28 @@ const GetProfile = (Profiledata) => {
   }
 }
 export const EditProfile = (data) => {
-  console.log(data);
+  console.log(data.picture);
   return (dispatch) => {
-    return ToDoAxios.post(`profile?firstname=${data.firstname}&lastname=${data.lastname}&picture=${data.picture}`)
+//     return axios.post(`http://192.168.1.178:8089/todo/profile?firstname=${data.firstname}&lastname=${data.lastname}&picture=${data.picture}`,
+//   {
+// headers:{
+//   "Authorization":"ya29.Glz-BqQtFOfSOPlZ6sA9PkvN8KVs3GG6t1TM5NXOLhQuVv6S4_JyJC5caLVi_nKdIXsuTYgu7a8qvXpvwejKliWw-LFz2xERKe8kz2fE4Fsvsw6zaU86EnvC2R6fcA",
+//   "Content-Type": "multipart/form-data"
+//   }}) 
+return ToDoAxios.post(`profile?firstName=${data.firstname}&lastName=${data.lastname}&picture=${data.picture}`
+    // return ToDoAxios.post(`profile`,
+    // {data:{ "firstName":data.firstname,
+    //          "lastName":data.lastname,
+    //          "image":data.picture
+    //         }},
+// {headers:
+//       // {"Content-Type": "multipart/form-data"}
+//       ,}
+    )
       .then(res => {
         console.log(res);
-        // console.log()
-        dispatch(profileAction());
-        // dispatch(EditProfileAction(res.data));
+        // dispatch(profileAction());
+        dispatch(EditProfileAction(res.data));
       })
   }
 }

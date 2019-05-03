@@ -28,7 +28,10 @@
     padding-left: 7%;
     height: 330px;
     margin-left: 50px;
-    width:71%;
+    /* width:71%;*/
+    max-width: 75%;
+    min-width: 50%;
+
 }
   .ProfileName{
     display: flex;
@@ -43,7 +46,11 @@
     text-decoration: underline;
 }
 .Profilecontent{
-    width:70%;
+    /* width:70%; */
+    max-width: 70%;
+    min-width: 50%;
+    
+    
 }
 .ProfileEmail,.ProfilePhone{
     display: flex;
