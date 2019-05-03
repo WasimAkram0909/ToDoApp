@@ -87,7 +87,6 @@ export const profileAction = () => {
   return (dispatch) => {
     return ToDoAxios.get(`profile`)
       .then(res => {
-        console.log(res.data);
         dispatch(GetProfile(res.data));
       })
   }
@@ -99,12 +98,12 @@ const GetProfile = (Profiledata) => {
   }
 }
 export const EditProfile = (data) => {
-  console.log(data.picture);
   return (dispatch) => {
 return ToDoAxios.post(`profile?firstName=${data.firstname}&lastName=${data.lastname}&picture=${data.picture}`)
       .then(res => {
         console.log(res);
-        dispatch(EditProfileAction(res.data));
+        dispatch(profileAction());
+        // dispatch(EditProfileAction(res.data));
       })
   }
 }

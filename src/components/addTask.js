@@ -4,7 +4,7 @@ import '../css/Taskitem.css';
 import '../css/AddTask.css';
 import StatusNoneIcon from "../assets/StatusNone.svg";
 import CalendarIcon from '../assets/Calender Create Task.svg';
-import { SaveTask} from '../actions';
+import { SaveTask } from '../actions';
 import { connect } from 'react-redux';
 import HeadNav from './HeadNav';
 import SaveICon from '@material-ui/icons/Done';
@@ -18,14 +18,13 @@ class AddTask extends React.Component {
       showComponent: true,
       showCalendar: false,
       date: new Date(),
-      newDate: ""
+      newDate: "",
     }
     this.myRef = React.createRef();
   }
   onChange = date => {
-    console.log(date);
     let currnetDate = moment(date).format("DD MM YYYY");
-    currnetDate = currnetDate.slice(0,2)+"-"+ currnetDate.slice(3,5)+"-"+ currnetDate.slice(6,12);
+    currnetDate = currnetDate.slice(0, 2) + "-" + currnetDate.slice(3, 5) + "-" + currnetDate.slice(6, 12);
     this.setState({
       newDate: currnetDate,
       showCalendar: false,
@@ -34,17 +33,16 @@ class AddTask extends React.Component {
   handleSaveTask = () => {
     var taskcontent = this.myRef.current.value;
     var dateContent = this.state.newDate;
-    var token=this.props.token;
-    if(taskcontent==""){
+    var token = this.props.token;
+    if (taskcontent == "") {
       alert("Please enter the task");
-      // document.getElementById("errorMessage").style.display="block";
       document.getElementById("taskData").focus()
-    }else if(dateContent==""){
+    } else if (dateContent == "") {
       alert("Please select date")
     }
-    else{
+    else {
       var TaskObject = {
-        taskName:taskcontent,status:'',createDate:dateContent,token
+        taskName: taskcontent, status: '', createDate: dateContent, token
       }
       this.props.SaveTask(TaskObject);
       this.setState({
@@ -77,7 +75,7 @@ class AddTask extends React.Component {
       showCalendar: false,
     });
   }
-  ChangeState = () =>{
+  ChangeState = () => {
     this.setState({
       showComponent: false
     })
@@ -90,19 +88,30 @@ class AddTask extends React.Component {
           <div className="display">
             <p>{this.MyFunction()}</p>
             <div id="ItemContainer" className="ItemContainer">
-              <input className="taskData1" id="taskData" type="text" ref={this.myRef} required/>
-              {/* <div><p id="errorMessage">Please enter the Task</p></div> */}
+              <input className="taskData1" id="taskData" type="text" ref={this.myRef} required />
               <div className="editTaskButtons">
-                <SaveICon className="SaveIcon" onClick={this.handleSaveTask} />
-                <CancelIcon className="CancelIcon" onClick={this.handleClose} />
-                <img src={CalendarIcon} onClick={this.handleCalendar} />
-                {this.handleCalendar}
+                <div>
+                  <SaveICon className="SaveIcon" onClick={this.handleSaveTask} />
+
+                </div>
+                <div>
+                  <CancelIcon className="CancelIcon" onClick={this.handleClose} />
+
+                </div>
+                <div className="calenderIcon">
+                  <img src={CalendarIcon} onClick={this.handleCalendar} className="CancelIcon" />
+                </div>
+
               </div>
             </div>
           </div>
           : null}
-        {this.state.showCalendar ? (<Calendar className="react-calender"
-          onChange={this.onChange} />) : null}
+        {this.state.showCalendar ? (
+          <div className="calenderClass_addTask supportClass">
+            <Calendar className="calenderClass_addTask"
+              onChange={this.onChange} />
+          </div>)
+          : null}
       </div>
     );
   }

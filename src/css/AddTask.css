@@ -7,7 +7,34 @@
 #errorMessage{
     font-size: 13px;
     color:red;
-    /* font-weight: normal; */
-    /* visibility: hidden; */
     display: none;
+}
+.calenderClass_addTask {
+    position:fixed;
+    top: 30%;
+    left: 70.2%;
+    color: #ffffff;
+    background-color: #9c94f9;
+    border-radius: 5px;
+  }
+  .supportClass button {
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+    
+  }
+  
+  .react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus{
+      background-color: rgb(12, 230, 249);
+      ;
+  }
+  .react-calendar__month-view__weekdays {
+    text-align: center;
+    font-size: 0.75em;
+    text-transform: capitalize;
+}
+
+
+abbr[title] {
+    text-decoration: none;
 }

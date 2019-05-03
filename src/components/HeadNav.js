@@ -23,7 +23,6 @@ class HeadNav extends Component {
     let selectDate = moment(date).format('YYYY-MM-DD');
     this.props.SortByAction({
       selectDate,
-      specificSort: this.props.specificSort
     });
     this.setState({
       showCalendar: false
@@ -36,9 +35,13 @@ class HeadNav extends Component {
   };
 
   render() {
+    let activeCls="";
+    if(this.state.showCalendar){
+      activeCls = "show_calendar"
+    }
     return (
       <React.Fragment>
-        <div className="HeadItemContainer">
+        <div className={`HeadItemContainer ${activeCls}`}>
           <p className="HeadNavTitle">{this.props.title}</p>
           <div className="HeadNavButtonsContainer">
             {this.props.showAdd ? (
@@ -62,12 +65,11 @@ class HeadNav extends Component {
               </div>
           
           </div>
-
                  
         {this.state.showCalendar ? (
-          <div className="calenderClass supportClass" >
+          <div className={ `calenderClass_headNav supportClass ${activeCls}`} >
           <Calendar
-            className="calenderClass"
+            className="calenderClass_headNav"
             onChange={this.onSelectingOfDate}
           />
           </div>

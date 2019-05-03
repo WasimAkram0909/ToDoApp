@@ -13,6 +13,7 @@ import moment from 'moment';
 import { object } from 'prop-types';
 
 let taskDate = '';
+
 class Taskitem extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +28,7 @@ class Taskitem extends Component {
     toastMsg: null,
     toastImage: null,
     overDueTasksArr: [],
-    noTasks: ''
+    noTasks: '',
   };
 
   rescheduleTask = selectdate => {
@@ -38,6 +39,7 @@ class Taskitem extends Component {
     this.setState({
       showComponent: false,
       showBtns: false,
+      selectedId: null,
       showToast: true,
       toastMsg: ' You have successfully rescheduled the task',
       toastImage: require('../assets/Toast Reschedule.png')
@@ -50,6 +52,7 @@ class Taskitem extends Component {
     this.props.UpdateTask({ tasks });
     this.setState({
       showBtns: false,
+      selectedId: null,
       showToast: true,
       toastMsg: 'You have successfully completed the task',
       toastImage: require('../assets/Toast completed.png')
@@ -60,6 +63,7 @@ class Taskitem extends Component {
     this.props.DeleteTask({ tasks, index });
     this.setState({
       showBtns: false,
+      selectedId: null,
       showToast: true,
       toastMsg: 'You have successfully deleted the task',
       toastImage: require('../assets/Toast Delete.png')
@@ -71,11 +75,11 @@ class Taskitem extends Component {
       tasks: tasks
     });
   };
-  DisplayActionsBtns = tasks => {
+  DisplayActionsBtns = taskId => {
     {
       this.setState({
         showBtns: true,
-        selectedId: tasks.taskId,
+        selectedId: (this.state.selectedId === taskId)?null:taskId,
         showToast: false,
         showComponent: false
       });
@@ -98,7 +102,6 @@ class Taskitem extends Component {
   }
   render() {
     const { date } = this.state.date;
-
     var result = this.props.cards.reduce(function(r, a) {
       r[a.createDate] = r[a.createDate] || [];
       r[a.createDate].push(a);
@@ -135,14 +138,25 @@ class Taskitem extends Component {
                   <p className="dataClass">
                     {moment(TaskDetails[0]).format('MMM D')}
                   </p>
+
                   {TaskDetails[1].map((Tasksdata, index) => {
+                        let itemCls= '';
+                        if(this.state.selectedId){
+                          if(this.state.selectedId === Tasksdata.taskId || this.state.selectedId===null){
+                            itemCls = 'active_item';
+                          } else{
+                            itemCls = 'inactive_item';
+                          }
+                        }
+                    
                     return (
-                      <div>
-                        <div className="ItemContainer" key={Tasksdata.taskId}>
+                    
+                        
+                        <div className={`ItemContainer ${itemCls}`} key={Tasksdata.taskId}>
                           <div className="StatusNoneIcon">
                             <img
                               src={StatusNoneIcon}
-                              onClick={() => this.DisplayActionsBtns(Tasksdata)}
+                              onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}
                             />
                           </div>
                           <p className="taskData">{Tasksdata.taskName}</p>
@@ -166,18 +180,16 @@ class Taskitem extends Component {
                             </div>
                           ) : null}
                         </div>
-                        {this.state.showComponent ? (
-                          <div className="calenderClass supportClass">
+                    
+                    );
+                  })}
+                   {this.state.showComponent? (
                             <Calendar
                               onChange={this.rescheduleTask}
                               value={date}
                               className="calenderClass "
                             />
-                          </div>
                         ) : null}
-                      </div>
-                    );
-                  })}
                 </main>
               );
             }
@@ -217,15 +229,7 @@ class Taskitem extends Component {
                         </div>
                       ) : null}
 
-                      {this.state.showComponent ? (
-                        <div className="calenderClass supportClass">
-                          <Calendar
-                            onChange={this.rescheduleTask}
-                            value={date}
-                            className="calenderClass"
-                          />
-                        </div>
-                      ) : null}
+                      
                     </div>
                   );
                 })}

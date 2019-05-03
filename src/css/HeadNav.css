@@ -58,10 +58,10 @@
   color: #fff;
 }
 
-.calenderClass {
+.calenderClass_headNav {
   position: fixed;
-  top: 80px;
-  left: 66.2%;
+  top: 90px;
+  left: 70.2%;
   padding: 20px;
   color: #ffffff;
   background-color: #9c94f9;
@@ -75,4 +75,8 @@
 .react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus{
     background-color: rgb(12, 230, 249);
     ;
+}
+
+.show_calendar{
+opacity: 1
 }

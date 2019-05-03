@@ -9,7 +9,6 @@
     justify-content: start;
     color:#7563EB;
     background-color: #FFFFFF;
-    
     margin-top: 10px;
     /* margin: 20px; */
     
@@ -49,7 +48,7 @@
 }
 
 .editTaskButtons{
-    width: 29%;
+    width: 34%;
     display: flex;
     justify-content: space-around;
 
@@ -78,10 +77,10 @@
 
 }
 
-.calenderClass {
-    position: absolute;
-    top: 300px;
-    left: 66.2%;
+ .calenderClass {
+    position: fixed;
+    top: 30%;
+    left: 70.1%;
     padding: 20px;
     color: #ffffff;
     background-color: #9c94f9;
@@ -104,4 +103,12 @@
     text-align: center;
     display: inline-block;
     width:50%;
+}
+
+
+.active_item{
+    opacity: 1;
+}
+.inactive_item{
+    opacity: 0.3
 }
