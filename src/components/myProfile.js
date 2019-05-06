@@ -27,7 +27,7 @@ class MyProfile extends React.Component {
         ...state,
         FirstName: props['profileDetails'][0]['firstName'],
         LastName: props['profileDetails'][0]['lastName'],
-        selectedFile: "data:image/png;base64,".concat(props['profileDetails'][0]['image'])
+        selectedFile: props['profileDetails'][0]['image']
       };
       return profiledata;
     } else if (state.editFlag === false) {
@@ -52,42 +52,26 @@ class MyProfile extends React.Component {
     })
   }
   handleImage = (e) => {
-    console.log("onchnge");
     var filesSelected = document.getElementById("files").files;
     if (filesSelected.length > 0) {
-    
-      var fileToLoad = filesSelected[0];
-      var fileReader = new FileReader();  
-        fileReader.onload = (fileLoadedEvent)=> {
-          console.log(filesSelected);
-          var srcData = fileLoadedEvent.target.result; 
-          // console.log(srcData);
-  var data=srcData.split(",");
-  console.log(data[1]);
-  // if (e.target.files && e.target.files[0]) {
-  // var image=URL.createObjectURL(data[1]);
-  // console.log(image);
-  // }
 
+      var fileToLoad = filesSelected[0];
+      var fileReader = new FileReader();
+      fileReader.onload = (fileLoadedEvent) => {
+        var srcData = fileLoadedEvent.target.result;
+        var data = srcData.split(",");
         this.setState({
-          selectedFile:data[1]
-        // selectedFile:state.selectedFile.concat(image)
+          selectedFile:`data:image/png;base64,${data[1]}`
         });
-      // var image = e.target.files[0].name;
-      // var image=URL.createObjectURL(e.target.files[0]);
-     
-      
-    
+        // var image=URL.createObjectURL(e.target.files[0]);
+      }
+      fileReader.readAsDataURL(fileToLoad);
+    }
   }
-fileReader.readAsDataURL(fileToLoad);
-    console.log(fileReader);
-  }}
   handleSave = () => {
     var firstname = this.state.FirstName;
     var lastname = this.state.LastName;
     var picture = this.state.selectedFile;
-    console.log(picture);
-    // var email=this.props['profileDetails'][0]['email'];
     var letters = /^[A-Za-z ]+$/;
     if (!(firstname.match(letters))) {
       document.getElementById('firstnameerror').style.display = "block";
@@ -119,7 +103,6 @@ fileReader.readAsDataURL(fileToLoad);
     })
   }
   render() {
-    // console.log(this.state.selectedFile);
     return (
       <div className="DontEditThisClass">
       <HeadNav title="Profile" showSort={false} />
@@ -129,10 +112,7 @@ fileReader.readAsDataURL(fileToLoad);
           <div className="MyProfile" key={i}>
             <div className="profilePictureDiv">
               <div className="ProfilePhotoMainDiv">
-              {/* <img className="ProfilePhoto" id="myImg" src={{this.state.selectedFile}}/> */}
-
-                { /* <img className="ProfilePhoto" src="data:image/png;base64,(base 64 string)" alt="profile"/> */ }
-                <img className="ProfilePhoto" id="myImg" src={`data:image/png;base64,${this.state.selectedFile}`} alt="profile" />
+                <img className="ProfilePhoto" id="myImg" src={this.state.selectedFile} alt="profile" />
                 <br /></div>
               <label htmlFor="files" className="EditProfile">Edit Profile</label>
               <input id="files" className="buttonHide" onChange={(e) => this.handleImage(e)} type="file" required />
@@ -141,7 +121,7 @@ fileReader.readAsDataURL(fileToLoad);
               {this.state.showComponent ?
             <div className="ProfileName">
                   <h2>
-                    {this.state.FirstName}{this.state.LastName}
+                    {this.state.FirstName}&nbsp;&nbsp;{this.state.LastName}
                   </h2>
                   <p className="Edit" onClick={this.handleEdit}>Edit</p>
                 </div> :
@@ -157,7 +137,7 @@ fileReader.readAsDataURL(fileToLoad);
                   <div>
                     <label>Last Name</label><br />
                     <input className="inputfield" type="text" value={this.state.LastName}
-                       onChange={this.handleLastName} />
+            onChange={this.handleLastName} />
                     <p className="errorText" id="lastnameerror">Please enter only alphabets</p>
                     <div className="EditButtons">
                       <p className="CancelButtons" onClick={this.handleCancel}>Cancel</p>
@@ -165,7 +145,7 @@ fileReader.readAsDataURL(fileToLoad);
                     </div>
                   </div>
             </div>
-              }
+          }
               <div className="Profilecontent">
                 <div className="ProfileEmail">
                   <img className="Icons" src={ProfileEmail} alt="logo" />

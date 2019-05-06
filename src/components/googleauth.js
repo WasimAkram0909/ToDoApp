@@ -56,9 +56,7 @@ class GoogleAuth extends React.Component {
           console.log("Already Existing user");
           this.props.history.push('/dashboard');
           if (res.Zi.access_token !== data.accessToken) {
-
             localStorage.setItem("accessToken", JSON.stringify(details.accessToken))
-
           }
         } else {
           console.log("NewUser");

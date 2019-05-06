@@ -156,7 +156,7 @@ class Taskitem extends Component {
         <React.Fragment>
           {console.log(this.state.overDueTasksArr,"over due")}
           {newGroupedTaskItems.map((TaskDetails, i) => {
-            console.log(TaskDetails);
+            // console.log(TaskDetails);
             var d = TaskDetails[0];
 
             var taskDate = moment(d).format('MMM D');
@@ -167,29 +167,25 @@ class Taskitem extends Component {
                   <p className="dataClass">
                     {moment(TaskDetails[0]).format('MMM D')}
                   </p>
-
                   {TaskDetails[1].map((Tasksdata, index) => {
-                    let itemCls = '';
-                    if (this.state.selectedId) {
-                      if (this.state.selectedId === Tasksdata.taskId || this.state.selectedId === null) {
-                        itemCls = 'active_item';
-                      } else {
-                        itemCls = 'inactive_item';
-                      }
-                    }
-
+                        let itemCls= '';
+                        if(this.state.selectedId){
+                          if(this.state.selectedId === Tasksdata.taskId || this.state.selectedId===null){
+                            itemCls = 'active_item';
+                          } else{
+                            itemCls = 'inactive_item';
+                          }
+                        }
                     return (
-
-
-                      <div className={`ItemContainer ${itemCls}`} key={Tasksdata.taskId}>
-                        <div className="StatusNoneIcon">
-                          <img
-                            src={StatusNoneIcon}
-                            onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}
-                          />
-                        </div>
-                        <p className="taskData">{Tasksdata.taskName}</p>
-                        {this.state.showBtns &&
+                        <div className={`ItemContainer ${itemCls}`} key={Tasksdata.taskId}>
+                          <div className="StatusNoneIcon">
+                            <img
+                              src={StatusNoneIcon}
+                              onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}
+                            />
+                          </div>
+                          <p className="taskData">{Tasksdata.taskName}</p>
+                          {this.state.showBtns &&
                           this.state.selectedId === Tasksdata.taskId ? (
                             <div className="editTaskButtons">
                               <img

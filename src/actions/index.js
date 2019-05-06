@@ -11,7 +11,7 @@ console.log(token);
 
 let ToDoAxios = axios.create(
   {
-    baseURL: "http://115.248.119.138:8089/todo/",
+    baseURL: "http://192.168.1.178:8089/todo/",
     headers: {
       "Authorization": token
     }
@@ -43,10 +43,12 @@ export const signOut = () => {
   };
 };
 export const ToDoAll = (data) => {
+
   return (dispatch) => {
     return ToDoAxios.get(`tasks`)
       .then(res => {
         var pendingData = res.data.tasks.filter((taskData) => {
+          // console.log(taskData)
           if (taskData.status === "PENDING") {
             return taskData
           }
@@ -66,6 +68,7 @@ export const SaveTask = (data) => {
   return (dispatch) => {
     return ToDoAxios.post(`tasks?date=${data.createDate}&name=${data.taskName}`)
       .then(res => {
+        // dispatch(SaveTaskAction());
         dispatch(ToDoAll());
       })
   }
@@ -110,7 +113,6 @@ export const EditProfile = (data) => {
       
     })
       .then(res => {
-        console.log(res);
         dispatch(profileAction());
       // dispatch(EditProfileAction(res.data));
       })

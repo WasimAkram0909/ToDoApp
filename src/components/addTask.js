@@ -23,22 +23,28 @@ class AddTask extends React.Component {
     this.myRef = React.createRef();
   }
   onChange = date => {
-    let currnetDate = moment(date).format("DD MM YYYY");
-    currnetDate = currnetDate.slice(0, 2) + "-" + currnetDate.slice(3, 5) + "-" + currnetDate.slice(6, 12);
+    let selectedDate = moment(date).format("DD MM YYYY");
+    selectedDate = selectedDate.slice(0, 2) + "-" + selectedDate.slice(3, 5) + "-" + selectedDate.slice(6, 12);
     this.setState({
-      newDate: currnetDate,
+      newDate: selectedDate,
       showCalendar: false,
     })
   }
   handleSaveTask = () => {
+    let currnetDate = moment(this.state.date).format("DD-MM-YYYY");
+    // console.log(this.state.date);
+    console.log( currnetDate );
     var taskcontent = this.myRef.current.value;
     var dateContent = this.state.newDate;
     var token = this.props.token;
+    console.log(dateContent);
     if (taskcontent == "") {
       alert("Please enter the task");
       document.getElementById("taskData").focus()
-    } else if (dateContent == "") {
-      alert("Please select date")
+    } else if (dateContent === "" ) {
+      alert("Please select  date");
+    }else if(dateContent <= currnetDate){
+      alert("Please select Valid date");
     }
     else {
       var TaskObject = {

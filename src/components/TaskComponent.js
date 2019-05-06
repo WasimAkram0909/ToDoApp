@@ -3,53 +3,47 @@ import { connect } from 'react-redux';
 import '../css/Taskitem.css';
 import moment from 'moment';
 class TaskComponent extends Component {
+
   render() {
+    //Grouping task items
     var result = this.props.editData.reduce(function(r, a) {
       r[a.createDate] = r[a.createDate] || [];
       r[a.createDate].push(a);
       return r;
     }, Object.create(null));
-    // console.log(result);
 
-    var groupedTaskItems = Object.entries(result);
-    var newGroupedTaskItems = groupedTaskItems.sort(function(a, b) {
-      var c = new Date(a[0]);
-      var d = new Date(b[0]);
-      return c - d;
-    });
+    var groupedTaskItems = Object.entries(result); //Converted Object Into Array
 
-
-
-    return newGroupedTaskItems.map((data,i) => {
-      console.log(data);
-      let updatedDate = data[0].createDate;
-      updatedDate = moment(updatedDate).format('MMM D');
-      console.log(updatedDate);
-      data[1].map((TaskDetails)=>{
-      var status =
-        data[0].status.charAt(0).toUpperCase() +
-        data[0].status.slice(1).toLowerCase();
-      let name = `/dashboard/${status}Tasks`;
-
-      if (this.props.path1 === name) {
-      
+    return (
+      <React.Fragment>
+        {groupedTaskItems.map((taskDetails) => {
         return (
-          <React.Fragment key={i}>
-            <p className="dataClass">{updatedDate}</p>
-            <div className="ItemContainer">
-              <div className="StatusNoneIcon">
-                <img
-                  src={require(`../assets/${status}Tasks.png`)}
-                  alt="images"
-                />
-              </div>
-              <p className="taskData">{data.taskName}</p>
-            </div>
-          </React.Fragment>
-        );
+          <main>
+              <p className="dataClass">
+                {moment(taskDetails[0]).format('MMM D')}
+              </p>
+          {taskDetails[1].map((taskData, i) => {
+            var status = taskData.status.charAt(0).toUpperCase() +
+            taskData.status.slice(1).toLowerCase();
+            let name = `/dashboard/${status}Tasks`;
+            if (this.props.path1 === name) {
+              return (
+                <div className="ItemContainer">
+                      <div className="StatusNoneIcon">
+                        <img src={require(`../assets/${status}Tasks.png`)}
+                alt="images" />
+                      </div>
+                      <p className="taskData">{taskData.taskName}</p>
+                    </div>
+              )
+            }
+          })
+          }
+            </main>)
+      })
       }
-    });
-  })
+      </React.Fragment>
+    )
   }
 }
 

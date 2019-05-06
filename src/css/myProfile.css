@@ -22,6 +22,7 @@
     color:white;
     text-decoration: underline;
     padding-left: 20%;
+    cursor: pointer;
 }
 .ProfileDetails{
     border-left: 1px solid rgba(225, 225, 225, 0.5);
@@ -44,6 +45,7 @@
     font-size: 13px;
     color:white;
     text-decoration: underline;
+    cursor: pointer;
 }
 .Profilecontent{
     /* width:70%; */
@@ -79,6 +81,7 @@
     font-weight:normal;
     text-decoration: underline;
     padding-left:6px;
+    cursor: pointer;
 }
 .inputfield{
     width:100%;

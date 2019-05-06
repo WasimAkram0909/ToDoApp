@@ -30,11 +30,7 @@ class EditProfile extends React.Component {
             <input
               className="inputfield"
               type="text"
-              value={this.state.firstName}
-              //  ref={this.myRef}
-              // contentEditable={true}
-              //  onChange={this.handleInput}
-            />
+              value={this.state.firstName} />
           </div>
           <div>
             <label>Last Name</label>
@@ -55,8 +51,7 @@ class EditProfile extends React.Component {
             </div>
           </div>
         </div>
-        {/* }) } */}
-      </React.Fragment>
+        </React.Fragment>
     );
   }
 }
