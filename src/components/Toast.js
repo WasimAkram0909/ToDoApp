@@ -34,7 +34,7 @@ trigTwoMethods = () =>{
         {this.state.isShow ? (
           <div className="flex-container" id="flex-container">
             <div>
-              <img src={this.props.showToast.toastImage} />
+              <img src={this.props.showToast.toastImage} alt="ToastImage" />
             </div>
             <div className="text-display">{this.props.showToast.toastMsg}</div>
             <div className="undo" onClick={() => this.trigTwoMethods()}>

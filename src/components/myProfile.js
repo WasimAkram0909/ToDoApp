@@ -1,13 +1,12 @@
 import React from 'react';
-import SideMenu from './sideMenu';
 import '../css/myProfile.css';
 import HeadNav from './HeadNav';
 import ProfileEmail from '../assets/Profile Email.svg';
 import ProfilePhone from '../assets/Profile Phone.svg';
 import { connect } from 'react-redux';
-import { withRouter, Link } from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import { EditProfile, profileAction } from '../actions';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 class MyProfile extends React.Component {
   constructor(props) {

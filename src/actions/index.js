@@ -3,11 +3,9 @@ import axios from "axios";
 
 let token = JSON.parse(localStorage.getItem('accessToken'));
 console.log(token);
-// if(token===null){
-//   token={
-//     accessToken:null
-//   }
-// }
+if(token===null){
+  token=null
+}
 
 let ToDoAxios = axios.create(
   {
@@ -18,15 +16,11 @@ let ToDoAxios = axios.create(
   }
 )
 export const userProfile = (data) => {
-
-  var image = data.getImageUrl();
-  var name = data.getGivenName();
+  let image = data.getImageUrl();
+  let name = data.getGivenName();
   return {
     type: "SIGN_IN_USER_DETAILS",
-    payload: {
-      image,
-      name
-    },
+    payload: { image, name },
   }
 }
 
@@ -50,7 +44,7 @@ export const ToDoAll = (data) => {
         var pendingData = res.data.tasks.filter((taskData) => {
           // console.log(taskData)
           if (taskData.status === "PENDING") {
-            return taskData
+            return taskData;
           }
         });
         dispatch(ToDoAllAction(pendingData));
@@ -73,17 +67,13 @@ export const SaveTask = (data) => {
       })
   }
 }
-const SaveTaskAction = (taskId) => {
-  return {
-    type: "SAVE_TASK",
-    payload: taskId,
-  }
-}
 export const UpdateTask = (data) => {
+  console.log(data);
   return (dispatch) => {
     return ToDoAxios.post(`tasks/${data.tasks.taskId}?date=${data.tasks.createDate}&name=${data.tasks.taskName}
     &status=${data.tasks.status}`)
       .then(res => {
+        console.log(res);
         dispatch(ToDoAll());
       })
   }

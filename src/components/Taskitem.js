@@ -10,14 +10,8 @@ import overDue from '../assets/overdue.svg';
 import Reschedule from '../assets/Reschedule.svg';
 import Delete from '../assets/Delete.svg';
 import moment from 'moment';
-import { object } from 'prop-types';
-import { setTimeout } from 'timers';
-
 let taskDate = '';
 class Taskitem extends Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     showComponent: false,
     showToast: false,
@@ -112,7 +106,7 @@ class Taskitem extends Component {
   static getDerivedStateFromProps(props, state) {
     let tempArr = [];
     props.cards.map((tasks, index) => {
-      if (tasks != undefined) {
+      if (tasks !== undefined) {
         var d = tasks.createDate;
         taskDate = moment(d).format('MMM D YYYY');
         var currentDate = moment().format('MMM D YYYY');
@@ -151,7 +145,7 @@ class Taskitem extends Component {
       return c - d;
       
     });
-    if (!(this.props.cards == '') || !(this.state.overDueTasksArr == '')) {
+    if (!(this.props.cards === '') || !(this.state.overDueTasksArr === '')) {
       return (
         <React.Fragment>
           {console.log(this.state.overDueTasksArr,"over due")}
@@ -163,7 +157,7 @@ class Taskitem extends Component {
             var currentDate = moment().format('MMM D');
             if (!moment(taskDate).isBefore(currentDate)) {
               return (
-                <main>
+                <main key={i}>
                   <p className="dataClass">
                     {moment(TaskDetails[0]).format('MMM D')}
                   </p>
@@ -182,6 +176,7 @@ class Taskitem extends Component {
                             <img
                               src={StatusNoneIcon}
                               onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}
+                              alt=""
                             />
                           </div>
                           <p className="taskData">{Tasksdata.taskName}</p>
@@ -191,13 +186,15 @@ class Taskitem extends Component {
                               <img
                                 src={Completed}
                                 onClick={() => this.completeTask(Tasksdata)}
+                                alt=""
                               />
                               <img
                                 src={Reschedule}
                                 onClick={() => this._onButtonClick(Tasksdata)}
+                                alt=""
                               />
                               <img
-                                src={Delete}
+                                src={Delete} alt=""
                                 onClick={() =>
                                   this.deleteTask(Tasksdata)
                                 }
@@ -238,6 +235,7 @@ class Taskitem extends Component {
                         <img
                           src={overDue}
                           onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}
+                          alt=""
                         />
                       </div>
                       <p className="taskData">{Tasksdata.taskName}</p>
@@ -247,14 +245,17 @@ class Taskitem extends Component {
                           <img
                             src={Completed}
                             onClick={() => this.completeTask(Tasksdata)}
+                            alt=""
                           />
                           <img
                             src={Reschedule}
                             onClick={() => this._onButtonClick(Tasksdata)}
+                            alt=""
                           />
                           <img
                             src={Delete}
                             onClick={() => this.deleteTask(Tasksdata)}
+                            alt=""
                           />
                         </div>
                       ) : null}

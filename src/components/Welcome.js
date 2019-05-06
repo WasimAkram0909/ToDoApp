@@ -14,15 +14,15 @@ class Welcome extends Component {
       return (
         <main className="App">
           <div className="AppDiv">
-            <img src={profileData.image} className="profilePic" />
+            <img src={profileData.image} className="profilePic" alt="profileImage" />
             <p className="welcome">Welcome {profileData.name}</p>
             <div className="messageBox">
-              <img src={circleTick} className="circleTick" />
+              <img src={circleTick} className="circleTick"  alt=""/>
               <p>You have Successfully Created ToDo Account </p>
             </div>
             <Link to="/dashboard">
               <button className="button">
-                <img src={forwardArrow} className="arrow" />
+                <img src={forwardArrow} className="arrow" alt="" />
               </button>
             </Link>
           </div>

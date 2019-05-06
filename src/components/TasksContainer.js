@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Taskitem from './Taskitem';
-import HeadNav from './HeadNav';
+// import Taskitem from './Taskitem';
+// import HeadNav from './HeadNav';
 import '../css/TasksContainer.css';
 import AddTask from './addTask';
 import MyProfile from './myProfile';
@@ -8,9 +8,9 @@ import { withRouter } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import ToDoContainer from './ToDoContainer';
 import CompletedTasksContainer from './CompletedTasksContainer';
-import Dashboard from './dashboard';
+// import Dashboard from './dashboard';
 import { connect } from 'react-redux';
-import { ToDoAll } from '../actions';
+import { ToDoAll,profileAction} from '../actions';
 
 class TasksContainer extends Component {
   componentWillMount() {
@@ -18,6 +18,9 @@ class TasksContainer extends Component {
   }
   getDataFromApi() {
     this.props.ToDoAll();
+    // this.props.TasksApi();
+    this.props.profileAction();
+
   }
 
   render() {
@@ -72,6 +75,6 @@ const myStateToProps = state => {
 export default withRouter(
   connect(
     myStateToProps,
-    { ToDoAll }
+    { ToDoAll,profileAction }
   )(TasksContainer)
 );

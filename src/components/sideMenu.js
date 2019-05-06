@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/sideMenu.css';
-import profilePic from '../assets/ProfilePicture.png';
+// import profilePic from '../assets/ProfilePicture.png';
 import Logo from '../assets/SidemenuLogo .svg';
 import Alltasks from '../assets/Alltasks.svg';
 import CompletedTask from '../assets/CompletedTasks.svg';
