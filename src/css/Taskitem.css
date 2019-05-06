@@ -76,25 +76,15 @@
     color:rgba(255, 255, 255, 1);
 
 }
-
- .calenderClass {
+ .calender-class-reschedule {
     position: fixed;
     top: 30%;
     left: 70.1%;
     padding: 20px;
-    color: #ffffff;
-    background-color: #9c94f9;
+    color: #FFFFFF;
     border-radius: 5px;
   }
-  .supportClass button {
-    color: white;
-    padding: 4px;
-  }
-  
-  .react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus{
-      background-color: rgb(12, 230, 249);
-      ;
-  }
+
 .noDataFound{
     margin:0 auto;
     padding:30% 0 0 20%;
@@ -110,5 +100,5 @@
     opacity: 1;
 }
 .inactive_item{
-    opacity: 0.3
+    opacity: 0.5;
 }

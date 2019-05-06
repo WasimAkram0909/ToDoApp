@@ -62,21 +62,7 @@
   position: fixed;
   top: 90px;
   left: 70.2%;
-  padding: 20px;
+  padding: 25px;
   color: #ffffff;
-  background-color: #9c94f9;
   border-radius: 5px;
-}
-.supportClass button {
-  color: white;
-  padding: 4px;
-}
-
-.react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus{
-    background-color: rgb(12, 230, 249);
-    ;
-}
-
-.show_calendar{
-opacity: 1
 }

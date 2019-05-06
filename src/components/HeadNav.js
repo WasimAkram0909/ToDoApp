@@ -30,18 +30,15 @@ class HeadNav extends Component {
   };
   sortBy = () => {
     this.setState({
-      showCalendar: true
+      showCalendar: (this.state.showCalendar?false:true)
     });
   };
 
   render() {
-    let activeCls="";
-    if(this.state.showCalendar){
-      activeCls = "show_calendar"
-    }
     return (
       <React.Fragment>
-        <div className={`HeadItemContainer ${activeCls}`}>
+        
+        <div className={`HeadItemContainer`}>
           <p className="HeadNavTitle">{this.props.title}</p>
           <div className="HeadNavButtonsContainer">
             {this.props.showAdd ? (
@@ -58,16 +55,16 @@ class HeadNav extends Component {
               <div />
             )}
 
-         
-              <div className="HeadNavbtnCntr" onClick={() => this.sortBy()}>
+            {this.props.showSort? 
+              <div className={`HeadNavbtnCntr `} onClick={() => this.sortBy()}>
                 <img className="icon" src={CalenderIcon} />
                 <p className="btntext">Sort By</p>
-              </div>
+              </div>:<div></div>}
           
           </div>
                  
         {this.state.showCalendar ? (
-          <div className={ `calenderClass_headNav supportClass ${activeCls}`} >
+          <div className={ `calenderClass_headNav supportClass `} >
           <Calendar
             className="calenderClass_headNav"
             onChange={this.onSelectingOfDate}

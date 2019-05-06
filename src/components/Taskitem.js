@@ -165,7 +165,7 @@ class Taskitem extends Component {
                             <div className="editTaskButtons">
                               <img
                                 src={Completed}
-                                onClick={() => this.completeTask(Tasksdata)}
+                                onClick={() => this.completeTask(Tasksdata) }
                               />
                               <img
                                 src={Reschedule}
@@ -184,12 +184,13 @@ class Taskitem extends Component {
                     );
                   })}
                    {this.state.showComponent? (
+                     <div className= "calender-class-reschedule supportClass">
                             <Calendar
                               onChange={this.rescheduleTask}
                               value={date}
-                              className="calenderClass "
+                              className="calender-class-reschedule"
                             />
-                        ) : null}
+                        </div>) : null}
                 </main>
               );
             }
@@ -202,12 +203,20 @@ class Taskitem extends Component {
               <main>
                 <p className="dataClass">{moment(d).format('MMM D')}</p>
                 {TaskDetails[1].map((Tasksdata, index) => {
+                   let itemCls= '';
+                   if(this.state.selectedId){
+                     if(this.state.selectedId === Tasksdata.taskId || this.state.selectedId===null){
+                       itemCls = 'active_item';
+                     } else{
+                       itemCls = 'inactive_item';
+                     }
+                   }
                   return (
-                    <div className="ItemContainer" key={Tasksdata.taskId}>
+                    <div className={`ItemContainer ${itemCls}`} key={Tasksdata.taskId}>
                       <div className="StatusNoneIcon">
                         <img
                           src={overDue}
-                          onClick={() => this.DisplayActionsBtns(Tasksdata)}
+                          onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}
                         />
                       </div>
                       <p className="taskData">{Tasksdata.taskName}</p>
@@ -233,6 +242,14 @@ class Taskitem extends Component {
                     </div>
                   );
                 })}
+                  {this.state.showComponent? (
+                     <div className= "calender-class-reschedule supportClass">
+                            <Calendar
+                              onChange={this.rescheduleTask}
+                              value={date}
+                              className="calender-class-reschedule"
+                            />
+                        </div>) : null}
               </main>
             );
           })}
