@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 class RouterComponent extends Component {
     render() {
-        console.log(this.props.isSignedIn);
+        // console.log(this.props.isSignedIn);
         return (
             <Router>
                 <Switch>

@@ -119,7 +119,7 @@ fileReader.readAsDataURL(fileToLoad);
     })
   }
   render() {
-    console.log(this.state.selectedFile);
+    // console.log(this.state.selectedFile);
     return (
       <div className="DontEditThisClass">
       <HeadNav title="Profile" showSort={false} />
@@ -129,10 +129,12 @@ fileReader.readAsDataURL(fileToLoad);
           <div className="MyProfile" key={i}>
             <div className="profilePictureDiv">
               <div className="ProfilePhotoMainDiv">
+              {/* <img className="ProfilePhoto" id="myImg" src={{this.state.selectedFile}}/> */}
+
                 { /* <img className="ProfilePhoto" src="data:image/png;base64,(base 64 string)" alt="profile"/> */ }
-                <img className="ProfilePhoto" id="myImg" src={this.state.selectedFile} alt="profile" />
+                <img className="ProfilePhoto" id="myImg" src={`data:image/png;base64,${this.state.selectedFile}`} alt="profile" />
                 <br /></div>
-              <label for="files" className="EditProfile">Edit Profile</label>
+              <label htmlFor="files" className="EditProfile">Edit Profile</label>
               <input id="files" className="buttonHide" onChange={(e) => this.handleImage(e)} type="file" required />
             </div>
             <div className="ProfileDetails">
@@ -155,15 +157,15 @@ fileReader.readAsDataURL(fileToLoad);
                   <div>
                     <label>Last Name</label><br />
                     <input className="inputfield" type="text" value={this.state.LastName}
-            onChange={this.handleLastName} />
+                       onChange={this.handleLastName} />
                     <p className="errorText" id="lastnameerror">Please enter only alphabets</p>
                     <div className="EditButtons">
                       <p className="CancelButtons" onClick={this.handleCancel}>Cancel</p>
                       <p className="SaveButtons" onClick={this.handleSave}>Save</p>
                     </div>
                   </div>
-                </div>
-          }
+            </div>
+              }
               <div className="Profilecontent">
                 <div className="ProfileEmail">
                   <img className="Icons" src={ProfileEmail} alt="logo" />
@@ -190,11 +192,9 @@ fileReader.readAsDataURL(fileToLoad);
 const myStateToProps = (state) => {
   // console.log(state);
   // console.log(state.allTasks.profile);
-  // console.log(state.profileData,'tsityn');
   return {
     profileDetails: state.allTasks.profile,
     token: state.allTasks.accessToken,
-
   };
 };
 export default withRouter(connect(myStateToProps, {

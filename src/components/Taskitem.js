@@ -156,7 +156,9 @@ class Taskitem extends Component {
         <React.Fragment>
           {console.log(this.state.overDueTasksArr,"over due")}
           {newGroupedTaskItems.map((TaskDetails, i) => {
+            console.log(TaskDetails);
             var d = TaskDetails[0];
+
             var taskDate = moment(d).format('MMM D');
             var currentDate = moment().format('MMM D');
             if (!moment(taskDate).isBefore(currentDate)) {

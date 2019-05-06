@@ -25,7 +25,7 @@ class GoogleAuth extends React.Component {
             this.authResp = this.auth.currentUser.get().getAuthResponse(true);
             console.log(this.authResp.access_token);
             setTimeout(()=>{
-              console.log("hello");
+              // console.log("hello");
               localStorage.setItem("accessToken", JSON.stringify(this.authResp.access_token))
               },this.authResp.expires_in)
             console.log(this.authResp.expires_in);

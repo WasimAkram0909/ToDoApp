@@ -1,7 +1,7 @@
 import axios from "axios";
 
- 
-let token=JSON.parse(localStorage.getItem('accessToken'));
+
+let token = JSON.parse(localStorage.getItem('accessToken'));
 console.log(token);
 // if(token===null){
 //   token={
@@ -9,22 +9,25 @@ console.log(token);
 //   }
 // }
 
-let ToDoAxios= axios.create(
+let ToDoAxios = axios.create(
   {
-  baseURL:"http://115.248.119.138:8089/todo/",
-  headers:{
-  "Authorization":token
-  }
-}
-)
-export const userProfile=(data)=>{
- 
-  var image= data.getImageUrl();
-  var name= data.getGivenName();
-  return{
-    type:"SIGN_IN_USER_DETAILS",
-    payload:{image,name},
+    baseURL: "http://115.248.119.138:8089/todo/",
+    headers: {
+      "Authorization": token
     }
+  }
+)
+export const userProfile = (data) => {
+
+  var image = data.getImageUrl();
+  var name = data.getGivenName();
+  return {
+    type: "SIGN_IN_USER_DETAILS",
+    payload: {
+      image,
+      name
+    },
+  }
 }
 
 
@@ -48,9 +51,9 @@ export const ToDoAll = (data) => {
             return taskData
           }
         });
-dispatch(ToDoAllAction(pendingData));
+        dispatch(ToDoAllAction(pendingData));
       }
-      )
+    )
   }
 }
 export const ToDoAllAction = (pendingData) => {
@@ -99,11 +102,17 @@ const GetProfile = (Profiledata) => {
 }
 export const EditProfile = (data) => {
   return (dispatch) => {
-return ToDoAxios.post(`profile?firstName=${data.firstname}&lastName=${data.lastname}&picture=${data.picture}`)
+    return ToDoAxios.post(`profile`, 
+    {
+        "firstName": data.firstname,
+        "lastName": data.lastname,
+        "picture": data.picture
+      
+    })
       .then(res => {
         console.log(res);
         dispatch(profileAction());
-        // dispatch(EditProfileAction(res.data));
+      // dispatch(EditProfileAction(res.data));
       })
   }
 }
@@ -120,7 +129,7 @@ export const TasksApi = (status) => {
       .then(res => {
         dispatch(TaskAction(res.data.tasks));
       }
-      )
+    )
   }
 }
 
