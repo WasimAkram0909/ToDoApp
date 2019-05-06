@@ -144,10 +144,5 @@ export const DeleteTask = (data) => {
       })
   }
 }
-export const UndoAction = (undoData) => {
-  return {
-    type: "UNDO",
-    payload: undoData
-  }
-}
+
 

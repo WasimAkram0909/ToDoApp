@@ -6,7 +6,7 @@ const initialValues = {
   profile: [],
   sortDate: null,
   updatedTasks: tasks,
-  accessToken: ''
+  accessToken: '',  
 };
 export default (state = initialValues, action) => {
   switch (action.type) {
@@ -55,13 +55,6 @@ export default (state = initialValues, action) => {
       return {
         ...state,
         sortDate: filterDate
-      };
-      break;
-
-    case 'UNDO':
-      return {
-        ...state,
-        Task: state.Task.concat(undoData)
       };
       break;
     default:

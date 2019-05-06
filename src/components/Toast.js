@@ -1,14 +1,16 @@
 import React from 'react';
 import '../css/Toast.css';
 import { connect } from 'react-redux';
-import { UndoAction } from '../actions';
 
 class Toast extends React.Component {
-  state = {
-    isShow: true
-  };
+  constructor(props){
+    super(props)
+    this.state = {
+      isShow: true      
+    };
+  }
 
-  undo = () => {
+  onUndo = () => {
     this.setState({
       isShow: false
     });
@@ -17,12 +19,15 @@ class Toast extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({ isShow: false });
-    }, 10000);
+    }, 5000);
     if (!this.state.isShow) {
       return null;
     }
   }
-
+trigTwoMethods = () =>{
+  this.props.undoMyChanges();
+  this.onUndo();  
+}
   render() {
     return (
       <React.Fragment>
@@ -32,8 +37,8 @@ class Toast extends React.Component {
               <img src={this.props.showToast.toastImage} />
             </div>
             <div className="text-display">{this.props.showToast.toastMsg}</div>
-            <div className="undo" onClick={() => this.undo()}>
-              <span>undo</span>
+            <div className="undo" onClick={() => this.trigTwoMethods()}>
+              <span>UNDO</span>
             </div>
           </div>
         ) : null}
@@ -41,13 +46,6 @@ class Toast extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    state: state
-  };
-};
 
-export default connect(
-  mapStateToProps,
-  { UndoAction }
-)(Toast);
+export default  Toast
+

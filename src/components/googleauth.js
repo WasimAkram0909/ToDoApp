@@ -59,7 +59,6 @@ class GoogleAuth extends React.Component {
 
             localStorage.setItem("accessToken", JSON.stringify(details.accessToken))
 
-            window.location.reload();
           }
         } else {
           console.log("NewUser");
