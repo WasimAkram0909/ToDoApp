@@ -23,8 +23,9 @@
 .taskData{
     width: 60.7%;
     font-size: 13px;
-    padding-top: 5px;
+    padding-top: 15px;
     border:none;
+    
     /* margin: 0 0 0 3.5%; */
     /* max-height: 52%; */
     /* text-overflow: ellipsis; */

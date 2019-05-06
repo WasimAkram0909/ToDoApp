@@ -5,12 +5,12 @@ export const SideMenuData = [
         path:"Todo"
     },
     {
-        name:"CompletedTasks",
+        name:"Completed Tasks",
         image:require("../assets/CompletedTasks.svg"),
         path:"CompletedTasks"
     },
     {
-        name:"RescheduledTasks",
+        name:"Rescheduled Tasks",
         image:require("../assets/Rescheduld_Tasks.svg"),
         path:"RescheduledTasks"
     },
