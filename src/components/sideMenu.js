@@ -29,53 +29,46 @@ class SideMenu extends Component {
             <img src={Logo} alt="ToDoLogo"/>
           </div>
           <div className="linksContainer">
-          <Link
-                to={`/dashboard/Todo`}
-                onClick={this.props.ToDoAll}
-                className="SideMenuLink"
-              >  <div className="SideMenuLinks " >
-              <img className="linkLogo" src={Alltasks} />
-             
+            <Link
+      to={`/dashboard/Todo`}
+      onClick={this.props.ToDoAll}
+      className="SideMenuLink"> 
+       <div className="SideMenuLinks " >
+                <img className="linkLogo" src={Alltasks} />
                 Todo
-          
             </div>
             </Link>
             <Link
-                to={`/dashboard/CompletedTasks`}
-                onClick={() => this.props.TasksApi('Completed')}
-                className="SideMenuLink"
-              >
-            <div className="SideMenuLinks ">
-              <img className="linkLogo" src={CompletedTask} />
-              
-                Completed Tasks
-             
-            </div> </Link>
-              <Link
-                to={`/dashboard/RescheduledTasks`}
-                onClick={() => this.props.TasksApi('Rescheduled')}
-                className="SideMenuLink"
-              >
+      to={`/dashboard/CompletedTasks`}
+      onClick={() => this.props.TasksApi('Completed')}
+      className="SideMenuLink">
               <div className="SideMenuLinks ">
-              <img className="linkLogo" src={RescheduledTask} />
+                <img className="linkLogo" src={CompletedTask} />
+                Completed Tasks
+            </div> </Link>
+            <Link
+      to={`/dashboard/RescheduledTasks`}
+      onClick={() => this.props.TasksApi('Rescheduled')}
+      className="SideMenuLink">
+              <div className="SideMenuLinks ">
+                <img className="linkLogo" src={RescheduledTask} />
                 Rescheduled Tasks
               </div>
-              </Link>
-              <Link
-                to={`/dashboard/Profile`}
-                onClick={() => this.props.profileAction()}
-                className="SideMenuLink"
-              >
+            </Link>
+            <Link
+      to={`/dashboard/Profile`}
+      onClick={() => this.props.profileAction()}
+      className="SideMenuLink">
               <div className="SideMenuLinks ">
-              <img className="linkLogo" src={profile} />
+                <img className="linkLogo" src={profile} />
                 Profile
-              </div> 
-              </Link>
+              </div>
+            </Link>
           </div>
           <GoogleAuth />
         </div>
       </React.Fragment>
-    );
+      );
   }
 }
 const myStateToProps = state => {

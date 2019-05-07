@@ -3,11 +3,32 @@ import '../css/TodoContianer.css';
 import HeadNav from "./HeadNav";
 import {withRouter} from 'react-router-dom';
 import TaskComponent from "./TaskComponent";
-import {SideMenuData} from "../reducers/SideMenu";
+// import {SideMenuData} from "../reducers/SideMenuObj";
 import {  TasksApi } from '../actions';
 import {connect} from "react-redux";
 
-
+const SideMenuData = [
+    {
+        name:"Todo",
+        image:require("../assets/Alltasks.svg"),
+        path:"Todo"
+    },
+    {
+        name:"Completed Tasks",
+        image:require("../assets/CompletedTasks.svg"),
+        path:"CompletedTasks"
+    },
+    {
+        name:"Rescheduled Tasks",
+        image:require("../assets/Rescheduld_Tasks.svg"),
+        path:"RescheduledTasks"
+    },
+    {
+        name:"Profile",
+        image:require("../assets/Profile.svg"),
+        path:"Profile"
+    }
+]
 class CompletedTasksContainer extends Component{
     render(){
         return(

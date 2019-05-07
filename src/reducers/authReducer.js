@@ -1,6 +1,4 @@
 
-
-
 const INTIAL_STATE = {
 isSignedIn: false,
 userId: null

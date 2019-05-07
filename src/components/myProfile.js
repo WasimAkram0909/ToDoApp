@@ -104,7 +104,7 @@ class MyProfile extends React.Component {
   render() {
     return (
       <div className="DontEditThisClass">
-      <HeadNav title="Profile" showSort={false} />
+      <HeadNav title="My profile" showSort={false} />
       {this.props.profileDetails.map((profileData, i) => {
 
         return (
@@ -119,8 +119,8 @@ class MyProfile extends React.Component {
             <div className="ProfileDetails">
               {this.state.showComponent ?
             <div className="ProfileName">
-                  <h2>
-                    {this.state.FirstName}&nbsp;&nbsp;{this.state.LastName}
+                  <h2 Style={"font-size:22px"}>
+                    {this.state.FirstName}&nbsp;{this.state.LastName}
                   </h2>
                   <p className="Edit" onClick={this.handleEdit}>Edit</p>
                 </div> :
@@ -145,6 +145,7 @@ class MyProfile extends React.Component {
                   </div>
             </div>
           }
+        
               <div className="Profilecontent">
                 <div className="ProfileEmail">
                   <img className="Icons" src={ProfileEmail} alt="logo" />

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { Calendar } from 'react-calendar';
 import moment from 'moment';
 import { SortByAction } from '../actions';
+import plusIcon from  "../assets/plusIcon.png"
 
 class HeadNav extends Component {
   constructor(props) {
@@ -45,7 +46,8 @@ class HeadNav extends Component {
                   to="/dashboard/AddTask"
                   className="HeadNavbtnCntr linkTag"
                 >
-                  <i className="fa fa-plus white" />
+                  {/* <i className="fa fa-plus white" /> */}
+                  <img src={plusIcon} alt="plus Icon" className="white"/>
                   <p className="btntext btntxt2">Add Task</p>
                 </Link>
               </div>
