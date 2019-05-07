@@ -9,12 +9,6 @@ import {connect} from "react-redux";
 
 
 class CompletedTasksContainer extends Component{
-    componentWillMount() {
-        this.getDataFromApi();
-      }
-      getDataFromApi() {
-        this.props.TasksApi();
-      }
     render(){
         return(
             <div className="DontEditThisClass">

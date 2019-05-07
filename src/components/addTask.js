@@ -23,15 +23,14 @@ class AddTask extends React.Component {
     this.myRef = React.createRef();
   }
   onChange = date => {
-    let selectedDate = moment(date).format("DD MM YYYY");
-    selectedDate = selectedDate.slice(0, 2) + "-" + selectedDate.slice(3, 5) + "-" + selectedDate.slice(6, 12);
+    let selectedDate = moment(date).format("YYYY-MM-DD");
     this.setState({
       newDate: selectedDate,
       showCalendar: false,
     })
   }
   handleSaveTask = () => {
-    let currnetDate = moment(this.state.date).format("DD-MM-YYYY");
+    let currnetDate = moment(this.state.date).format("YYYY-MM-DD");
     // console.log(this.state.date);
     console.log( currnetDate );
     var taskcontent = this.myRef.current.value;
@@ -51,6 +50,7 @@ class AddTask extends React.Component {
         taskName: taskcontent, status: '', createDate: dateContent, token
       }
       this.props.SaveTask(TaskObject);
+      console.log(TaskObject);
       this.setState({
         showComponent: false,
       });

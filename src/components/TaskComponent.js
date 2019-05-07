@@ -6,6 +6,10 @@ class TaskComponent extends Component {
 
   render() {
     //Grouping task items
+    if(this.props.editData===undefined){
+       return null;
+    }
+    else{
     var result = this.props.editData.reduce(function(r, a) {
       r[a.createDate] = r[a.createDate] || [];
       r[a.createDate].push(a);
@@ -13,7 +17,6 @@ class TaskComponent extends Component {
     }, Object.create(null));
 
     var groupedTaskItems = Object.entries(result); //Converted Object Into Array
-
     return (
       <React.Fragment>
         {groupedTaskItems.map((taskDetails) => {
@@ -26,7 +29,10 @@ class TaskComponent extends Component {
             var status = taskData.status.charAt(0).toUpperCase() +
             taskData.status.slice(1).toLowerCase();
             let name = `/dashboard/${status}Tasks`;
+            console.log(name);
+            console.log(this.props.path1);
             if (this.props.path1 === name) {
+              console.log("entered");
               return (
                 <div className="ItemContainer">
                       <div className="StatusNoneIcon">
@@ -45,6 +51,7 @@ class TaskComponent extends Component {
       </React.Fragment>
     )
   }
+}
 }
 
 const myStateToProps = state => {
