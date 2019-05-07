@@ -216,6 +216,54 @@ class Taskitem extends Component {
           })} 
         
           
+                {/* <p className="dataClass">Over due </p>            
+              {this.state.overDueTasksArr.map((Tasksdata,i)=>{
+                 let itemCls= '';
+                 if(this.state.selectedId){
+                   if(this.state.selectedId === Tasksdata.taskId || this.state.selectedId===null){
+                     itemCls = 'active_item';
+                   } else{
+                     itemCls = 'inactive_item';
+                   }
+                 }
+                  return (
+                    <div className={`ItemContainer ${itemCls}`} key={Tasksdata.taskId}>
+                      <div className="StatusNoneIcon">
+                        <img
+                          src={overDue}
+                          onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}
+                        />
+                      </div>
+                      <p className="taskData">{Tasksdata.taskName}</p>
+                      {this.state.showBtns &&
+                      this.state.selectedId === Tasksdata.taskId ? (
+                        <div className="editTaskButtons">
+                          <img
+                            src={Completed}
+                            onClick={() => this.completeTask(Tasksdata)}
+                          />
+                          <img
+                            src={Reschedule}
+                            onClick={() => this._onButtonClick(Tasksdata)}
+                          />
+                          <img
+                            src={Delete}
+                            onClick={() => this.deleteTask(Tasksdata)}
+                          />
+                        </div>
+                      ) : null}
+                      {this.state.showComponent? (
+                     <div className= "calender-class-reschedule supportClass">
+                            <Calendar
+                              onChange={this.rescheduleTask}
+                              value={date}
+                              className="calender-class-reschedule"
+                            />
+                        </div>) : null}
+              </main>
+            );
+          })} */} 
+           {(this.state.overDueTasksArr != "") ? <React.Fragment>
                 <p className="dataClass">Over due </p>            
               {this.state.overDueTasksArr.map((Tasksdata,i)=>{
                  let itemCls= '';
@@ -269,7 +317,7 @@ class Taskitem extends Component {
                     </div>
                   );
             })
-          }
+          }</React.Fragment>:null}
 
 
 

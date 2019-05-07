@@ -7,9 +7,10 @@
   border-bottom: 1px solid;
   border-color: rgba(255, 255, 255, 0.5);
   color: rgba(255, 255, 255, 1);
+  padding-top:2%;
 }
 .HeadNavTitle {
-  font-size: 24px;
+  font-size: 20px;
   margin: 1% 0;
 }
 .btntxt {

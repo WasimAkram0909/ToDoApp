@@ -26,7 +26,7 @@
     background-color:rgba(117, 99, 235, 1); 
 }
 .SideMenuLink{
-    padding-left: 7%;
+    padding-left: 0%;
     text-decoration: none;
     width:100%;
     color:rgba(255, 255, 255, 0.6);
@@ -34,10 +34,11 @@
 
 .linkLogo{
     opacity: 0.5;
+    margin: 0 12% 0 5%;
 }
 .active{
     border-left:4px solid rgba(255, 97, 158, 1);
-    padding-left:3%;
+    padding-left:3.5%;
     opacity:1;
 }
 .active .linkLogo{
