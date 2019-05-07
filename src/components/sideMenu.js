@@ -73,7 +73,7 @@ class SideMenu extends Component {
 }
 const myStateToProps = state => {
   return {
-    isSignedIn: state.googleData.isSignedIn,
+    // isSignedIn: state.googleData.isSignedIn,
     token: state.allTasks.accessToken
   };
 };

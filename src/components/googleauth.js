@@ -9,11 +9,27 @@ import Logout from '../assets/Logout.svg';
 import { setTimeout } from 'timers';
 
 class GoogleAuth extends React.Component {
-  componentDidUpdate(){
-    if(this.auth.isSignedIn.get()){
-      this.props.signIn(this.auth.currentUser.get().getId());
-    }
-  }
+  // componentDidUpdate() {
+  //   if(!this.auth){
+  //     window.gapi &&
+  //     window.gapi.load('client:auth2', () => {
+  //       window.gapi.client
+  //         .init({
+  //           //  Author
+  //           clientId:
+  //             '79352387866-fqsjv565vpfa6eiog739gm25k15f6ak0.apps.googleusercontent.com',
+  //           scope: 'email',
+  //           client_secret: 'BuTLt32kxC4fuWIzsDnjq5jc'
+  //         })
+  //         .then(() => {
+  //           this.auth = window.gapi.auth2.getAuthInstance();
+  //         });
+  //   })
+  // }
+  //   if (this.auth && this.auth.isSignedIn.get()) {
+  //     this.props.signIn(this.auth.currentUser.get().getId());
+  //   }
+  // }
   componentDidMount() {
     window.gapi &&
       window.gapi.load('client:auth2', () => {
@@ -27,12 +43,11 @@ class GoogleAuth extends React.Component {
           })
           .then(() => {
             this.auth = window.gapi.auth2.getAuthInstance();
-            console.log(this.auth);
             this.authResp = this.auth.currentUser.get().getAuthResponse(true);
-            setTimeout(()=>{
+            setTimeout(() => {
               // console.log("hello");
               localStorage.setItem("accessToken", JSON.stringify(this.authResp.access_token))
-              },this.authResp.expires_in)
+            }, this.authResp.expires_in)
             this.onAuthChange(this.auth.isSignedIn.get());
             this.auth.isSignedIn.listen(this.onAuthChange);
           });
@@ -45,64 +60,74 @@ class GoogleAuth extends React.Component {
     } else {
       this.props.signOut();
     }
-  };
+  }
 
   onSignInClick = () => {
+    console.log(this.auth);
     if (this.auth) {
-      console.log(this.auth.isSignedIn.get());
-      // if(this.auth.isSignedIn.get()){
-      //   this.props.signIn(this.auth.currentUser.get().getId());
-      // }
-      // else{
-      this.auth.signIn().then(res => {
-        console.log(res.Zi.access_token);
-         const  userId= res.El;
-         const  accessToken= res.Zi.access_token;
-        let data = JSON.parse(localStorage.getItem('userId'));
-        let token=JSON.parse(localStorage.getItem("accessToken"));
-        if (data !== null && res.El === data) {
-          console.log("Already Existing user");
-          this.props.history.push('/dashboard');
-          if (res.Zi.access_token !== token) {
-            localStorage.setItem("accessToken", JSON.stringify(accessToken))
-          }
-        } else {
-          console.log("NewUser");
-          localStorage.setItem('userId', JSON.stringify(userId));
+    this.auth.signIn().then(res => {
+      const userId = res.El;
+      const accessToken = res.Zi.access_token;
+      const flag = this.auth.isSignedIn.get();
+      let data = JSON.parse(localStorage.getItem('userId'));
+      let token = JSON.parse(localStorage.getItem("accessToken"));
+      console.log(data, flag);
+      if (data !== null && res.El === data) {
+        console.log("Already Existing user");
+        this.props.history.push('/dashboard');
+        if (res.Zi.access_token !== token) {
           localStorage.setItem("accessToken", JSON.stringify(accessToken))
-          this.props.userProfile(this.auth.currentUser.get().getBasicProfile());
-          this.props.history.push("/welcome");
+          localStorage.setItem("flag", JSON.stringify(flag));
         }
-      });}
-    // }
-  };
+      } else {
+        console.log("NewUser");
+        localStorage.setItem('userId', JSON.stringify(userId));
+        localStorage.setItem("accessToken", JSON.stringify(accessToken));
+        localStorage.setItem("flag", JSON.stringify(flag));
+        this.props.userProfile(this.auth.currentUser.get().getBasicProfile());
+        this.props.history.push("/welcome");
+      }
+    });
+  }
+}
+
 
   onSignOutClick = () => {
+    console.log(this.auth);
+    if (this.auth) {
+    //   this.auth = window.gapi.auth2.getAuthInstance();
+    // }
+    console.log(this.auth);
     this.auth.signOut().then(res => {
-      localStorage.setItem("accessToken",JSON.stringify(null));
       this.props.history.push('/');
+      const flag = this.auth.isSignedIn.get();
+      localStorage.setItem("accessToken", JSON.stringify(null));
+      localStorage.setItem("flag", JSON.stringify(flag));
+      
     });
-  };
+  }
+}
 
-  renderAuthButton() {
-    if (this.props.isSignedIn === null) {
-      return null;
-    } else if (this.props.isSignedIn) {
+
+  renderAuthButton = () => {
+
+    let value = JSON.parse(localStorage.getItem('flag'));
+    if (value) {
       return (
         <button
-        className="SideMenuLinks logout active"
-        onClick={this.onSignOutClick}
+          className="SideMenuLinks logout active"
+          onClick={this.onSignOutClick}
         >
           <img className="linkLogo" src={Logout} />
           <span className="SideMenuLink">LogOut</span>
         </button>
-        );
+      );
     } else {
       return (
         <button onClick={this.onSignInClick} className="Googlesign">
           <img src={Google} />
         </button>
-        );
+      );
     }
   }
 
@@ -113,10 +138,10 @@ class GoogleAuth extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isSignedIn: state.googleData.isSignedIn,
+    // isSignedIn: state.googleData.isSignedIn,
     isPorofileDetails: state.profileData
   };
-};
+}
 
 export default withRouter(
   connect(

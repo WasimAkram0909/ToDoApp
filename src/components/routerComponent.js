@@ -1,35 +1,43 @@
 import React, { Component } from 'react';
 import Welcome from './Welcome';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch,Redirect,withRouter } from 'react-router-dom';
 import LoginPage from './LoginPage';
 import Dashboard from "./dashboard";
 import { connect } from "react-redux";
+// import PrivateRoute from "./PrivateRoute";
 
 
 class RouterComponent extends Component {
     render() {
         // console.log(this.props.isSignedIn);
-        // const PrivateRoute = ({ component: Component, ...rest }) => (
-        //     <Route {...rest} render={(props) => (
-        //       fakeAuth.isAuthenticated === true
-        //         ? <Component {...props} />
-        //         : <Redirect to='/login' />
-        //     )} />
-        //   )
+        console.log(this.props)
+        let value=JSON.parse(localStorage.getItem('flag'));
+        console.log(value);
         return (
-            
             <Router>
                 <Switch>
-                    <Route exact path="/" component={LoginPage} />
-                    {this.props.isSignedIn ? <Route exact path='/welcome' component={Welcome} /> :  <Route  path="/" component={LoginPage}/>}
-                    {this.props.isSignedIn ? <Route path="/dashboard" component={Dashboard} /> : <Route  path="/" component={LoginPage}/>}
-                </Switch>
+{value  ? <Route exact path='/welcome' component={Welcome} /> : null}
+{value ? <Route  path="/dashboard" component={Dashboard} /> : null}
+ {value ? <Redirect to='/dashboard' /> : null}
+<Route path="/" component={LoginPage} />
+</Switch>
             </Router>
         );
+    // }
+    // else{
+    //     return (
+    //         // <Router>
+    //         // <Route path="/" component={LoginPage} />
+    //         // </Router>
+    //     );
     }
 }
+
+
 const MyState = (state) => {
-    return { isSignedIn: state.googleData.isSignedIn }
+//     console.log(state);
+return state
+//     return { isSignedIn: state.googleData.isSignedIn }
 }
 
 export default connect(MyState)(RouterComponent);

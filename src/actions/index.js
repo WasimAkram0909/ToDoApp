@@ -25,15 +25,15 @@ export const userProfile = (data) => {
 }
 
 
-export const signIn = (userId) => {
+export const signIn = (data) => {
   return {
     type: "SIGN_IN",
-    payload: userId,
+    payload: data,
   };
 };
 export const signOut = () => {
   return {
-    type: "SIGN_OUT"
+    type: "SIGN_OUT",
   };
 };
 export const ToDoAll = (data) => {
@@ -115,6 +115,13 @@ const EditProfileAction = (resData) => {
 }
 
 export const TasksApi = (status) => {
+  switch(status){
+    case "CompletedTasks":
+      return "Completed";
+    case "RescheduledTasks":
+      return "Rescheduled";
+  }
+  console.log(status);
   return (dispatch) => {
     dispatch(TaskAction([]));
     return ToDoAxios.get(`getTasksByStatus?status=${status}`)

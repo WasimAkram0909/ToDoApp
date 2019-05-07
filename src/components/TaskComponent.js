@@ -29,7 +29,9 @@ class TaskComponent extends Component {
           {taskDetails[1].map((taskData,index) => {
             var status = taskData.status.charAt(0).toUpperCase() +
             taskData.status.slice(1).toLowerCase();
-            let name = `/dashboard/${status}Tasks`;
+            let taskStatus=status+"Tasks";
+            console.log(taskStatus);
+            let name = `/dashboard/${taskStatus}`;
             console.log(name);
             console.log(this.props.path1);
             if (this.props.path1 === name) {
@@ -37,7 +39,7 @@ class TaskComponent extends Component {
               return (
                 <div className="ItemContainer" key={index} >
                       <div className="StatusNoneIcon">
-                        <img src={require(`../assets/${status}Tasks.png`)}
+                        <img src={require(`../assets/${taskStatus}.png`)}
                 alt="images" />
                       </div>
                       <p className="taskData">{taskData.taskName}</p>
@@ -56,6 +58,7 @@ class TaskComponent extends Component {
 }
 
 const myStateToProps = state => {
+  console.log(state.allTasks.updatedTasks)
   let filteredData = state.allTasks.updatedTasks;
   if (
     state.allTasks.sortDate !== undefined &&

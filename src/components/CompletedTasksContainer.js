@@ -45,7 +45,6 @@ class CompletedTasksContainer extends Component{
 }
 const myStateToProps = state => {
     return {
-      isSignedIn: state.googleData.isSignedIn,
       SideMenuData: state.SideMenuReducer,
       token: state.allTasks.accessToken
     };

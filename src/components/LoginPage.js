@@ -2,9 +2,16 @@ import React from "react";
 import "../css/loginpage.css";
 import group from "../assets/group.png";
 import GoogleAuth from "./googleauth";
+import { withRouter} from "react-router-dom";
 import Network from "../assets/artwork login page.png";
 
 class LoginPage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount(){
+      this.props.history.push("/");
+  }
   render() {
     return (
       <div className="gridcontanier">
@@ -24,4 +31,4 @@ class LoginPage extends React.Component {
       );
   }
 }
-export default LoginPage;
+export default  withRouter(LoginPage);
