@@ -6,29 +6,27 @@ import Alltasks from '../assets/Alltasks.svg';
 import CompletedTask from '../assets/CompletedTasks.svg';
 import RescheduledTask from '../assets/Rescheduld_Tasks.svg';
 import profile from '../assets/Profile.svg';
-import Logout from '../assets/Logout.svg';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { ToDoAll, TasksApi, SortByAction, profileAction } from '../actions';
-import Dashboard from './dashboard';
 import GoogleAuth from './googleauth';
 // import { SideMenuData } from '../reducers/SideMenu';
 import $ from 'jquery';
 
 class SideMenu extends Component {
   render() {
-    {
+    
       $('.SideMenuLinks').click(function() {
         $('.SideMenuLinks').removeClass('active');
         $(this).addClass('active');
       });
-    }
+    
     return (
       <React.Fragment>
         <div className="sideMenuContainer">
           <div className="logoContainer">
-            <img src={Logo} />
+            <img src={Logo} alt="ToDoLogo"/>
           </div>
           <div className="linksContainer">
           <Link

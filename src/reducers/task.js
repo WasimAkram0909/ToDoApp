@@ -1,11 +1,9 @@
 const pendingTasks = [];
-let undoData = [];
 let tasks = [];
 const initialValues = {
   task: pendingTasks,
   profile: [],
   sortDate: null,
-  updatedTasks: tasks,
 };
 export default (state = initialValues, action) => {
   switch (action.type) {

@@ -73,7 +73,6 @@ export const UpdateTask = (data) => {
     return ToDoAxios.post(`tasks/${data.tasks.taskId}?date=${data.tasks.createDate}&name=${data.tasks.taskName}
     &status=${data.tasks.status}`)
       .then(res => {
-        console.log(res);
         dispatch(ToDoAll());
       })
   }

@@ -1,6 +1,5 @@
 import React from 'react';
 import '../css/Toast.css';
-import { connect } from 'react-redux';
 
 class Toast extends React.Component {
   constructor(props){

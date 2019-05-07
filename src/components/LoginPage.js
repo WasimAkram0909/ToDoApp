@@ -5,9 +5,6 @@ import GoogleAuth from "./googleauth";
 import Network from "../assets/artwork login page.png";
 
 class LoginPage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div className="gridcontanier">

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../css/Taskitem.css';
 import { connect } from 'react-redux';
 import StatusNoneIcon from '../assets/StatusNone.svg';
-import { DisplayActions, DeleteTask, UpdateTask } from '../actions';
+import { DeleteTask, UpdateTask } from '../actions';
 import Calendar from 'react-calendar';
 import Toast from './Toast';
 import Completed from '../assets/Completed.svg';
@@ -24,6 +24,7 @@ class Taskitem extends Component {
     overDueTasksArr: [],
     noTasks: '',
     undoTask: false,
+    
   };
   undoMyChanges = () => {
     this.setState({
@@ -89,7 +90,7 @@ class Taskitem extends Component {
   };
   _onButtonClick = (tasks, index) => {
     this.setState({
-      showComponent: true,
+      showComponent: (this.state.showComponent?false:true),
       tasks: tasks
     });
   };
@@ -144,9 +145,10 @@ class Taskitem extends Component {
       return c - d;
       
     });
-    if (!(this.props.cards === '') || !(this.state.overDueTasksArr === '')) {
+    if (this.props.cards.length !== 0) {
       return (
         <React.Fragment>
+          {/* {console.log(this.state.overDueTasksArr,"over due")} */}
           {newGroupedTaskItems.map((TaskDetails, i) => {
             var d = TaskDetails[0];
 
@@ -214,57 +216,9 @@ class Taskitem extends Component {
               );
             }
           })} 
-        
-          
-                {/* <p className="dataClass">Over due </p>            
-              {this.state.overDueTasksArr.map((Tasksdata,i)=>{
-                 let itemCls= '';
-                 if(this.state.selectedId){
-                   if(this.state.selectedId === Tasksdata.taskId || this.state.selectedId===null){
-                     itemCls = 'active_item';
-                   } else{
-                     itemCls = 'inactive_item';
-                   }
-                 }
-                  return (
-                    <div className={`ItemContainer ${itemCls}`} key={Tasksdata.taskId}>
-                      <div className="StatusNoneIcon">
-                        <img
-                          src={overDue}
-                          onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}
-                        />
-                      </div>
-                      <p className="taskData">{Tasksdata.taskName}</p>
-                      {this.state.showBtns &&
-                      this.state.selectedId === Tasksdata.taskId ? (
-                        <div className="editTaskButtons">
-                          <img
-                            src={Completed}
-                            onClick={() => this.completeTask(Tasksdata)}
-                          />
-                          <img
-                            src={Reschedule}
-                            onClick={() => this._onButtonClick(Tasksdata)}
-                          />
-                          <img
-                            src={Delete}
-                            onClick={() => this.deleteTask(Tasksdata)}
-                          />
-                        </div>
-                      ) : null}
-                      {this.state.showComponent? (
-                     <div className= "calender-class-reschedule supportClass">
-                            <Calendar
-                              onChange={this.rescheduleTask}
-                              value={date}
-                              className="calender-class-reschedule"
-                            />
-                        </div>) : null}
-              </main>
-            );
-          })} */} 
-           {(this.state.overDueTasksArr != "") ? <React.Fragment>
-                <p className="dataClass">Over due </p>            
+              {(this.state.overDueTasksArr.length !== 0)? 
+              <React.Fragment>
+              <p className="dataClass">Over due </p>
               {this.state.overDueTasksArr.map((Tasksdata,i)=>{
                  let itemCls= '';
                  if(this.state.selectedId){

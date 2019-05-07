@@ -11,39 +11,41 @@
 }
 .calenderClass_addTask {
     position:fixed;
-    top: 30%;
-    left: 67.2%;
+    top: 32%;
+    left: 70%;
     color: #ffffff;
-    padding: 10px;
-    border-radius: 5px;
   }
   .react-calendar{
     background: #9C94F9 !important;  
-    width: 25%;
+    padding: 1%;
+    border-radius: 5px;
  }
  .react-calendar__navigation{
     justify-content: center;
     align-items: center;
-    padding: 5px; 
+    margin-bottom: 0.5em;
 }
  .react-calendar__navigation button{
         color: #ffffff;
  }
  .react-calendar__navigation__label{
-font-weight: bold ;
-font-size: 20px;
-flex-grow: 0 !important;
+    font-weight: bold ;
+    font-size: 20px;
+    flex-grow: 0 !important;
 }
+.react-calendar__month-view{
+    padding: 5px;
+} 
  .react-calendar__month-view__days__day{
     color: #ffffff;
-    font-weight: bold;
-    size:18pt;
+    font-weight: bolder;
+    font-size: 16px;
  }
- .react-calendar__navigation__prev-button{
-       font-size: 20px;
+    .react-calendar__navigation__prev-button{
+    font-size: 20px;
  }
  .react-calendar__month-view__days__day--neighboringMonth{
-        color:#C0BCF2;
+    color:#C0BCF2;
  }
   .react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus{
       background-color: rgb(12, 230, 249);
@@ -53,6 +55,7 @@ flex-grow: 0 !important;
     text-align: center;
     font-size: 0.75em;
     text-transform: capitalize;
+    font-family: "Montserrat", SemiBold;
     font-weight: normal;
 }
 .react-calendar__navigation__prev2-button{
@@ -61,7 +64,10 @@ flex-grow: 0 !important;
 .react-calendar__navigation__next2-button{
    display: none;
 }
-
+.react-calendar__tile{
+    padding: 2% ;
+}
 abbr[title] {
     text-decoration: none;
+    font-size: 14px;
 }
