@@ -86,7 +86,7 @@ class AddTask extends React.Component {
   render() {
     return (
       <div className="DontEditThisClass">
-        <HeadNav title="Todo" showFunction={this.ChangeState} showSort={true} />
+        <HeadNav title="Todo" showFunction={this.ChangeState} showAdd={true} showSort={true} />
         {this.state.showComponent ?
           <div className="display">
             <p>{this.MyFunction()}</p>

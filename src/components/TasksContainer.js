@@ -16,18 +16,12 @@ class TasksContainer extends Component {
   
   componentWillMount() {
     var path=this.props.history.location.pathname;
-    
-    // var newPath=path.split("/");
-    // console.log(path)
-    // let pathName = newPath[2];
-    // console.log(pathName)
     this.props.ToDoAll();
     if (path === "/dashboard/CompletedTasks") {
       this.props.TasksApi("Completed");
-    } else if (path === "/dashboard/RescheduledTasks") {
+      } else if (path === "/dashboard/RescheduledTasks") {
       this.props.TasksApi("Rescheduled");
-    }
-    // this.props.TasksApi(newPath[2]);
+      }
     this.props.profileAction();
   }
   render() {

@@ -119,7 +119,7 @@ class MyProfile extends React.Component {
             <div className="ProfileDetails">
               {this.state.showComponent ?
             <div className="ProfileName">
-                  <h2 Style={"font-size:22px"}>
+                  <h2 >
                     {this.state.FirstName}&nbsp;{this.state.LastName}
                   </h2>
                   <p className="Edit" onClick={this.handleEdit}>Edit</p>
