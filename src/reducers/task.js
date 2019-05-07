@@ -25,10 +25,6 @@ export default (state = initialValues, action) => {
         ...state,
         profile: newdata
       };
-    case 'EDIT_PROFILE':
-      return {
-        ...state
-      };
     case 'SORT_BY':
       let filterDate =
         action.payload.selectDate === state.sortDate

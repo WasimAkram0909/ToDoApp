@@ -24,14 +24,12 @@ class Taskitem extends Component {
     overDueTasksArr: [],
     noTasks: '',
     undoTask: false,
-    
   };
   undoMyChanges = () => {
     this.setState({
       undoTask: true,
     })
   }
-
   rescheduleTask = selectdate => {
     let date = moment(selectdate).format('YYYY-MM-DD');
     this.setState({
@@ -47,12 +45,9 @@ class Taskitem extends Component {
         this.state.tasks.status = 'Rescheduled';
         this.state.tasks.createDate = date;
         this.props.UpdateTask({ tasks: this.state.tasks });
-
       }
     }, 4500);
-
   };
-
   completeTask = tasks => {
     let date = moment(tasks.createDate).format('YYYY-MM-DD');
     this.setState({
@@ -69,11 +64,7 @@ class Taskitem extends Component {
         this.props.UpdateTask({ tasks });
       }
     }, 4500);
-
-
   };
-
-
   deleteTask = (tasks) => {
     this.setState({
       showBtns: false,
@@ -90,12 +81,11 @@ class Taskitem extends Component {
   };
   _onButtonClick = (tasks, index) => {
     this.setState({
-      showComponent: (this.state.showComponent?false:true),
+      showComponent: (this.state.showComponent ? false : true),
       tasks: tasks
     });
   };
   DisplayActionsBtns = taskId => {
-    {
       this.setState({
         showBtns: true,
         selectedId: (this.state.selectedId === taskId) ? null : taskId,
@@ -103,7 +93,6 @@ class Taskitem extends Component {
         showComponent: false
       });
     }
-  };
   static getDerivedStateFromProps(props, state) {
     let tempArr = [];
     props.cards.map((tasks, index) => {
@@ -133,22 +122,9 @@ class Taskitem extends Component {
       var d = new Date(b[0]);
       return c - d;
     });
-    var resultOverDue = this.state.overDueTasksArr.reduce(function (r, a) {
-      r[a.createDate] = r[a.createDate] || [];
-      r[a.createDate].push(a);
-      return r;
-    }, Object.create(null));
-    var groupedOverDueItems = Object.entries(resultOverDue);
-    var newGroupedOverDueItems = groupedOverDueItems.sort(function (a, b) {
-      var c = new Date(a[0]);
-      var d = new Date();
-      return c - d;
-      
-    });
     if (this.props.cards.length !== 0) {
       return (
         <React.Fragment>
-          {/* {console.log(this.state.overDueTasksArr,"over due")} */}
           {newGroupedTaskItems.map((TaskDetails, i) => {
             var d = TaskDetails[0];
 
@@ -161,25 +137,26 @@ class Taskitem extends Component {
                     {moment(TaskDetails[0]).format('MMM D')}
                   </p>
                   {TaskDetails[1].map((Tasksdata, index) => {
-                        let itemCls= '';
-                        if(this.state.selectedId){
-                          if(this.state.selectedId === Tasksdata.taskId || this.state.selectedId===null){
-                            itemCls = 'active_item';
-                          } else{
-                            itemCls = 'inactive_item';
-                          }
-                        }
+                    let itemCls = '';
+                    if (this.state.selectedId) {
+                      if (this.state.selectedId === Tasksdata.taskId || this.state.selectedId === null) {
+                        itemCls = 'active_item';
+                      } else {
+                        itemCls = 'inactive_item';
+                      }
+                    }
                     return (
-                        <div className={`ItemContainer ${itemCls}`} key={Tasksdata.taskId}>
-                          <div className="StatusNoneIcon">
-                            <img
-                              src={StatusNoneIcon}
-                              onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}
-                              alt=""
-                            />
-                          </div>
-                          <p className="taskData">{Tasksdata.taskName}</p>
-                          {this.state.showBtns &&
+                      <div>
+                      <div className={`ItemContainer ${itemCls}`} key={Tasksdata.taskId}>
+                        <div className="StatusNoneIcon">
+                          <img
+                            src={StatusNoneIcon}
+                            onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}
+                            alt=""
+                          />
+                        </div>
+                        <p className="taskData">{Tasksdata.taskName}</p>
+                        {this.state.showBtns &&
                           this.state.selectedId === Tasksdata.taskId ? (
                             <div className="editTaskButtons">
                               <img
@@ -202,9 +179,7 @@ class Taskitem extends Component {
                           ) : null}
                       </div>
 
-                    );
-                  })}
-                  {this.state.showComponent ? (
+                      {(this.state.showComponent && (this.state.selectedId === Tasksdata.taskId ))? (
                     <div className="calender-class-reschedule">
                       <Calendar
                         onChange={this.rescheduleTask}
@@ -212,33 +187,37 @@ class Taskitem extends Component {
                         className="calender-class-reschedule"
                       />
                     </div>) : null}
+                          </div>
+                    );
+                  })}
+                 
                 </main>
               );
             }
-          })} 
-              {(this.state.overDueTasksArr.length !== 0)? 
-              <React.Fragment>
+          })}
+          {(this.state.overDueTasksArr.length !== 0) ?
+            <React.Fragment>
               <p className="dataClass">Over due </p>
-              {this.state.overDueTasksArr.map((Tasksdata,i)=>{
-                 let itemCls= '';
-                 if(this.state.selectedId){
-                   if(this.state.selectedId === Tasksdata.taskId || this.state.selectedId===null){
-                     itemCls = 'active_item';
-                   } else{
-                     itemCls = 'inactive_item';
-                   }
-                 }
-                  return (
-                    <div className={`ItemContainer ${itemCls}`} key={Tasksdata.taskId}>
-                      <div className="StatusNoneIcon">
-                        <img
-                          src={overDue}
-                          onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}
-                          alt=""
-                        />
-                      </div>
-                      <p className="taskData">{Tasksdata.taskName}</p>
-                      {this.state.showBtns &&
+              {this.state.overDueTasksArr.map((Tasksdata, i) => {
+                let itemCls = '';
+                if (this.state.selectedId) {
+                  if (this.state.selectedId === Tasksdata.taskId || this.state.selectedId === null) {
+                    itemCls = 'active_item';
+                  } else {
+                    itemCls = 'inactive_item';
+                  }
+                }
+                return (
+                  <div className={`ItemContainer ${itemCls}`} key={Tasksdata.taskId}>
+                    <div className="StatusNoneIcon">
+                      <img
+                        src={overDue}
+                        onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}
+                        alt=""
+                      />
+                    </div>
+                    <p className="taskData">{Tasksdata.taskName}</p>
+                    {this.state.showBtns &&
                       this.state.selectedId === Tasksdata.taskId ? (
                         <div className="editTaskButtons">
                           <img
@@ -258,24 +237,19 @@ class Taskitem extends Component {
                           />
                         </div>
                       ) : null}
-                      {this.state.showComponent? (
-                     <div className= "calender-class-reschedule supportClass">
-                            <Calendar
-                              onChange={this.rescheduleTask}
-                              value={date}
-                              className="calender-class-reschedule"
-                            />
-                        </div>) : null}
-
-                      
-                    </div>
-                  );
-            })
-          }</React.Fragment>:null}
-
-
-
-          {this.state.showToast ? <Toast showToast={this.state} undoMyChanges={this.undoMyChanges}/> : null}
+                    {this.state.showComponent ? (
+                      <div className="calender-class-reschedule supportClass">
+                        <Calendar
+                          onChange={this.rescheduleTask}
+                          value={date}
+                          className="calender-class-reschedule"
+                        />
+                      </div>) : null}
+                  </div>
+                );
+              })
+              }</React.Fragment> : null}
+          {this.state.showToast ? <Toast showToast={this.state} undoMyChanges={this.undoMyChanges} /> : null}
         </React.Fragment>
       );
     } else {

@@ -503,3 +503,49 @@
 //   { UndoAction }
 // )(EnhancedComponent);
 // export default Toast;
+
+
+
+
+ // }
+
+
+ // if(this.props.isCalenderOpen){
+    //   this.setState({
+    //     showComponent:false
+    //   })
+    // }  else{
+    //   this.props.manageCalender();      
+    // if(this.state.showComponent){
+    //   this.props.manageCalender();  
+    //   this.setState({
+    //     showComponent: (this.state.showComponent?false:true),
+
+    //   })
+                        
+    //     }
+
+     // if(this.props.isCalenderOpen){
+    //   this.setState({
+    //     showCalendar: false,
+    //   })
+    //   if(this.state.showCalendar){
+    // this.props.manageCalender();                    
+    //   }
+    // }else{
+    // this.props.manageCalender();
+
+
+
+
+    // const EditProfileAction = (resData) => {
+    //     return {
+    //       type: "EDIT_PROFILE",
+    //       payload: resData
+    //     }
+    //   }
+
+    // case 'EDIT_PROFILE':
+    // return {
+    //   ...state
+    // };

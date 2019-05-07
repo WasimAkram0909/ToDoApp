@@ -34,12 +34,13 @@
 
 .linkLogo{
     opacity: 0.5;
-    margin: 0 12% 0 5%;
+    margin: 0 6% 0 6%;
 }
 .active{
     border-left:4px solid rgba(255, 97, 158, 1);
     padding-left:3.5%;
     opacity:1;
+    color:white;
 }
 .active .linkLogo{
     opacity: 1;
@@ -61,8 +62,4 @@
 
 }
 
-/* .Tasklists{
-    width:84%;
-    display: inline-block;
-    border:1px solid red;
-} */
+

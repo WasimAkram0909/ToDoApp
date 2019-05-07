@@ -5,7 +5,6 @@ import TasksContainer from "./TasksContainer";
 class Dashboard extends Component{
     
     render(){
-        console.log(this.props.match.params);
         return(
             <div className="container ">
                 <SideMenu className="sideMenu"/>

@@ -2,10 +2,10 @@ import React from 'react';
 import '../css/Toast.css';
 
 class Toast extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
-      isShow: true      
+      isShow: true
     };
   }
 
@@ -23,10 +23,10 @@ class Toast extends React.Component {
       return null;
     }
   }
-trigTwoMethods = () =>{
-  this.props.undoMyChanges();
-  this.onUndo();  
-}
+  trigTwoMethods = () => {
+    this.props.undoMyChanges();
+    this.onUndo();
+  }
   render() {
     return (
       <React.Fragment>
@@ -46,5 +46,5 @@ trigTwoMethods = () =>{
   }
 }
 
-export default  Toast
+export default Toast
 

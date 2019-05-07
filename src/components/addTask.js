@@ -2,7 +2,6 @@ import React from 'react';
 import { Calendar } from 'react-calendar';
 import '../css/Taskitem.css';
 import '../css/AddTask.css';
-import StatusNoneIcon from "../assets/StatusNone.svg";
 import CalendarIcon from '../assets/Calender Create Task.svg';
 import { SaveTask } from '../actions';
 import { connect } from 'react-redux';
@@ -34,24 +33,22 @@ class AddTask extends React.Component {
     var taskcontent = this.myRef.current.value;
     var dateContent = this.state.newDate;
     var token = this.props.token;
-    if (taskcontent == "") {
+    if (taskcontent === "") {
       alert("Please enter the task");
       document.getElementById("taskData").focus()
-    } else if (dateContent === "" ) {
+    } else if (dateContent === "") {
       alert("Please select  date");
-    // }else if(dateContent <= currnetDate){
-      // alert("Please select Valid date");
+    } 
+    else if (dateContent < currnetDate) {
+      alert("Please select Valid date");
     }
     else {
       var TaskObject = {
         taskName: taskcontent, status: '', createDate: dateContent, token
       }
       this.props.SaveTask(TaskObject);
-      console.log(TaskObject);
       this.setState({
         showComponent: false,
-      });
-      this.setState({
         showCalendar: false,
       });
       this.props.history.push("/dashboard")
@@ -59,7 +56,7 @@ class AddTask extends React.Component {
   }
   handleCalendar = () => {
     this.setState({
-      showCalendar: true,
+      showCalendar: (this.state.showCalendar ? false : true),
     });
   }
   MyFunction = () => {
@@ -73,8 +70,6 @@ class AddTask extends React.Component {
     this.props.history.push("/dashboard");
     this.setState({
       showComponent: false,
-    });
-    this.setState({
       showCalendar: false,
     });
   }
@@ -86,7 +81,7 @@ class AddTask extends React.Component {
   render() {
     return (
       <div className="DontEditThisClass">
-        <HeadNav title="Todo" showFunction={this.ChangeState} showAdd={true} showSort={true} />
+        <HeadNav title="Add Task" showFunction={this.ChangeState} showSort={false} showAdd={false} />
         {this.state.showComponent ?
           <div className="display">
             <p>{this.MyFunction()}</p>
@@ -102,7 +97,7 @@ class AddTask extends React.Component {
 
                 </div>
                 <div className="calenderIcon">
-                  <img src={CalendarIcon} onClick={this.handleCalendar} className="CancelIcon" />
+                  <img src={CalendarIcon} onClick={this.handleCalendar} className="CancelIcon" alt=""/>
                 </div>
 
               </div>

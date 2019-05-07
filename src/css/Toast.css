@@ -1,3 +1,4 @@
+
 .flex-container {
     display: flex;
     flex-wrap: nowrap;
@@ -14,14 +15,16 @@
     margin: 3px;
   }
   .flex-container img {
-      width: 25px;
-      margin: 5px;
-      margin-top: 10px;
+      width: 30px;
+      margin: 7px;
+      margin-top: 12px;
       color: #FFFFFF;
     }
     .flex-container .text-display {
-      width: 80%;
+      width: 70%;
       color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 400;
       margin: 9px;
     }
     .flex-container .undo {
@@ -33,6 +36,8 @@
     .undo span{
         color: #FF619E;
         cursor: pointer;
+        font-family: Montserrat;
+        font-weight:600;
         text-decoration: underline;
         
     }

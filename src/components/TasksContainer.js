@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import Taskitem from './Taskitem';
-// import HeadNav from './HeadNav';
 import '../css/TasksContainer.css';
 import AddTask from './addTask';
 import MyProfile from './myProfile';
@@ -8,12 +6,10 @@ import { withRouter } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import ToDoContainer from './ToDoContainer';
 import CompletedTasksContainer from './CompletedTasksContainer';
-// import Dashboard from './dashboard';
 import { connect } from 'react-redux';
 import { ToDoAll,TasksApi,profileAction} from '../actions';
 
 class TasksContainer extends Component {
-  
   componentWillMount() {
     var path=this.props.history.location.pathname;
     this.props.ToDoAll();
@@ -25,7 +21,6 @@ class TasksContainer extends Component {
     this.props.profileAction();
   }
   render() {
-    console.log(this.props.history.location.pathname)
     return (
       <div className=" DontEditThisClass Tasklists1">
         <Route
@@ -69,7 +64,6 @@ class TasksContainer extends Component {
 }
 const myStateToProps = state => {
   return {
-    // isSignedIn: state.googleData.isSignedIn,
     SideMenuData: state.SideMenuReducer,
     token: state.allTasks.accessToken
   };

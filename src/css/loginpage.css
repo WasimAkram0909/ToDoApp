@@ -1,19 +1,15 @@
 
 *{
     font-family: Montserrat;
-         /* color:white; */
 }
 .gridcontanier{
     display:grid;
     grid-template-columns:65% 35%;
-    /* grid-template-rows: 40rem ; */
     height: 100vh;
-    /* border: 1px solid red; */
     background-color:  #7563EB;
 
 }
 .gridcontanier1{
- /* border: 1px solid black; */
  border-top-right-radius: 270px;
  border-bottom-right-radius: 270px;
  background-color: white;
@@ -33,8 +29,6 @@
     color:white;
     font-size:24px;
     padding:30px 40px;
-
-
 }
 .todoText{
     color:white;
@@ -45,12 +39,10 @@
     padding: 100px;
     color:white;
     font-size:11px;
-    /* font-style: bold; */
 }
 .Googlesign{
     border:none;
     background-color:#FF619E;
-    /* width-left:10px; */
 }
 .networkimage{
    position: absolute;

@@ -3,7 +3,6 @@ import '../css/TodoContianer.css';
 import HeadNav from "./HeadNav";
 import {withRouter} from 'react-router-dom';
 import TaskComponent from "./TaskComponent";
-// import {SideMenuData} from "../reducers/SideMenuObj";
 import {  TasksApi } from '../actions';
 import {connect} from "react-redux";
 

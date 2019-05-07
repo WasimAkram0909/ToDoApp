@@ -4,9 +4,8 @@ import HeadNav from './HeadNav';
 import ProfileEmail from '../assets/Profile Email.svg';
 import ProfilePhone from '../assets/Profile Phone.svg';
 import { connect } from 'react-redux';
-import { withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { EditProfile, profileAction } from '../actions';
-// import PropTypes from 'prop-types';
 
 class MyProfile extends React.Component {
   constructor(props) {
@@ -60,9 +59,8 @@ class MyProfile extends React.Component {
         var srcData = fileLoadedEvent.target.result;
         var data = srcData.split(",");
         this.setState({
-          selectedFile:`data:image/png;base64,${data[1]}`
+          selectedFile: `data:image/png;base64,${data[1]}`
         });
-        // var image=URL.createObjectURL(e.target.files[0]);
       }
       fileReader.readAsDataURL(fileToLoad);
     }
@@ -104,8 +102,8 @@ class MyProfile extends React.Component {
   render() {
     return (
       <div className="DontEditThisClass">
-      <HeadNav title="My profile" showSort={false} />
-      {this.props.profileDetails.map((profileData, i) => {
+        <HeadNav title="My profile" showSort={false} />
+        {this.props.profileDetails.map((profileData, i) => {
 
         return (
           <div className="MyProfile" key={i}>
@@ -125,53 +123,51 @@ class MyProfile extends React.Component {
                   <p className="Edit" onClick={this.handleEdit}>Edit</p>
                 </div> :
 
-            <div className="EditProfileName">
-                  <div>
-                    <label>First Name</label><br />
-                    <input className="inputfield" type="text" value={this.state.FirstName}
-            onChange={this.handleFirstName}
-            />
-                    <p className="errorText" id="firstnameerror">Please enter only alphabets</p>
-                  </div>
-                  <div>
-                    <label>Last Name</label><br />
-                    <input className="inputfield" type="text" value={this.state.LastName}
-            onChange={this.handleLastName} />
-                    <p className="errorText" id="lastnameerror">Please enter only alphabets</p>
-                    <div className="EditButtons">
-                      <p className="CancelButtons" onClick={this.handleCancel}>Cancel</p>
-                      <p className="SaveButtons" onClick={this.handleSave}>Save</p>
+                  <div className="EditProfileName">
+                    <div>
+                      <label>First Name</label><br />
+                      <input className="inputfield" type="text" value={this.state.FirstName}
+                        onChange={this.handleFirstName}
+                      />
+                      <p className="errorText" id="firstnameerror">Please enter only alphabets</p>
+                    </div>
+                    <div>
+                      <label>Last Name</label><br />
+                      <input className="inputfield" type="text" value={this.state.LastName}
+                        onChange={this.handleLastName} />
+                      <p className="errorText" id="lastnameerror">Please enter only alphabets</p>
+                      <div className="EditButtons">
+                        <p className="CancelButtons" onClick={this.handleCancel}>Cancel</p>
+                        <p className="SaveButtons" onClick={this.handleSave}>Save</p>
+                      </div>
                     </div>
                   </div>
-            </div>
-          }
-        
-              <div className="Profilecontent">
-                <div className="ProfileEmail">
-                  <img className="Icons" src={ProfileEmail} alt="logo" />
-                  <p className="contactDetails">
-                    {profileData.email}
-                  </p>
+                }
+
+                <div className="Profilecontent">
+                  <div className="ProfileEmail">
+                    <img className="Icons" src={ProfileEmail} alt="logo" />
+                    <p className="contactDetails">
+                      {profileData.email}
+                    </p>
+                  </div>
+
+                  <div className="ProfilePhone">
+                    <img className="Icons" src={ProfilePhone} alt="logo" />
+                    <p className="contactDetails">9876543210</p>
+                  </div>
                 </div>
 
-                <div className="ProfilePhone">
-                  <img className="Icons" src={ProfilePhone} alt="logo" />
-                  <p className="contactDetails">9876543210</p>
-                </div>
               </div>
 
-            </div>
-
-          </div>)
-      })}
-    </div>
-      );
+            </div>)
+        })}
+      </div>
+    );
   }
 }
 
 const myStateToProps = (state) => {
-  // console.log(state);
-  // console.log(state.allTasks.profile);
   return {
     profileDetails: state.allTasks.profile,
     token: state.allTasks.accessToken,

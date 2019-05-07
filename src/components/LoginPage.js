@@ -4,11 +4,7 @@ import group from "../assets/group.png";
 import GoogleAuth from "./googleauth";
 import { withRouter} from "react-router-dom";
 import Network from "../assets/artwork login page.png";
-
 class LoginPage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount(){
       this.props.history.push("/");
   }
@@ -24,11 +20,11 @@ class LoginPage extends React.Component {
                     <img src={group} alt="appimage" />
                     <p className="todoText">TODO</p>
                     <p className="todoText">Login using</p>
-                        <GoogleAuth />
+                    <GoogleAuth />
                     <p className="LastText">By creating an account you Agree to our Terms of Conditions</p>
                 </div>
             </div>
-      );
-  }
+        );
+    }
 }
 export default  withRouter(LoginPage);

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../css/sideMenu.css';
-// import profilePic from '../assets/ProfilePicture.png';
 import Logo from '../assets/SidemenuLogo .svg';
 import Alltasks from '../assets/Alltasks.svg';
 import CompletedTask from '../assets/CompletedTasks.svg';
@@ -11,7 +10,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { ToDoAll, TasksApi, SortByAction, profileAction } from '../actions';
 import GoogleAuth from './googleauth';
-// import { SideMenuData } from '../reducers/SideMenu';
 import $ from 'jquery';
 
 class SideMenu extends Component {
@@ -34,7 +32,7 @@ class SideMenu extends Component {
       onClick={this.props.ToDoAll}
       className="SideMenuLink"> 
        <div className="SideMenuLinks " >
-                <img className="linkLogo" src={Alltasks} />
+                <img className="linkLogo" src={Alltasks} alt=""/>
                 Todo
             </div>
             </Link>
@@ -43,7 +41,7 @@ class SideMenu extends Component {
       onClick={() => this.props.TasksApi('Completed')}
       className="SideMenuLink">
               <div className="SideMenuLinks ">
-                <img className="linkLogo" src={CompletedTask} />
+                <img className="linkLogo" src={CompletedTask} alt=""/>
                 Completed Tasks
             </div> </Link>
             <Link
@@ -51,7 +49,7 @@ class SideMenu extends Component {
       onClick={() => this.props.TasksApi('Rescheduled')}
       className="SideMenuLink">
               <div className="SideMenuLinks ">
-                <img className="linkLogo" src={RescheduledTask} />
+                <img className="linkLogo" src={RescheduledTask} alt=""/>
                 Rescheduled Tasks
               </div>
             </Link>
@@ -60,7 +58,7 @@ class SideMenu extends Component {
       onClick={() => this.props.profileAction()}
       className="SideMenuLink">
               <div className="SideMenuLinks ">
-                <img className="linkLogo" src={profile} />
+                <img className="linkLogo" src={profile} alt=""/>
                 Profile
               </div>
             </Link>
@@ -73,8 +71,7 @@ class SideMenu extends Component {
 }
 const myStateToProps = state => {
   return {
-    // isSignedIn: state.googleData.isSignedIn,
-    token: state.allTasks.accessToken
+    ...state
   };
 };
 
