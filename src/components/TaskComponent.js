@@ -5,27 +5,28 @@ import moment from 'moment';
 class TaskComponent extends Component {
 
   render() {
+    // if()
     //Grouping task items
-    if(this.props.editData===undefined){
-       return null;
-    }
-    else{
-    var result = this.props.editData.reduce(function(r, a) {
+    var result={},
+    groupedTaskItems=[];
+
+    if(this.props.editData !== undefined)
+    {
+     result = this.props.editData.reduce(function(r, a) {
       r[a.createDate] = r[a.createDate] || [];
       r[a.createDate].push(a);
       return r;
     }, Object.create(null));
-
-    var groupedTaskItems = Object.entries(result); //Converted Object Into Array
+     groupedTaskItems = Object.entries(result); //Converted Object Into Array
     return (
       <React.Fragment>
-        {groupedTaskItems.map((taskDetails) => {
+        {groupedTaskItems.map((taskDetails,i) => {
         return (
-          <main>
+          <main key={i}>
               <p className="dataClass">
                 {moment(taskDetails[0]).format('MMM D')}
               </p>
-          {taskDetails[1].map((taskData, i) => {
+          {taskDetails[1].map((taskData,index) => {
             var status = taskData.status.charAt(0).toUpperCase() +
             taskData.status.slice(1).toLowerCase();
             let name = `/dashboard/${status}Tasks`;
@@ -34,7 +35,7 @@ class TaskComponent extends Component {
             if (this.props.path1 === name) {
               console.log("entered");
               return (
-                <div className="ItemContainer">
+                <div className="ItemContainer" key={index} >
                       <div className="StatusNoneIcon">
                         <img src={require(`../assets/${status}Tasks.png`)}
                 alt="images" />

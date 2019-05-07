@@ -31,19 +31,16 @@ class AddTask extends React.Component {
   }
   handleSaveTask = () => {
     let currnetDate = moment(this.state.date).format("YYYY-MM-DD");
-    // console.log(this.state.date);
-    console.log( currnetDate );
     var taskcontent = this.myRef.current.value;
     var dateContent = this.state.newDate;
     var token = this.props.token;
-    console.log(dateContent);
     if (taskcontent == "") {
       alert("Please enter the task");
       document.getElementById("taskData").focus()
     } else if (dateContent === "" ) {
       alert("Please select  date");
-    }else if(dateContent <= currnetDate){
-      alert("Please select Valid date");
+    // }else if(dateContent <= currnetDate){
+      // alert("Please select Valid date");
     }
     else {
       var TaskObject = {

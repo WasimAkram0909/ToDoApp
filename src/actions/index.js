@@ -9,7 +9,7 @@ if(token===null){
 
 let ToDoAxios = axios.create(
   {
-    baseURL: "http://192.168.1.178:8089/todo/",
+    baseURL: "http://115.248.119.138:8089/todo/",
     headers: {
       "Authorization": token
     }
@@ -117,6 +117,7 @@ const EditProfileAction = (resData) => {
 
 export const TasksApi = (status) => {
   return (dispatch) => {
+    dispatch(TaskAction([]));
     return ToDoAxios.get(`getTasksByStatus?status=${status}`)
       .then(res => {
         dispatch(TaskAction(res.data.tasks));

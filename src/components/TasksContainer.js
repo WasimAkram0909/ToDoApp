@@ -10,7 +10,7 @@ import ToDoContainer from './ToDoContainer';
 import CompletedTasksContainer from './CompletedTasksContainer';
 // import Dashboard from './dashboard';
 import { connect } from 'react-redux';
-import { ToDoAll,profileAction,TasksApi} from '../actions';
+import { ToDoAll,TasksApi,profileAction} from '../actions';
 
 class TasksContainer extends Component {
   componentWillMount() {
@@ -19,14 +19,6 @@ class TasksContainer extends Component {
     this.props.TasksApi("RescheduledTasks");
     this.props.profileAction();
   }
-  // getDataFromApi() {
-  //   this.props.ToDoAll();
-  //   this.props.TasksApi("Completed");
-  //   this.props.TasksApi("Rescheduled");
-  //   this.props.profileAction();
-
-  // }
-
   render() {
     return (
       <div className=" DontEditThisClass Tasklists1">
@@ -79,6 +71,6 @@ const myStateToProps = state => {
 export default withRouter(
   connect(
     myStateToProps,
-    { ToDoAll,profileAction,TasksApi }
+    { ToDoAll,TasksApi,profileAction}
   )(TasksContainer)
 );

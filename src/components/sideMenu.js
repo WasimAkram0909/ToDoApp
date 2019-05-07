@@ -31,46 +31,48 @@ class SideMenu extends Component {
             <img src={Logo} />
           </div>
           <div className="linksContainer">
-            <div className="SideMenuLinks " >
-              <img className="linkLogo" src={Alltasks} />
-              <Link
+          <Link
                 to={`/dashboard/Todo`}
                 onClick={this.props.ToDoAll}
                 className="SideMenuLink"
-              >
+              >  <div className="SideMenuLinks " >
+              <img className="linkLogo" src={Alltasks} />
+             
                 Todo
-              </Link>
+          
             </div>
-            <div className="SideMenuLinks ">
-              <img className="linkLogo" src={CompletedTask} />
-              <Link
+            </Link>
+            <Link
                 to={`/dashboard/CompletedTasks`}
                 onClick={() => this.props.TasksApi('Completed')}
                 className="SideMenuLink"
               >
-                Completed Tasks
-              </Link>
-            </div>
             <div className="SideMenuLinks ">
-              <img className="linkLogo" src={RescheduledTask} />
+              <img className="linkLogo" src={CompletedTask} />
+              
+                Completed Tasks
+             
+            </div> </Link>
               <Link
                 to={`/dashboard/RescheduledTasks`}
                 onClick={() => this.props.TasksApi('Rescheduled')}
                 className="SideMenuLink"
               >
+              <div className="SideMenuLinks ">
+              <img className="linkLogo" src={RescheduledTask} />
                 Rescheduled Tasks
+              </div>
               </Link>
-            </div>
-            <div className="SideMenuLinks ">
-              <img className="linkLogo" src={profile} />
               <Link
                 to={`/dashboard/Profile`}
                 onClick={() => this.props.profileAction()}
                 className="SideMenuLink"
               >
+              <div className="SideMenuLinks ">
+              <img className="linkLogo" src={profile} />
                 Profile
+              </div> 
               </Link>
-            </div>
           </div>
           <GoogleAuth />
         </div>

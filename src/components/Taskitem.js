@@ -116,7 +116,6 @@ class Taskitem extends Component {
       }
     });
     let copyState = { ...state, overDueTasksArr: tempArr };
-    console.log(state.overDueTasksArr);
     return copyState;
   }
   render() {
@@ -148,9 +147,7 @@ class Taskitem extends Component {
     if (!(this.props.cards === '') || !(this.state.overDueTasksArr === '')) {
       return (
         <React.Fragment>
-          {console.log(this.state.overDueTasksArr,"over due")}
           {newGroupedTaskItems.map((TaskDetails, i) => {
-            // console.log(TaskDetails);
             var d = TaskDetails[0];
 
             var taskDate = moment(d).format('MMM D');
@@ -206,7 +203,7 @@ class Taskitem extends Component {
                     );
                   })}
                   {this.state.showComponent ? (
-                    <div className="calender-class-reschedule supportClass">
+                    <div className="calender-class-reschedule">
                       <Calendar
                         onChange={this.rescheduleTask}
                         value={date}
