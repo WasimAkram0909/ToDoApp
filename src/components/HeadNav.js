@@ -27,6 +27,7 @@ class HeadNav extends Component {
     this.setState({
       showCalendar: false
     });
+    this.changeOpacity();    
   };
   changeOpacity =()=>{
     if (this.state.showCalendar === true ) {

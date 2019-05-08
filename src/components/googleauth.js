@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { signIn, signOut, userProfile } from '../actions';
@@ -22,14 +23,16 @@ class GoogleAuth extends React.Component {
           .then(() => {
             this.auth = window.gapi.auth2.getAuthInstance();
             this.authResp = this.auth.currentUser.get().getAuthResponse(true);
+            if(this.authResp &&this.authResp!==null){
             setTimeout(() => {
               localStorage.setItem("accessToken", JSON.stringify(this.authResp.access_token))
-            }, this.authResp.expires_in)
-            this.onAuthChange(this.auth.isSignedIn.get());
+            }, this.authResp.expires_in);
+          }
             this.auth.isSignedIn.listen(this.onAuthChange);
           });
       });
   }
+ 
   onAuthChange = isSignedIn => {
     if (isSignedIn) {
       this.props.signIn(this.auth.currentUser.get().getId());
@@ -46,18 +49,23 @@ class GoogleAuth extends React.Component {
         const logInStatus = this.auth.isSignedIn.get();
         let data = JSON.parse(localStorage.getItem('userId'));
         let token = JSON.parse(localStorage.getItem("accessToken"));
+        localStorage.setItem("logInStatus", JSON.stringify(logInStatus));
         if (data !== null && res.El === data) {
           this.props.history.push('/dashboard');
           if (res.Zi.access_token !== token) {
             localStorage.setItem("accessToken", JSON.stringify(accessToken))
-            localStorage.setItem("logInStatus", JSON.stringify(logInStatus));
           }
         } else {
           localStorage.setItem('userId', JSON.stringify(userId));
           localStorage.setItem("accessToken", JSON.stringify(accessToken));
           localStorage.setItem("logInStatus", JSON.stringify(logInStatus));
+          // let details={
+          //    image : this.auth.currentUser.get().getBasicProfile().getImageUrl(),
+          //    name :this.auth.currentUser.get().getBasicProfile().getGivenName()
+          // }
+          // localStorage.setItem("details",JSON.stringify(details));
           this.props.userProfile(this.auth.currentUser.get().getBasicProfile());
-          this.props.history.push("/welcome");
+          this.props.history.push('/welcome');
         }
       });
     }
@@ -69,12 +77,13 @@ class GoogleAuth extends React.Component {
         const logInStatus = this.auth.isSignedIn.get();
         localStorage.setItem("accessToken", JSON.stringify(null));
         localStorage.setItem("logInStatus", JSON.stringify(logInStatus));
+        // localStorage.setItem("details",JSON.stringify(null));
 
       });
     }
   }
   renderAuthButton = () => {
-    let value = JSON.parse(localStorage.getItem('flag'));
+    let value = JSON.parse(localStorage.getItem('logInStatus'));
     if (value) {
       return (
         <button
@@ -102,13 +111,4 @@ const mapStateToProps = state => {
     isPorofileDetails: state.profileData
   };
 }
-export default withRouter(
-  connect(
-    mapStateToProps,
-    {
-      signIn,
-      signOut,
-      userProfile,
-    }
-  )(GoogleAuth)
-);
+export default withRouter(connect(mapStateToProps,{signIn,signOut,userProfile,})(GoogleAuth));

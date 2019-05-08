@@ -1,15 +1,15 @@
 
 const INTIAL_STATE = {
-// isSignedIn: false,
+isSignedIn: false,
 userId: null,
 };
 //setting signin using google reducer 
 export default  (state = INTIAL_STATE, action) => {
 switch (action.type) {
 case "SIGN_IN":
-return { ...state,  userId: action.payload.userId};
+return { ...state, isSignedIn:true, userId: action.payload.userId};
 case "SIGN_OUT":
-return { ...state,  userId: null};
+return { ...state, isSignedIn:false ,userId: null};
 default:
 }
 return state;

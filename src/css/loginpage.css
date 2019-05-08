@@ -30,13 +30,22 @@
     font-size:24px;
     padding:30px 40px;
 }
-.todoText{
+
+.todo{
+    margin:0;
     color:white;
     font-size:21px;
-    font-style: bold;
+    font-style: bold; 
+}
+.todoText{
+    color:white;
+    font-size:16px;
+    padding-top: 50px;
+    
+    /* font-style: bold; */
 }
 .LastText{
-    padding: 100px;
+    padding-top: 50px;
     color:white;
     font-size:11px;
 }
@@ -48,4 +57,7 @@
    position: absolute;
    top: 25%;
    left: 10%;
+}
+.hide{
+    display:none;
 }

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 class Welcome extends Component {
   render() {
+    // let value = JSON.parse(localStorage.getItem('details'));
     return this.props.profileDetails.map(profileData => {
       return (
         <main className="App">
