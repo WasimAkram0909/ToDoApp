@@ -52,6 +52,7 @@ class GoogleAuth extends React.Component {
         localStorage.setItem("logInStatus", JSON.stringify(logInStatus));
         if (data !== null && res.El === data) {
           this.props.history.push('/dashboard');
+          window.location.reload();          
           if (res.Zi.access_token !== token) {
             localStorage.setItem("accessToken", JSON.stringify(accessToken))
           }
@@ -59,15 +60,17 @@ class GoogleAuth extends React.Component {
           localStorage.setItem('userId', JSON.stringify(userId));
           localStorage.setItem("accessToken", JSON.stringify(accessToken));
           localStorage.setItem("logInStatus", JSON.stringify(logInStatus));
-          // let details={
-          //    image : this.auth.currentUser.get().getBasicProfile().getImageUrl(),
-          //    name :this.auth.currentUser.get().getBasicProfile().getGivenName()
-          // }
-          // localStorage.setItem("details",JSON.stringify(details));
-          this.props.userProfile(this.auth.currentUser.get().getBasicProfile());
+          let details={
+             image : this.auth.currentUser.get().getBasicProfile().getImageUrl(),
+             name :this.auth.currentUser.get().getBasicProfile().getGivenName()
+          }
+          localStorage.setItem("details",JSON.stringify(details));
+          // this.props.userProfile(this.auth.currentUser.get().getBasicProfile());
           this.props.history.push('/welcome');
+
         }
       });
+      
     }
   }
   onSignOutClick = () => {
@@ -78,6 +81,7 @@ class GoogleAuth extends React.Component {
         localStorage.setItem("accessToken", JSON.stringify(null));
         localStorage.setItem("logInStatus", JSON.stringify(logInStatus));
         // localStorage.setItem("details",JSON.stringify(null));
+        window.location.reload();
 
       });
     }

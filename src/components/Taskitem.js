@@ -54,6 +54,7 @@ class Taskitem extends Component {
       showBtns: false,
       selectedId: null,
       showToast: true,
+      showComponent: false,      
       toastMsg: 'You have successfully completed the task',
       toastImage: require('../assets/Toast completed.png')
     });
@@ -70,6 +71,7 @@ class Taskitem extends Component {
       showBtns: false,
       selectedId: null,
       showToast: true,
+      showComponent: false,      
       toastMsg: 'You have successfully deleted the task',
       toastImage: require('../assets/Toast Delete.png')
     });
@@ -79,7 +81,7 @@ class Taskitem extends Component {
       }
     }, 4500);
   };
-  _onButtonClick = (tasks, index) => {
+  onRescheduleButtonClick = (tasks, index) => {
     this.setState({
       showComponent: (this.state.showComponent ? false : true),
       tasks: tasks
@@ -104,6 +106,7 @@ class Taskitem extends Component {
           tempArr.push(tasks);
         }
       }
+      return tempArr      
     });
     let copyState = { ...state, overDueTasksArr: tempArr };
     return copyState;
@@ -126,6 +129,7 @@ class Taskitem extends Component {
       return (
         <React.Fragment>
           {newGroupedTaskItems.map((TaskDetails, i) => {
+
             var d = TaskDetails[0];
 
             var taskDate = moment(d).format('MMM D');
@@ -166,7 +170,7 @@ class Taskitem extends Component {
                               />
                               <img
                                 src={Reschedule}
-                                onClick={() => this._onButtonClick(Tasksdata)}
+                                onClick={() => this.onRescheduleButtonClick(Tasksdata)}
                                 alt=""
                               />
                               <img
@@ -227,7 +231,7 @@ class Taskitem extends Component {
                           />
                           <img
                             src={Reschedule}
-                            onClick={() => this._onButtonClick(Tasksdata)}
+                            onClick={() => this.onRescheduleButtonClick(Tasksdata)}
                             alt=""
                           />
                           <img
@@ -273,7 +277,8 @@ const myStateToProps = state => {
       if (state.allTasks.sortDate === createDate) {
         return key;
       }
-    });
+    }
+  );
   }
   return {
     data: state.allTasks,

@@ -87,7 +87,8 @@ class HeadNav extends Component {
 const myStateToProps = state => {
   return {
     SideMenuData: state.SideMenuReducer,
-    sortDate: state.allTasks.sortDate
+    sortDate: state.allTasks.sortDate,
+    showCalendar:state.allTasks.sortCalender
   };
 };
 

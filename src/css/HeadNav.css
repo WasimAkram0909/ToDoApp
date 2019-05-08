@@ -65,3 +65,10 @@
   left: 70.2%;
   color: #ffffff;
 }
+
+@media screen and (max-width: 1200px){
+  .calenderClass_headNav{
+    top: 13%;
+    left: 62%;
+  }
+}

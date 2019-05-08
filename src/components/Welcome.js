@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 class Welcome extends Component {
   render() {
-    // let value = JSON.parse(localStorage.getItem('details'));
-    return this.props.profileDetails.map(profileData => {
+    let profileData = JSON.parse(localStorage.getItem('details'));
+    // return this.props.profileDetails.map(profileData => {
       return (
         <main className="App">
           <div className="AppDiv">
@@ -17,7 +17,7 @@ class Welcome extends Component {
               <img src={circleTick} className="circleTick" alt="" />
               <p>You have Successfully Created ToDo Account </p>
             </div>
-            <Link to="/dashboard">
+            <Link to="/dashboard">         
               <button className="button">
                 <img src={forwardArrow} className="arrow" alt="" />
               </button>
@@ -25,7 +25,7 @@ class Welcome extends Component {
           </div>
         </main>
       );
-    });
+    // });
   }
 }
 const mapStateToProps = state => {

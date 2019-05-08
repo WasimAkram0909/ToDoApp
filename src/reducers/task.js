@@ -28,7 +28,7 @@ export default (state = initialValues, action) => {
     case 'SORT_BY':
       let filterDate =
         action.payload.selectDate === state.sortDate
-          ? null
+          ? action.payload.selectDate
           : action.payload.selectDate;
       return {
         ...state,
