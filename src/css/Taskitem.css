@@ -90,11 +90,15 @@
 .inactive_item{
     opacity: 0.5;
 }
-
-@media screen and (max-width: 1200px) {
+.active_item1{
+    opacity: 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+@media screen and (max-width: 1366px) ,screen and (max-height:644px) {
     .calender-class-reschedule{
-      top: 31.5%;
-      left: 62.1%;
+        top: 36.7%;
+        left: 66.5%
     }
-  }
+}
+
  

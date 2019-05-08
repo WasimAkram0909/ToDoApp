@@ -71,12 +71,9 @@ abbr[title] {
     text-decoration: none;
     font-size: 14px;
 }
-
-
-
-@media screen and (max-width: 1200px){
-    .calenderClass_addTask{
-      top: 30%;
-      left: 62%;
-    }
+  @media screen and (max-width: 1366px), screen and (max-height: 644px){
+  .calenderClass_addTask{
+    top: 34.5%;
+    left: 66.5%;
   }
+}

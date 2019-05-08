@@ -32,6 +32,12 @@ class Taskitem extends Component {
   }
   rescheduleTask = selectdate => {
     let date = moment(selectdate).format('YYYY-MM-DD');
+    let currentDate = new Date();
+    currentDate = moment(currentDate).format('YYYY-MM-DD');
+    if(date <= currentDate){
+      alert("plz select valid date");
+    }
+    else{
     this.setState({
       showComponent: false,
       showBtns: false,
@@ -46,8 +52,12 @@ class Taskitem extends Component {
         this.state.tasks.createDate = date;
         this.props.UpdateTask({ tasks: this.state.tasks });
       }
+      this.setState({
+        undoTask: false,
+      })
     }, 4500);
   };
+}
   completeTask = tasks => {
     let date = moment(tasks.createDate).format('YYYY-MM-DD');
     this.setState({
@@ -64,6 +74,9 @@ class Taskitem extends Component {
         tasks.createDate = date;
         this.props.UpdateTask({ tasks });
       }
+      this.setState({
+        undoTask: false,
+      })
     }, 4500);
   };
   deleteTask = (tasks) => {
@@ -79,7 +92,10 @@ class Taskitem extends Component {
       if (this.state.undoTask === false) {
         this.props.DeleteTask({ tasks });
       }
-    }, 4500);
+      this.setState({
+        undoTask: false,
+      })
+    },2500);
   };
   onRescheduleButtonClick = (tasks, index) => {
     this.setState({
@@ -92,7 +108,7 @@ class Taskitem extends Component {
         showBtns: true,
         selectedId: (this.state.selectedId === taskId) ? null : taskId,
         showToast: false,
-        showComponent: false
+        showComponent: false,
       });
     }
   static getDerivedStateFromProps(props, state) {
@@ -144,13 +160,12 @@ class Taskitem extends Component {
                     let itemCls = '';
                     if (this.state.selectedId) {
                       if (this.state.selectedId === Tasksdata.taskId || this.state.selectedId === null) {
-                        itemCls = 'active_item';
+                        itemCls = 'active_item1';
                       } else {
                         itemCls = 'inactive_item';
                       }
                     }
                     return (
-                      <div>
                       <div className={`ItemContainer ${itemCls}`} key={Tasksdata.taskId}>
                         <div className="StatusNoneIcon">
                           <img
@@ -159,7 +174,7 @@ class Taskitem extends Component {
                             alt=""
                           />
                         </div>
-                        <p className="taskData">{Tasksdata.taskName}</p>
+                        <p className="taskData"  onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}>{Tasksdata.taskName}</p>
                         {this.state.showBtns &&
                           this.state.selectedId === Tasksdata.taskId ? (
                             <div className="editTaskButtons">
@@ -182,21 +197,20 @@ class Taskitem extends Component {
                             </div>
                           ) : null}
                       </div>
-
-                      {(this.state.showComponent && (this.state.selectedId === Tasksdata.taskId ))? (
-                    <div className="calender-class-reschedule">
-                      <Calendar
-                        onChange={this.rescheduleTask}
-                        value={date}
-                        className="calender-class-reschedule"
-                      />
-                    </div>) : null}
-                          </div>
                     );
                   })}
-                 
+                   {(this.state.showComponent )? (
+                <div className="calender-class-reschedule">
+                  <Calendar
+                    onChange={this.rescheduleTask}
+                    value={date}
+                    className="calender-class-reschedule"
+                  />
+                </div>) : null}
                 </main>
+                
               );
+             
             }
           })}
           {(this.state.overDueTasksArr.length !== 0) ?
@@ -220,7 +234,7 @@ class Taskitem extends Component {
                         alt=""
                       />
                     </div>
-                    <p className="taskData">{Tasksdata.taskName}</p>
+                    <p className="taskData"  onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}>{Tasksdata.taskName}</p>
                     {this.state.showBtns &&
                       this.state.selectedId === Tasksdata.taskId ? (
                         <div className="editTaskButtons">

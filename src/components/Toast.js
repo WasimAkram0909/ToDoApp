@@ -8,24 +8,19 @@ class Toast extends React.Component {
       isShow: true
     };
   }
-
-  onUndo = () => {
-    this.setState({
-      isShow: false
-    });
-  };
-
   componentDidMount() {
     setTimeout(() => {
       this.setState({ isShow: false });
-    }, 5000);
+    }, 3000);
     if (!this.state.isShow) {
       return null;
     }
   }
-  trigTwoMethods = () => {
+  onUndoClick = () => {
     this.props.undoMyChanges();
-    this.onUndo();
+    this.setState({
+      isShow: false
+    });
   }
   render() {
     return (
@@ -36,7 +31,7 @@ class Toast extends React.Component {
               <img src={this.props.showToast.toastImage} alt="ToastImage" />
             </div>
             <div className="text-display">{this.props.showToast.toastMsg}</div>
-            <div className="undo" onClick={() => this.trigTwoMethods()}>
+            <div className="undo" onClick={() => this.onUndoClick()}>
               <span>UNDO</span>
             </div>
           </div>
