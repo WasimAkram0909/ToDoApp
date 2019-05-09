@@ -38,7 +38,7 @@
 }
 .active{
     border-left:4px solid rgba(255, 97, 158, 1);
-    padding-left:3.5%;
+    padding-left:3.4%;
     opacity:1;
     color:white;
 }
@@ -54,7 +54,7 @@
     bottom: 0;
     border:none;
     border-top:1px solid rgba(255, 255, 255, 0.2);
-    width:93%;
+    width:100%;
 }
 .logout .SideMenuLink{
     padding-left: 8%;
@@ -65,5 +65,10 @@
     display:none;
 } */
 
-
+@media screen and (max-width: 1366px), screen and (max-height: 644px){
+ .active{
+     padding-left: 3.2%;
+ }    
+}
+  
 

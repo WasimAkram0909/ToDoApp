@@ -67,6 +67,8 @@ class GoogleAuth extends React.Component {
           localStorage.setItem("details",JSON.stringify(details));
           // this.props.userProfile(this.auth.currentUser.get().getBasicProfile());
           this.props.history.push('/welcome');
+        window.location.reload();
+          
 
         }
       });
@@ -82,7 +84,6 @@ class GoogleAuth extends React.Component {
         localStorage.setItem("logInStatus", JSON.stringify(logInStatus));
         // localStorage.setItem("details",JSON.stringify(null));
         window.location.reload();
-
       });
     }
   }

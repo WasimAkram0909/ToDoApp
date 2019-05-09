@@ -59,7 +59,7 @@ class MyProfile extends React.Component {
         var srcData = fileLoadedEvent.target.result;
         var data = srcData.split(",");
         this.setState({
-          selectedFile: `data:image/png;base64,${data[1]}`
+          selectedFile: data[1]
         });
       }
       fileReader.readAsDataURL(fileToLoad);
@@ -109,7 +109,7 @@ class MyProfile extends React.Component {
           <div className="MyProfile" key={i}>
             <div className="profilePictureDiv">
               <div className="ProfilePhotoMainDiv">
-                <img className="ProfilePhoto" id="myImg" src={this.state.selectedFile} alt="profile" />
+                <img className="ProfilePhoto" id="myImg" src={"data:image/png;base64,".concat(this.state.selectedFile)} alt="profile" />
                 <br /></div>
               <label htmlFor="files" className="EditProfile">Edit Profile</label>
               <input id="files" className="buttonHide" onChange={(e) => this.handleImage(e)} type="file" required />

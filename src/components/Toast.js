@@ -26,7 +26,7 @@ class Toast extends React.Component {
     return (
       <React.Fragment>
         {this.state.isShow ? (
-          <div className="flex-container" id="flex-container">
+          <div className="flex-container tostAnimation" id="flex-container">
             <div>
               <img src={this.props.showToast.toastImage} alt="ToastImage" />
             </div>

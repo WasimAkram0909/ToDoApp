@@ -1,3 +1,6 @@
+*{
+    font-family: Montserrat;
+}
 .ItemContainer{
     width: 100%;
     border:1px solid;
@@ -8,6 +11,7 @@
     color:#7563EB;
     background-color: #FFFFFF;
     margin-top: 10px;
+    position: relative;
     
 }
 .StatusNoneIcon{
@@ -41,7 +45,17 @@
     width: 34%;
     display: flex;
     justify-content: space-around;
+    box-sizing: border-box;
+    margin-left: 40px;
 
+}
+
+.actionIconsHover{
+    padding:0 50px 0 45px;
+    border-radius: 4px;
+}
+.actionIconsHover:hover{
+    background-color:rgba(156, 148, 249, 0.2);
 }
 .SaveIcon,.CancelIcon{
     padding-top:30px;
@@ -50,12 +64,6 @@
 }
 .AddTask{
     float: right;
-}
-.react-calender{
-    float: right;
-    background:#9C94F9;
-    color:white;
-    padding-top: 10px;
 }
 .display{
     color:white;
@@ -69,7 +77,7 @@
  .calender-class-reschedule {
     position: fixed;
     top: 32.7%;
-    left: 70.2%;
+    left: 65.2%;
     padding: 20px;
     color: #FFFFFF;
     border-radius: 5px;
@@ -86,9 +94,10 @@
 }
 .active_item{
     opacity: 1;
+    
 }
 .inactive_item{
-    opacity: 0.5;
+    opacity: 0.7;
 }
 .active_item1{
     opacity: 1;
@@ -102,3 +111,8 @@
 }
 
  
+@media screen and (max-width: 1366px) ,screen and (max-height:644px) {
+    .actionIconsHover{
+    padding:0 43px 0 35px;
+    }
+    }

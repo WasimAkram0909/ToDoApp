@@ -88,15 +88,15 @@ class AddTask extends React.Component {
             <div id="ItemContainer" className="ItemContainer">
               <input className="taskData1" id="taskData" type="text" ref={this.myRef} required />
               <div className="editTaskButtons">
-                <div>
+                <div title="save" className="actionIconsHover">
                   <SaveICon className="SaveIcon" onClick={this.handleSaveTask} />
 
                 </div>
-                <div>
+                <div title="cancel" className="actionIconsHover">
                   <CancelIcon className="CancelIcon" onClick={this.handleClose} />
 
                 </div>
-                <div className="calenderIcon">
+                <div  title="select date" className="actionIconsHover">
                   <img src={CalendarIcon} onClick={this.handleCalendar} className="CancelIcon" alt=""/>
                 </div>
 

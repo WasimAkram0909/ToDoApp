@@ -44,7 +44,7 @@ export const ToDoAll = (data) => {
     return ToDoAxios.get(`tasks`)
       .then(res => {
         var pendingData = res.data.tasks.filter((taskData) => {
-          if (taskData.status === "PENDING") {
+          if (taskData.status === "PENDING" || taskData.status === "RESCHEDULED") {
             return taskData;
           }
         });

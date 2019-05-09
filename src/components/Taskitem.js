@@ -35,7 +35,7 @@ class Taskitem extends Component {
     let currentDate = new Date();
     currentDate = moment(currentDate).format('YYYY-MM-DD');
     if(date <= currentDate){
-      alert("plz select valid date");
+      alert("Please Select Valid Date");
     }
     else{
     this.setState({
@@ -55,11 +55,12 @@ class Taskitem extends Component {
       this.setState({
         undoTask: false,
       })
-    }, 4500);
+    }, 2500);
   };
 }
   completeTask = tasks => {
-    let date = moment(tasks.createDate).format('YYYY-MM-DD');
+    let currentDate = new Date();
+    currentDate = moment(currentDate).format('YYYY-MM-DD');
     this.setState({
       showBtns: false,
       selectedId: null,
@@ -71,13 +72,13 @@ class Taskitem extends Component {
     setTimeout(() => {
       if (this.state.undoTask === false) {
         tasks.status = 'Completed';
-        tasks.createDate = date;
+        tasks.createDate = currentDate;
         this.props.UpdateTask({ tasks });
       }
       this.setState({
         undoTask: false,
       })
-    }, 4500);
+    }, 2500);
   };
   deleteTask = (tasks) => {
     this.setState({
@@ -178,17 +179,22 @@ class Taskitem extends Component {
                         {this.state.showBtns &&
                           this.state.selectedId === Tasksdata.taskId ? (
                             <div className="editTaskButtons">
-                              <img
+                              <img className="actionIconsHover"
+                                title="Complete Task"
                                 src={Completed}
                                 onClick={() => this.completeTask(Tasksdata)}
                                 alt=""
                               />
                               <img
+                                title="Reschedule Task"
+                                className="actionIconsHover"
                                 src={Reschedule}
                                 onClick={() => this.onRescheduleButtonClick(Tasksdata)}
                                 alt=""
                               />
                               <img
+                                title="Delete Task"
+                                className="actionIconsHover"
                                 src={Delete} alt=""
                                 onClick={() =>
                                   this.deleteTask(Tasksdata)
@@ -239,16 +245,22 @@ class Taskitem extends Component {
                       this.state.selectedId === Tasksdata.taskId ? (
                         <div className="editTaskButtons">
                           <img
+                                title="Complete Task"
+                                className="actionIconsHover"
                             src={Completed}
                             onClick={() => this.completeTask(Tasksdata)}
                             alt=""
                           />
                           <img
+                          title="Reschedule Task"
+                          className="actionIconsHover"
                             src={Reschedule}
                             onClick={() => this.onRescheduleButtonClick(Tasksdata)}
                             alt=""
                           />
                           <img
+                            title="Delete Task"
+                          className="actionIconsHover"
                             src={Delete}
                             onClick={() => this.deleteTask(Tasksdata)}
                             alt=""

@@ -33,9 +33,9 @@ class HeadNav extends Component {
     if (this.state.showCalendar === true ) {
       itemCls = 'active_item';
     } else {
-      itemCls = 'inactive_item';
+      itemCls = 'inactive_item1';
     }
-  
+   
   }
   sortBy = () => {
     this.changeOpacity();
@@ -47,11 +47,13 @@ class HeadNav extends Component {
    
     return (
       <React.Fragment>
+        <div className= {`${itemCls}`}>
+        </div>        
         <div className={`HeadItemContainer `}>
           <p className="HeadNavTitle">{this.props.title}</p>
           <div className="HeadNavButtonsContainer">
             {this.props.showAdd ? (
-              <div className={`sort_By ${itemCls}`}>
+              <div className={`sort_By addTask`}>
                 <Link
                   to="/dashboard/AddTask"
                   className="sort_By linkTag" >
@@ -63,7 +65,7 @@ class HeadNav extends Component {
                 <div />
               )}
             {this.props.showSort ?
-              <div className={`sort_By`} onClick={() => this.sortBy()}>
+              <div className={`sort_By `} onClick={() => this.sortBy()}>
                 <img className="icon" src={CalenderIcon} alt=""/>
                 <p className="btntext">Sort By</p>
               </div> : <div></div>}
@@ -88,7 +90,7 @@ const myStateToProps = state => {
   return {
     SideMenuData: state.SideMenuReducer,
     sortDate: state.allTasks.sortDate,
-    showCalendar:state.allTasks.sortCalender
+    showCalendar:state.allTasks.sortCalender,
   };
 };
 

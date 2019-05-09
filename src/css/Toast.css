@@ -41,3 +41,12 @@
         text-decoration: underline;
         
     }
+    @keyframes Animation {
+      0%   {top:100%;}
+      25%  {top:95%;}
+      50%  {top:85%;}
+      100% {top:80%;}
+    }
+    .tostAnimation{
+      animation: Animation 0.5s ease-out;
+    }
