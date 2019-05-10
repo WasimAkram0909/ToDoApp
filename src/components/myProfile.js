@@ -111,7 +111,7 @@ class MyProfile extends React.Component {
               <div className="ProfilePhotoMainDiv">
                 <img className="ProfilePhoto" id="myImg" src={"data:image/png;base64,".concat(this.state.selectedFile)} alt="profile" />
                 <br /></div>
-              <label htmlFor="files" className="EditProfile">Edit Profile</label>
+              <label htmlFor="files" className="EditProfile">Edit Picture</label>
               <input id="files" className="buttonHide" onChange={(e) => this.handleImage(e)} type="file" required />
             </div>
             <div className="ProfileDetails">

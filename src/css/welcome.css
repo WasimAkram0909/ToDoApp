@@ -1,6 +1,5 @@
 .App {
     background-color:#9C94F9;
-    font-family: "Montserrat";
     width:100vw;
     height: 100vh;
   }
@@ -38,10 +37,11 @@
   }
   .button{
     background-color: #FF619E;
-    width:  74.7%;
+    width: 74.7%;
     margin-top: 3.5%;
     margin-left: 5px;
     padding: 2%;
     border:none;
-  }
+    cursor: pointer;
+    }
   

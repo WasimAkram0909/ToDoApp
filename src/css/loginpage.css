@@ -1,7 +1,4 @@
 
-*{
-    font-family: Montserrat;
-}
 .gridcontanier{
     display:grid;
     grid-template-columns:65% 35%;
@@ -41,18 +38,19 @@
     color:white;
     font-size:16px;
     padding-top: 50px;
-    
-    /* font-style: bold; */
 }
 .LastText{
     padding-top: 50px;
     color:white;
     font-size:11px;
 }
+
 .Googlesign{
-    border:none;
+    cursor: pointer;
+    padding: 0;
+    border: none;
     background-color:#FF619E;
-}
+    }
 .networkimage{
    position: absolute;
    top: 25%;

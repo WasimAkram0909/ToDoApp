@@ -140,15 +140,14 @@ class Taskitem extends Component {
     var newGroupedTaskItems = groupedTaskItems.sort(function (a, b) {
       var c = new Date(a[0]);
       var d = new Date(b[0]);
-      return c - d;
+      return  d-c;
     });
     if (this.props.cards.length !== 0) {
       return (
         <React.Fragment>
+
           {newGroupedTaskItems.map((TaskDetails, i) => {
-
             var d = TaskDetails[0];
-
             var taskDate = moment(d).format('MMM D');
             var currentDate = moment().format('MMM D');
             if (!moment(taskDate).isBefore(currentDate)) {
@@ -157,7 +156,9 @@ class Taskitem extends Component {
                   <p className="dataClass">
                     {moment(TaskDetails[0]).format('MMM D')}
                   </p>
-                  {TaskDetails[1].map((Tasksdata, index) => {
+                  { 
+                    TaskDetails[1].map((Tasksdata, index) => {
+                      
                     let itemCls = '';
                     if (this.state.selectedId) {
                       if (this.state.selectedId === Tasksdata.taskId || this.state.selectedId === null) {
@@ -166,10 +167,13 @@ class Taskitem extends Component {
                         itemCls = 'inactive_item';
                       }
                     }
+                  
                     return (
+                      <React.Fragment key={index}>
                       <div className={`ItemContainer ${itemCls}`} key={Tasksdata.taskId}>
                         <div className="StatusNoneIcon">
                           <img
+                            className="cursorclass"
                             src={StatusNoneIcon}
                             onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}
                             alt=""
@@ -179,22 +183,22 @@ class Taskitem extends Component {
                         {this.state.showBtns &&
                           this.state.selectedId === Tasksdata.taskId ? (
                             <div className="editTaskButtons">
-                              <img className="actionIconsHover"
+                              <img className="actionIconsHover cursorclass"
                                 title="Complete Task"
                                 src={Completed}
                                 onClick={() => this.completeTask(Tasksdata)}
                                 alt=""
                               />
                               <img
-                                title="Reschedule Task"
-                                className="actionIconsHover"
+                                title="Reschedule Task "
+                                className="actionIconsHover cursorclass"
                                 src={Reschedule}
                                 onClick={() => this.onRescheduleButtonClick(Tasksdata)}
                                 alt=""
                               />
                               <img
                                 title="Delete Task"
-                                className="actionIconsHover"
+                                className="actionIconsHover cursorclass"
                                 src={Delete} alt=""
                                 onClick={() =>
                                   this.deleteTask(Tasksdata)
@@ -202,17 +206,23 @@ class Taskitem extends Component {
                               />
                             </div>
                           ) : null}
+                  
                       </div>
+                                {(this.state.showComponent && (this.state.selectedId === Tasksdata.taskId))? (
+                                  
+                                  <div className="calender-position">
+                                    <Calendar
+                                      onChange={this.rescheduleTask}
+                                      value={date}
+                                      className="calender-class-reschedule"
+                                    />
+                                  </div>) : null}
+                              
+
+                                  </React.Fragment>
                     );
                   })}
-                   {(this.state.showComponent )? (
-                <div className="calender-class-reschedule">
-                  <Calendar
-                    onChange={this.rescheduleTask}
-                    value={date}
-                    className="calender-class-reschedule"
-                  />
-                </div>) : null}
+                 
                 </main>
                 
               );
@@ -222,7 +232,7 @@ class Taskitem extends Component {
           {(this.state.overDueTasksArr.length !== 0) ?
             <React.Fragment>
               <p className="dataClass">Over due </p>
-              {this.state.overDueTasksArr.map((Tasksdata, i) => {
+              {this.state.overDueTasksArr.map((Tasksdata, index) => {
                 let itemCls = '';
                 if (this.state.selectedId) {
                   if (this.state.selectedId === Tasksdata.taskId || this.state.selectedId === null) {
@@ -232,9 +242,11 @@ class Taskitem extends Component {
                   }
                 }
                 return (
+                  <React.Fragment key={index}>                  
                   <div className={`ItemContainer ${itemCls}`} key={Tasksdata.taskId}>
                     <div className="StatusNoneIcon">
                       <img
+                        className="cursorclass"
                         src={overDue}
                         onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}
                         alt=""
@@ -246,36 +258,37 @@ class Taskitem extends Component {
                         <div className="editTaskButtons">
                           <img
                                 title="Complete Task"
-                                className="actionIconsHover"
+                                className="actionIconsHover cursorclass"
                             src={Completed}
                             onClick={() => this.completeTask(Tasksdata)}
                             alt=""
                           />
                           <img
                           title="Reschedule Task"
-                          className="actionIconsHover"
+                          className="actionIconsHover cursorclass"
                             src={Reschedule}
                             onClick={() => this.onRescheduleButtonClick(Tasksdata)}
                             alt=""
                           />
                           <img
                             title="Delete Task"
-                          className="actionIconsHover"
+                          className="actionIconsHover cursorclass"
                             src={Delete}
                             onClick={() => this.deleteTask(Tasksdata)}
                             alt=""
                           />
                         </div>
                       ) : null}
-                    {this.state.showComponent ? (
-                      <div className="calender-class-reschedule supportClass">
+                  </div>
+                  {(this.state.showComponent && (this.state.selectedId === Tasksdata.taskId))? (
+                      <div className="calender-position">
                         <Calendar
                           onChange={this.rescheduleTask}
                           value={date}
                           className="calender-class-reschedule"
                         />
                       </div>) : null}
-                  </div>
+                      </React.Fragment>
                 );
               })
               }</React.Fragment> : null}
