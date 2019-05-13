@@ -77,9 +77,8 @@
 }
 
 
-@media screen and (max-width: 1366px), screen and (max-height: 644px){
+@media screen and (max-width: 1366px), screen and (max-height: 800px){
   .calenderClass_headNav{
-    top: 13%;
     left: 64.2%;
     width: 28%;
   }

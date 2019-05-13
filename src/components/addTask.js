@@ -16,7 +16,6 @@ class AddTask extends React.Component {
     this.state = {
       showComponent: true,
       showCalendar: false,
-      date: new Date(),
       newDate: "",
     }
     this.myRef = React.createRef();

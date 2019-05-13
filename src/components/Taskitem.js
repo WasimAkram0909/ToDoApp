@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/Taskitem.css';
+import "../css/Toast.css"
 import { connect } from 'react-redux';
 import StatusNoneIcon from '../assets/StatusNone.svg';
 import { DeleteTask, UpdateTask } from '../actions';
@@ -24,40 +25,61 @@ class Taskitem extends Component {
     overDueTasksArr: [],
     noTasks: '',
     undoTask: false,
+    error:false
   };
+
+
+
+componentDidMount =()=>{
+  
+}
+
   undoMyChanges = () => {
     this.setState({
       undoTask: true,
     })
   }
+
+
   rescheduleTask = selectdate => {
     let date = moment(selectdate).format('YYYY-MM-DD');
     let currentDate = new Date();
     currentDate = moment(currentDate).format('YYYY-MM-DD');
-    if(date <= currentDate){
-      alert("Please Select Valid Date");
-    }
-    else{
-    this.setState({
-      showComponent: false,
-      showBtns: false,
-      selectedId: null,
-      showToast: true,
-      toastMsg: ' You have successfully rescheduled the task',
-      toastImage: require('../assets/Toast Reschedule.png')
-    });
-    setTimeout(() => {
-      if (this.state.undoTask === false) {
-        this.state.tasks.status = 'Rescheduled';
-        this.state.tasks.createDate = date;
-        this.props.UpdateTask({ tasks: this.state.tasks });
-      }
+    
+     try{
+      if(date>currentDate){
       this.setState({
-        undoTask: false,
+        showComponent: false,
+        showBtns: false,
+        selectedId: null,
+        showToast: true,
+        toastMsg: ' You have successfully rescheduled the task',
+        toastImage: require('../assets/Toast Reschedule.png')
+      });
+      setTimeout(() => {
+        if (this.state.undoTask === false) {
+          this.state.tasks.status = 'Rescheduled';
+          this.state.tasks.createDate = date;
+          this.props.UpdateTask({ tasks: this.state.tasks });
+        }
+        this.setState({
+          undoTask: false,
+        })
+      }, 2500);
+    }
+    if(date<=currentDate) throw "error";
+  }
+    catch(error){
+      console.log("select valid date");
+      this.setState({
+        error:true,
+        showComponent:false
       })
-    }, 2500);
-  };
-}
+    }
+  }
+
+     
+   
   completeTask = tasks => {
     let currentDate = new Date();
     currentDate = moment(currentDate).format('YYYY-MM-DD');
@@ -218,7 +240,7 @@ class Taskitem extends Component {
                                     />
                                   </div>) : null}
                               
-
+          
                                   </React.Fragment>
                     );
                   })}
@@ -292,7 +314,9 @@ class Taskitem extends Component {
                 );
               })
               }</React.Fragment> : null}
-          {this.state.showToast ? <Toast showToast={this.state} undoMyChanges={this.undoMyChanges} /> : null}
+              {console.log(this.state.error,"after selecting")}
+              {this.state.error?(<div className="errorMsg">please select valid date</div>):null}
+          {(this.state.showToast) && (this.state.error=== false)? <Toast showToast={this.state} undoMyChanges={this.undoMyChanges} /> : null}
         </React.Fragment>
       );
     } else {

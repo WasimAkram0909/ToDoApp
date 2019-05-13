@@ -114,13 +114,24 @@
     z-index: 10;
     opacity: 0.3;
   }
-@media screen and (max-width: 1366px) ,screen and (max-height:644px) {
+.errorMsg{
+    position: fixed;
+    top: 10%;
+    display: flex;
+    z-index: 100;
+    align-content: center;
+    justify-content: center;
+    color: red;
+    background-color: black;
+}
+
+@media screen and (min-width: 1200px) ,screen and (max-height:644px) {
     .calender-class-reschedule{
         top: 36.7%;
         left: 66.5%
     }
 }
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1200px) {
     .calender-position{
         position: absolute;
         width: 170%;
