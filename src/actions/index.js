@@ -3,6 +3,12 @@ let token = JSON.parse(localStorage.getItem('accessToken'));
 if (token === null) {
   token = null
 }
+export const tokenAction=(data)=>{
+  return{
+    type:'TOKEN_ACCESS',
+    payload:data
+  }
+}
 let ToDoAxios = axios.create(
   {
     baseURL: "http://115.248.119.138:8089/todo/",

@@ -4,9 +4,14 @@ const initialValues = {
   task: pendingTasks,
   profile: [],
   sortDate: null,
+  accessToken:{}
 };
 export default (state = initialValues, action) => {
   switch (action.type) {
+    case 'TOKEN_ACCESS':
+    return Object.assign({}, state, {
+      accessToken: action.payload
+    })
     case 'TO_DO_ALL':
       return {
         ...state,

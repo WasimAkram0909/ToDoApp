@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { signIn, signOut, userProfile } from '../actions';
+import { signIn, signOut, userProfile,tokenAction } from '../actions';
 import { withRouter } from 'react-router';
 import Google from '../assets/google.png';
 import '../css/loginpage.css';
@@ -17,13 +17,17 @@ class GoogleAuth extends React.Component {
             //  Author
             clientId:
               '79352387866-fqsjv565vpfa6eiog739gm25k15f6ak0.apps.googleusercontent.com',
-            scope: 'email',
+              scope : 'https://mail.google.com  https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/plus.login ',
+
+            // scope: 'email',
             client_secret: 'BuTLt32kxC4fuWIzsDnjq5jc'
           })
           .then(() => {
             this.auth = window.gapi.auth2.getAuthInstance();
             this.authResp = this.auth.currentUser.get().getAuthResponse(true);
+            this.props.tokenAction(this.authResp.access_token);
             if(this.authResp &&this.authResp!==null){
+              this.props.tokenAction(this.authResp.access_token);
             setTimeout(() => {
               localStorage.setItem("accessToken", JSON.stringify(this.authResp.access_token))
             }, this.authResp.expires_in);
@@ -116,4 +120,4 @@ const mapStateToProps = state => {
     isPorofileDetails: state.profileData
   };
 }
-export default withRouter(connect(mapStateToProps,{signIn,signOut,userProfile,})(GoogleAuth));
+export default withRouter(connect(mapStateToProps,{signIn,signOut,userProfile,tokenAction})(GoogleAuth));
