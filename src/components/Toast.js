@@ -28,12 +28,14 @@ class Toast extends React.Component {
         {this.state.isShow ? (
           <div className="flex-container tostAnimation" id="flex-container">
             <div>
-              <img src={this.props.showToast.toastImage} alt="ToastImage" />
+              {this.props.showImg?<img src={this.props.showToast.toastImage} alt="ToastImage" />:null}
+              
             </div>
             <div className="text-display">{this.props.showToast.toastMsg}</div>
-            <div className="undo" onClick={() => this.onUndoClick()}>
-              <span>UNDO</span>
-            </div>
+            {this.props.showUndoOpt? <div className="undo" onClick={() => this.onUndoClick()}>
+              <span>UNDO</span>    
+            </div> :null}
+            
           </div>
         ) : null}
       </React.Fragment>

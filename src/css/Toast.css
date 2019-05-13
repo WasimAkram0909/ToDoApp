@@ -3,7 +3,8 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
-    width: 23%;
+    max-width: 23%;
+    min-width:14%;
     position: fixed;
     top: 80%;
     left: calc(100% - 63%);
@@ -25,7 +26,8 @@
       color: #FFFFFF;
       font-size: 14px;
       font-weight: 400;
-      margin: 9px;
+      /* margin: 9px; */
+      margin:auto;
     }
     .flex-container .undo {
       width: 10%;
@@ -38,7 +40,6 @@
         cursor: pointer;
         font-weight:600;
         text-decoration: underline;
-        
     }
     @keyframes Animation {
       0%   {top:100%;}

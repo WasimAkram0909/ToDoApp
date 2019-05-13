@@ -9,6 +9,7 @@ import HeadNav from './HeadNav';
 import SaveICon from '@material-ui/icons/Done';
 import CancelIcon from '@material-ui/icons/Clear';
 import moment from "moment";
+import Toast from "./Toast.js"
 
 class AddTask extends React.Component {
   constructor(props) {
@@ -17,9 +18,12 @@ class AddTask extends React.Component {
       showComponent: true,
       showCalendar: false,
       newDate: "",
+      showToast: false,
+      toastMsg: null,
     }
     this.myRef = React.createRef();
   }
+  
   onChange = date => {
     let selectedDate = moment(date).format("YYYY-MM-DD");
     this.setState({
@@ -27,19 +31,44 @@ class AddTask extends React.Component {
       showCalendar: false,
     })
   }
+  makeToastFalse = () =>{
+    setTimeout(() => {
+      
+      this.setState({
+        showToast: false,
+      })
+    },2500);
+    
+  }
+  
   handleSaveTask = () => {
     let currnetDate = moment(this.state.date).format("YYYY-MM-DD");
     var taskcontent = this.myRef.current.value;
     var dateContent = this.state.newDate;
     var token = this.props.token;
     if (taskcontent === "") {
-      alert("Please enter the task");
-      document.getElementById("taskData").focus()
-    } else if (dateContent === "") {
-      alert("Please select  date");
+      document.getElementById("taskData").focus();
+      this.setState({
+        showToast: true,
+        toastMsg: " please enter the task",
+      })
+      this.makeToastFalse();
+      
+    }
+     else if (dateContent === "") {
+      this.setState({
+        showToast: true,
+        toastMsg: " Please select  date",
+      })
+      this.makeToastFalse();
     } 
     else if (dateContent < currnetDate) {
-      alert("Please select Valid date");
+      this.setState({
+        showToast: true,
+        toastMsg: " Please select Valid date",
+      })
+      this.makeToastFalse();
+      
     }
     else {
       var TaskObject = {
@@ -80,6 +109,7 @@ class AddTask extends React.Component {
   render() {
     return (
       <div className="DontEditThisClass">
+      {console.log(this.state.showToast)}
         <HeadNav title="Add Task" showFunction={this.ChangeState} showSort={false} showAdd={false} />
         {this.state.showComponent ?
           <div className="display">
@@ -109,6 +139,7 @@ class AddTask extends React.Component {
               onChange={this.onChange} />
           </div>)
           : null}
+        {this.state.showToast ? <Toast  showToast={this.state} showUndoOpt={false} showImg={false}></Toast>:null}
       </div>
     );
   }

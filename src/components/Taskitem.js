@@ -11,6 +11,7 @@ import overDue from '../assets/overdue.svg';
 import Reschedule from '../assets/Reschedule.svg';
 import Delete from '../assets/Delete.svg';
 import moment from 'moment';
+import $ from "jquery";
 let taskDate = '';
 class Taskitem extends Component {
   state = {
@@ -27,12 +28,7 @@ class Taskitem extends Component {
     undoTask: false,
     error:false
   };
-
-
-
-componentDidMount =()=>{
   
-}
 
   undoMyChanges = () => {
     this.setState({
@@ -165,6 +161,9 @@ componentDidMount =()=>{
       return  d-c;
     });
     if (this.props.cards.length !== 0) {
+      // $(".taskData").mouseover(function(){
+        // $(".taskData").click();
+      // });
       return (
         <React.Fragment>
 
@@ -271,10 +270,11 @@ componentDidMount =()=>{
                         className="cursorclass"
                         src={overDue}
                         onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}
+                        
                         alt=""
                       />
                     </div>
-                    <p className="taskData"  onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}>{Tasksdata.taskName}</p>
+                    <p className="taskData" onClick={() => this.DisplayActionsBtns(Tasksdata.taskId)}>{Tasksdata.taskName}</p>
                     {this.state.showBtns &&
                       this.state.selectedId === Tasksdata.taskId ? (
                         <div className="editTaskButtons">
@@ -316,7 +316,7 @@ componentDidMount =()=>{
               }</React.Fragment> : null}
               {console.log(this.state.error,"after selecting")}
               {this.state.error?(<div className="errorMsg">please select valid date</div>):null}
-          {(this.state.showToast) && (this.state.error=== false)? <Toast showToast={this.state} undoMyChanges={this.undoMyChanges} /> : null}
+          {(this.state.showToast) && (this.state.error=== false)? <Toast showUndoOpt={true} showImg={true} showToast={this.state} undoMyChanges={this.undoMyChanges} /> : null}
         </React.Fragment>
       );
     } else {
