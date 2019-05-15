@@ -27,6 +27,7 @@
     height: 40px;
     margin-top: 16px;
     margin-left: 25px;
+    font-size: 14px;
     margin-bottom: 23px;
     color:#7563EB;
     border: none;
@@ -43,7 +44,6 @@
     justify-content: space-around;
     box-sizing: border-box;
     margin-left: 40px;
-
 }
 
 .actionIconsHover{
@@ -68,6 +68,7 @@
 .dataClass{
     font-size: 18px;
     color:rgba(255, 255, 255, 1);
+    margin: 7px 0px 2px 0;
 
 }
  .calender-class-reschedule {
@@ -97,12 +98,12 @@
 .active_item{
     opacity: 1;
 }
-.inactive_item{
+/* .inactive_item{
     opacity: 0.7;
-}
+} */
 .active_item1{
     opacity: 1;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 6px 20px 15px 0 rgba(0, 0, 0, 0.19),-4px -4px 10px 0 rgba(0, 0, 0, 0.19);
 }
 .inactive_item1{
     position: fixed;
