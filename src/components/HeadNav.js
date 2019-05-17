@@ -66,7 +66,7 @@ class HeadNav extends Component {
               )}
             {this.props.showSort ?
               <div className={`sort_By `} onClick={() => this.sortBy()}>
-                <img className="icon" src={CalenderIcon} alt=""/>
+                <img className="icon iconCalender" src={CalenderIcon} alt=""/>
                 <p className="btntext">Sort By</p>
               </div> : <div></div>}
 

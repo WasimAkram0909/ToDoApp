@@ -47,7 +47,7 @@
 }
 
 .actionIconsHover{
-    padding:0 50px 0 45px;
+    padding:0 25px 0 26px;
     border-radius: 4px;
 }
 .actionIconsHover:hover{
@@ -68,7 +68,7 @@
 .dataClass{
     font-size: 18px;
     color:rgba(255, 255, 255, 1);
-    margin: 7px 0px 2px 0;
+    margin: 12px 0px 12px 0;
 
 }
  .calender-class-reschedule {
@@ -103,7 +103,7 @@
 } */
 .active_item1{
     opacity: 1;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 6px 20px 15px 0 rgba(0, 0, 0, 0.19),-4px -4px 10px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 6px 20px 15px 0 rgba(27, 56, 218, 0.19);
 }
 .inactive_item1{
     position: fixed;
@@ -114,6 +114,12 @@
     height: 100vh;
     z-index: 10;
     opacity: 0.3;
+  }
+  .lef_mar{
+    margin-right: -4%;
+  }
+  .lef_mar2{
+    margin-right: -8%;
   }
 .errorMsg{
     position: fixed;
@@ -141,8 +147,11 @@
         margin-top: 1%;
     }
 }
-@media screen and (max-width: 1366px) ,screen and (max-height:644px) {
+@media screen and (max-width: 1366px)  {
     .actionIconsHover{
-    padding:0 13% 0 11.5%;
+        padding: 0px 8.5% 0 8.5%;
     }
+    .lef_mar2{
+        margin-right: -4%;
+      }
     }

@@ -37,7 +37,7 @@ class AddTask extends React.Component {
       this.setState({
         showToast: false,
       })
-    },2500);
+    },4000);
     
   }
   
@@ -117,16 +117,16 @@ class AddTask extends React.Component {
             <div id="ItemContainer" className="ItemContainer">
               <input className="taskData1" id="taskData" type="text" ref={this.myRef} required />
               <div className="editTaskButtons">
-                <div title="save" className="actionIconsHover">
-                  <SaveICon className="SaveIcon" onClick={this.handleSaveTask} />
+                <div title="save" onClick={this.handleSaveTask} className="lef_mar actionIconsHover  actionIconsHover1">
+                  <SaveICon className="SaveIcon"  />
 
                 </div>
-                <div title="cancel" className="actionIconsHover">
-                  <CancelIcon className="CancelIcon" onClick={this.handleClose} />
+                <div title="cancel" onClick={this.handleClose}  className="lef_mar actionIconsHover actionIconsHover1">
+                  <CancelIcon className="CancelIcon" />
 
                 </div>
-                <div  title="select date" className="actionIconsHover">
-                  <img src={CalendarIcon} onClick={this.handleCalendar} className="CancelIcon" alt=""/>
+                <div  title="select date" onClick={this.handleCalendar} className="lef_mar actionIconsHover actionIconsHover1">
+                  <img src={CalendarIcon}  className="CancelIcon" alt=""/>
                 </div>
 
               </div>

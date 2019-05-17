@@ -21,7 +21,9 @@
   font-size: 18px;
   width: 100%;
 }
-
+.iconCalender{
+  padding-left: 13px;
+}
 .linkTag {
   text-decoration: none;
   margin-left: -10px;
@@ -47,7 +49,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 12px 0 12px 14px;
+  padding: 12px 0 12px 20px;
   width: 46%;
   text-decoration: none;
   z-index: 100;
@@ -79,7 +81,7 @@
 
 @media screen and (max-width: 1366px), screen and (max-height: 800px){
   .calenderClass_headNav{
-    left: 64.2%;
+    left: 65.25%;
     width: 28%;
   }
 }

@@ -67,25 +67,23 @@ class Taskitem extends Component {
       }
       if (date <= currentDate) throw "error";
     } catch (error) {
-      console.log("select valid date");
-      console.log(this.state.showImg,"img ");
       this.setState({
         showToast:true,
         error: true,
         showComponent: false,
         showImg: false,
+        showBtns:false,
         showUndoOpt:false,
         toastMsg:"Please select a valid date",
       });
-      console.log(this.state.showImg,"before time img", this.state.showUndoOpt,"before time undo");
       
       setTimeout(()=>{
         this.setState({
           showToast:false,
           showImg:true,
           showUndoOpt: true,
+          showBtns:false,
         })
-      console.log(this.state.showImg,"after time img", this.state.showUndoOpt,"after time undo");
         
       },1500)
     }
@@ -265,7 +263,7 @@ class Taskitem extends Component {
                                 />
                                 <img
                                   title="Delete Task"
-                                  className="actionIconsHover cursorclass"
+                                  className="actionIconsHover lef_mar2 cursorclass"
                                   src={Delete}
                                   alt=""
                                   onClick={() => this.deleteTask(Tasksdata)}
@@ -301,7 +299,7 @@ class Taskitem extends Component {
                     this.state.selectedId === Tasksdata.taskId ||
                     this.state.selectedId === null
                   ) {
-                    itemCls = "active_item";
+                    itemCls = "active_item1";
                   } else {
                     itemCls = "inactive_item";
                   }
@@ -359,7 +357,7 @@ class Taskitem extends Component {
                           />
                           <img
                             title="Delete Task"
-                            className="actionIconsHover cursorclass"
+                            className="actionIconsHover lef_mar2 cursorclass"
                             src={Delete}
                             onClick={() => this.deleteTask(Tasksdata)}
                             alt=""

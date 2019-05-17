@@ -71,13 +71,25 @@
 .react-calendar__tile{
     padding: 3.2% ;
 }
+.lef_mar{
+    margin-right: -6%;
+}
 abbr[title] {
     text-decoration: none;
     font-size: 14px;
+}
+.actionIconsHover1{
+    padding:0 25px 0 25px;
+    border-radius: 4px;
 }
   @media screen and (max-width: 1366px), screen and (max-height: 644px){
   .calenderClass_addTask{
     top: 30.5%;
     left: 65.2%;
   }
+}
+@media screen and (min-width: 1600px){
+    .lef_mar{
+        margin-right: -13%;
+    }  
 }
