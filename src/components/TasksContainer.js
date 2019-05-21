@@ -68,6 +68,7 @@ const myStateToProps = state => {
     token: state.allTasks.accessToken
   };
 };
+
 export default withRouter(
   connect(
     myStateToProps,

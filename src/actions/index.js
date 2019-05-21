@@ -1,19 +1,16 @@
 import axios from "axios";
-let token = JSON.parse(localStorage.getItem('accessToken'));
-if (token === null) {
-  token = null
-}
+var token = JSON.parse(localStorage.getItem('accessToken'));
 export const tokenAction=(data)=>{
   return{
     type:'TOKEN_ACCESS',
     payload:data
   }
 }
-let ToDoAxios = axios.create(
+var ToDoAxios = axios.create(
   {
     baseURL: "http://115.248.119.138:8089/todo/",
-    headers: {
-      "Authorization": token
+    headers: { 
+      "Authorization": JSON.parse(localStorage.getItem('accessToken')),
     }
   }
 )
@@ -39,15 +36,15 @@ export const userProfile = (data) => {
 }
 export const profileAction = () => {
   return (dispatch) => {
-    return ToDoAxios.get(`profile`)
+    return ToDoAxios.get("profile")
       .then(res => {
         dispatch(GetProfile(res.data));
       })
   }
 }
-export const ToDoAll = (data) => {
+export const ToDoAll = (data) => { 
   return (dispatch) => {
-    return ToDoAxios.get(`tasks`)
+    return ToDoAxios.get("tasks")
       .then(res => {
         var pendingData = res.data.tasks.filter((taskData) => {
           if (taskData.status === "PENDING" || taskData.status === "RESCHEDULED") {
@@ -92,7 +89,7 @@ const GetProfile = (Profiledata) => {
 }
 export const EditProfile = (data) => {
   return (dispatch) => {
-    return ToDoAxios.post(`profile`,
+    return ToDoAxios.post("profile",
       {
         "firstName": data.firstname,
         "lastName": data.lastname,
@@ -105,7 +102,7 @@ export const EditProfile = (data) => {
   }
 }
 export const TasksApi = (status) => {
-  return (dispatch) => {
+  return (dispatch) => { 
     dispatch(TaskAction([]));
     return ToDoAxios.get(`getTasksByStatus?status=${status}`)
       .then(res => {

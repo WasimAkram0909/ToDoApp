@@ -21,11 +21,12 @@
     width:40%;
     height:90vh;
     text-align: center;
+    padding:4% 0;
 }
 .boxText{
     color:white;
     font-size:24px;
-    padding:30px 40px;
+    padding:6% 15% 10% 15%;
 }
 
 .todo{
@@ -38,6 +39,7 @@
     color:white;
     font-size:16px;
     padding-top: 50px;
+    padding-bottom:4%;
 }
 .LastText{
     padding-top: 50px;
@@ -58,4 +60,17 @@
 }
 .hide{
     display:none;
+}
+.googleAuthMobile{
+    background-color: #7563EB;
+}
+@media only screen and (min-width: 415px) {
+    .hide_in_web{
+        display: none;
+    }
+}
+@media only screen and (max-width: 414px) {
+    .hide_in_mob{
+        display: none;
+    }
 }

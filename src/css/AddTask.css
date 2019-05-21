@@ -82,6 +82,11 @@ abbr[title] {
     padding:0 25px 0 25px;
     border-radius: 4px;
 }
+.addTaskIcons{
+    font-size: 30px !important;
+    padding-bottom: 3px !important;
+    height: 60px !important;
+}
   @media screen and (max-width: 1366px), screen and (max-height: 644px){
   .calenderClass_addTask{
     top: 30.5%;

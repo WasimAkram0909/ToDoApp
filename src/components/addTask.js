@@ -118,11 +118,11 @@ class AddTask extends React.Component {
               <input className="taskData1" id="taskData" type="text" ref={this.myRef} required />
               <div className="editTaskButtons">
                 <div title="save" onClick={this.handleSaveTask} className="lef_mar actionIconsHover  actionIconsHover1">
-                  <SaveICon className="SaveIcon"  />
+                  <SaveICon className="addTaskIcons SaveIcon"  />
 
                 </div>
                 <div title="cancel" onClick={this.handleClose}  className="lef_mar actionIconsHover actionIconsHover1">
-                  <CancelIcon className="CancelIcon" />
+                  <CancelIcon className="addTaskIcons CancelIcon " />
 
                 </div>
                 <div  title="select date" onClick={this.handleCalendar} className="lef_mar actionIconsHover actionIconsHover1">
